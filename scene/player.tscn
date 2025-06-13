@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr1c0pyjtfjsu"]
+
+[ext_resource type="Script" uid="uid://caeevha7kxgmd" path="res://code/player/Player.cs" id="1_hjaqi"]
+[ext_resource type="Script" uid="uid://cgtpixr4b8rcr" path="res://code/player/PlayerAnimationPlayer.cs" id="2_fvtld"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_hjaqi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+script = ExtResource("2_fvtld")
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Leg" type="Sprite2D" parent="."]
+
+[node name="Boot" type="Sprite2D" parent="."]
+
+[node name="LeftWrist" type="Sprite2D" parent="."]
+
+[node name="RightWrist" type="Sprite2D" parent="."]
+
+[node name="Chest" type="Sprite2D" parent="."]
+
+[node name="Armor" type="Sprite2D" parent="."]
+
+[node name="Hair" type="Sprite2D" parent="."]
+
+[node name="Hat" type="Sprite2D" parent="."]
+
+[node name="Weapon" type="Sprite2D" parent="."]
+
+[node name="AttackEffect" type="Sprite2D" parent="."]
