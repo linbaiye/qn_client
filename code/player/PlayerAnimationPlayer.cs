@@ -21,7 +21,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     public override void _Ready()
     {
         _spriteLoader = ZipFileSpriteLoader.Instance;
-        InitializeAnimations();
     }
 
     private AnimationLibrary CreateAnimationLibrary(int spritesPerDirection,
@@ -233,17 +232,20 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     // {
     //     return CreateAnimationLibrary(144, 10, 0.1f, offsets, Animation.LoopModeEnum.None, "N02");
     // }
-
+    
     public float WalkAnimationLength => WalkSpriteNumber * WalkTick;
     public float StopWalkLength =>  WalkTick;
 
     private static readonly float RunSpeed = 1.4f;
     public float RunAnimationLength => WalkAnimationLength / RunSpeed;
-
-    private void InitializeAnimations()
+    
+    public void InitializeAnimations(bool male)
     {
         var sprites = _spriteLoader.Load("N00");
+        var tmp = new Sprite[];
+        sprites.CopyTo();
         AddAnimationLibrary(MoveAction.Walk.ToString(), CreateAnimationLibrary(WalkSpriteNumber, WalkTick, sprites));
+        AddAnimationLibrary(CreatureState.Idle.ToString(), CreateAnimationLibrary(WalkSpriteNumber, WalkTick, sprites));
         // AddAnimationLibrary(WebSocketPeer.State.StopMove.ToString(), CreateStopWalkAnimations(n02Offsets, n020Textures));
         // AddAnimationLibrary(WebSocketPeer.State.Idle.ToString(), CreateIdleAnimations(n02Offsets));
         // var n00Offsets = LoadOffsets("N02");
