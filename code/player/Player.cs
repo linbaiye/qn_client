@@ -14,6 +14,7 @@ public partial class Player : Node2D
     private string? _rightWrist;
     private string? _chest;
     private string? _armor;
+    private string? _weapon;
     public override void _Ready()
     {
         _animationPlayer = GetNode<PlayerAnimationPlayer>("AnimationPlayer");
@@ -89,10 +90,32 @@ public partial class Player : Node2D
     {
         GetNode<Sprite2D>("Armor").Visible = false;
     }
+    
+    private void PutOnHair(string name)
+    {
+        GetNode<Sprite2D>("Hair").Visible = true;
+        _animationPlayer.SetHairAnimation(name);
+    }
+
+    private void HideHair()
+    {
+        GetNode<Sprite2D>("Hair").Visible = false;
+    }
+    
+    private void PutOnWeapon(string name)
+    {
+        GetNode<Sprite2D>("Weapon").Visible = true;
+        _animationPlayer.SetBladeAnimation(name);
+    }
+
+    private void HideWeapon()
+    {
+        GetNode<Sprite2D>("Weapon").Visible = false;
+    }
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        TestPlay player = _animationPlayer.PlayDie;
+        TestPlay player = _animationPlayer.PlayBlade2HAttack;
         if (@event is InputEventKey eventKey && eventKey.Pressed)
         {
             if (eventKey.Keycode == Key.H)
@@ -153,19 +176,7 @@ public partial class Player : Node2D
             {
                 if (_chest == null)
                 {
-                    _chest = "t1";
-                    PutOnChest(_chest);
-                }
-                else
-                {
-                    HideChest();
-                }
-            }
-            else if (eventKey.Keycode == Key.A)
-            {
-                if (_chest == null)
-                {
-                    _chest = "t1";
+                    _chest = "p1";
                     PutOnChest(_chest);
                 }
                 else
@@ -183,6 +194,30 @@ public partial class Player : Node2D
                 else
                 {
                     HideArmor();
+                }
+            }
+            else if (eventKey.Keycode == Key.R)
+            {
+                if (_armor == null)
+                {
+                    _armor = "u1";
+                    PutOnHair(_armor);
+                }
+                else
+                {
+                    HideHair();
+                }
+            }
+            else if (eventKey.Keycode == Key.E)
+            {
+                if (_weapon == null)
+                {
+                    _weapon = "w1";
+                    PutOnWeapon(_weapon);
+                }
+                else
+                {
+                    HideWeapon();
                 }
             }
             else if (eventKey.Keycode >= Key.Key1 && eventKey.Keycode <= Key.Key8)

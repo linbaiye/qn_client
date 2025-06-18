@@ -408,9 +408,9 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     }
 
 
-    private void UpdateNodeAnimation(string spriteName, int textureTrack, int offsetTrack)
+    private void UpdateNodeCommonAnimation(string spriteName, int textureTrack, int offsetTrack, bool hasHello = true)
     {
-        var sprites = _spriteLoader.Load(spriteName + "0");
+        var sprites = _spriteLoader.Load(spriteName);
         UpdateNodeAnimationLibrary(MoveAction.Walk.ToString(), textureTrack, offsetTrack, sprites);
         
         var tmp = new Sprite[IdleSpriteNumber * DirectionNumber];
@@ -444,20 +444,27 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Array.Copy(sprites, index, tmp, DieSpriteNumber, tmp.Length - DieSpriteNumber);
         UpdateNodeAnimationLibrary(CreatureState.Die.ToString(), textureTrack, offsetTrack, tmp);
         index += tmp.Length;
-        
-        tmp = new Sprite[HelloSpriteNumber * DirectionNumber];
-        Array.Copy(sprites, index, tmp, 0, tmp.Length);
-        UpdateNodeAnimationLibrary(CreatureState.Hello.ToString(), textureTrack, offsetTrack, tmp);
-        
-        sprites = _spriteLoader.Load(spriteName + "1");
+
+        if (hasHello)
+        {
+            tmp = new Sprite[HelloSpriteNumber * DirectionNumber];
+            Array.Copy(sprites, index, tmp, 0, tmp.Length);
+            UpdateNodeAnimationLibrary(CreatureState.Hello.ToString(), textureTrack, offsetTrack, tmp);
+        }
+    }
+
+    private void UpdateNodeAnimation(string spritePrefix, int textureTrack, int offsetTrack)
+    {
+        UpdateNodeCommonAnimation(spritePrefix + "0", textureTrack, offsetTrack);
+        var sprites = _spriteLoader.Load(spritePrefix + "1");
         UpdateNodeAnimationLibrary(AttackAction.Kick.ToString(), textureTrack, offsetTrack, sprites);
-        index = KickSpriteNumber * DirectionNumber;
+        int index = KickSpriteNumber * DirectionNumber;
         
-        tmp = new Sprite[PunchSpriteNumber * DirectionNumber];
+        var tmp = new Sprite[PunchSpriteNumber * DirectionNumber];
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
         UpdateNodeAnimationLibrary(AttackAction.Punch.ToString(), textureTrack, offsetTrack, tmp);
         
-        sprites = _spriteLoader.Load(spriteName + "2");
+        sprites = _spriteLoader.Load(spritePrefix + "2");
         UpdateNodeAnimationLibrary(AttackAction.Sword1H.ToString(), textureTrack, offsetTrack, sprites);
         UpdateNodeAnimationLibrary(AttackAction.Throw.ToString(), textureTrack, offsetTrack, sprites);
         index = Sword1HSpriteNumber * DirectionNumber;
@@ -471,35 +478,56 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
         UpdateNodeAnimationLibrary(AttackAction.Sword2H.ToString(), textureTrack, offsetTrack, tmp);
 
-        sprites = _spriteLoader.Load(spriteName + "3");
+        sprites = _spriteLoader.Load(spritePrefix + "3");
         UpdateNodeAnimationLibrary(AttackAction.Axe.ToString(), textureTrack, offsetTrack, sprites);
         
-        sprites = _spriteLoader.Load(spriteName + "4");
+        sprites = _spriteLoader.Load(spritePrefix + "4");
         UpdateNodeAnimationLibrary(AttackAction.Bow.ToString(), textureTrack, offsetTrack, sprites);
     }
 
-    public void SetHatAnimation(string name)
+    private void UpdateWeaponNodeAttackAnimation(string spriteName, string attackAction, int textureTrack, int offsetTrack)
     {
-        UpdateNodeAnimation(name, _hatTextureIdx, _hatOffsetIdx);
+        var sprites = _spriteLoader.Load(spriteName);
+        UpdateNodeAnimationLibrary(attackAction, textureTrack, offsetTrack, sprites);
+    }
+
+    public void SetBladeAnimation(string prefix)
+    {
+        UpdateNodeCommonAnimation(prefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
+        var sprites = _spriteLoader.Load(prefix + "2");
+        UpdateNodeAnimationLibrary(AttackAction.Sword1H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+        var tmp = new Sprite[Blade2HSpriteNumber * DirectionNumber];
+        Array.Copy(sprites, Sword1HSpriteNumber * DirectionNumber, tmp, 0, tmp.Length);
+        UpdateNodeAnimationLibrary(AttackAction.Blade2H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, tmp);
+    }
+
+    public void SetHatAnimation(string prefix)
+    {
+        UpdateNodeAnimation(prefix, _hatTextureIdx, _hatOffsetIdx);
     }
     
-    public void SetLegAnimation(string name)
+    public void SetLegAnimation(string prefix)
     {
-        UpdateNodeAnimation(name, _legTextureIdx, _legOffsetIdx);
+        UpdateNodeAnimation(prefix, _legTextureIdx, _legOffsetIdx);
     }
-    public void SetBootAnimation(string name)
+    public void SetBootAnimation(string prefix)
     {
-        UpdateNodeAnimation(name, _bootTextureIdx, _bootOffsetIdx);
-    }
-    
-    public void SetChestAnimation(string name)
-    {
-        UpdateNodeAnimation(name, _chestTextureIdx, _chestOffsetIdx);
+        UpdateNodeAnimation(prefix, _bootTextureIdx, _bootOffsetIdx);
     }
     
-    public void SetArmorAnimation(string name)
+    public void SetChestAnimation(string prefix)
     {
-        UpdateNodeAnimation(name, _armorTextureIdx, _armorOffsetIdx);
+        UpdateNodeAnimation(prefix, _chestTextureIdx, _chestOffsetIdx);
+    }
+    
+    public void SetArmorAnimation(string prefix)
+    {
+        UpdateNodeAnimation(prefix, _armorTextureIdx, _armorOffsetIdx);
+    }
+    
+    public void SetHairAnimation(string prefix)
+    {
+        UpdateNodeAnimation(prefix, _hairTextureIdx, _hairOffsetIdx);
     }
 
     public void SetWristAnimation(string l, string r)
