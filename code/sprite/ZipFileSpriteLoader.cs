@@ -76,7 +76,7 @@ public class ZipFileSpriteLoader
 		{
 			return sprites;
 		}
-		using var zipArchive = ZipUtil.LoadZipFile("res://Sprites/" + name.ToLower() + ".zip");
+		using var zipArchive = ZipUtil.LoadZipFile("res://sprites/" + name.ToLower() + ".zip");
 		var offsetEntry = zipArchive.GetEntry("offset.txt");
 		if (offsetEntry == null)
 		{

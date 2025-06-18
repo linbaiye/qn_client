@@ -10,23 +10,34 @@ script = ExtResource("1_hjaqi")
 script = ExtResource("2_fvtld")
 
 [node name="Body" type="Sprite2D" parent="."]
+centered = false
 
 [node name="Leg" type="Sprite2D" parent="."]
+centered = false
 
 [node name="Boot" type="Sprite2D" parent="."]
+centered = false
 
 [node name="LeftWrist" type="Sprite2D" parent="."]
+centered = false
 
 [node name="RightWrist" type="Sprite2D" parent="."]
+centered = false
 
 [node name="Chest" type="Sprite2D" parent="."]
+centered = false
 
 [node name="Armor" type="Sprite2D" parent="."]
+centered = false
 
 [node name="Hair" type="Sprite2D" parent="."]
+centered = false
 
 [node name="Hat" type="Sprite2D" parent="."]
+centered = false
 
 [node name="Weapon" type="Sprite2D" parent="."]
+centered = false
 
 [node name="AttackEffect" type="Sprite2D" parent="."]
+centered = false

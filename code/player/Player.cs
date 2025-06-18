@@ -1,7 +1,196 @@
+using System;
 using Godot;
+using QnClient.code.creature;
 
 namespace QnClient.code.player;
 
 public partial class Player : Node2D
 {
+    private PlayerAnimationPlayer _animationPlayer;
+    private string? _hatName;
+    private string? _legName;
+    private string? _bootName;
+    private string? _leftWrist;
+    private string? _rightWrist;
+    private string? _chest;
+    private string? _armor;
+    public override void _Ready()
+    {
+        _animationPlayer = GetNode<PlayerAnimationPlayer>("AnimationPlayer");
+        _animationPlayer.InitializeAnimations(true);
+    }
+    public delegate void TestPlay(CreatureDirection direction);
+
+
+    private void PutOnHat(string name)
+    {
+        GetNode<Sprite2D>("Hat").Visible = true;
+        _animationPlayer.SetHatAnimation(name);
+    }
+
+    private void HideHat()
+    {
+        GetNode<Sprite2D>("Hat").Visible = false;
+    }
+    
+    private void PutOnLeg(string name)
+    {
+        GetNode<Sprite2D>("Leg").Visible = true;
+        _animationPlayer.SetLegAnimation(name);
+    }
+
+    private void HideLeg()
+    {
+        GetNode<Sprite2D>("Leg").Visible = false;
+    }
+    
+    private void PutOnBoot(string name)
+    {
+        GetNode<Sprite2D>("Boot").Visible = true;
+        _animationPlayer.SetBootAnimation(name);
+    }
+
+    private void HideBoot()
+    {
+        GetNode<Sprite2D>("Boot").Visible = false;
+    }
+    
+    private void PutOnWrist(string l, string r)
+    {
+        GetNode<Sprite2D>("LeftWrist").Visible = true;
+        GetNode<Sprite2D>("RightWrist").Visible = true;
+        _animationPlayer.SetWristAnimation(l, r);
+    }
+    
+    private void HideWrist()
+    {
+        GetNode<Sprite2D>("LeftWrist").Visible = false;
+        GetNode<Sprite2D>("RightWrist").Visible = false;
+    }
+    
+    private void PutOnChest(string name)
+    {
+        GetNode<Sprite2D>("Chest").Visible = true;
+        _animationPlayer.SetChestAnimation(name);
+    }
+
+    private void HideChest()
+    {
+        GetNode<Sprite2D>("Chest").Visible = false;
+    }
+    
+    private void PutOnArmor(string name)
+    {
+        GetNode<Sprite2D>("Armor").Visible = true;
+        _animationPlayer.SetChestAnimation(name);
+    }
+
+    private void HideArmor()
+    {
+        GetNode<Sprite2D>("Armor").Visible = false;
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        TestPlay player = _animationPlayer.PlayDie;
+        if (@event is InputEventKey eventKey && eventKey.Pressed)
+        {
+            if (eventKey.Keycode == Key.H)
+            {
+                if (_hatName == null)
+                {
+                    _hatName = "v16";
+                    PutOnHat(_hatName);
+                }
+                else
+                {
+                    _hatName = null;
+                    HideHat();
+                }
+            }
+            else if (eventKey.Keycode == Key.L)
+            {
+                if (_legName == null)
+                {
+                    _legName = "r1";
+                    PutOnLeg(_legName);
+                }
+                else
+                {
+                    _legName = null;
+                    HideLeg();
+                }
+            } 
+            else if (eventKey.Keycode == Key.B)
+            {
+                if (_bootName== null)
+                {
+                    _bootName = "q1";
+                    PutOnBoot(_bootName);
+                }
+                else
+                {
+                    _bootName= null;
+                    HideBoot();
+                }
+            }
+            else if (eventKey.Keycode == Key.W)
+            {
+                if (_leftWrist == null)
+                {
+                    _leftWrist = "o1";
+                    _rightWrist = "s1";
+                    PutOnWrist(_leftWrist, _rightWrist);
+                }
+                else
+                {
+                    _leftWrist = null;
+                    _rightWrist = null;
+                    HideWrist();
+                }
+            }
+            else if (eventKey.Keycode == Key.C)
+            {
+                if (_chest == null)
+                {
+                    _chest = "t1";
+                    PutOnChest(_chest);
+                }
+                else
+                {
+                    HideChest();
+                }
+            }
+            else if (eventKey.Keycode == Key.A)
+            {
+                if (_chest == null)
+                {
+                    _chest = "t1";
+                    PutOnChest(_chest);
+                }
+                else
+                {
+                    HideChest();
+                }
+            }
+            else if (eventKey.Keycode == Key.A)
+            {
+                if (_armor == null)
+                {
+                    _armor = "t1";
+                    PutOnArmor(_armor);
+                }
+                else
+                {
+                    HideArmor();
+                }
+            }
+            else if (eventKey.Keycode >= Key.Key1 && eventKey.Keycode <= Key.Key8)
+            {
+                player.Invoke((CreatureDirection)((int)eventKey.Keycode - (int)Key.Key1));
+            }
+            // player.Invoke();
+            // _animationPlayer.PlaySitStand(CreatureDirection.Up);
+        }
+    }
 }

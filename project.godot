@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="QnClient"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="uid://idx0qd14bsb2"
+config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+LogConfigurer="*res://code/LogConfigurer.cs"
 
 [dotnet]
 
