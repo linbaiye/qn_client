@@ -6,5 +6,4 @@ public enum MoveAction
     FightWalk,
     Run,
     Fly,
-    
 }

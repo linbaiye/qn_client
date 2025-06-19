@@ -70,8 +70,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     private int _leftWristOffsetIdx = -1;
     private int _rightWristTextureIdx = -1;
     private int _rightWristOffsetIdx = -1;
-    private int _chestTextureIdx = -1;
-    private int _chestOffsetIdx = -1;
+    private int _vestTextureIdx = -1;
+    private int _vestOffsetIdx = -1;
     private int _armorTextureIdx = -1;
     private int _armorOffsetIdx = -1;
     private int _hairTextureIdx = -1;
@@ -113,8 +113,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             _leftWristOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
             _rightWristTextureIdx = animation.AddTrack(Animation.TrackType.Value);
             _rightWristOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _chestTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _chestOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
+            _vestTextureIdx = animation.AddTrack(Animation.TrackType.Value);
+            _vestOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
             _armorTextureIdx = animation.AddTrack(Animation.TrackType.Value);
             _armorOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
             _hairTextureIdx = animation.AddTrack(Animation.TrackType.Value);
@@ -135,8 +135,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             animation.TrackSetPath(_leftWristOffsetIdx, "LeftWrist:offset");
             animation.TrackSetPath(_rightWristTextureIdx, "RightWrist:texture");
             animation.TrackSetPath(_rightWristOffsetIdx, "RightWrist:offset");
-            animation.TrackSetPath(_chestTextureIdx, "Chest:texture");
-            animation.TrackSetPath(_chestOffsetIdx, "Chest:offset");
+            animation.TrackSetPath(_vestTextureIdx, "Vest:texture");
+            animation.TrackSetPath(_vestOffsetIdx, "Vest:offset");
             animation.TrackSetPath(_armorTextureIdx, "Armor:texture");
             animation.TrackSetPath(_armorOffsetIdx, "Armor:offset");
             animation.TrackSetPath(_hairTextureIdx, "Hair:texture");
@@ -157,8 +157,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             animation.ValueTrackSetUpdateMode(_leftWristOffsetIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_rightWristTextureIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_rightWristOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_chestTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_chestOffsetIdx, Animation.UpdateMode.Discrete);
+            animation.ValueTrackSetUpdateMode(_vestTextureIdx, Animation.UpdateMode.Discrete);
+            animation.ValueTrackSetUpdateMode(_vestOffsetIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_armorTextureIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_armorOffsetIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_hairTextureIdx, Animation.UpdateMode.Discrete);
@@ -181,8 +181,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
                 animation.TrackInsertKey(_leftWristOffsetIdx, step * i, Vector2.Zero);
                 animation.TrackInsertKey(_rightWristTextureIdx, step * i, empty);
                 animation.TrackInsertKey(_rightWristOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_chestTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_chestOffsetIdx, step * i, Vector2.Zero);
+                animation.TrackInsertKey(_vestTextureIdx, step * i, empty);
+                animation.TrackInsertKey(_vestOffsetIdx, step * i, Vector2.Zero);
                 animation.TrackInsertKey(_armorTextureIdx, step * i, empty);
                 animation.TrackInsertKey(_armorOffsetIdx, step * i, Vector2.Zero);
                 animation.TrackInsertKey(_hairTextureIdx, step * i, empty);
@@ -199,8 +199,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         }
         return animationLibrary;
     }
-
-
 
     public void InitializeAnimations(bool male)
     {
@@ -270,18 +268,58 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         
         sprites = _spriteLoader.Load(prefix + "4");
         AddAnimationLibrary(AttackAction.Bow.ToString(), CreateAnimationLibrary(BowSpriteNumber, BowStep, sprites));
-        
     }
-
 
     public void PlayWalk(CreatureDirection direction)
     {
         Play(MoveAction.Walk + "/" + direction);
     }
     
+    public void PlayWalk(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(MoveAction.Walk + "/" + direction, fromMillis);
+    }
+
+    public void PlayRun(CreatureDirection direction)
+    {
+        Play(MoveAction.Walk + "/" + direction, -1, 2f);
+    }
+    
+    public void PlayRun(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(MoveAction.Walk + "/" + direction, fromMillis, 2f);
+    }
+
+    public void PlayFly(CreatureDirection direction)
+    {
+        Play(CreatureState.Idle + "/" + direction, -1, 2f);
+    }
+    
+    public void PlayFly(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(CreatureState.Idle + "/" + direction, fromMillis, 2f);
+    }
+    
+    public void PlayIdle(CreatureDirection direction)
+    {
+        Play(CreatureState.Idle + "/" + direction);
+    }
+
+    
+    public void PlayIdle(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(CreatureState.Idle + "/" + direction, fromMillis);
+    }
+
+
     public void PlayFightWalk(CreatureDirection direction)
     {
         Play(MoveAction.FightWalk + "/" + direction);
+    }
+    
+    public void PlayFightWalk(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(MoveAction.FightWalk + "/" + direction, fromMillis);
     }
     
     public void PlayFightStand(CreatureDirection direction)
@@ -289,9 +327,19 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Play(CreatureState.FightStand + "/" + direction);
     }
     
+    public void PlayFightStand(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(CreatureState.FightStand + "/" + direction, fromMillis);
+    }
+    
     public void PlaySit(CreatureDirection direction)
     {
         Play(CreatureState.Sit + "/" + direction);
+    }
+    
+    public void PlaySit(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(CreatureState.Sit + "/" + direction, fromMillis);
     }
     
     public void PlayStandUp(CreatureDirection direction)
@@ -299,14 +347,33 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         PlayBackwards(CreatureState.Sit + "/" + direction);
     }
     
+    public void PlayStandUp(CreatureDirection direction, int fromMillis)
+    {
+        var name = CreatureState.Sit + "/" + direction;
+        var animation = GetAnimation(name);
+        int aniLengthMillis = (int)(animation.Length * 1000);
+        int startMillis = fromMillis % aniLengthMillis;
+        PlaySectionBackwards(name, startMillis);
+    }
+    
     public void PlayHurt(CreatureDirection direction)
     {
         Play(CreatureState.Hurt + "/" + direction);
     }
-    
+
+    public void PlayHurt(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(CreatureState.Hurt + "/" + direction, fromMillis);
+    }
+
     public void PlayDie(CreatureDirection direction)
     {
         Play(CreatureState.Die + "/" + direction);
+    }
+    
+    public void PlayDie(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(CreatureState.Die + "/" + direction, fromMillis);
     }
     
     public void PlayHello(CreatureDirection direction)
@@ -314,9 +381,20 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Play(CreatureState.Hello + "/" + direction);
     }
     
+    public void PlayHello(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(CreatureState.Hello + "/" + direction, fromMillis);
+    }
+
+    
     public void PlayKick(CreatureDirection direction)
     {
         Play(AttackAction.Kick + "/" + direction);
+    }
+    
+    public void PlayKick(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Kick + "/" + direction, fromMillis);
     }
     
     public void PlayPunch(CreatureDirection direction)
@@ -324,9 +402,19 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Play(AttackAction.Punch + "/" + direction);
     }
     
+    public void PlayPunch(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Punch + "/" + direction, fromMillis);
+    }
+    
     public void PlaySword1HAttack(CreatureDirection direction)
     {
         Play(AttackAction.Sword1H + "/" + direction);
+    }
+    
+    public void PlaySword1HAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
     }
     
     public void PlayBlade1HAttack(CreatureDirection direction)
@@ -334,19 +422,40 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Play(AttackAction.Sword1H + "/" + direction);
     }
     
+    public void PlayBlade1HAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
+    }
+    
     public void PlayBlade2HAttack(CreatureDirection direction)
     {
         Play(AttackAction.Blade2H + "/" + direction);
     }
+    
+    public void PlayBlade2HAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Blade2H + "/" + direction, fromMillis);
+    }
+
     
     public void PlaySword2HAttack(CreatureDirection direction)
     {
         Play(AttackAction.Sword2H + "/" + direction);
     }
     
-    public void PlayAexAttack(CreatureDirection direction)
+    public void PlaySword2HAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Sword2H + "/" + direction, fromMillis);
+    }
+    
+    public void PlayAxeAttack(CreatureDirection direction)
     {
         Play(AttackAction.Axe + "/" + direction);
+    }
+    
+    public void PlayAxeAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Axe + "/" + direction, fromMillis);
     }
     
     public void PlaySpearAttack(CreatureDirection direction)
@@ -354,41 +463,40 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Play(AttackAction.Axe + "/" + direction);
     }
     
+    public void PlaySpearAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Axe + "/" + direction, fromMillis);
+    }
+    
     public void PlayBowAttack(CreatureDirection direction)
     {
         Play(AttackAction.Bow + "/" + direction);
     }
     
+    public void PlayBowAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Bow + "/" + direction, fromMillis);
+    }
+    
+    
     public void PlayThrowAttack(CreatureDirection direction)
     {
         Play(AttackAction.Throw + "/" + direction);
     }
+
+    public void PlayThrowAttack(CreatureDirection direction, int fromMillis)
+    {
+        PlayAnimation(AttackAction.Throw + "/" + direction, fromMillis);
+    }
+
+    private void PlayAnimation(string name, int millis, float speed = 1)
+    {
+        var animation = GetAnimation(name);
+        int aniLengthMillis = (int)(animation.Length * 1000);
+        int startMillis = millis % aniLengthMillis;
+        PlaySection(name, startMillis, -1, -1, speed);
+    }
     
-    // private void DisableNodeAnimation(int textureTack, int offsetTrack)
-    // {
-    //     string[] libraryNames = [MoveAction.Walk.ToString(), CreatureState.Idle.ToString(), MoveAction.FightWalk.ToString(),
-    //         CreatureState.FightStand.ToString(), CreatureState.Sit.ToString(), CreatureState.Hurt.ToString(),
-    //         CreatureState.Die.ToString(), CreatureState.Hello.ToString(), AttackAction.Kick.ToString(),
-    //         AttackAction.Punch.ToString(), AttackAction.Sword1H.ToString(), AttackAction.Throw.ToString(),
-    //         AttackAction.Blade2H.ToString(), AttackAction.Sword2H.ToString(),AttackAction.Axe.ToString(),
-    //         AttackAction.Bow.ToString()
-    //     ];
-    //     Texture2D empty = new Texture2D();
-    //     foreach (var libname in libraryNames)
-    //     {
-    //         var animationLibrary = GetAnimationLibrary(libname);
-    //         foreach (var dir in Enum.GetValues(typeof(CreatureDirection)))
-    //         {
-    //             var animation = animationLibrary.GetAnimation(dir.ToString());
-    //             int count = animation.TrackGetKeyCount(offsetTrack);
-    //             for (int i = 0; i < count; i++)
-    //             {
-    //                 animation.TrackSetKeyValue(textureTack, i, empty);
-    //                 animation.TrackSetKeyValue(offsetTrack, i, Vector2.Zero);
-    //             }
-    //         }
-    //     }
-    // }
 
     private void UpdateNodeAnimationLibrary(string libraryName, int textureTrack, int offsetTrack, Sprite[] sprites)
     {
@@ -406,7 +514,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             }
         }
     }
-
 
     private void UpdateNodeCommonAnimation(string spriteName, int textureTrack, int offsetTrack, bool hasHello = true)
     {
@@ -491,14 +598,56 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         UpdateNodeAnimationLibrary(attackAction, textureTrack, offsetTrack, sprites);
     }
 
-    public void SetBladeAnimation(string prefix)
+
+    public void SetBladeAnimation(string spritePrefix)
     {
-        UpdateNodeCommonAnimation(prefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
-        var sprites = _spriteLoader.Load(prefix + "2");
+        UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
+        var sprites = _spriteLoader.Load(spritePrefix + "2");
         UpdateNodeAnimationLibrary(AttackAction.Sword1H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
         var tmp = new Sprite[Blade2HSpriteNumber * DirectionNumber];
         Array.Copy(sprites, Sword1HSpriteNumber * DirectionNumber, tmp, 0, tmp.Length);
         UpdateNodeAnimationLibrary(AttackAction.Blade2H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, tmp);
+    }
+    
+    public void SetSwordAnimation(string spritePrefix)
+    {
+        UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
+        var sprites = _spriteLoader.Load(spritePrefix + "2");
+        UpdateNodeAnimationLibrary(AttackAction.Sword1H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+        var tmp = new Sprite[Sword2HSpriteNumber * DirectionNumber];
+        Array.Copy(sprites, (Sword1HSpriteNumber + Blade2HSpriteNumber) * DirectionNumber, tmp, 0, tmp.Length);
+        UpdateNodeAnimationLibrary(AttackAction.Sword2H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, tmp);
+    }
+    
+    private void SetAxeOrSpearAnimation(string spritePrefix)
+    {
+        UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
+        var sprites = _spriteLoader.Load(spritePrefix + "3");
+        UpdateNodeAnimationLibrary(AttackAction.Axe.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+    }
+    
+    public void SetSpearAnimation(string spritePrefix)
+    {
+        SetAxeOrSpearAnimation(spritePrefix);
+    }
+    
+    public void SetAxeAnimation(string spritePrefix)
+    {
+        SetAxeOrSpearAnimation(spritePrefix);
+    }
+
+    public void SetBowAnimation(string spritePrefix)
+    {
+        UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
+        var sprites = _spriteLoader.Load(spritePrefix + "4");
+        UpdateNodeAnimationLibrary(AttackAction.Bow.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+    }
+    
+    public void SetThrowAnimation(string spritePrefix)
+    {
+        UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
+        var sprites = _spriteLoader.Load(spritePrefix + "2");
+        UpdateNodeAnimationLibrary(AttackAction.Throw.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
     }
 
     public void SetHatAnimation(string prefix)
@@ -510,14 +659,15 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     {
         UpdateNodeAnimation(prefix, _legTextureIdx, _legOffsetIdx);
     }
+    
     public void SetBootAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _bootTextureIdx, _bootOffsetIdx);
     }
     
-    public void SetChestAnimation(string prefix)
+    public void SetVestAnimation(string prefix)
     {
-        UpdateNodeAnimation(prefix, _chestTextureIdx, _chestOffsetIdx);
+        UpdateNodeAnimation(prefix, _vestTextureIdx, _vestOffsetIdx);
     }
     
     public void SetArmorAnimation(string prefix)
@@ -530,9 +680,30 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         UpdateNodeAnimation(prefix, _hairTextureIdx, _hairOffsetIdx);
     }
 
+    public void SetFistWeaponAnimation(string prefix)
+    {
+        UpdateNodeCommonAnimation(prefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
+        var sprites = _spriteLoader.Load(prefix + "1");
+        UpdateNodeAnimationLibrary(AttackAction.Kick.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+        int index = KickSpriteNumber * DirectionNumber;
+        var tmp = new Sprite[PunchSpriteNumber * DirectionNumber];
+        Array.Copy(sprites, index, tmp, 0, tmp.Length);
+        UpdateNodeAnimationLibrary(AttackAction.Punch.ToString(), _weaponTextureIdx, _weaponOffsetIdx, tmp);
+    }
+
     public void SetWristAnimation(string l, string r)
     {
         UpdateNodeAnimation(l, _leftWristTextureIdx, _leftWristOffsetIdx);
         UpdateNodeAnimation(r, _rightWristTextureIdx, _rightWristOffsetIdx);
+    }
+
+    public void SetBladeEffectAnimation(string name)
+    {
+        var sprites = _spriteLoader.Load(name);
+        UpdateNodeAnimationLibrary(AttackAction.Sword1H.ToString(), _attackEffectTextureIdx, _attackEffectOffsetIdx, sprites);
+        int index = Sword1HSpriteNumber * DirectionNumber;
+        var tmp = new Sprite[Sword1HSpriteNumber * DirectionNumber];
+        Array.Copy(sprites, index, tmp, 0, tmp.Length);
+        UpdateNodeAnimationLibrary(AttackAction.Blade2H.ToString(), _attackEffectTextureIdx, _attackEffectOffsetIdx, tmp);
     }
 }

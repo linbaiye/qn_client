@@ -19,9 +19,10 @@ public partial class Player : Node2D
     {
         _animationPlayer = GetNode<PlayerAnimationPlayer>("AnimationPlayer");
         _animationPlayer.InitializeAnimations(true);
+        _animationPlayer.PlayIdle(CreatureDirection.Down);
+        Position = new Vector2I(32 * 181, 24 * 238);
     }
     public delegate void TestPlay(CreatureDirection direction);
-
 
     private void PutOnHat(string name)
     {
@@ -69,21 +70,21 @@ public partial class Player : Node2D
         GetNode<Sprite2D>("RightWrist").Visible = false;
     }
     
-    private void PutOnChest(string name)
+    private void PutOnVest(string name)
     {
-        GetNode<Sprite2D>("Chest").Visible = true;
-        _animationPlayer.SetChestAnimation(name);
+        GetNode<Sprite2D>("Vest").Visible = true;
+        _animationPlayer.SetVestAnimation(name);
     }
 
-    private void HideChest()
+    private void HideVest()
     {
-        GetNode<Sprite2D>("Chest").Visible = false;
+        GetNode<Sprite2D>("Vest").Visible = false;
     }
     
     private void PutOnArmor(string name)
     {
         GetNode<Sprite2D>("Armor").Visible = true;
-        _animationPlayer.SetChestAnimation(name);
+        _animationPlayer.SetVestAnimation(name);
     }
 
     private void HideArmor()
@@ -177,11 +178,11 @@ public partial class Player : Node2D
                 if (_chest == null)
                 {
                     _chest = "p1";
-                    PutOnChest(_chest);
+                    PutOnVest(_chest);
                 }
                 else
                 {
-                    HideChest();
+                    HideVest();
                 }
             }
             else if (eventKey.Keycode == Key.A)
@@ -214,6 +215,7 @@ public partial class Player : Node2D
                 {
                     _weapon = "w1";
                     PutOnWeapon(_weapon);
+                    _animationPlayer.SetBladeEffectAnimation("_232");
                 }
                 else
                 {
@@ -224,8 +226,6 @@ public partial class Player : Node2D
             {
                 player.Invoke((CreatureDirection)((int)eventKey.Keycode - (int)Key.Key1));
             }
-            // player.Invoke();
-            // _animationPlayer.PlaySitStand(CreatureDirection.Up);
         }
     }
 }

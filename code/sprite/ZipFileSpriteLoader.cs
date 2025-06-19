@@ -13,8 +13,7 @@ public class ZipFileSpriteLoader
 	public static readonly ZipFileSpriteLoader Instance = new ();
 	private ZipFileSpriteLoader() {}
 	
-	
-	private static readonly ILogger LOGGER = LogManager.GetCurrentClassLogger();
+	private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
 	private readonly Cache<string, Sprite[]> _cache = new();
 	
@@ -99,10 +98,9 @@ public class ZipFileSpriteLoader
 			{
 				throw new Exception("Invalid atz " + name);
 			}
-
 			sprites[i] = new Sprite(texture, vectors[i], sizes[i]);
 		}
-		LOGGER.Debug("Loaded {0}.", name);
+		Logger.Debug("Loaded {0}.", name);
 		_cache.Store(name, sprites, TimeSpan.FromMinutes(5));
 		return sprites;
 	}
