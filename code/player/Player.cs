@@ -1,27 +1,31 @@
 using System;
 using Godot;
 using QnClient.code.creature;
+using QnClient.code.util;
 
 namespace QnClient.code.player;
 
 public partial class Player : Node2D
 {
     private PlayerAnimationPlayer _animationPlayer;
-    private string? _hatName;
+    /*private string? _hatName;
     private string? _legName;
     private string? _bootName;
     private string? _leftWrist;
     private string? _rightWrist;
     private string? _chest;
     private string? _armor;
-    private string? _weapon;
+    private string? _weapon;*/
     public override void _Ready()
     {
         _animationPlayer = GetNode<PlayerAnimationPlayer>("AnimationPlayer");
         _animationPlayer.InitializeAnimations(true);
         _animationPlayer.PlayIdle(CreatureDirection.Down);
-        Position = new Vector2I(32 * 181, 24 * 238);
+        Position = new Vector2I(181, 238).ToPosition();
     }
+    
+    public AnimationPlayer AnimationPlayer => _animationPlayer;
+    
     public delegate void TestPlay(CreatureDirection direction);
 
     private void PutOnHat(string name)
@@ -114,7 +118,7 @@ public partial class Player : Node2D
         GetNode<Sprite2D>("Weapon").Visible = false;
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    /*public override void _UnhandledInput(InputEvent @event)
     {
         TestPlay player = _animationPlayer.PlayBlade2HAttack;
         if (@event is InputEventKey eventKey && eventKey.Pressed)
@@ -227,5 +231,5 @@ public partial class Player : Node2D
                 player.Invoke((CreatureDirection)((int)eventKey.Keycode - (int)Key.Key1));
             }
         }
-    }
+    }*/
 }
