@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://idx0qd14bsb2"]
+[gd_scene load_steps=10 format=3 uid="uid://idx0qd14bsb2"]
 
 [ext_resource type="PackedScene" uid="uid://cr1c0pyjtfjsu" path="res://scene/player.tscn" id="1_5kiuu"]
 [ext_resource type="Script" uid="uid://bq5dvifj8mv6y" path="res://code/Game.cs" id="1_dbls1"]
 [ext_resource type="Script" uid="uid://cmhrpti5ubtm" path="res://code/map/GroundLayer.cs" id="2_dbls1"]
 [ext_resource type="Script" uid="uid://bot1nmofbgqmh" path="res://code/map/ObjectLayer.cs" id="4_p1ry8"]
 [ext_resource type="Script" uid="uid://dch3auqsyteco" path="res://code/map/OverGroundLayer.cs" id="4_xwcet"]
+[ext_resource type="Script" uid="uid://dfkmxbe35fctd" path="res://code/player/Character.cs" id="5_qpk70"]
 [ext_resource type="Script" uid="uid://b5vt7tfdbxugi" path="res://code/map/RoofLayer.cs" id="6_xlg7c"]
 
 [sub_resource type="TileSet" id="TileSet_33cqm"]
@@ -15,6 +16,7 @@ tile_size = Vector2i(32, 24)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+texture_filter = 1
 script = ExtResource("1_dbls1")
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
@@ -26,13 +28,17 @@ z_index = 1
 tile_set = SubResource("TileSet_xwcet")
 script = ExtResource("4_xwcet")
 
-[node name="Player" parent="." instance=ExtResource("1_5kiuu")]
+[node name="Character" parent="." instance=ExtResource("1_5kiuu")]
 z_index = 2
+y_sort_enabled = true
+script = ExtResource("5_qpk70")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Character"]
+process_callback = 0
 
 [node name="ObjectLayer" type="Node2D" parent="."]
 z_index = 2
+y_sort_enabled = true
 script = ExtResource("4_p1ry8")
 
 [node name="RoofLayer" type="Node2D" parent="."]

@@ -14,14 +14,7 @@ public partial class Game : Node2D
         var objectLayer = GetNode<ObjectLayer>("ObjectLayer");
         var rootLayer = GetNode<RoofLayer>("RoofLayer");
         _atzMap = new AtzMap(overGroundLayer, groundLayer, objectLayer, rootLayer);
+        _atzMap.Draw("small02", "south");
     }
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        if (@event is InputEventKey key && key.Keycode == Key.M && key.Pressed)
-        {
-            _atzMap.Draw("small02", "south");
-            // _overGroundLayer.DrawGround("small02", "south");
-        }
-    }
 }

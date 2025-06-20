@@ -25,7 +25,7 @@ public static class VectorUtil
     };
 
 
-    public static Vector2 Velocity(CreatureDirection direction)
+    public static Vector2 VelocityUnit(CreatureDirection direction)
     {
         return VelocityMap.TryGetValue(direction, out var ret) ? ret : Vector2.Zero;
     }
@@ -72,10 +72,10 @@ public static class VectorUtil
     {
         var p1 = src.ToPosition();
         var p2 = another.ToPosition();
-        return (p2 - p1).GetCreatureDirection();
+        return (p2 - p1).GetDirection();
     }
 
-    public static CreatureDirection GetCreatureDirection(this Godot.Vector2 vector)
+    public static CreatureDirection GetDirection(this Godot.Vector2 vector)
     {
         var angle = Mathf.Snapped(vector.Angle(), Mathf.Pi / 4) / (Mathf.Pi / 4);
         int dir = Mathf.Wrap((int)angle, 0, 8);

@@ -2,8 +2,8 @@ namespace QnClient.code.player;
 
 public enum MoveAction
 {
-    Walk,
-    FightWalk,
-    Run,
-    Fly,
+    Walk = 0,
+    FightWalk = 1,
+    Run = 2,
+    Fly = 3,
 }

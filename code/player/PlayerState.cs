@@ -1,6 +1,6 @@
 namespace QnClient.code.creature;
 
-public enum CreatureState
+public enum PlayerState
 {
     Idle,
     Move,
