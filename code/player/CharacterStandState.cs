@@ -1,4 +1,5 @@
 ﻿using QnClient.code.creature;
+using QnClient.code.input;
 
 namespace QnClient.code.player;
 

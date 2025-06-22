@@ -1,4 +1,5 @@
 ﻿using Godot;
+using QnClient.code.input;
 
 namespace QnClient.code.player;
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Godot;
+using QnClient.code.input;
 using QnClient.code.util;
 
 namespace QnClient.code.player;

@@ -23,6 +23,11 @@ LogConfigurer="*res://code/LogConfigurer.cs"
 
 project/assembly_name="QnClient"
 
+[physics]
+
+common/physics_ticks_per_second=40
+common/physics_interpolation=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

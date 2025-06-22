@@ -1,10 +1,11 @@
 using Godot;
 using QnClient.code.creature;
+using QnClient.code.entity;
 using QnClient.code.util;
 
 namespace QnClient.code.player;
 
-public partial class AbstractPlayer : Node2D
+public partial class AbstractPlayer : Node2D, IEntity
 {
      private PlayerAnimationPlayer _animationPlayer;
     /*private string? _hatName;
@@ -115,5 +116,8 @@ public partial class AbstractPlayer : Node2D
     {
         GetNode<Sprite2D>("Weapon").Visible = false;
     }
-    
+
+    public string EntityName { get; protected set; }
+    public long Id { get; protected set; }
+    public Vector2I Coordinate => Position.ToCoordinate();
 }

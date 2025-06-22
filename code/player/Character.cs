@@ -1,21 +1,33 @@
 ﻿
 using Godot;
 using QnClient.code.creature;
+using QnClient.code.input;
+using QnClient.code.map;
+using QnClient.code.message;
 using QnClient.code.player.kungfu;
 using QnClient.code.util;
 
 namespace QnClient.code.player;
 
-public partial class Character : AbstractPlayer, ICharacter
+public partial class Character : AbstractPlayer, ICharacter, IMessageHandler
 {
     private ICharacterState _characterState;
     
     public FootKungFu? FootKungFu { get; private set; }
     
+    private IMap? _map;
+    
     public void ChangeState(ICharacterState state)
     {
         _characterState = state;
     }
+
+    public void SetMap(IMap map)
+    {
+        _map ??= map;
+    }
+    
+    public IMap Map => _map;
 
     public bool MovePressed { get; private set; }
 
@@ -56,5 +68,13 @@ public partial class Character : AbstractPlayer, ICharacter
         {
             HandleMouseEvent(eventMouse);
         }
+    }
+
+    public void Handle(JoinRealmMessage message)
+    {
+        Position = message.Coordinate.ToPosition();
+        Id = message.Id;
+        EntityName = message.Name;
+        ResetPhysicsInterpolation();
     }
 }

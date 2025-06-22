@@ -1,7 +1,6 @@
-﻿using Godot;
-using QnClient.code.creature;
+﻿using QnClient.code.creature;
 
-namespace QnClient.code.player;
+namespace QnClient.code.input;
 
 public readonly struct MoveInput(CreatureDirection direction)
 {
