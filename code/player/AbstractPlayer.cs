@@ -37,10 +37,10 @@ public abstract partial class AbstractPlayer : AbstractEntity
     
     public PlayerAnimationPlayer AnimationPlayer => _animationPlayer;
     
-    private void PutOnHat(string name, int color)
+    private void PutOnHat(string spritePrefix, int color)
     {
         DyeIfHasColor(_hair, color);
-        _animationPlayer.SetHatAnimation(name);
+        _animationPlayer.SetHatAnimation(spritePrefix);
         _hat.Visible = true;
     }
 
@@ -49,10 +49,10 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _hat.Visible = false;
     }
     
-    private void PutOnLeg(string name, int color)
+    private void PutOnLeg(string spritePrefix, int color)
     {
         DyeIfHasColor(_leg, color);
-        _animationPlayer.SetLegAnimation(name);
+        _animationPlayer.SetLegAnimation(spritePrefix);
         _leg.Visible = true;
     }
 
@@ -61,10 +61,10 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _leg.Visible = false;
     }
     
-    private void PutOnBoot(string name, int color)
+    private void PutOnBoot(string spritePrefix, int color)
     {
         DyeIfHasColor(_boot, color);
-        _animationPlayer.SetBootAnimation(name);
+        _animationPlayer.SetBootAnimation(spritePrefix);
         _boot.Visible = true;
     }
 
@@ -88,10 +88,10 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _rightWrist.Visible = false;
     }
     
-    private void PutOnVest(string name, int color)
+    private void PutOnVest(string spritePrefix, int color)
     {
         DyeIfHasColor(_vest, color);
-        _animationPlayer.SetVestAnimation(name);
+        _animationPlayer.SetVestAnimation(spritePrefix);
         _vest.Visible = true;
     }
 
@@ -100,10 +100,10 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _vest.Visible = false;
     }
     
-    private void PutOnArmor(string name, int color)
+    private void PutOnArmor(string spritePrefix, int color)
     {
         DyeIfHasColor(_armor, color);
-        _animationPlayer.SetArmorAnimation(name);
+        _animationPlayer.SetArmorAnimation(spritePrefix);
         _armor.Visible = true;
     }
 
@@ -113,10 +113,10 @@ public abstract partial class AbstractPlayer : AbstractEntity
     }
     
     
-    private void PutOnHair(string name, int color)
+    private void PutOnHair(string spritePrefix, int color)
     {
         DyeIfHasColor(_hair, color);
-        _animationPlayer.SetHairAnimation(name);
+        _animationPlayer.SetHairAnimation(spritePrefix);
         _hair.Visible = true;
     }
 
@@ -125,9 +125,9 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _hair.Visible = false;
     }
     
-    private void PutOnWeapon(string name)
+    private void PutOnWeapon(string spritePrefix)
     {
-        _animationPlayer.SetBladeAnimation(name);
+        _animationPlayer.SetBladeAnimation(spritePrefix);
         _weapon.Visible = true;
     }
 
@@ -146,22 +146,29 @@ public abstract partial class AbstractPlayer : AbstractEntity
         switch (message.Type)
         {
             case EquipmentType.Boot:
-                _animationPlayer.SetBootAnimation(message.SpritePrefix);
-                DyeIfHasColor(, message.Color);
+                PutOnBoot(message.SpritePrefix, message.Color);
                 break;
             case EquipmentType.Hat:
-                _animationPlayer.SetHatAnimation(message.SpritePrefix);
-                DyeIfHasColor("Hat", message.Color);
+                PutOnHat(message.SpritePrefix, message.Color);
                 break;
             case EquipmentType.Leg:
-                _animationPlayer.SetHatAnimation(message.SpritePrefix);
-                DyeIfHasColor("Hat", message.Color);
-            
+                PutOnLeg(message.SpritePrefix, message.Color);
+                break;
+            case EquipmentType.Hair:
+                PutOnHair(message.SpritePrefix, message.Color);
+                break;
+            case EquipmentType.Armor:
+                PutOnArmor(message.SpritePrefix, message.Color);
+                break;
+            case EquipmentType.Vest:
+                PutOnVest(message.SpritePrefix, message.Color);
+                break;
+            case EquipmentType.Wrist:
+                PutOnWrist(message.SpritePrefix, message.PairedSpritePrefix, message.Color);
+                break;
+            case EquipmentType.Weapon:
+                PutOnWeapon(message.SpritePrefix);
+                break;
         }
-        if (message.Type == EquipmentType.Boot)
-        {
-        }
-
-    }
-
+     }
 }
