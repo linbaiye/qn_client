@@ -2,8 +2,11 @@
 using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Channels;
+using Godot;
 using NLog;
+using QnClient.code.entity;
 using QnClient.code.message;
+using QnClient.code.player;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.network;
@@ -12,11 +15,38 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
 {
     private static readonly ILogger Logger  = LogManager.GetCurrentClassLogger();
     
+    private enum PositionType
+    {
+        Move = 1,
+        Set = 3,
+    }
+
+
+    private object DecodePosition(PositionPacket packet)
+    {
+        return (PositionType)packet.Type switch
+        {
+            PositionType.Move => new MoveMessage(new Vector2I(packet.X, packet.Y), (CreatureDirection) packet.Direction, packet.Id, (MoveAction)packet.MoveAction),
+            PositionType.Set => new SetPositionMessage(packet.Id, new Vector2I(packet.X, packet.Y), (CreatureDirection) packet.Direction, (PlayerState)packet.State),
+            _ => null,
+        };
+    }
+    
     private object Decode(Packet packet)
     {
         return packet.TypedPacketCase switch
         {
             Packet.TypedPacketOneofCase.LoginPacket => JoinRealmMessage.Parse(packet.LoginPacket),
+            Packet.TypedPacketOneofCase.PositionPacket => DecodePosition(packet.PositionPacket),
+            Packet.TypedPacketOneofCase.CreatureInterpolation => NpcSnapshot.FromPacket(packet.CreatureInterpolation),
+            Packet.TypedPacketOneofCase.PlayerInterpolation => PlayerSnapshot.FromPacket(packet.PlayerInterpolation),
+            Packet.TypedPacketOneofCase.MonsterMove => MoveMessage.FromPacket(packet.MonsterMove),
+            Packet.TypedPacketOneofCase.ChangeStatePacket => NpcChangeStateMessage.FromPacket(packet.ChangeStatePacket),
+            Packet.TypedPacketOneofCase.RemoveEntity => new RemoveEntityMessage(packet.RemoveEntity.Id),
+            Packet.TypedPacketOneofCase.KungFuBook => KungFuBookMessage.FromPacket(packet.KungFuBook),
+            Packet.TypedPacketOneofCase.Text => new TextMessage(packet.Text.Text),
+            Packet.TypedPacketOneofCase.Inventory => InventoryMessage.FromPacket(packet.Inventory),
+            Packet.TypedPacketOneofCase.Equip => PlayerEquipMessage.FromPacket(packet.Equip),
             _ => null,
         };
     }

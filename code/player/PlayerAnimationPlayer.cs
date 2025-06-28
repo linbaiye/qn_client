@@ -1,8 +1,9 @@
 using System;
 using Godot;
 using NLog;
-using QnClient.code.creature;
+using QnClient.code.entity;
 using QnClient.code.sprite;
+using QnClient.code.util;
 
 namespace QnClient.code.player;
 
@@ -85,6 +86,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     
     private const int DirectionNumber = 8;
 
+
     public override void _Ready()
     {
         _spriteLoader = ZipFileSpriteLoader.Instance;
@@ -125,8 +127,12 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             _weaponOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
             _attackEffectTextureIdx = animation.AddTrack(Animation.TrackType.Value);
             _attackEffectOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
+            var mouseAreaPosition = animation.AddTrack(Animation.TrackType.Value);
+            var mouseAreaSize = animation.AddTrack(Animation.TrackType.Value);
             animation.TrackSetPath(_bodyTextureIdx, "Body:texture");
             animation.TrackSetPath(_bodyOffsetIdx, "Body:offset");
+            animation.TrackSetPath(mouseAreaPosition, "Body/MouseArea:position");
+            animation.TrackSetPath(mouseAreaSize, "Body/MouseArea:size");
             animation.TrackSetPath(_legTextureIdx, "Leg:texture");
             animation.TrackSetPath(_legOffsetIdx, "Leg:offset");
             animation.TrackSetPath(_bootTextureIdx, "Boot:texture");
@@ -169,30 +175,36 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             animation.ValueTrackSetUpdateMode(_weaponTextureIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_attackEffectTextureIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_attackEffectOffsetIdx, Animation.UpdateMode.Discrete);
+            animation.ValueTrackSetUpdateMode(mouseAreaPosition, Animation.UpdateMode.Discrete);
+            animation.ValueTrackSetUpdateMode(mouseAreaSize, Animation.UpdateMode.Discrete);
             for (int i = 0; i < spritesPerDirection; i++)
             {
-                animation.TrackInsertKey(_bodyTextureIdx, step * i, sprites[start + i].Texture);
-                animation.TrackInsertKey(_bodyOffsetIdx, step * i, sprites[start + i].Offset);
-                animation.TrackInsertKey(_legTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_legOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_bootTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_bootOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_leftWristTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_leftWristOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_rightWristTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_rightWristOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_vestTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_vestOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_armorTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_armorOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_hairTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_hairOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_hatTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_hatOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_weaponTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_weaponOffsetIdx, step * i, Vector2.Zero);
-                animation.TrackInsertKey(_attackEffectTextureIdx, step * i, empty);
-                animation.TrackInsertKey(_attackEffectOffsetIdx, step * i, Vector2.Zero);
+                var time = step * i;
+                var textureOffset = sprites[start + i].Offset + VectorUtil.DefaultTextureOffset;
+                animation.TrackInsertKey(_bodyTextureIdx, time, sprites[start + i].Texture);
+                animation.TrackInsertKey(_bodyOffsetIdx, time, textureOffset);
+                animation.TrackInsertKey(_legTextureIdx, time, empty);
+                animation.TrackInsertKey(_legOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_bootTextureIdx, time, empty);
+                animation.TrackInsertKey(_bootOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_leftWristTextureIdx, time, empty);
+                animation.TrackInsertKey(_leftWristOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_rightWristTextureIdx, time, empty);
+                animation.TrackInsertKey(_rightWristOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_vestTextureIdx, time, empty);
+                animation.TrackInsertKey(_vestOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_armorTextureIdx, time, empty);
+                animation.TrackInsertKey(_armorOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_hairTextureIdx, time, empty);
+                animation.TrackInsertKey(_hairOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_hatTextureIdx, time, empty);
+                animation.TrackInsertKey(_hatOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_weaponTextureIdx, time, empty);
+                animation.TrackInsertKey(_weaponOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(_attackEffectTextureIdx, time, empty);
+                animation.TrackInsertKey(_attackEffectOffsetIdx, time, Vector2.Zero);
+                animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
+                animation.TrackInsertKey(mouseAreaSize, time, sprites[start + i].OriginalSize);
             }
             animationLibrary.AddAnimation(dir.ToString(), animation);
             start += spritesPerDirection;
@@ -274,6 +286,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     {
         Play(MoveAction.Walk + "/" + direction);
     }
+
+
     
     public void PlayWalkFrom(CreatureDirection direction, int fromMillis)
     {
@@ -304,7 +318,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     {
         Play(PlayerState.Idle + "/" + direction);
     }
-
+    
     
     public void PlayIdleFrom(CreatureDirection direction, int fromMillis)
     {
@@ -509,7 +523,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             for (int i = 0; i < count; i++)
             {
                 animation.TrackSetKeyValue(textureTrack, i, sprites[index].Texture);
-                animation.TrackSetKeyValue(offsetTrack, i, sprites[index].Offset);
+                animation.TrackSetKeyValue(offsetTrack, i, sprites[index].Offset + VectorUtil.DefaultTextureOffset);
                 index++;
             }
         }

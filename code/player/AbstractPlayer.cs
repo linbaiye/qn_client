@@ -1,123 +1,167 @@
 using Godot;
-using QnClient.code.creature;
 using QnClient.code.entity;
-using QnClient.code.util;
+using QnClient.code.message;
+using QnClient.code.ui;
 
 namespace QnClient.code.player;
 
-public partial class AbstractPlayer : Node2D, IEntity
+public abstract partial class AbstractPlayer : AbstractEntity
 {
-     private PlayerAnimationPlayer _animationPlayer;
-    /*private string? _hatName;
-    private string? _legName;
-    private string? _bootName;
-    private string? _leftWrist;
-    private string? _rightWrist;
-    private string? _chest;
-    private string? _armor;
-    private string? _weapon;*/
+    private PlayerAnimationPlayer _animationPlayer;
+    private Sprite2D _hat;
+    private Sprite2D _leg;
+    private BodySprite _body;
+    private Sprite2D _boot;
+    private Sprite2D _leftWrist;
+    private Sprite2D _rightWrist;
+    private Sprite2D _vest;
+    private Sprite2D _hair;
+    private Sprite2D _armor;
+    private Sprite2D _weapon;
+    
     public override void _Ready()
     {
+        base._Ready();
         _animationPlayer = GetNode<PlayerAnimationPlayer>("AnimationPlayer");
-        _animationPlayer.InitializeAnimations(true);
-        Position = new Vector2I(181, 238).ToPosition();
+        _hat = GetNode<Sprite2D>("Hat");
+        _leg = GetNode<Sprite2D>("Leg");
+        _boot = GetNode<Sprite2D>("Boot");
+        _body = GetNode<BodySprite>("Body");
+        _leftWrist = GetNode<Sprite2D>("LeftWrist");
+        _rightWrist = GetNode<Sprite2D>("RightWrist");
+        _vest = GetNode<BodySprite>("Vest");
+        _hair = GetNode<BodySprite>("Hair");
+        _armor = GetNode<BodySprite>("Armor");
+        _weapon = GetNode<BodySprite>("Weapon");
     }
     
     public PlayerAnimationPlayer AnimationPlayer => _animationPlayer;
     
-    public CreatureDirection Direction { get; set; }
-    
-    private void PutOnHat(string name)
+    private void PutOnHat(string name, int color)
     {
-        GetNode<Sprite2D>("Hat").Visible = true;
+        DyeIfHasColor(_hair, color);
         _animationPlayer.SetHatAnimation(name);
+        _hat.Visible = true;
     }
 
     private void HideHat()
     {
-        GetNode<Sprite2D>("Hat").Visible = false;
+        _hat.Visible = false;
     }
     
-    private void PutOnLeg(string name)
+    private void PutOnLeg(string name, int color)
     {
-        GetNode<Sprite2D>("Leg").Visible = true;
+        DyeIfHasColor(_leg, color);
         _animationPlayer.SetLegAnimation(name);
+        _leg.Visible = true;
     }
 
     private void HideLeg()
     {
-        GetNode<Sprite2D>("Leg").Visible = false;
+        _leg.Visible = false;
     }
     
-    private void PutOnBoot(string name)
+    private void PutOnBoot(string name, int color)
     {
-        GetNode<Sprite2D>("Boot").Visible = true;
+        DyeIfHasColor(_boot, color);
         _animationPlayer.SetBootAnimation(name);
+        _boot.Visible = true;
     }
 
     private void HideBoot()
     {
-        GetNode<Sprite2D>("Boot").Visible = false;
+        _boot.Visible = false;
     }
     
-    private void PutOnWrist(string l, string r)
+    private void PutOnWrist(string l, string r, int color)
     {
-        GetNode<Sprite2D>("LeftWrist").Visible = true;
-        GetNode<Sprite2D>("RightWrist").Visible = true;
+        DyeIfHasColor(_leftWrist, color);
+        DyeIfHasColor(_rightWrist, color);
         _animationPlayer.SetWristAnimation(l, r);
+        _leftWrist.Visible = true;
+        _rightWrist.Visible = true;
     }
     
     private void HideWrist()
     {
-        GetNode<Sprite2D>("LeftWrist").Visible = false;
-        GetNode<Sprite2D>("RightWrist").Visible = false;
+        _leftWrist.Visible = false;
+        _rightWrist.Visible = false;
     }
     
-    private void PutOnVest(string name)
+    private void PutOnVest(string name, int color)
     {
-        GetNode<Sprite2D>("Vest").Visible = true;
+        DyeIfHasColor(_vest, color);
         _animationPlayer.SetVestAnimation(name);
+        _vest.Visible = true;
     }
 
     private void HideVest()
     {
-        GetNode<Sprite2D>("Vest").Visible = false;
+        _vest.Visible = false;
     }
     
-    private void PutOnArmor(string name)
+    private void PutOnArmor(string name, int color)
     {
-        GetNode<Sprite2D>("Armor").Visible = true;
-        _animationPlayer.SetVestAnimation(name);
+        DyeIfHasColor(_armor, color);
+        _animationPlayer.SetArmorAnimation(name);
+        _armor.Visible = true;
     }
 
     private void HideArmor()
     {
-        GetNode<Sprite2D>("Armor").Visible = false;
+        _armor.Visible = false;
     }
     
-    private void PutOnHair(string name)
+    
+    private void PutOnHair(string name, int color)
     {
-        GetNode<Sprite2D>("Hair").Visible = true;
+        DyeIfHasColor(_hair, color);
         _animationPlayer.SetHairAnimation(name);
+        _hair.Visible = true;
     }
 
     private void HideHair()
     {
-        GetNode<Sprite2D>("Hair").Visible = false;
+        _hair.Visible = false;
     }
     
     private void PutOnWeapon(string name)
     {
-        GetNode<Sprite2D>("Weapon").Visible = true;
         _animationPlayer.SetBladeAnimation(name);
+        _weapon.Visible = true;
     }
 
     private void HideWeapon()
     {
-        GetNode<Sprite2D>("Weapon").Visible = false;
+        _weapon.Visible = false;
     }
 
-    public string EntityName { get; protected set; }
-    public long Id { get; protected set; }
-    public Vector2I Coordinate => Position.ToCoordinate();
+    private void DyeIfHasColor(Sprite2D sprite, int color)
+    {
+        sprite.Material = color > 0 ? DyeShader.CreateShaderMaterial(color) : null;
+    }
+
+    public void Equip(PlayerEquipMessage message)
+    {
+        switch (message.Type)
+        {
+            case EquipmentType.Boot:
+                _animationPlayer.SetBootAnimation(message.SpritePrefix);
+                DyeIfHasColor(, message.Color);
+                break;
+            case EquipmentType.Hat:
+                _animationPlayer.SetHatAnimation(message.SpritePrefix);
+                DyeIfHasColor("Hat", message.Color);
+                break;
+            case EquipmentType.Leg:
+                _animationPlayer.SetHatAnimation(message.SpritePrefix);
+                DyeIfHasColor("Hat", message.Color);
+            
+        }
+        if (message.Type == EquipmentType.Boot)
+        {
+        }
+
+    }
+
 }

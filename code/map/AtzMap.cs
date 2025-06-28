@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using QnClient.code.entity;
+using QnClient.code.entity.@event;
 
 namespace QnClient.code.map;
 
@@ -56,6 +57,21 @@ public class AtzMap(
     {
         _entityCoordinates.Remove(entity.Id);
     }
+
+    public string Name => "新手村";
+
+    public void HandleEntityEvent(IEntityEvent entityEvent)
+    {
+        if (entityEvent is CoordinateChangedEvent movementEvent)
+        {
+            Occupy(movementEvent.Source);
+        }
+        else if (entityEvent is DeletedEvent)
+        {
+            Free(entityEvent.Source);
+        }
+    }
+    
 
     /*public void Occupy(GameDynamicObject dynamicObject)
     {

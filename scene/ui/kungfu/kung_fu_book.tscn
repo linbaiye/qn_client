@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://xmwuu6wmvhi4"]
+
+[ext_resource type="Theme" uid="uid://bnrgbxn7sip6r" path="res://scene/ui/kungfu.tres" id="1_nf4rs"]
+[ext_resource type="Texture2D" uid="uid://d16ke1cg8vfkp" path="res://ui/kungfu/kungfu.png" id="1_xuyn1"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom.tres" id="2_uxxlc"]
+[ext_resource type="Script" uid="uid://brce2oqt2iu5e" path="res://code/ui/kungfu/KungFuBook.cs" id="3_2jh5i"]
+[ext_resource type="PackedScene" uid="uid://c2e0aa3ffa4em" path="res://scene/ui/kungfu/kung_fu_tab.tscn" id="5_yo8yw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nf4rs"]
+blend_mode = 1
+
+[node name="KungFuBook" type="NinePatchRect"]
+custom_minimum_size = Vector2(252, 384)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 42.0
+offset_right = -771.0
+offset_bottom = -342.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_nf4rs")
+texture = ExtResource("1_xuyn1")
+script = ExtResource("3_2jh5i")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 84.0
+offset_right = 230.0
+offset_bottom = 347.0
+theme = ExtResource("2_uxxlc")
+theme_override_constants/h_separation = 17
+theme_override_constants/v_separation = 19
+columns = 5
+
+[node name="CloseButton" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_nf4rs")
+layout_mode = 0
+offset_left = 223.0
+offset_top = 6.0
+offset_right = 249.0
+offset_bottom = 30.0
+focus_mode = 0
+
+[node name="UnnamedTab" parent="." instance=ExtResource("5_yo8yw")]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 41.0
+offset_right = 59.0
+offset_bottom = 73.0
+mouse_filter = 0
+
+[node name="BasicTab" parent="." instance=ExtResource("5_yo8yw")]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 41.0
+offset_right = 103.0
+offset_bottom = 73.0
+mouse_filter = 0

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using QnClient.code.util;
 
 namespace QnClient.code.map;
 
@@ -38,6 +39,7 @@ public partial class ObjectLayer : Node2D
 		{
 			Centered = false, Position = new Vector2(x * 32, y * 24), Offset = mapObject.Offset,
 			SpriteFrames = frames,
+			YSortEnabled = true,
 			Autoplay = "default",
 			Name = mapObject.Name(x, y),
 		};
@@ -64,6 +66,7 @@ public partial class ObjectLayer : Node2D
 				Sprite2D objectSprite = new Sprite2D()
 				{
 					Texture = objectInfo.Textures[0], Centered = false, Position = new Vector2(xPos, yPos),
+					YSortEnabled = true,
 					Offset = objectInfo.Offset,
 				};
 				AddChild(objectSprite);

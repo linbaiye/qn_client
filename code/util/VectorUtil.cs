@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using QnClient.code.creature;
+using QnClient.code.entity;
+using QnClient.code.player;
 
 namespace QnClient.code.util;
 
@@ -10,6 +11,8 @@ public static class VectorUtil
     public const int TileSizeX = 32;
     public const int TileSizeY = 24;
     public static readonly Vector2I TileSize = new(32, 24);
+    
+    public static readonly Vector2 DefaultTextureOffset = new (16, -12);
 
 
     private static readonly IDictionary<CreatureDirection, Vector2> VelocityMap = new Dictionary<CreatureDirection, Vector2>()
@@ -92,4 +95,21 @@ public static class VectorUtil
             _ => CreatureDirection.Right,
         };
     }
+    
+    private static readonly Dictionary<MoveAction, float> MoveStateSeconds = new()
+    {
+        { MoveAction.Walk, 0.84f },
+        { MoveAction.FightWalk, 0.84f },
+        { MoveAction.Run, 0.42f },
+        { MoveAction.Fly, 0.36f },
+    };
+
+    public static float GetMoveDuration(MoveAction action)
+    {
+        if (MoveStateSeconds.TryGetValue(action, out var value))
+            return value;
+        // should never happen.
+        throw new NotSupportedException();
+    }
+
 }

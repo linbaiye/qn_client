@@ -1,0 +1,220 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxtgsrbww28cd"]
+
+[ext_resource type="Texture2D" uid="uid://848ebxjhtxgp" path="res://ui/hud/hud_bottom.png" id="1_nx1bh"]
+[ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/ui/bottom/Bottom.cs" id="2_8bsu8"]
+[ext_resource type="Texture2D" uid="uid://fr1w8gxhc48h" path="res://ui/hud/life_bar.png" id="2_q6f08"]
+[ext_resource type="Texture2D" uid="uid://wr2sy6sknwrw" path="res://ui/hud/hal_bar.png" id="3_378wf"]
+[ext_resource type="Texture2D" uid="uid://btlyxppsvu1lk" path="res://ui/hud/power_bar.png" id="3_m2yg2"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom.tres" id="5_ydt51"]
+[ext_resource type="Script" uid="uid://bcbnx6d4w7vio" path="res://code/ui/bottom/ActiveKungFuList.cs" id="7_67i83"]
+[ext_resource type="Script" uid="uid://q5ee2aaqao31" path="res://code/ui/bottom/TextArea.cs" id="8_3hfix"]
+
+[node name="Bottom" type="NinePatchRect"]
+custom_minimum_size = Vector2(1024, 198)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nx1bh")
+script = ExtResource("2_8bsu8")
+
+[node name="LifeBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = 897.0
+offset_top = 148.0
+offset_right = 995.0
+offset_bottom = 154.0
+value = 100.0
+texture_progress = ExtResource("2_q6f08")
+
+[node name="PowerBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = 897.0
+offset_top = 133.0
+offset_right = 995.0
+offset_bottom = 139.0
+value = 100.0
+texture_progress = ExtResource("3_m2yg2")
+
+[node name="OuterPower" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = 897.0
+offset_top = 118.0
+offset_right = 995.0
+offset_bottom = 124.0
+value = 100.0
+texture_progress = ExtResource("3_m2yg2")
+
+[node name="InnerPower" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = 897.0
+offset_top = 103.0
+offset_right = 995.0
+offset_bottom = 109.0
+value = 100.0
+texture_progress = ExtResource("3_m2yg2")
+
+[node name="HeadLifeBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 119.0
+offset_right = 241.0
+offset_bottom = 125.0
+value = 100.0
+texture_progress = ExtResource("3_378wf")
+
+[node name="ArmLifeBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 134.0
+offset_right = 241.0
+offset_bottom = 140.0
+value = 100.0
+texture_progress = ExtResource("3_378wf")
+
+[node name="LegLifeBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 149.0
+offset_right = 241.0
+offset_bottom = 155.0
+value = 100.0
+texture_progress = ExtResource("3_378wf")
+
+[node name="Inventory" type="Button" parent="."]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 166.0
+offset_right = 882.0
+offset_bottom = 188.0
+theme = ExtResource("5_ydt51")
+text = "物品"
+
+[node name="KungFu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 891.0
+offset_top = 166.0
+offset_right = 923.0
+offset_bottom = 188.0
+theme = ExtResource("5_ydt51")
+text = "武功"
+
+[node name="Assistance" type="Button" parent="."]
+layout_mode = 0
+offset_left = 931.0
+offset_top = 166.0
+offset_right = 963.0
+offset_bottom = 188.0
+theme = ExtResource("5_ydt51")
+text = "辅助"
+
+[node name="System" type="Button" parent="."]
+layout_mode = 0
+offset_left = 970.0
+offset_top = 166.0
+offset_right = 1002.0
+offset_bottom = 188.0
+theme = ExtResource("5_ydt51")
+text = "系统"
+
+[node name="ActiveKungFuList" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 82.0
+offset_right = 126.0
+offset_bottom = 158.0
+script = ExtResource("7_67i83")
+
+[node name="KungFu0" type="RichTextLabel" parent="ActiveKungFuList"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "[center]无名步法[/center]"
+
+[node name="KungFu1" type="RichTextLabel" parent="ActiveKungFuList"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "[center]无名拳法[/center]"
+
+[node name="KungFu2" type="RichTextLabel" parent="ActiveKungFuList"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "[center]黑纱刚体[/center]"
+
+[node name="KungFu3" type="RichTextLabel" parent="ActiveKungFuList"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "[center]灵动八方[/center]"
+
+[node name="Coordinate" type="Label" parent="."]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 167.0
+offset_right = 119.0
+offset_bottom = 190.0
+theme = ExtResource("5_ydt51")
+text = "192:156"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 167.0
+offset_right = 252.0
+offset_bottom = 190.0
+theme = ExtResource("5_ydt51")
+text = "新手村"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextArea" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 79.0
+offset_right = 758.0
+offset_bottom = 163.0
+script = ExtResource("8_3hfix")
+
+[node name="Line1" type="RichTextLabel" parent="TextArea"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+text = "测试1"
+
+[node name="Line2" type="RichTextLabel" parent="TextArea"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "测试2"
+
+[node name="Line3" type="RichTextLabel" parent="TextArea"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "测试3"
+
+[node name="Line4" type="RichTextLabel" parent="TextArea"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "测试4"
+
+[node name="Line5" type="RichTextLabel" parent="TextArea"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("5_ydt51")
+bbcode_enabled = true
+text = "测试5"

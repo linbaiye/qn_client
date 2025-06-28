@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo6fmqnji3bfj"]
+
+[ext_resource type="Shader" uid="uid://bxa233gh76t0f" path="res://shader/Shadow.gdshader" id="1_u5yd7"]
+[ext_resource type="Script" uid="uid://ctuuxtf2k44ru" path="res://code/ui/BodySprite.cs" id="2_w6pjy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjvvu"]
+shader = ExtResource("1_u5yd7")
+shader_parameter/deform = Vector2(0.3, 0.2)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/modulate = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xi8q5"]
+
+[node name="Body" type="Sprite2D"]
+material = SubResource("ShaderMaterial_wjvvu")
+centered = false
+script = ExtResource("2_w6pjy")
+
+[node name="MouseArea" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xi8q5")

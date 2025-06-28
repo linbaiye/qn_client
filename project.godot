@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="QnClient"
-run/main_scene="uid://idx0qd14bsb2"
+run/main_scene="uid://ch785oi1vsnly"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,13 +19,19 @@ config/icon="res://icon.svg"
 
 LogConfigurer="*res://code/LogConfigurer.cs"
 
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=768
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="QnClient"
 
 [physics]
 
-common/physics_ticks_per_second=40
+common/physics_ticks_per_second=35
 common/physics_interpolation=true
 
 [rendering]

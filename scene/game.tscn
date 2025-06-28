@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cmhrpti5ubtm" path="res://code/map/GroundLayer.cs" id="2_dbls1"]
 [ext_resource type="Script" uid="uid://bot1nmofbgqmh" path="res://code/map/ObjectLayer.cs" id="4_p1ry8"]
 [ext_resource type="Script" uid="uid://dch3auqsyteco" path="res://code/map/OverGroundLayer.cs" id="4_xwcet"]
-[ext_resource type="Script" uid="uid://dfkmxbe35fctd" path="res://code/player/Character.cs" id="5_qpk70"]
+[ext_resource type="Script" uid="uid://dpikp1yyhtq5y" path="res://code/player/character/Character.cs" id="6_qpk70"]
 [ext_resource type="Script" uid="uid://b5vt7tfdbxugi" path="res://code/map/RoofLayer.cs" id="6_xlg7c"]
 
 [sub_resource type="TileSet" id="TileSet_33cqm"]
@@ -28,18 +28,17 @@ z_index = 1
 tile_set = SubResource("TileSet_xwcet")
 script = ExtResource("4_xwcet")
 
-[node name="Character" parent="." instance=ExtResource("1_5kiuu")]
-z_index = 2
-y_sort_enabled = true
-script = ExtResource("5_qpk70")
-
-[node name="Camera2D" type="Camera2D" parent="Character"]
-process_callback = 0
-
 [node name="ObjectLayer" type="Node2D" parent="."]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("4_p1ry8")
+
+[node name="Character" parent="." instance=ExtResource("1_5kiuu")]
+z_index = 2
+script = ExtResource("6_qpk70")
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+process_callback = 0
 
 [node name="RoofLayer" type="Node2D" parent="."]
 z_index = 3

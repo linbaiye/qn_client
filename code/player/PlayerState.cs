@@ -1,14 +1,15 @@
-namespace QnClient.code.creature;
+namespace QnClient.code.player;
 
 public enum PlayerState
 {
-    Idle,
-    Move,
-    Attack,
-    FightStand,
-    Sit,
-    StandUp,
-    Hurt,
-    Die,
-    Hello,
+    Idle = 1,
+    Move = 2,
+    Attack = 3,
+    FightStand = 8,
+    Sit = 10,
+    StandUp = 4,
+    Hurt = 6,
+    Die = 7,
+    Hello = 14,
+    Turn = 24,
 }

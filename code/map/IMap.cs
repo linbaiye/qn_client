@@ -11,4 +11,6 @@ public interface IMap
     void Occupy(IEntity entity);
     
     void Free(IEntity entity);
+    
+    string Name { get; }
 }

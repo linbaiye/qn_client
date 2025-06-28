@@ -2,5 +2,4 @@
 
 public interface IMessageHandler
 {
-    void Handle(JoinRealmMessage message);
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Godot;
 using NLog;
 
@@ -13,7 +15,7 @@ public class ZipFileSpriteLoader
 	public static readonly ZipFileSpriteLoader Instance = new ();
 	private ZipFileSpriteLoader() {}
 	
-	private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+	private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
 	private readonly Cache<string, Sprite[]> _cache = new();
 	
@@ -67,15 +69,50 @@ public class ZipFileSpriteLoader
 		return (from line in lines where line.Contains(',') select ParseLine(line)).ToArray();
 	}
 
+	private Texture2D[] LoadOrderedIcons(string path)
+	{
+		using var zipArchive = ZipUtil.LoadZipFile(path);
+		var textures = new List<Texture2D>();
+		var collection = zipArchive.Entries.Where(e => !e.FullName.StartsWith("__MACOSX") && !e.FullName.StartsWith(".DS_Store"));
+		var list = new List<ZipArchiveEntry>(collection);
+		list.Sort((t1, t2) => String.Compare(t1.FullName, t2.FullName, StringComparison.Ordinal));
+		foreach (var entry in list)
+		{
+			var texture = entry.ReadAsTexture();
+			if (texture != null)
+			{
+				textures.Add(texture);
+			}
+		}
+		return textures.ToArray();
+	}
+
+	public Texture2D[] LoadOrderedMagicIcons()
+	{
+		return LoadOrderedIcons("res://sprites/magic.zip");
+	}
+	
+	public Texture2D[] LoadOrderedItemIcons()
+	{
+		return LoadOrderedIcons("res://sprites/item.zip" );
+	}
+
 
 	public Sprite[] Load(string name)
 	{
+		if (!name.EndsWith(".zip"))
+		{
+			name += ".zip";
+		}
+
+		name = name.ToLower();
 		var sprites = _cache.Get(name);
 		if (sprites != null)
 		{
 			return sprites;
 		}
-		using var zipArchive = ZipUtil.LoadZipFile("res://sprites/" + name.ToLower() + ".zip");
+		Log.Debug("Loading {0}.", name);
+		using var zipArchive = ZipUtil.LoadZipFile("res://sprites/" + name);
 		var offsetEntry = zipArchive.GetEntry("offset.txt");
 		if (offsetEntry == null)
 		{
@@ -100,7 +137,7 @@ public class ZipFileSpriteLoader
 			}
 			sprites[i] = new Sprite(texture, vectors[i], sizes[i]);
 		}
-		Logger.Debug("Loaded {0}.", name);
+		Log.Debug("Loaded {0}.", name);
 		_cache.Store(name, sprites, TimeSpan.FromMinutes(5));
 		return sprites;
 	}
