@@ -7,7 +7,7 @@ using QnClient.code.util;
 
 namespace QnClient.code.entity;
 
-public abstract partial class AbstractEntity : Node2D, IEntity, IEntityMessageHandler
+public abstract partial class AbstractCreature : Node2D, IEntity, IEntityMessageHandler
 {
     public event Action<IEntityEvent>? OnEntityEvent;
 

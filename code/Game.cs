@@ -37,13 +37,13 @@ public partial class Game : Node2D
     
 
 
-    private void AddEntity(AbstractEntity entity, IEntityMessage message)
+    private void AddEntity(AbstractCreature creature, IEntityMessage message)
     {
-        AddChild(entity);
-        entity.OnEntityEvent += _map.HandleEntityEvent;
-        entity.OnEntityEvent += _entityManager.HandleEntityEvent;
-        entity.HandleEntityMessage(message);
-        _entityManager.Add(entity);
+        AddChild(creature);
+        creature.OnEntityEvent += _map.HandleEntityEvent;
+        creature.OnEntityEvent += _entityManager.HandleEntityEvent;
+        creature.HandleEntityMessage(message);
+        _entityManager.Add(creature);
     }
 
 

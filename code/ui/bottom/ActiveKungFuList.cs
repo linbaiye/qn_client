@@ -20,7 +20,7 @@ public partial class ActiveKungFuList : VBoxContainer
         return "[center]" + text + "[/center]";
     }
 
-    public void OnCharacterJoined(ICharacter character)
+    public void SyncActiveKungFu(ICharacter character)
     {
         foreach (var label in _kungFuArray)
         {
@@ -30,6 +30,8 @@ public partial class ActiveKungFuList : VBoxContainer
         _kungFuArray[index++].Text = MakeText(character.AttackKungFu);
         if (!string.IsNullOrEmpty(character.ProtectionKungFu)) 
             _kungFuArray[index++].Text = MakeText(character.ProtectionKungFu);
+        if (!string.IsNullOrEmpty(character.BreathKungFu)) 
+            _kungFuArray[index++].Text = MakeText(character.BreathKungFu);
         if (!string.IsNullOrEmpty(character.AssistantKungFu))
             _kungFuArray[index++].Text = MakeText(character.AssistantKungFu);
         if (character.FootKungFu != null)

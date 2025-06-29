@@ -67,7 +67,11 @@ public partial class Bottom : NinePatchRect
             FillBars(characterEvent.Character);
             UpdateCoordinate(characterEvent.Character.Coordinate);
             _mapName.Text = characterEvent.Character.Map.Name;
-            _activeKungFuList.OnCharacterJoined(characterEvent.Character);
+            _activeKungFuList.SyncActiveKungFu(characterEvent.Character);
+        } 
+        else if (characterEvent.Type == CharacterEvent.EventType.SyncActiveKungFu)
+        {
+            _activeKungFuList.SyncActiveKungFu(characterEvent.Character);
         }
     }
 

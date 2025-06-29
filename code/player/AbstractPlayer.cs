@@ -6,7 +6,7 @@ using QnClient.code.ui;
 
 namespace QnClient.code.player;
 
-public abstract partial class AbstractPlayer : AbstractEntity
+public abstract partial class AbstractPlayer : AbstractCreature
 {
     private PlayerAnimationPlayer _animationPlayer;
     private Sprite2D _hat;

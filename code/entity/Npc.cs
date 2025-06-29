@@ -6,7 +6,7 @@ using QnClient.code.util;
 
 namespace QnClient.code.entity;
 
-public partial class Npc : AbstractEntity, INpcMessageHandler
+public partial class Npc : AbstractCreature, INpcMessageHandler
 {
     private MonsterAnimationPlayer _animationPlayer;
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();

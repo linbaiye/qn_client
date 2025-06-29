@@ -6,6 +6,7 @@ using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player.character.kungfu;
+using QnClient.code.ui.bottom;
 using QnClient.code.util;
 
 namespace QnClient.code.player.character;
@@ -17,6 +18,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     public FootKungFu? FootKungFu { get; private set; }
     public string AttackKungFu { get; private set; }
     public string ProtectionKungFu { get; private set; } = "";
+    public string BreathKungFu { get; private set; } = "";
     public string AssistantKungFu { get; private set; } = "";
 
     private IMap? _map;
@@ -98,7 +100,17 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     {
         if (message is ICharacterMessage characterMessage)
         {
-            characterMessage.Accpet(this);
+            characterMessage.Accept(this);
         }
+    }
+
+    public void SyncActiveKungFuList(SyncActiveKungFuListMessage message) 
+    {
+        FootKungFu = message.FootKungFu;
+        AttackKungFu = message.AttackKungFu;
+        ProtectionKungFu = message.ProtectionKungFu;
+        AssistantKungFu = message.AssistantKungFu;
+        BreathKungFu = message.BreathKungFu;
+        EmitEvent(CharacterEvent.Join(this));
     }
 }

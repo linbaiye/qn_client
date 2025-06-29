@@ -41,7 +41,7 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage
         return new PlayerEquipMessage(packet.Id, packet.Color, equipmentType, weaponType, packet.Prefix, paired);
     }
 
-    public void Accpet(ICharacterMessageHandler handler)
+    public void Accept(ICharacterMessageHandler handler)
     {
         handler.Equip(this);
     }

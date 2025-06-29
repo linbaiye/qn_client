@@ -2,7 +2,7 @@
 
 namespace QnClient.code.message;
 
-public interface ICharacterMessage
+public interface ICharacterMessage: IEntityMessage
 {
-    void Accpet(ICharacterMessageHandler handler);
+    void Accept(ICharacterMessageHandler handler);
 }

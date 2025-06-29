@@ -32,6 +32,8 @@ public interface ICharacter : ICreature
     
     string ProtectionKungFu{ get; }
     
+    string BreathKungFu { get; }
+    
     string AssistantKungFu { get; }
     
     Connection Connection { get; }
