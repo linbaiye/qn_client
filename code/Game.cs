@@ -59,6 +59,7 @@ public partial class Game : Node2D
                 case JoinRealmMessage message:
                     _map.Draw(message.MapFile, message.ResourceName);
                     _character.Initialize(message, _connection, _map);
+                    _character.OnEntityEvent += _map.HandleEntityEvent;
                     _entityManager.Add(_character);
                     Visible = true;
                     break;

@@ -43,7 +43,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
                 break;
         }
         Visible = true;
-        EmitEvent(new EntityCoordinateEvent(this));
+        EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 
     private Vector2 ComputeVelocity(CreatureDirection direction)
@@ -70,7 +70,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
     {
         Position = message.Coordinate.ToPosition();
         _animationPlayer.PlayIdle(message.Direction);
-        EmitEvent(new EntityCoordinateEvent(this));
+        EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 
     public void ChangeState(NpcChangeStateMessage message)
@@ -84,7 +84,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
     {
         if (Mover == null || !Mover.PhysicProcess(delta))
             return;
-        EmitEvent(new EntityCoordinateEvent(this));
+        EmitEvent(new EntityChangeCoordinateEvent(this));
         Mover = null;
     }
 

@@ -45,7 +45,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
                 Visible = true;
             }
         }
-        else if (entityEvent is EntityCoordinateEvent { Source: ICharacter })
+        else if (entityEvent is EntityChangeCoordinateEvent { Source: ICharacter })
         {
             _bottom.UpdateCoordinate(entityEvent.Source.Coordinate);
         }

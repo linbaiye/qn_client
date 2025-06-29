@@ -29,7 +29,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
                 AnimationPlayer.PlayFightStand(message.Direction);
                 break;
         }
-        EmitEvent(new EntityCoordinateEvent(this));
+        EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 
     public void Move(MoveMessage message)
@@ -74,7 +74,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
                 break;
         }
         Visible = true;
-        EmitEvent(new EntityCoordinateEvent(this));
+        EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 
     private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
@@ -113,7 +113,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
     {
         if (Mover == null || !Mover.PhysicProcess(delta))
             return;
-        EmitEvent(new EntityCoordinateEvent(this));
+        EmitEvent(new EntityChangeCoordinateEvent(this));
         Mover = null;
     }
 

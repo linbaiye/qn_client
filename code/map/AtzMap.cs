@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
+using QnClient.code.player.character;
 
 namespace QnClient.code.map;
 
@@ -17,6 +19,7 @@ public class AtzMap(
     private readonly ZipFileMapTextureLoader _textureLoader = ZipFileMapTextureLoader.Instance;
 
     private AtzMapFileParser? _fileParser;
+    private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
     
 	private readonly IDictionary<long, ISet<Vector2I>> _entityCoordinates= new Dictionary<long, ISet<Vector2I>>();
 
@@ -62,7 +65,7 @@ public class AtzMap(
 
     public void HandleEntityEvent(IEntityEvent entityEvent)
     {
-        if (entityEvent is EntityCoordinateEvent movementEvent)
+        if (entityEvent is EntityChangeCoordinateEvent movementEvent)
         {
             Occupy(movementEvent.Source);
         }
