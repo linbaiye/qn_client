@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnx66jyukm7f2"]
+
+[ext_resource type="Script" uid="uid://c3hx04cingw62" path="res://code/ui/TextBubble.cs" id="1_jnlly"]
+[ext_resource type="Theme" uid="uid://bko6p7lp6yw0" path="res://scene/text_bubble.tres" id="2_qdip0"]
+
+[node name="TextBubble" type="RichTextLabel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_qdip0")
+bbcode_enabled = true
+text = "无名剑法"
+scroll_active = false
+autowrap_mode = 1
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_jnlly")

@@ -52,7 +52,7 @@ public class CharacterMoveState : AbstractCharacterState
         if (_elapsedSeconds < _stateSeconds)
             return;
         _character.Position = _character.Position.Snapped(VectorUtil.TileSize);
-        _character.EmitEvent(new CoordinateChangedEvent(_character));
+        _character.EmitEvent(new EntityCoordinateEvent(_character));
         Logger.Debug("Character has moved to {}.", _character.Coordinate);
         if (!_character.MovePressed)
         {

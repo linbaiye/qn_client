@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using QnClient.code.entity;
 using QnClient.code.message;
@@ -29,17 +30,17 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _body = GetNode<BodySprite>("Body");
         _leftWrist = GetNode<Sprite2D>("LeftWrist");
         _rightWrist = GetNode<Sprite2D>("RightWrist");
-        _vest = GetNode<BodySprite>("Vest");
-        _hair = GetNode<BodySprite>("Hair");
-        _armor = GetNode<BodySprite>("Armor");
-        _weapon = GetNode<BodySprite>("Weapon");
+        _vest = GetNode<Sprite2D>("Vest");
+        _hair = GetNode<Sprite2D>("Hair");
+        _armor = GetNode<Sprite2D>("Armor");
+        _weapon = GetNode<Sprite2D>("Weapon");
     }
     
     public PlayerAnimationPlayer AnimationPlayer => _animationPlayer;
     
     private void PutOnHat(string spritePrefix, int color)
     {
-        DyeIfHasColor(_hair, color);
+        _hat.TextureChanged += () => DyeIfHasColor(_hat, color);
         _animationPlayer.SetHatAnimation(spritePrefix);
         _hat.Visible = true;
     }
@@ -51,7 +52,7 @@ public abstract partial class AbstractPlayer : AbstractEntity
     
     private void PutOnLeg(string spritePrefix, int color)
     {
-        DyeIfHasColor(_leg, color);
+        _leg.TextureChanged += () => DyeIfHasColor(_leg, color);
         _animationPlayer.SetLegAnimation(spritePrefix);
         _leg.Visible = true;
     }
@@ -63,7 +64,7 @@ public abstract partial class AbstractPlayer : AbstractEntity
     
     private void PutOnBoot(string spritePrefix, int color)
     {
-        DyeIfHasColor(_boot, color);
+        _boot.TextureChanged += () => DyeIfHasColor(_boot, color);
         _animationPlayer.SetBootAnimation(spritePrefix);
         _boot.Visible = true;
     }
@@ -75,8 +76,8 @@ public abstract partial class AbstractPlayer : AbstractEntity
     
     private void PutOnWrist(string l, string r, int color)
     {
-        DyeIfHasColor(_leftWrist, color);
-        DyeIfHasColor(_rightWrist, color);
+        _leftWrist.TextureChanged += () => DyeIfHasColor(_leftWrist, color);
+        _rightWrist.TextureChanged += () => DyeIfHasColor(_rightWrist, color);
         _animationPlayer.SetWristAnimation(l, r);
         _leftWrist.Visible = true;
         _rightWrist.Visible = true;
@@ -90,7 +91,7 @@ public abstract partial class AbstractPlayer : AbstractEntity
     
     private void PutOnVest(string spritePrefix, int color)
     {
-        DyeIfHasColor(_vest, color);
+        _vest.TextureChanged += () => DyeIfHasColor(_vest, color);
         _animationPlayer.SetVestAnimation(spritePrefix);
         _vest.Visible = true;
     }
@@ -102,7 +103,7 @@ public abstract partial class AbstractPlayer : AbstractEntity
     
     private void PutOnArmor(string spritePrefix, int color)
     {
-        DyeIfHasColor(_armor, color);
+        _armor.TextureChanged += () => DyeIfHasColor(_armor, color);
         _animationPlayer.SetArmorAnimation(spritePrefix);
         _armor.Visible = true;
     }
@@ -115,6 +116,7 @@ public abstract partial class AbstractPlayer : AbstractEntity
     
     private void PutOnHair(string spritePrefix, int color)
     {
+        _hair.TextureChanged += () => DyeIfHasColor(_hair, color);
         DyeIfHasColor(_hair, color);
         _animationPlayer.SetHairAnimation(spritePrefix);
         _hair.Visible = true;
@@ -125,9 +127,32 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _hair.Visible = false;
     }
     
-    private void PutOnWeapon(string spritePrefix)
+    private void PutOnWeapon(string spritePrefix, WeaponType weaponType)
     {
-        _animationPlayer.SetBladeAnimation(spritePrefix);
+        switch (weaponType)
+        {
+            case WeaponType.FistWeapon:
+                _animationPlayer.SetFistWeaponAnimation(spritePrefix);
+                break;
+            case WeaponType.Axe:
+                _animationPlayer.SetAxeAnimation(spritePrefix);
+                break;
+            case WeaponType.Spear:
+                _animationPlayer.SetSpearAnimation(spritePrefix);
+                break;
+            case WeaponType.Sword:
+                _animationPlayer.SetSwordAnimation(spritePrefix);
+                break;
+            case WeaponType.Bow:
+                _animationPlayer.SetBowAnimation(spritePrefix);
+                break;
+            case WeaponType.Blade:
+                _animationPlayer.SetBladeAnimation(spritePrefix);
+                break;
+            case WeaponType.Throw:
+                _animationPlayer.SetThrowAnimation(spritePrefix);
+                break;
+        }
         _weapon.Visible = true;
     }
 
@@ -138,7 +163,9 @@ public abstract partial class AbstractPlayer : AbstractEntity
 
     private void DyeIfHasColor(Sprite2D sprite, int color)
     {
-        sprite.Material = color > 0 ? DyeShader.CreateShaderMaterial(color) : null;
+        if (color <= 0)
+            return;
+        DyeShader.SetColor((ShaderMaterial)sprite.Material, color);
     }
 
     public void Equip(PlayerEquipMessage message)
@@ -167,7 +194,7 @@ public abstract partial class AbstractPlayer : AbstractEntity
                 PutOnWrist(message.SpritePrefix, message.PairedSpritePrefix, message.Color);
                 break;
             case EquipmentType.Weapon:
-                PutOnWeapon(message.SpritePrefix);
+                PutOnWeapon(message.SpritePrefix, message.WeaponType);
                 break;
         }
      }

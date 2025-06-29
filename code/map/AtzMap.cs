@@ -62,7 +62,7 @@ public class AtzMap(
 
     public void HandleEntityEvent(IEntityEvent entityEvent)
     {
-        if (entityEvent is CoordinateChangedEvent movementEvent)
+        if (entityEvent is EntityCoordinateEvent movementEvent)
         {
             Occupy(movementEvent.Source);
         }

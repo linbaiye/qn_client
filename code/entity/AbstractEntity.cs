@@ -14,11 +14,21 @@ public abstract partial class AbstractEntity : Node2D, IEntity, IEntityMessageHa
     private string _name;
 
     public string EntityName => _name;
+
+    private TextBubble _textBubble;
+    
+    private BodySprite _bodySprite;
+
+    public override void _Ready()
+    {
+        _textBubble = GetNode<TextBubble>("TextBubble");
+        _bodySprite = GetNode<BodySprite>("Body");
+    }
     
     private void SetViewName(string name)
     {
         _name = name;
-        var label = GetNode<Label>("Label");
+        var label = GetNode<Label>("Name");
         label.Text = name;
         label.Visible = false;
         label.Resized += () =>
@@ -37,19 +47,29 @@ public abstract partial class AbstractEntity : Node2D, IEntity, IEntityMessageHa
         OnEntityEvent?.Invoke(entityEvent);
     }
 
+    protected void Initialize(long id, Vector2I coordinate, string name)
+    {
+        Id = id;
+        var bodySprite = GetNode<BodySprite>("Body");
+        bodySprite.MouseEntered += () => GetNode<Label>("Name").Visible = true;
+        bodySprite.MouseExited += () => GetNode<Label>("Name").Visible = false;
+        Position = coordinate.ToPosition();
+        SetViewName(name);
+    }
+
     protected void Initialize(AbstractCreatureSnapshot snapshot)
     {
-        Id = snapshot.Id;
-        var bodySprite = GetNode<BodySprite>("Body");
-        bodySprite.MouseEntered += () => GetNode<Label>("Label").Visible = true;
-        bodySprite.MouseExited += () => GetNode<Label>("Label").Visible = false;
-        Position = snapshot.Coordinate.ToPosition();
-        SetViewName(snapshot.Name);
+        Initialize(snapshot.Id, snapshot.Coordinate, snapshot.Name);
     }
 
     public void Remove(RemoveEntityMessage message)
     {
         EmitEvent(new DeletedEvent(this));
         QueueFree();
+    }
+
+    public void Say(CreatureSayMessage sayMessage)
+    {
+        _textBubble.Display(sayMessage.Text, _bodySprite.Texture.GetSize());
     }
 }

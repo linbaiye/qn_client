@@ -10,14 +10,14 @@ using QnClient.code.util;
 
 namespace QnClient.code.player.character;
 
-public partial class Character : AbstractPlayer, ICharacter
+public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHandler
 {
     private ICharacterState? _characterState;
     
     public FootKungFu? FootKungFu { get; private set; }
-    public KungFu? AttackKungFu { get; private set; }
-    public KungFu? ProtectionKungFu { get; private set; }
-    public KungFu? AssistantKungFu { get; private set; }
+    public string AttackKungFu { get; private set; }
+    public string ProtectionKungFu { get; private set; } = "";
+    public string AssistantKungFu { get; private set; } = "";
 
     private IMap? _map;
 
@@ -74,7 +74,7 @@ public partial class Character : AbstractPlayer, ICharacter
         _connection = connection;
         _map = map;
         AnimationPlayer.InitializeAnimations(message.Male);
-        base.Initialize(message);
+        base.Initialize(message.Id, message.Coordinate, message.Name);
         Direction = CreatureDirection.Down;
         ChangeState(CharacterStandState.Idle(this));
         LifeBar = message.LifeBar;
@@ -85,9 +85,10 @@ public partial class Character : AbstractPlayer, ICharacter
         InnerPowerBar = message.InnerPowerBar;
         OuterPowerBar = message.OuterPowerBar;
         AttackKungFu = message.AttackKungFu;
-        AssistantKungFu = message.AssistantKungFu;
-        FootKungFu = message.FootKungFu;
-        ProtectionKungFu = message.ProtectionKungFu;
+        foreach (var equipMessage in message.Equipments)
+        {
+            HandleEntityMessage(equipMessage);
+        }
         ResetPhysicsInterpolation();
         EmitEvent(CharacterEvent.Join(this));
         map.Occupy(this);
@@ -95,5 +96,9 @@ public partial class Character : AbstractPlayer, ICharacter
 
     public override void HandleEntityMessage(IEntityMessage message)
     {
+        if (message is ICharacterMessage characterMessage)
+        {
+            characterMessage.Accpet(this);
+        }
     }
 }

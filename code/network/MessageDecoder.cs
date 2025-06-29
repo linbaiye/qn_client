@@ -36,10 +36,10 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
     {
         return packet.TypedPacketCase switch
         {
-            Packet.TypedPacketOneofCase.LoginPacket => JoinRealmMessage.Parse(packet.LoginPacket),
+            Packet.TypedPacketOneofCase.JoinRealm => JoinRealmMessage.Parse(packet.JoinRealm),
             Packet.TypedPacketOneofCase.PositionPacket => DecodePosition(packet.PositionPacket),
-            Packet.TypedPacketOneofCase.CreatureInterpolation => NpcSnapshot.FromPacket(packet.CreatureInterpolation),
-            Packet.TypedPacketOneofCase.PlayerInterpolation => PlayerSnapshot.FromPacket(packet.PlayerInterpolation),
+            Packet.TypedPacketOneofCase.NpcSnapshot => NpcSnapshot.FromPacket(packet.NpcSnapshot),
+            //Packet.TypedPacketOneofCase.PlayerInterpolation => PlayerSnapshot.FromPacket(packet.PlayerInterpolation),
             Packet.TypedPacketOneofCase.MonsterMove => MoveMessage.FromPacket(packet.MonsterMove),
             Packet.TypedPacketOneofCase.ChangeStatePacket => NpcChangeStateMessage.FromPacket(packet.ChangeStatePacket),
             Packet.TypedPacketOneofCase.RemoveEntity => new RemoveEntityMessage(packet.RemoveEntity.Id),
@@ -47,6 +47,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.Text => new TextMessage(packet.Text.Text),
             Packet.TypedPacketOneofCase.Inventory => InventoryMessage.FromPacket(packet.Inventory),
             Packet.TypedPacketOneofCase.Equip => PlayerEquipMessage.FromPacket(packet.Equip),
+            Packet.TypedPacketOneofCase.PlayerSnapshot => PlayerSnapshot.FromPacket(packet.PlayerSnapshot),
             _ => null,
         };
     }
