@@ -29,10 +29,10 @@ public abstract partial class AbstractPlayer : AbstractEntity
         _body = GetNode<BodySprite>("Body");
         _leftWrist = GetNode<Sprite2D>("LeftWrist");
         _rightWrist = GetNode<Sprite2D>("RightWrist");
-        _vest = GetNode<BodySprite>("Vest");
-        _hair = GetNode<BodySprite>("Hair");
-        _armor = GetNode<BodySprite>("Armor");
-        _weapon = GetNode<BodySprite>("Weapon");
+        _vest = GetNode<Sprite2D>("Vest");
+        _hair = GetNode<Sprite2D>("Hair");
+        _armor = GetNode<Sprite2D>("Armor");
+        _weapon = GetNode<Sprite2D>("Weapon");
     }
     
     public PlayerAnimationPlayer AnimationPlayer => _animationPlayer;

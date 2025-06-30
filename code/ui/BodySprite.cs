@@ -5,26 +5,22 @@ namespace QnClient.code.ui;
 
 public partial class BodySprite: Sprite2D
 {
-    private Panel _mouseArea;
+    private MouseArea _mouseArea;
 
     public event Action? MouseEntered;
     
     public event Action? MouseExited;
     
+    public event Action? AttackInvoked;
+    
+    public event Action? Clicked;
+    
     public override void _Ready()
     {
-        _mouseArea = GetNode<Panel>("MouseArea");
-        _mouseArea.MouseEntered += MouseEnteredArea;
-        _mouseArea.MouseExited += MouseExitedArea;
-    }
-    
-    private void MouseEnteredArea()
-    {
-        MouseEntered?.Invoke();
-    }
-		
-    private void MouseExitedArea()
-    {
-        MouseExited?.Invoke();
+        _mouseArea = GetNode<MouseArea>("MouseArea");
+        _mouseArea.MouseEntered += () => MouseEntered?.Invoke();
+        _mouseArea.MouseExited += () => MouseExited?.Invoke();
+        _mouseArea.Clicked += () => Clicked?.Invoke();
+        _mouseArea.AttackInvoked += () => AttackInvoked?.Invoke();
     }
 }

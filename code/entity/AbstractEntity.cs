@@ -43,6 +43,8 @@ public abstract partial class AbstractEntity : Node2D, IEntity, IEntityMessageHa
         var bodySprite = GetNode<BodySprite>("Body");
         bodySprite.MouseEntered += () => GetNode<Label>("Label").Visible = true;
         bodySprite.MouseExited += () => GetNode<Label>("Label").Visible = false;
+        bodySprite.AttackInvoked += () => GD.Print("Attack " + Id);
+        bodySprite.Clicked += () => GD.Print("Clicked " + Id);
         Position = snapshot.Coordinate.ToPosition();
         SetViewName(snapshot.Name);
     }

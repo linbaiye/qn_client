@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo6fmqnji3bfj"]
+[gd_scene load_steps=6 format=3 uid="uid://bo6fmqnji3bfj"]
 
 [ext_resource type="Shader" uid="uid://bxa233gh76t0f" path="res://shader/Shadow.gdshader" id="1_u5yd7"]
 [ext_resource type="Script" uid="uid://ctuuxtf2k44ru" path="res://code/ui/BodySprite.cs" id="2_w6pjy"]
+[ext_resource type="Script" uid="uid://r7xoctwkhlau" path="res://code/ui/MouseArea.cs" id="3_ofaag"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjvvu"]
 shader = ExtResource("1_u5yd7")
@@ -20,3 +21,4 @@ script = ExtResource("2_w6pjy")
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xi8q5")
+script = ExtResource("3_ofaag")
