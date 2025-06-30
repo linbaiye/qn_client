@@ -11,4 +11,6 @@ public interface INpcMessageHandler : IEntityMessageHandler
     void ChangeState(NpcChangeStateMessage message);
 
     void Initialize(NpcSnapshot snapshot);
+
+    void Say(CreatureSayMessage message);
 }

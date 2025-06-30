@@ -1,11 +1,11 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using QnClient.code.player.character;
-using QnClient.code.player.character.kungfu;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class JoinRealmMessage : AbstractCreatureSnapshot
+public class JoinRealmMessage 
 {
     public string MapFile { get; private init; }
     public string ResourceName { get; private init; }
@@ -19,35 +19,45 @@ public class JoinRealmMessage : AbstractCreatureSnapshot
     public ValueBar InnerPowerBar { get; private init; }
     public ValueBar OuterPowerBar { get; private init; }
     public ValueBar PowerBar { get; private init; }
+    public string ? AttackKungFu { get; private init; }
     
-    public KungFu? AttackKungFu { get; private init; }
-    public FootKungFu? FootKungFu { get; private init; }
-    public KungFu? ProtectionKungFu { get; private init; }
-    public KungFu? AssistantKungFu { get; private init; }
+    public long Id { get; private init; }
     
-    public static JoinRealmMessage Parse(LoginPacket loginPacket)
+    public Vector2I Coordinate { get; private init; }
+    
+    public string Name { get; private init; }
+    
+    public List<PlayerEquipMessage> Equipments { get;private init; }
+    
+    public static JoinRealmMessage Parse(JoinRealmPacket joinPacket)
     {
-        var map = loginPacket.Teleport.Map.Replace(".map", "");
-        var resource = loginPacket.Teleport.Resource.Replace(".zip", "");
+        var map = joinPacket.Teleport.Map.Replace(".map", "");
+        var resource = joinPacket.Teleport.Resource.Replace(".zip", "");
+        List<PlayerEquipMessage> equipMessages = new List<PlayerEquipMessage>();
+        foreach (var eq in joinPacket.Equipments)
+        {
+            equipMessages.Add(PlayerEquipMessage.FromPacket(eq));
+        }
         return new JoinRealmMessage()
         {
             MapFile = map,
             ResourceName = resource,
-            Coordinate = new Vector2I(loginPacket.Teleport.X, loginPacket.Teleport.Y),
-            Name = loginPacket.Info.Name,
-            Id = loginPacket.Info.Id,
-            Male = loginPacket.Info.Male,
-            LifeBar = new ValueBar(loginPacket.Attribute.CurLife, loginPacket.Attribute.MaxLife),
-            PowerBar = new ValueBar(loginPacket.Attribute.CurPower, loginPacket.Attribute.MaxPower),
-            InnerPowerBar = new ValueBar(loginPacket.Attribute.CurInnerPower, loginPacket.Attribute.MaxInnerPower),
-            OuterPowerBar = new ValueBar(loginPacket.Attribute.CurOuterPower, loginPacket.Attribute.MaxOuterPower),
-            ArmLifeBar= new ValueBar(loginPacket.Attribute.ArmPercent, 100),
-            HeadLifeBar= new ValueBar(loginPacket.Attribute.HeadPercent, 100),
-            LegLifeBar= new ValueBar(loginPacket.Attribute.LegPercent, 100),
-            AttackKungFu = new KungFu(loginPacket.AttackKungFuName),
-            ProtectionKungFu = loginPacket.HasProtectionKungFu? new KungFu(loginPacket.ProtectionKungFu) : null,
-            FootKungFu = loginPacket.HasFootKungFuName ? new FootKungFu(loginPacket.FootKungFuName, loginPacket.FootKungFuCanFly) : null,
-            AssistantKungFu= loginPacket.HasAssistantKungFu ? new KungFu(loginPacket.AssistantKungFu) : null,
+            Coordinate = new Vector2I(joinPacket.Teleport.X, joinPacket.Teleport.Y),
+            Name = joinPacket.Name,
+            Id = joinPacket.Id,
+            Male = joinPacket.Male,
+            LifeBar = new ValueBar(joinPacket.Attribute.CurLife, joinPacket.Attribute.MaxLife),
+            PowerBar = new ValueBar(joinPacket.Attribute.CurPower, joinPacket.Attribute.MaxPower),
+            InnerPowerBar = new ValueBar(joinPacket.Attribute.CurInnerPower, joinPacket.Attribute.MaxInnerPower),
+            OuterPowerBar = new ValueBar(joinPacket.Attribute.CurOuterPower, joinPacket.Attribute.MaxOuterPower),
+            ArmLifeBar= new ValueBar(joinPacket.Attribute.ArmPercent, 100),
+            HeadLifeBar= new ValueBar(joinPacket.Attribute.HeadPercent, 100),
+            LegLifeBar= new ValueBar(joinPacket.Attribute.LegPercent, 100),
+            AttackKungFu = joinPacket.AttackKungFu,
+            Equipments = equipMessages,
+            //ProtectionKungFu = joinPacket.HasProtectionKungFu? new KungFu(joinPacket.ProtectionKungFu) : null,
+            //FootKungFu = joinPacket.HasFootKungFuName ? new FootKungFu(joinPacket.FootKungFuName, joinPacket.FootKungFuCanFly) : null,
+            //AssistantKungFu= joinPacket.HasAssistantKungFu ? new KungFu(joinPacket.AssistantKungFu) : null,
         };
     }
 }

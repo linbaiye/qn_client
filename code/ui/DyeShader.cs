@@ -37,7 +37,7 @@ public static class DyeShader
     private const float Max = 31;
 
 
-    public static ShaderMaterial CreateShaderMaterial(int clrIndex)
+    public static void SetColor(ShaderMaterial shaderMaterial, int clrIndex)
     {
         var colorIndex = clrIndex is < 0 or >= 256 ? 0 : clrIndex;
         var color = ColorTable[colorIndex * 2];
@@ -45,13 +45,19 @@ public static class DyeShader
         var red = (color >> 10) & 0x1f;
         var green = (color >> 5) & 0x1f;
         var blue = color & 0x1f;
-        var shader = ResourceLoader.Load<Shader>("res://shader/Dyer.gdshader");
-        var shaderMaterial = new ShaderMaterial();
-        shaderMaterial.Shader = shader;
         shaderMaterial.SetShaderParameter("ar", red / Max);
         shaderMaterial.SetShaderParameter("ag", green / Max);
         shaderMaterial.SetShaderParameter("ab", blue / Max);
         shaderMaterial.SetShaderParameter("add", add / Max);
+    }
+
+
+    public static ShaderMaterial CreateShaderMaterial(int clrIndex)
+    {
+        var shader = ResourceLoader.Load<Shader>("res://shader/Dyer.gdshader");
+        var shaderMaterial = new ShaderMaterial();
+        shaderMaterial.Shader = shader;
+        SetColor(shaderMaterial, clrIndex);
         return shaderMaterial;
     }
 }

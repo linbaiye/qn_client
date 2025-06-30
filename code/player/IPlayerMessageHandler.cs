@@ -13,4 +13,6 @@ public interface IPlayerMessageHandler : IEntityMessageHandler
 
     void Initialize(PlayerSnapshot snapshot);
 
+    void Say(CreatureSayMessage message);
+
 }

@@ -28,11 +28,13 @@ public interface ICharacter : ICreature
     
     FootKungFu? FootKungFu { get; }
     
-    KungFu? AttackKungFu { get; }
+    string AttackKungFu { get; }
     
-    KungFu? ProtectionKungFu{ get; }
+    string ProtectionKungFu{ get; }
     
-    KungFu? AssistantKungFu { get; }
+    string BreathKungFu { get; }
+    
+    string AssistantKungFu { get; }
     
     Connection Connection { get; }
     ValueBar LifeBar { get; }
@@ -42,5 +44,4 @@ public interface ICharacter : ICreature
     ValueBar HeadLifeBar { get; }
     ValueBar ArmLifeBar { get; }
     ValueBar LegLifeBar { get; }
-
 }

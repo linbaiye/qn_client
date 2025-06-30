@@ -37,13 +37,13 @@ public partial class Game : Node2D
     
 
 
-    private void AddEntity(AbstractEntity entity, IEntityMessage message)
+    private void AddEntity(AbstractCreature creature, IEntityMessage message)
     {
-        AddChild(entity);
-        entity.OnEntityEvent += _map.HandleEntityEvent;
-        entity.OnEntityEvent += _entityManager.HandleEntityEvent;
-        entity.HandleEntityMessage(message);
-        _entityManager.Add(entity);
+        AddChild(creature);
+        creature.OnEntityEvent += _map.HandleEntityEvent;
+        creature.OnEntityEvent += _entityManager.HandleEntityEvent;
+        creature.HandleEntityMessage(message);
+        _entityManager.Add(creature);
     }
 
 
@@ -59,11 +59,12 @@ public partial class Game : Node2D
                 case JoinRealmMessage message:
                     _map.Draw(message.MapFile, message.ResourceName);
                     _character.Initialize(message, _connection, _map);
+                    _character.OnEntityEvent += _map.HandleEntityEvent;
                     _entityManager.Add(_character);
                     Visible = true;
                     break;
                 case NpcSnapshot snapshot:
-                    AddEntity(Monster.Create(), snapshot);
+                    AddEntity(Npc.Create(), snapshot);
                     break;
                 case PlayerSnapshot playerSnapshot:
                     AddEntity(Player.Create(), playerSnapshot);
@@ -88,5 +89,30 @@ public partial class Game : Node2D
         _connection = connection;
         _hud = hud;
         _character.OnEntityEvent += _hud.CharacterEventHandler;
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is not InputEventKey eventKey || eventKey.Pressed)
+        {
+            return;
+        }
+
+        switch (eventKey.Keycode)
+        {
+            case Key.Key1:
+                _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷剑"));
+                break;
+            case Key.Key2:
+                _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "回转狂天飞"));
+                break;
+            case Key.Key3:
+                _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 你是没死过么？"));
+                break;
+            case Key.Key4:
+                _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 用户在使用cherry键盘的时候如果想要关闭f1到f12的功能键的话，是无法做到的，只能关闭功能键的热键功能，无法关闭其中所有的功能。"));
+                break;
+        }
+        
     }
 }

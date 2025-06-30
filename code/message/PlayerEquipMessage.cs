@@ -1,9 +1,10 @@
 using QnClient.code.player;
+using QnClient.code.player.character;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class PlayerEquipMessage : IPlayerMessage
+public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage
 {
     private PlayerEquipMessage(long id, int color, EquipmentType type, WeaponType weaponType, string spritePrefix, string pairedSpritePrefix)
     {
@@ -36,7 +37,12 @@ public class PlayerEquipMessage : IPlayerMessage
     {
         EquipmentType equipmentType = (EquipmentType)packet.EquipmentType;
         WeaponType weaponType = equipmentType == EquipmentType.Weapon ? (WeaponType)packet.WeaponType : WeaponType.None;
-        var paired = equipmentType == EquipmentType.Wrist ? packet.PairedSpritePrefix : "";
-        return new PlayerEquipMessage(packet.Id, packet.Color, equipmentType, weaponType, packet.SpritePrefix, paired);
+        var paired = equipmentType == EquipmentType.Wrist ? packet.PairedPrefix : "";
+        return new PlayerEquipMessage(packet.Id, packet.Color, equipmentType, weaponType, packet.Prefix, paired);
+    }
+
+    public void Accept(ICharacterMessageHandler handler)
+    {
+        handler.Equip(this);
     }
 }

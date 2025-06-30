@@ -1,5 +1,3 @@
-using Godot;
-using QnClient.code.entity;
 using QnClient.code.player;
 using Source.Networking.Protobuf;
 
@@ -7,27 +5,21 @@ namespace QnClient.code.message;
 
 public class PlayerSnapshot : AbstractCreatureSnapshot, IPlayerMessage
 {
-    private PlayerSnapshot(string name, StateSnapshot<PlayerState> stateSnapshot, long id, CreatureDirection direction, Vector2I coordinate, bool male) 
+    private PlayerSnapshot(PlayerSnapshotPacket packet)  : base(packet.BaseInfo)
     {
-		  
-        Name = name;
-        StateSnapshot = stateSnapshot;
-        Id = id;
-        Direction = direction;
-        Coordinate = coordinate;
-        Male = male;
+        Male = packet.Male;
+        PlayerState = (PlayerState)packet.State;
+        MoveAction = packet.MoveAction != -1 ? (MoveAction)packet.MoveAction : MoveAction.None;
     }
-    
-    public StateSnapshot<PlayerState> StateSnapshot { get; private init; }
     public bool Male { get; private init; }
+    
+    public PlayerState PlayerState { get; private init; }
+    
+    public MoveAction MoveAction { get; private init; }
 
-    public static PlayerSnapshot FromPacket(PlayerInterpolationPacket packet)
+    public static PlayerSnapshot FromPacket(PlayerSnapshotPacket packet)
     {
-        var state = StateSnapshot<PlayerState>.OfPlayer(packet.Interpolation);
-        return new PlayerSnapshot(packet.Info.Name, state, packet.Info.Id,
-            (CreatureDirection)packet.Interpolation.Direction,
-            new Vector2I(packet.Interpolation.X, packet.Interpolation.Y),
-            packet.Info.Male);
+        return new PlayerSnapshot(packet);
     }
 
     public void Accept(IPlayerMessageHandler handler)

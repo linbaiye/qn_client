@@ -13,6 +13,7 @@ public class CharacterEvent(ICharacter character, CharacterEvent.EventType type)
     public enum EventType
     {
         Joined,
+        SyncActiveKungFu,
     }
 
     public static CharacterEvent Join(ICharacter character)

@@ -55,7 +55,7 @@ public partial class Inventory : AbstractSlotContainer
 
     protected override void OnSlotLeftButtonDoubleClicked(int number)
     {
-        Log.Debug("Double clicked on {}", number);
+        _connection.WriteAndFlush(ClickInventoryInput.LeftDoubleClick(number));
     }
 
     protected override void OnSlotRightMouseButtonReleased(int number)

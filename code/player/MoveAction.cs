@@ -6,4 +6,5 @@ public enum MoveAction
     FightWalk = 1,
     Run = 2,
     Fly = 3,
+    None,
 }
