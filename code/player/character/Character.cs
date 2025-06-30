@@ -42,8 +42,6 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     
     public IMap Map => _map;
 
-    public bool MovePressed { get; private set; }
-
     public CreatureDirection Direction { get; set; }
 
     public override void _PhysicsProcess(double delta)
@@ -59,7 +57,6 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
             {
                 _characterState?.Move(new MoveInput(GetLocalMousePosition().GetDirection(), Coordinate));
             }
-            MovePressed = mouseButton.Pressed;
         }
     }
 
@@ -71,11 +68,21 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         }
     }
 
+    private void OnLastKeyFrame()
+    {
+        GD.Print("called back.");
+        if (_characterState is CharacterMoveState moveState)
+        {
+            moveState.OnLastKeyFrame();
+        }
+    }
+
     public void Initialize(JoinRealmMessage message, Connection connection, IMap map)
     {
         _connection = connection;
         _map = map;
         AnimationPlayer.InitializeAnimations(message.Male);
+        AnimationPlayer.ArrivedLastFrame += OnLastKeyFrame;
         base.Initialize(message.Id, message.Coordinate, message.Name);
         Direction = CreatureDirection.Down;
         ChangeState(CharacterStandState.Idle(this));

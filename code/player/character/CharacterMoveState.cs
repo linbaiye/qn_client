@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 using NLog;
-using QnClient.code.entity;
 using QnClient.code.entity.@event;
 using QnClient.code.input;
 using QnClient.code.util;
@@ -20,6 +18,8 @@ public class CharacterMoveState : AbstractCharacterState
     private readonly MoveInput _moveInput;
 
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    
+    private MoveInput? _nextInput;
 
     private CharacterMoveState(ICharacter character, MoveAction action, MoveInput moveInput)
     {
@@ -29,6 +29,18 @@ public class CharacterMoveState : AbstractCharacterState
         _stateSeconds = VectorUtil.GetMoveDuration(action);
         _velocity = VectorUtil.VelocityUnit(moveInput.Direction) / (float)_stateSeconds;
         _moveInput = moveInput;
+    }
+
+    public void OnLastKeyFrame()
+    {
+        if (!Input.IsMouseButtonPressed(MouseButton.Right))
+        {
+            Logger.Debug("Not Pressed.");
+            return;
+        }
+        Logger.Debug("continue moving.");
+        _nextInput = new MoveInput(_character.GetLocalMousePosition().GetDirection(), _moveInput.Destination);
+        _character.Connection.WriteAndFlush(_nextInput);
     }
 
     public override void PhysicProcess(double delta)
@@ -52,23 +64,22 @@ public class CharacterMoveState : AbstractCharacterState
             return;
         _character.Position = _character.Position.Snapped(VectorUtil.TileSize);
         _character.EmitEvent(new EntityChangeCoordinateEvent(_character));
-        if (!_character.MovePressed)
+        if (_nextInput == null)
         {
             ChangeToStandState();
             return;
         }
-        var moveInput = new MoveInput(_character.GetLocalMousePosition().GetDirection(), _character.Coordinate);
-        if (_character.Map.CanMove(_character.Coordinate.Move(moveInput.Direction)))
+        if (_character.Map.CanMove(_character.Coordinate.Move(_nextInput.Value.Direction)))
         {
             _elapsedSeconds = 0;
             var moveAction = ComputeMoveAction(_character, _action);
-            _character.ChangeState(new CharacterMoveState(_character, moveAction, moveInput));
+            _character.ChangeState(new CharacterMoveState(_character, moveAction, _nextInput.Value));
             return;
         }
-        if (_character.Direction != moveInput.Direction)
+        if (_character.Direction != _nextInput.Value.Direction)
         {
-            _character.Connection.WriteAndFlush(new TurnInput(moveInput.Direction));
-            _character.Direction = moveInput.Direction;
+            _character.Connection.WriteAndFlush(new TurnInput(_nextInput.Value.Direction));
+            _character.Direction = _nextInput.Value.Direction;
         }
         ChangeToStandState();
     }

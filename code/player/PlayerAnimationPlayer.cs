@@ -1,9 +1,11 @@
 using System;
 using Godot;
+using Godot.Collections;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.sprite;
 using QnClient.code.util;
+using Array = System.Array;
 
 namespace QnClient.code.player;
 
@@ -86,10 +88,36 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     
     private const int DirectionNumber = 8;
 
+    public event Action? ArrivedLastFrame;
 
     public override void _Ready()
     {
         _spriteLoader = ZipFileSpriteLoader.Instance;
+    }
+
+    private const string WalkPreHalf = "WalkPreHalf";
+    
+    private const string WalkPostHalf = "WalkPostHalf";
+    
+    private void Callback()
+    {
+        ArrivedLastFrame?.Invoke();
+    }
+
+    private void AddCallbackTrackAtTime(AnimationLibrary animationLibrary, float time)
+    {
+        foreach (var dir in Enum.GetValues(typeof(CreatureDirection)))
+        {
+            var animation = animationLibrary.GetAnimation(dir.ToString());
+            var callbackTack = animation.AddTrack(Animation.TrackType.Method);
+            animation.TrackSetPath(callbackTack, "AnimationPlayer");
+            var methodDictionary = new Godot.Collections.Dictionary
+            {
+                { "method", MethodName.Callback },
+                { "args", new Godot.Collections.Array() {} }
+            };
+            animation.TrackInsertKey(callbackTack, time, methodDictionary, 0);
+        }
     }
 
     private AnimationLibrary CreateAnimationLibrary(int spritesPerDirection,
@@ -205,6 +233,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
                 animation.TrackInsertKey(_attackEffectOffsetIdx, time, Vector2.Zero);
                 animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
                 animation.TrackInsertKey(mouseAreaSize, time, sprites[start + i].OriginalSize);
+
             }
             animationLibrary.AddAnimation(dir.ToString(), animation);
             start += spritesPerDirection;
@@ -212,14 +241,22 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         return animationLibrary;
     }
 
+    private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+
     private void CreateSmoothWalk(OffsetTexture[] textures)
     {
-        var finishWalkSprites = new OffsetTexture[DirectionNumber];
-        for (int i = 0, j = 0; i < DirectionNumber; i++, j+=6)
+        var smoothWalkTextures = new OffsetTexture[DirectionNumber * (WalkSpriteNumber + 1)];
+        int addtion = 0;
+        for (int i = 0, j = 0; i < DirectionNumber * WalkSpriteNumber; i++)
         {
-            finishWalkSprites[i] = textures[j];
+            smoothWalkTextures[j++] = textures[i];
+            if ((i + 1) % WalkSpriteNumber == 0)
+            {
+                smoothWalkTextures[j++] = textures[addtion];
+                addtion += 6;
+            }
         }
-        AddAnimationLibrary(SmoothWalk, CreateAnimationLibrary(1, WalkStep, finishWalkSprites));
+        AddAnimationLibrary(SmoothWalk, CreateAnimationLibrary(WalkSpriteNumber + 1, WalkStep - 0.02f, smoothWalkTextures));
     }
     
     private const string SmoothWalk = "SmoothWalk";
@@ -229,11 +266,15 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         return animationName.StartsWith(SmoothWalk);
     }
     
-    public void PlayIdle(string animationName)
+
+    public void PlaySmoothWalk(CreatureDirection direction)
     {
-        var strings = animationName.Split("/");
-        Stop();
-        Play(PlayerState.Idle + "/" + strings[1]);
+        Play(SmoothWalk + "/" + direction);
+    }
+    
+    private void CreatePreHalfWalk(OffsetTexture[] textures)
+    {
+        
     }
 
     public void PlaySmoothWalk(string animationName)
@@ -247,7 +288,9 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     {
         string prefix = male ? "N0" : "A0";
         var sprites = _spriteLoader.Load(prefix + "0");
-        AddAnimationLibrary(MoveAction.Walk.ToString(), CreateAnimationLibrary(WalkSpriteNumber, WalkStep, sprites));
+        var animationLibrary = CreateAnimationLibrary(WalkSpriteNumber, WalkStep, sprites);
+        AddAnimationLibrary(MoveAction.Walk.ToString(), animationLibrary);
+        AddCallbackTrackAtTime(animationLibrary, (WalkSpriteNumber - 1) * WalkStep);
         
         CreateSmoothWalk(sprites);
 
@@ -540,7 +583,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         var animation = GetAnimation(name);
         int aniLengthMillis = (int)(animation.Length * 1000);
         int startMillis = millis % aniLengthMillis;
-        Stop();
+        if (!string.IsNullOrEmpty(CurrentAnimation))
+            Stop();
         PlaySection(name, startMillis, -1, -1, speed);
     }
     

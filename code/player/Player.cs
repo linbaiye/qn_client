@@ -44,13 +44,11 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
 
     private void OnAnimationDone(StringName name)
     {
-        if (name.ToString().StartsWith(MoveAction.Walk.ToString()))
+        if (name.ToString().Contains("Walk"))
         {
-            AnimationPlayer.PlaySmoothWalk(name);
-        }
-        else if (AnimationPlayer.IsSmoothWalk(name))
-        {
-            AnimationPlayer.PlayIdle(name);
+            var dirString = name.ToString().Split("/")[1];
+            Enum.TryParse<CreatureDirection>(dirString, out var dir);
+            AnimationPlayer.PlayIdle(dir);
         }
     }
 
@@ -89,6 +87,10 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
                 break;
         }
         Visible = true;
+        foreach (var snapshotEquipMessage in snapshot.EquipMessages)
+        {
+            snapshotEquipMessage.Accept(this);
+        }
         EmitEvent(new EntityChangeCoordinateEvent(this));
         GD.Print("Created player " + Id);
     }
@@ -104,7 +106,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
                 AnimationPlayer.PlayRunFrom(direction, startMillis);
                 break;
             case MoveAction.Walk:
-                AnimationPlayer.PlayWalkFrom(direction, startMillis);
+                AnimationPlayer.PlayWalk(direction);
                 break;
             case MoveAction.FightWalk:
                 AnimationPlayer.PlayFightWalkFrom(direction, startMillis);

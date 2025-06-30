@@ -22,8 +22,6 @@ public interface ICharacter : ICreature
     
     Vector2 Position { get; set; }
 
-    bool MovePressed { get; }
-
     Vector2 GetLocalMousePosition();
     
     FootKungFu? FootKungFu { get; }

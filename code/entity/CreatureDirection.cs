@@ -10,4 +10,5 @@ public enum CreatureDirection
     DownLeft = 5,
     Left = 6,
     UpLeft = 7,
+
 }
