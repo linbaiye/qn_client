@@ -3,6 +3,7 @@ using Godot;
 using NLog;
 using QnClient.code.input;
 using QnClient.code.network;
+using QnClient.code.sprite;
 using QnClient.code.ui;
 
 namespace QnClient.code;
@@ -22,6 +23,7 @@ public partial class Main : Node
         _hud = GetNode<HUD>("HUD");
         _game = GetNode<Game>("GameViewportContainer/GameViewport/Game");
         SetupConnection();
+        AtdLoader.Instance.Load("0");
     }
 
     

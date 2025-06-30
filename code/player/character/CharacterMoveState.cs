@@ -46,7 +46,6 @@ public class CharacterMoveState : AbstractCharacterState
             else if (_action == MoveAction.Fly)
                 _character.AnimationPlayer.PlayFly(_character.Direction);
         }
-
         _elapsedSeconds += delta;
         _character.Position += (float)delta * _velocity;
         if (_elapsedSeconds < _stateSeconds)

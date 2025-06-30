@@ -2,7 +2,7 @@ using Godot;
 
 namespace QnClient.code.sprite;
 
-public class Sprite(Texture2D texture2D, Vector2 offset, Vector2? originSize = null)
+public class OffsetTexture(Texture2D texture2D, Vector2 offset, Vector2? originSize = null)
 {
     public Texture2D Texture { get; } = texture2D;
 

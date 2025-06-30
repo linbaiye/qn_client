@@ -37,7 +37,7 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
     };
 
 
-    private void CreateAnimation(AnimationDescriptor descriptor, Sprite[] sprites, Animation.LoopModeEnum loopModeEnum = Animation.LoopModeEnum.None)
+    private void CreateAnimation(AnimationDescriptor descriptor, OffsetTexture[] sprites, Animation.LoopModeEnum loopModeEnum = Animation.LoopModeEnum.None)
     {
         var animationLibrary = new AnimationLibrary();
         if (HasAnimationLibrary(descriptor.State.ToString()))

@@ -1,5 +1,5 @@
-﻿using QnClient.code.message;
-using QnClient.code.ui.bottom;
+﻿using QnClient.code.entity;
+using QnClient.code.message;
 
 namespace QnClient.code.player.character;
 
@@ -11,5 +11,7 @@ public interface ICharacterMessageHandler
     void Say(CreatureSayMessage message);
     
     void SyncActiveKungFuList(SyncActiveKungFuListMessage message);
+    
+    void ChangeState(PlayerState newState, CreatureDirection direction);
 
 }

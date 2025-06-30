@@ -70,6 +70,8 @@ y_sort_enabled = true
 script = ExtResource("1_hjaqi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+callback_mode_method = 1
 script = ExtResource("2_fvtld")
 
 [node name="Body" parent="." instance=ExtResource("3_fvtld")]

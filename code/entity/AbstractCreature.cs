@@ -51,8 +51,8 @@ public abstract partial class AbstractCreature : Node2D, IEntity, IEntityMessage
     {
         Id = id;
         var bodySprite = GetNode<BodySprite>("Body");
-        bodySprite.MouseEntered += () => GetNode<Label>("Label").Visible = true;
-        bodySprite.MouseExited += () => GetNode<Label>("Label").Visible = false;
+        bodySprite.MouseEntered += () => GetNode<Label>("Name").Visible = true;
+        bodySprite.MouseExited += () => GetNode<Label>("Name").Visible = false;
         bodySprite.AttackInvoked += () => GD.Print("Attack " + Id);
         bodySprite.Clicked += () => GD.Print("Clicked " + Id);
         Position = coordinate.ToPosition();

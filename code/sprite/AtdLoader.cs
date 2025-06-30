@@ -80,7 +80,7 @@ public class AtdLoader
                 break;
             }
             var decoded = Decode(buffer);
-            // Logger.Debug(decoded);
+            Logger.Debug(decoded);
             if (decoded != null)
             {
                 list.Add(decoded);

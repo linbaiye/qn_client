@@ -13,6 +13,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
 {
     public override void _Ready()
     {
+        base._Ready();
         Visible = false;
         ZIndex = 2;
     }
@@ -37,14 +38,28 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         if (message.Action == null)
             throw new NotSupportedException();
         Position = message.From.ToPosition();
+        PlayMoveAnimation(message.Action.Value, message.Direction);
         CreateMover(message.Action.Value, message.Direction);
+    }
+
+    private void OnAnimationDone(StringName name)
+    {
+        if (name.ToString().StartsWith(MoveAction.Walk.ToString()))
+        {
+            AnimationPlayer.PlaySmoothWalk(name);
+        }
+        else if (AnimationPlayer.IsSmoothWalk(name))
+        {
+            AnimationPlayer.PlayIdle(name);
+        }
     }
 
 
     public void Initialize(PlayerSnapshot snapshot)
     {
-        base.Initialize(snapshot);
         AnimationPlayer.InitializeAnimations(snapshot.Male);
+        AnimationPlayer.AnimationFinished += OnAnimationDone;
+        base.Initialize(snapshot);
         switch (snapshot.PlayerState)
         {
             case PlayerState.Move:
@@ -75,6 +90,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         }
         Visible = true;
         EmitEvent(new EntityChangeCoordinateEvent(this));
+        GD.Print("Created player " + Id);
     }
 
     private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)

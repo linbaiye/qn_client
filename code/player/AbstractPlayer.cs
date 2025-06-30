@@ -198,4 +198,26 @@ public abstract partial class AbstractPlayer : AbstractCreature
                 break;
         }
      }
+
+    public void ChangeState(PlayerState newState, CreatureDirection direction)
+    {
+        switch (newState)
+        {
+            case PlayerState.Idle:
+                _animationPlayer.PlayIdle(direction);
+                break;
+            case PlayerState.FightStand:
+                _animationPlayer.PlayFightStand(direction);
+                break;
+            case PlayerState.Hurt:
+                _animationPlayer.PlayHurt(direction);
+                break;
+            case PlayerState.Die:
+                _animationPlayer.PlayDie(direction);
+                break;
+            case PlayerState.Sit:
+                _animationPlayer.PlaySit(direction);
+                break;
+        }
+    }
 }

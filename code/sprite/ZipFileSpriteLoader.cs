@@ -17,7 +17,7 @@ public class ZipFileSpriteLoader
 	
 	private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
-	private readonly Cache<string, Sprite[]> _cache = new();
+	private readonly Cache<string, OffsetTexture[]> _cache = new();
 	
 	private class Cache<TKey, TValue> where TKey : notnull
 	{
@@ -98,7 +98,7 @@ public class ZipFileSpriteLoader
 	}
 
 
-	public Sprite[] Load(string name)
+	public OffsetTexture[] Load(string name)
 	{
 		if (!name.EndsWith(".zip"))
 		{
@@ -125,7 +125,7 @@ public class ZipFileSpriteLoader
 		}
 		var vectors = ParseVectors(offsetEntry.ReadAsString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
 		var sizes = ParseVectors(sizeEntry.ReadAsString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
-		sprites = new Sprite[vectors.Length];
+		sprites = new OffsetTexture[vectors.Length];
 		for (int i = 0; i < vectors.Length; i++)
 		{
 			var filename = "000" + i.ToString("D3") + ".png";
@@ -135,7 +135,7 @@ public class ZipFileSpriteLoader
 			{
 				throw new Exception("Invalid atz " + name);
 			}
-			sprites[i] = new Sprite(texture, vectors[i], sizes[i]);
+			sprites[i] = new OffsetTexture(texture, vectors[i], sizes[i]);
 		}
 		Log.Debug("Loaded {0}.", name);
 		_cache.Store(name, sprites, TimeSpan.FromMinutes(5));
