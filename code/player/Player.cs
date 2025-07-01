@@ -64,26 +64,8 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
                 CreateMover(snapshot.MoveAction, snapshot.Direction, snapshot.ElapsedMillis);
                 PlayMoveAnimation(snapshot.MoveAction, snapshot.Direction, snapshot.ElapsedMillis);
                 break;
-            case PlayerState.Hello:
-                AnimationPlayer.PlayHelloFrom(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case PlayerState.Hurt:
-                AnimationPlayer.PlayHurtFrom(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case PlayerState.Die:
-                AnimationPlayer.PlayDieFrom(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case PlayerState.Sit:
-                AnimationPlayer.PlaySitFrom(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case PlayerState.StandUp:
-                AnimationPlayer.PlayStandUpFrom(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case PlayerState.Idle:
-                AnimationPlayer.PlayIdleFrom(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case PlayerState.FightStand:
-                AnimationPlayer.PlayFightStandFrom(snapshot.Direction, snapshot.ElapsedMillis);
+            default:
+                PlayStateAnimation(snapshot.PlayerState, snapshot.Direction, snapshot.ElapsedMillis);
                 break;
         }
         Visible = true;
@@ -93,6 +75,11 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         }
         EmitEvent(new EntityChangeCoordinateEvent(this));
         GD.Print("Created player " + Id);
+    }
+
+    public void ChangeState(PlayerState newState, CreatureDirection direction)
+    {
+        PlayStateAnimation(newState, direction);
     }
 
     private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)

@@ -199,25 +199,32 @@ public abstract partial class AbstractPlayer : AbstractCreature
         }
      }
 
-    public void ChangeState(PlayerState newState, CreatureDirection direction)
+    protected void PlayStateAnimation(PlayerState newState, CreatureDirection direction, int startMillis = 0)
     {
         switch (newState)
         {
             case PlayerState.Idle:
-                _animationPlayer.PlayIdle(direction);
+                _animationPlayer.PlayIdleFrom(direction, startMillis);
                 break;
             case PlayerState.FightStand:
-                _animationPlayer.PlayFightStand(direction);
+                _animationPlayer.PlayFightStandFrom(direction, startMillis);
                 break;
             case PlayerState.Hurt:
-                _animationPlayer.PlayHurt(direction);
+                _animationPlayer.PlayHurtFrom(direction, startMillis);
                 break;
             case PlayerState.Die:
-                _animationPlayer.PlayDie(direction);
+                _animationPlayer.PlayDieFrom(direction, startMillis);
                 break;
             case PlayerState.Sit:
-                _animationPlayer.PlaySit(direction);
+                _animationPlayer.PlaySitFrom(direction, startMillis);
+                break;
+            case PlayerState.StandUp:
+                _animationPlayer.PlayStandUpFrom(direction, startMillis);
+                break;
+            case PlayerState.Hello:
+                _animationPlayer.PlayHelloFrom(direction, startMillis);
                 break;
         }
     }
+
 }

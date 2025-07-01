@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using NLog;
 using QnClient.code.entity;
@@ -57,6 +58,7 @@ public partial class Game : Node2D
             switch (msg)
             {
                 case JoinRealmMessage message:
+                    Logger.Debug("Received join realm.");
                     _map.Draw(message.MapFile, message.ResourceName);
                     _character.Initialize(message, _connection, _map);
                     _character.OnEntityEvent += _map.HandleEntityEvent;
@@ -81,7 +83,14 @@ public partial class Game : Node2D
 
     public override void _Process(double delta)
     {
-        HandleMessages();
+        try
+        {
+            HandleMessages();
+        }
+        catch (Exception e)
+        {
+            Logger.Error(e, "Failed to handle messages.");
+        }
     }
 
     public void Start(Connection connection, HUD hud)

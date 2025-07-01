@@ -1,6 +1,5 @@
 using System;
 using Godot;
-using Godot.Collections;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.sprite;
@@ -283,6 +282,20 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Stop();
         Play(SmoothWalk + "/"  + dir);
     }
+
+    private AnimationLibrary CreateStandUpAnimation(OffsetTexture[] sitTextures)
+    {
+        OffsetTexture[] standUpTextures = new OffsetTexture[sitTextures.Length];
+        for (int i = 0, k = 0; i < DirectionNumber; i++)
+        {
+            int index = SitSpriteNumber * (i + 1);
+            for (int j = 1; j <= SitSpriteNumber; j++)
+            {
+                standUpTextures[k++] = sitTextures[index - j];
+            }
+        }
+        return CreateAnimationLibrary(SitSpriteNumber, SitStep, standUpTextures);
+    }
     
     public void InitializeAnimations(bool male)
     {
@@ -302,7 +315,9 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         
         tmp = new OffsetTexture[FightWalkSpriteNumber * DirectionNumber];
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
-        AddAnimationLibrary(MoveAction.FightWalk.ToString(), CreateAnimationLibrary(FightWalkSpriteNumber, FightWalkStep, tmp));
+        animationLibrary = CreateAnimationLibrary(FightWalkSpriteNumber, FightWalkStep, tmp);
+        AddAnimationLibrary(MoveAction.FightWalk.ToString(), animationLibrary);
+        AddCallbackTrackAtTime(animationLibrary, (FightWalkSpriteNumber - 1) * FightWalkStep);
         index += tmp.Length;
         
         tmp = new OffsetTexture[FightStandSpriteNumber * DirectionNumber];
@@ -313,6 +328,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         tmp = new OffsetTexture[SitSpriteNumber * DirectionNumber];
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
         AddAnimationLibrary(PlayerState.Sit.ToString(), CreateAnimationLibrary(SitSpriteNumber , SitStep, tmp));
+        AddAnimationLibrary(PlayerState.StandUp.ToString(), CreateStandUpAnimation(tmp));
         index += tmp.Length;
         
         tmp = new OffsetTexture[HurtSpriteNumber * DirectionNumber];
@@ -391,7 +407,9 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     
     public void PlayIdle(CreatureDirection direction)
     {
-        PlayIdleFrom(direction);
+        // Stop();
+        // Play(PlayerState.Idle + "/" + direction);
+         PlayIdleFrom(direction);
     }
     
     
@@ -403,7 +421,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     public void PlayFightWalk(CreatureDirection direction)
     {
-        PlayWalkFrom(direction);
+        PlayFightWalkFrom(direction);
     }
     
     public void PlayFightWalkFrom(CreatureDirection direction, int fromMillis = 0)
@@ -438,12 +456,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     
     public void PlayStandUpFrom(CreatureDirection direction, int fromMillis = 0)
     {
-        var name = PlayerState.Sit + "/" + direction;
-        var animation = GetAnimation(name);
-        int aniLengthMillis = (int)(animation.Length * 1000);
-        int startMillis = fromMillis % aniLengthMillis;
-        Stop();
-        PlaySectionBackwards(name, startMillis);
+        PlayAnimation(PlayerState.StandUp + "/" + direction, fromMillis);
     }
     
     public void PlayHurt(CreatureDirection direction)
@@ -584,7 +597,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         int aniLengthMillis = (int)(animation.Length * 1000);
         int startMillis = millis % aniLengthMillis;
         if (!string.IsNullOrEmpty(CurrentAnimation))
-            Stop();
+            Stop(true);
         PlaySection(name, startMillis, -1, -1, speed);
     }
     

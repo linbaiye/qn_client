@@ -6,7 +6,6 @@ using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player.character.kungfu;
-using QnClient.code.ui.bottom;
 using QnClient.code.util;
 
 namespace QnClient.code.player.character;
@@ -57,7 +56,36 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
             {
                 _characterState?.Move(new MoveInput(GetLocalMousePosition().GetDirection(), Coordinate));
             }
+            GetViewport().SetInputAsHandled();
         }
+    }
+
+    private void HandleKeyInputEvent(InputEventKey eventKey)
+    {
+        if (eventKey.Pressed)
+        {
+            SimpleInput? input = null;
+            switch (eventKey.Keycode)
+            {
+                case Key.F2:
+                case Key.J:
+                    input = SimpleInput.F2;
+                    break;
+                case Key.F3:
+                case Key.K:
+                    input = SimpleInput.F3;
+                    break;
+                case Key.L:
+                case Key.F4:
+                    input = SimpleInput.F4;
+                    break;
+            }
+            if (input != null)
+            {
+                _connection?.WriteAndFlush(input);
+            }
+        }
+        GetViewport().SetInputAsHandled();
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -65,6 +93,10 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         if (@event is InputEventMouse eventMouse)
         {
             HandleMouseEvent(eventMouse);
+        }
+        else if (@event is InputEventKey eventKey)
+        {
+            HandleKeyInputEvent(eventKey);
         }
     }
 
@@ -108,6 +140,23 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         if (message is ICharacterMessage characterMessage)
         {
             characterMessage.Accept(this);
+        }
+    }
+
+    public void ChangeState(PlayerState newState, CreatureDirection direction)
+    {
+        switch (newState)
+        {
+            case PlayerState.FightStand:
+                _characterState = CharacterStandState.FightStand(this);
+                break;
+            case PlayerState.Idle:
+                _characterState = CharacterStandState.Idle(this);
+                break;
+            default:
+                PlayStateAnimation(newState, direction);
+                _characterState = CharacterWaitingState.Instance;
+                break;
         }
     }
 

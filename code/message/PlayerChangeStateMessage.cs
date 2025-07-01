@@ -5,7 +5,7 @@ using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class PlayerChangeStateMessage(long id, PlayerState state, CreatureDirection direction) : AbstractEntityMessage(id), ICharacterMessage
+public class PlayerChangeStateMessage(long id, PlayerState state, CreatureDirection direction) : AbstractEntityMessage(id), ICharacterMessage, IPlayerMessage
 {
     public void Accept(ICharacterMessageHandler handler)
     {
@@ -15,5 +15,10 @@ public class PlayerChangeStateMessage(long id, PlayerState state, CreatureDirect
     public static PlayerChangeStateMessage FromPacket(PlayerChangeStatePacket packet)
     {
         return new PlayerChangeStateMessage(packet.Id, (PlayerState)packet.State, (CreatureDirection)packet.Direction);
+    }
+
+    public void Accept(IPlayerMessageHandler handler)
+    {
+        handler.ChangeState(state, direction);
     }
 }
