@@ -50,6 +50,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.Say => new CreatureSayMessage(packet.Say.Id, packet.Say.Text),
             Packet.TypedPacketOneofCase.ActiveKungFuList => SyncActiveKungFuListMessage.FromPacket(packet.ActiveKungFuList),
             Packet.TypedPacketOneofCase.PlayerChangeState => PlayerChangeStateMessage.FromPacket(packet.PlayerChangeState),
+            Packet.TypedPacketOneofCase.Unequip => new PlayerUnequipMessage(packet.Unequip.Id, (EquipmentType)packet.Unequip.EquipmentType),
             _ => null,
         };
     }

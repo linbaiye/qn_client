@@ -14,4 +14,6 @@ public interface ICharacterMessageHandler
     
     void ChangeState(PlayerState newState, CreatureDirection direction);
 
+    void Unequip(EquipmentType type);
+
 }

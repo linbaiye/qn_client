@@ -89,9 +89,12 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     public event Action? ArrivedLastFrame;
 
+    private StringName _finished;
+
     public override void _Ready()
     {
         _spriteLoader = ZipFileSpriteLoader.Instance;
+        AnimationFinished += n => _finished = n;
     }
 
     private const string WalkPreHalf = "WalkPreHalf";
@@ -119,6 +122,16 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         }
     }
 
+
+    private int AddTrack(Animation animation, string path)
+    {
+        var trackId = animation.AddTrack(Animation.TrackType.Value);
+        animation.TrackSetPath(trackId, path);
+        animation.ValueTrackSetUpdateMode(trackId, Animation.UpdateMode.Capture);
+        animation.TrackSetInterpolationType(trackId, Animation.InterpolationType.Nearest);
+        return trackId;
+    }
+
     private AnimationLibrary CreateAnimationLibrary(int spritesPerDirection,
         float step,
         OffsetTexture[] sprites,
@@ -132,74 +145,34 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             Animation animation = new Animation();
             animation.Length = step * spritesPerDirection;
             animation.LoopMode = loopModeEnum;
-            _bodyTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _bodyOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _legTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _legOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _bootTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _bootOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _leftWristTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _leftWristOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _rightWristTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _rightWristOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _vestTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _vestOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _armorTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _armorOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _hairTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _hairOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _hatTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _hatOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            _weaponTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-            _weaponOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
+            _bodyTextureIdx = AddTrack(animation, "Body:texture");
+            _bodyOffsetIdx = AddTrack(animation, "Body:offset");
+            _legTextureIdx = AddTrack(animation, "Leg:texture");
+            _legOffsetIdx = AddTrack(animation, "Leg:offset");
+            _bootTextureIdx = AddTrack(animation, "Boot:texture");
+            _bootOffsetIdx = AddTrack(animation, "Boot:offset");
+            _leftWristTextureIdx = AddTrack(animation, "LeftWrist:texture");
+            _leftWristOffsetIdx = AddTrack(animation, "LeftWrist:offset");
+            _rightWristTextureIdx = AddTrack(animation, "RightWrist:texture");
+            _rightWristOffsetIdx = AddTrack(animation, "RightWrist:offset");
+            _vestTextureIdx = AddTrack(animation, "Vest:texture");
+            _vestOffsetIdx = AddTrack(animation, "Vest:offset");
+            _armorTextureIdx = AddTrack(animation, "Armor:texture");
+            _armorOffsetIdx = AddTrack(animation, "Armor:offset");
+            _hairTextureIdx = AddTrack(animation, "Hair:texture");
+            _hairOffsetIdx = AddTrack(animation, "Hair:offset");
+            _hatTextureIdx = AddTrack(animation, "Hat:texture");
+            _hatOffsetIdx = AddTrack(animation, "Hat:offset");
+            _weaponTextureIdx = AddTrack(animation, "Weapon:texture");
+            _weaponOffsetIdx = AddTrack(animation, "Weapon:offset");
             _attackEffectTextureIdx = animation.AddTrack(Animation.TrackType.Value);
             _attackEffectOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
             var mouseAreaPosition = animation.AddTrack(Animation.TrackType.Value);
             var mouseAreaSize = animation.AddTrack(Animation.TrackType.Value);
-            animation.TrackSetPath(_bodyTextureIdx, "Body:texture");
-            animation.TrackSetPath(_bodyOffsetIdx, "Body:offset");
             animation.TrackSetPath(mouseAreaPosition, "Body/MouseArea:position");
             animation.TrackSetPath(mouseAreaSize, "Body/MouseArea:size");
-            animation.TrackSetPath(_legTextureIdx, "Leg:texture");
-            animation.TrackSetPath(_legOffsetIdx, "Leg:offset");
-            animation.TrackSetPath(_bootTextureIdx, "Boot:texture");
-            animation.TrackSetPath(_bootOffsetIdx, "Boot:offset");
-            animation.TrackSetPath(_leftWristTextureIdx, "LeftWrist:texture");
-            animation.TrackSetPath(_leftWristOffsetIdx, "LeftWrist:offset");
-            animation.TrackSetPath(_rightWristTextureIdx, "RightWrist:texture");
-            animation.TrackSetPath(_rightWristOffsetIdx, "RightWrist:offset");
-            animation.TrackSetPath(_vestTextureIdx, "Vest:texture");
-            animation.TrackSetPath(_vestOffsetIdx, "Vest:offset");
-            animation.TrackSetPath(_armorTextureIdx, "Armor:texture");
-            animation.TrackSetPath(_armorOffsetIdx, "Armor:offset");
-            animation.TrackSetPath(_hairTextureIdx, "Hair:texture");
-            animation.TrackSetPath(_hairOffsetIdx, "Hair:offset");
-            animation.TrackSetPath(_hatTextureIdx, "Hat:texture");
-            animation.TrackSetPath(_hatOffsetIdx, "Hat:offset");
-            animation.TrackSetPath(_weaponTextureIdx, "Weapon:texture");
-            animation.TrackSetPath(_weaponOffsetIdx, "Weapon:offset");
             animation.TrackSetPath(_attackEffectTextureIdx, "AttackEffect:texture");
             animation.TrackSetPath(_attackEffectOffsetIdx, "AttackEffect:offset");
-            animation.ValueTrackSetUpdateMode(_bodyTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_bodyOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_legTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_legOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_bootTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_bootOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_leftWristTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_leftWristOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_rightWristTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_rightWristOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_vestTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_vestOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_armorTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_armorOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_hairTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_hairOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_hatOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_hatTextureIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_weaponOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(_weaponTextureIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_attackEffectTextureIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_attackEffectOffsetIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(mouseAreaPosition, Animation.UpdateMode.Discrete);
@@ -232,7 +205,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
                 animation.TrackInsertKey(_attackEffectOffsetIdx, time, Vector2.Zero);
                 animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
                 animation.TrackInsertKey(mouseAreaSize, time, sprites[start + i].OriginalSize);
-
             }
             animationLibrary.AddAnimation(dir.ToString(), animation);
             start += spritesPerDirection;
@@ -283,7 +255,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Play(SmoothWalk + "/"  + dir);
     }
 
-    private AnimationLibrary CreateStandUpAnimation(OffsetTexture[] sitTextures)
+    private OffsetTexture[] ExtractStandUpOffsetTextures(OffsetTexture[] sitTextures)
     {
         OffsetTexture[] standUpTextures = new OffsetTexture[sitTextures.Length];
         for (int i = 0, k = 0; i < DirectionNumber; i++)
@@ -294,8 +266,10 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
                 standUpTextures[k++] = sitTextures[index - j];
             }
         }
-        return CreateAnimationLibrary(SitSpriteNumber, SitStep, standUpTextures);
+
+        return standUpTextures;
     }
+
     
     public void InitializeAnimations(bool male)
     {
@@ -327,8 +301,9 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         
         tmp = new OffsetTexture[SitSpriteNumber * DirectionNumber];
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
-        AddAnimationLibrary(PlayerState.Sit.ToString(), CreateAnimationLibrary(SitSpriteNumber , SitStep, tmp));
-        AddAnimationLibrary(PlayerState.StandUp.ToString(), CreateStandUpAnimation(tmp));
+        var library = CreateAnimationLibrary(SitSpriteNumber , SitStep, tmp);
+        AddAnimationLibrary(PlayerState.Sit.ToString(), library);
+        AddAnimationLibrary(PlayerState.StandUp.ToString(), CreateAnimationLibrary(SitSpriteNumber, SitStep, ExtractStandUpOffsetTextures(tmp)));
         index += tmp.Length;
         
         tmp = new OffsetTexture[HurtSpriteNumber * DirectionNumber];
@@ -593,11 +568,13 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     private void PlayAnimation(string name, int millis, float speed = 1)
     {
+        _finished = "";
         var animation = GetAnimation(name);
         int aniLengthMillis = (int)(animation.Length * 1000);
         int startMillis = millis % aniLengthMillis;
         if (!string.IsNullOrEmpty(CurrentAnimation))
             Stop(true);
+        //PlayWithCapture(name, -1, -1, 1, false, Tween.TransitionType.Cubic);
         PlaySection(name, startMillis, -1, -1, speed);
     }
     
@@ -643,6 +620,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         tmp = new OffsetTexture[SitSpriteNumber * DirectionNumber];
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
         UpdateNodeAnimationLibrary(PlayerState.Sit.ToString(), textureTrack, offsetTrack, tmp);
+        UpdateNodeAnimationLibrary(PlayerState.StandUp.ToString(), textureTrack, offsetTrack, ExtractStandUpOffsetTextures(tmp));
         index += tmp.Length;
         
         tmp = new OffsetTexture[HurtSpriteNumber * DirectionNumber];
@@ -711,6 +689,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         var tmp = new OffsetTexture[Blade2HSpriteNumber * DirectionNumber];
         Array.Copy(sprites, Sword1HSpriteNumber * DirectionNumber, tmp, 0, tmp.Length);
         UpdateNodeAnimationLibrary(AttackAction.Blade2H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, tmp);
+        UpdateWeaponSpriteIfSitFinished();
     }
     
     public void SetSwordAnimation(string spritePrefix)
@@ -721,6 +700,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         var tmp = new OffsetTexture[Sword2HSpriteNumber * DirectionNumber];
         Array.Copy(sprites, (Sword1HSpriteNumber + Blade2HSpriteNumber) * DirectionNumber, tmp, 0, tmp.Length);
         UpdateNodeAnimationLibrary(AttackAction.Sword2H.ToString(), _weaponTextureIdx, _weaponOffsetIdx, tmp);
+        UpdateWeaponSpriteIfSitFinished();
     }
     
     private void SetAxeOrSpearAnimation(string spritePrefix)
@@ -728,6 +708,26 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
         var sprites = _spriteLoader.Load(spritePrefix + "3");
         UpdateNodeAnimationLibrary(AttackAction.Axe.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+        UpdateWeaponSpriteIfSitFinished();
+    }
+
+    private void UpdateSpriteIfSitFinished(string nodeName, int textureTrack, int offsetTrack)
+    {
+        if (_finished.ToString().StartsWith(PlayerState.Sit.ToString()))
+        {
+            var animation = GetAnimation(_finished);
+            var count = animation.TrackGetKeyCount(textureTrack);
+            var texture = (Texture2D)animation.TrackGetKeyValue(textureTrack, count - 1);
+            var offset = (Vector2)animation.TrackGetKeyValue(offsetTrack, count - 1);
+            var sprite2D = GetNode<Sprite2D>("../" + nodeName);
+            sprite2D.Texture = texture;
+            sprite2D.Offset = offset;   
+        }
+    }
+
+    private void UpdateWeaponSpriteIfSitFinished()
+    {
+        UpdateSpriteIfSitFinished("Weapon", _weaponTextureIdx, _weaponOffsetIdx);
     }
     
     public void SetSpearAnimation(string spritePrefix)
@@ -745,6 +745,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
         var sprites = _spriteLoader.Load(spritePrefix + "4");
         UpdateNodeAnimationLibrary(AttackAction.Bow.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+        UpdateWeaponSpriteIfSitFinished();
     }
     
     public void SetThrowAnimation(string spritePrefix)
@@ -752,36 +753,43 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         UpdateNodeCommonAnimation(spritePrefix + "0", _weaponTextureIdx, _weaponOffsetIdx, false);
         var sprites = _spriteLoader.Load(spritePrefix + "2");
         UpdateNodeAnimationLibrary(AttackAction.Throw.ToString(), _weaponTextureIdx, _weaponOffsetIdx, sprites);
+        UpdateWeaponSpriteIfSitFinished();
     }
 
     public void SetHatAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _hatTextureIdx, _hatOffsetIdx);
+        UpdateSpriteIfSitFinished("Hat", _hatTextureIdx, _hairOffsetIdx);
     }
     
     public void SetLegAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _legTextureIdx, _legOffsetIdx);
+        UpdateSpriteIfSitFinished("Leg", _legTextureIdx, _legOffsetIdx);
     }
     
     public void SetBootAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _bootTextureIdx, _bootOffsetIdx);
+        UpdateSpriteIfSitFinished("Boot", _bootTextureIdx, _bootOffsetIdx);
     }
     
     public void SetVestAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _vestTextureIdx, _vestOffsetIdx);
+        UpdateSpriteIfSitFinished("Vest", _vestTextureIdx, _vestOffsetIdx);
     }
     
     public void SetArmorAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _armorTextureIdx, _armorOffsetIdx);
+        UpdateSpriteIfSitFinished("Armor", _armorTextureIdx, _armorOffsetIdx);
     }
     
     public void SetHairAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _hairTextureIdx, _hairOffsetIdx);
+        UpdateSpriteIfSitFinished("Hair", _hairTextureIdx, _hairOffsetIdx);
     }
 
     public void SetFistWeaponAnimation(string prefix)
@@ -793,12 +801,15 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         var tmp = new OffsetTexture[PunchSpriteNumber * DirectionNumber];
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
         UpdateNodeAnimationLibrary(AttackAction.Punch.ToString(), _weaponTextureIdx, _weaponOffsetIdx, tmp);
+        UpdateWeaponSpriteIfSitFinished();
     }
 
     public void SetWristAnimation(string l, string r)
     {
         UpdateNodeAnimation(l, _leftWristTextureIdx, _leftWristOffsetIdx);
         UpdateNodeAnimation(r, _rightWristTextureIdx, _rightWristOffsetIdx);
+        UpdateSpriteIfSitFinished("LeftWrist", _leftWristTextureIdx, _leftWristOffsetIdx);
+        UpdateSpriteIfSitFinished("RightWrist", _rightWristTextureIdx, _rightWristOffsetIdx);
     }
 
     public void SetBladeEffectAnimation(string name)

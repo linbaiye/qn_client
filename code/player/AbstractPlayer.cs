@@ -156,6 +156,37 @@ public abstract partial class AbstractPlayer : AbstractCreature
         _weapon.Visible = true;
     }
 
+    public void Unequip(EquipmentType type)
+    {
+        switch (type)
+        {
+            case EquipmentType.Weapon:
+                HideWeapon();
+                break;
+            case EquipmentType.Wrist:
+                HideWrist();
+                break;
+            case EquipmentType.Hair:
+                HideHair();
+                break;
+            case EquipmentType.Armor:
+                HideArmor();
+                break;
+            case EquipmentType.Hat:
+                HideHat();
+                break;
+            case EquipmentType.Boot:
+                HideBoot();
+                break;
+            case EquipmentType.Leg:
+                HideLeg(); 
+                break;
+            case EquipmentType.Vest:
+                HideVest();
+                break;
+        }
+    }
+
     private void HideWeapon()
     {
         _weapon.Visible = false;

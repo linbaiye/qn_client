@@ -16,5 +16,7 @@ public interface IPlayerMessageHandler : IEntityMessageHandler
     void Say(CreatureSayMessage message);
 
     void ChangeState(PlayerState newState, CreatureDirection direction);
+    
+    void Unequip(EquipmentType type);
 
 }
