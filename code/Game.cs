@@ -2,6 +2,7 @@ using System;
 using Godot;
 using NLog;
 using QnClient.code.entity;
+using QnClient.code.input;
 using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
@@ -44,6 +45,7 @@ public partial class Game : Node2D
         creature.OnEntityEvent += _map.HandleEntityEvent;
         creature.OnEntityEvent += _entityManager.HandleEntityEvent;
         creature.HandleEntityMessage(message);
+        creature.AttackTriggered += id => _connection.WriteAndFlush(new AttackInput(id));
         _entityManager.Add(creature);
     }
 
@@ -58,7 +60,6 @@ public partial class Game : Node2D
             switch (msg)
             {
                 case JoinRealmMessage message:
-                    Logger.Debug("Received join realm.");
                     _map.Draw(message.MapFile, message.ResourceName);
                     _character.Initialize(message, _connection, _map);
                     _character.OnEntityEvent += _map.HandleEntityEvent;

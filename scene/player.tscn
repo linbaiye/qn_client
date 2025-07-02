@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cr1c0pyjtfjsu"]
+[gd_scene load_steps=16 format=3 uid="uid://cr1c0pyjtfjsu"]
 
 [ext_resource type="Script" uid="uid://caeevha7kxgmd" path="res://code/player/Player.cs" id="1_hjaqi"]
 [ext_resource type="Script" uid="uid://cgtpixr4b8rcr" path="res://code/player/PlayerAnimationPlayer.cs" id="2_fvtld"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="3_fvtld"]
 [ext_resource type="Shader" uid="uid://cpk0addbvfhxh" path="res://shader/Dyer.gdshader" id="4_ct4mp"]
+[ext_resource type="Theme" uid="uid://b8hbldyojfhb1" path="res://scene/text_bubble.tres" id="5_oh5ij"]
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="5_s4jxa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ct4mp"]
@@ -139,6 +140,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_oh5ij")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

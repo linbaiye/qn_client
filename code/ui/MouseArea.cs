@@ -18,7 +18,6 @@ public partial class MouseArea : Panel
         }
         if (mouseButton.IsDoubleClick())
         {
-            GD.Print("Double click with key? " + Input.IsKeyPressed(Key.Shift));
             AttackInvoked?.Invoke();
         }
         else if (mouseButton.Pressed)

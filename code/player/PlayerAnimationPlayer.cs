@@ -87,8 +87,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     
     private const int DirectionNumber = 8;
 
-    public event Action? ArrivedLastFrame;
-
     private StringName _finished;
 
     public override void _Ready()
@@ -96,31 +94,23 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         _spriteLoader = ZipFileSpriteLoader.Instance;
         AnimationFinished += n => _finished = n;
     }
-
-    private const string WalkPreHalf = "WalkPreHalf";
     
-    private const string WalkPostHalf = "WalkPostHalf";
-    
-    private void Callback()
-    {
-        ArrivedLastFrame?.Invoke();
-    }
 
-    private void AddCallbackTrackAtTime(AnimationLibrary animationLibrary, float time)
-    {
-        foreach (var dir in Enum.GetValues(typeof(CreatureDirection)))
-        {
-            var animation = animationLibrary.GetAnimation(dir.ToString());
-            var callbackTack = animation.AddTrack(Animation.TrackType.Method);
-            animation.TrackSetPath(callbackTack, "AnimationPlayer");
-            var methodDictionary = new Godot.Collections.Dictionary
-            {
-                { "method", MethodName.Callback },
-                { "args", new Godot.Collections.Array() {} }
-            };
-            animation.TrackInsertKey(callbackTack, time, methodDictionary, 0);
-        }
-    }
+    // private void AddCallbackTrackAtTime(AnimationLibrary animationLibrary, float time)
+    // {
+    //     foreach (var dir in Enum.GetValues(typeof(CreatureDirection)))
+    //     {
+    //         var animation = animationLibrary.GetAnimation(dir.ToString());
+    //         var callbackTack = animation.AddTrack(Animation.TrackType.Method);
+    //         animation.TrackSetPath(callbackTack, "AnimationPlayer");
+    //         var methodDictionary = new Godot.Collections.Dictionary
+    //         {
+    //             { "method", MethodName.Callback },
+    //             { "args", new Godot.Collections.Array() {} }
+    //         };
+    //         animation.TrackInsertKey(callbackTack, time, methodDictionary, 0);
+    //     }
+    // }
 
 
     private int AddTrack(Animation animation, string path)
@@ -214,46 +204,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
-    private void CreateSmoothWalk(OffsetTexture[] textures)
-    {
-        var smoothWalkTextures = new OffsetTexture[DirectionNumber * (WalkSpriteNumber + 1)];
-        int addtion = 0;
-        for (int i = 0, j = 0; i < DirectionNumber * WalkSpriteNumber; i++)
-        {
-            smoothWalkTextures[j++] = textures[i];
-            if ((i + 1) % WalkSpriteNumber == 0)
-            {
-                smoothWalkTextures[j++] = textures[addtion];
-                addtion += 6;
-            }
-        }
-        AddAnimationLibrary(SmoothWalk, CreateAnimationLibrary(WalkSpriteNumber + 1, WalkStep - 0.02f, smoothWalkTextures));
-    }
-    
-    private const string SmoothWalk = "SmoothWalk";
-    
-    public bool IsSmoothWalk(string animationName)
-    {
-        return animationName.StartsWith(SmoothWalk);
-    }
-    
-
-    public void PlaySmoothWalk(CreatureDirection direction)
-    {
-        Play(SmoothWalk + "/" + direction);
-    }
-    
-    private void CreatePreHalfWalk(OffsetTexture[] textures)
-    {
-        
-    }
-
-    public void PlaySmoothWalk(string animationName)
-    {
-        var dir = animationName.Split("/")[1];
-        Stop();
-        Play(SmoothWalk + "/"  + dir);
-    }
 
     private OffsetTexture[] ExtractStandUpOffsetTextures(OffsetTexture[] sitTextures)
     {
@@ -277,9 +227,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         var sprites = _spriteLoader.Load(prefix + "0");
         var animationLibrary = CreateAnimationLibrary(WalkSpriteNumber, WalkStep, sprites);
         AddAnimationLibrary(MoveAction.Walk.ToString(), animationLibrary);
-        AddCallbackTrackAtTime(animationLibrary, (WalkSpriteNumber - 1) * WalkStep);
-        
-        CreateSmoothWalk(sprites);
 
         var tmp = new OffsetTexture[IdleSpriteNumber * DirectionNumber];
         int index = WalkSpriteNumber * DirectionNumber;
@@ -291,7 +238,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         Array.Copy(sprites, index, tmp, 0, tmp.Length);
         animationLibrary = CreateAnimationLibrary(FightWalkSpriteNumber, FightWalkStep, tmp);
         AddAnimationLibrary(MoveAction.FightWalk.ToString(), animationLibrary);
-        AddCallbackTrackAtTime(animationLibrary, (FightWalkSpriteNumber - 1) * FightWalkStep);
         index += tmp.Length;
         
         tmp = new OffsetTexture[FightStandSpriteNumber * DirectionNumber];
@@ -350,218 +296,122 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         AddAnimationLibrary(AttackAction.Bow.ToString(), CreateAnimationLibrary(BowSpriteNumber, BowStep, sprites));
     }
 
-    public void PlayWalk(CreatureDirection direction)
-    {
-        PlayWalkFrom(direction);
-    }
     
-    public void PlayWalkFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayWalk(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(MoveAction.Walk + "/" + direction, fromMillis);
     }
-
-    public void PlayRun(CreatureDirection direction)
-    {
-        PlayRunFrom(direction);
-    }
     
-    public void PlayRunFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayRun(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(MoveAction.Walk + "/" + direction, fromMillis, 2f);
     }
 
-    public void PlayFly(CreatureDirection direction)
-    {
-        PlayFlyFrom(direction);
-    }
     
-    public void PlayFlyFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayFly(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.Idle + "/" + direction, fromMillis, 2f);
     }
     
-    public void PlayIdle(CreatureDirection direction)
-    {
-        // Stop();
-        // Play(PlayerState.Idle + "/" + direction);
-         PlayIdleFrom(direction);
-    }
     
     
-    public void PlayIdleFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayIdle(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.Idle + "/" + direction, fromMillis);
     }
 
 
-    public void PlayFightWalk(CreatureDirection direction)
-    {
-        PlayFightWalkFrom(direction);
-    }
-    
-    public void PlayFightWalkFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayFightWalk(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(MoveAction.FightWalk + "/" + direction, fromMillis);
     }
     
-    public void PlayFightStand(CreatureDirection direction)
-    {
-        PlayFightStandFrom(direction);
-    }
-    
-    public void PlayFightStandFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayFightStand(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.FightStand + "/" + direction, fromMillis);
     }
     
-    public void PlaySit(CreatureDirection direction)
-    {
-        PlaySitFrom(direction);
-    }
-    
-    public void PlaySitFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlaySit(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.Sit + "/" + direction, fromMillis);
     }
     
-    public void PlayStandUp(CreatureDirection direction)
-    {
-        PlayStandUpFrom(direction);
-    }
-    
-    public void PlayStandUpFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayStandUp(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.StandUp + "/" + direction, fromMillis);
     }
     
-    public void PlayHurt(CreatureDirection direction)
-    {
-        PlayHurtFrom(direction);
-    }
 
-    public void PlayHurtFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayHurt(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.Hurt + "/" + direction, fromMillis);
     }
-
-    public void PlayDie(CreatureDirection direction)
-    {
-        PlayDieFrom(direction);
-    }
     
-    public void PlayDieFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayDie(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.Die + "/" + direction, fromMillis);
     }
     
-    public void PlayHello(CreatureDirection direction)
-    {
-        PlayHurtFrom(direction);
-    }
     
-    public void PlayHelloFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayHello(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(PlayerState.Hello + "/" + direction, fromMillis);
     }
 
-    public void PlayKick(CreatureDirection direction)
-    {
-        PlayKickFrom(direction);
-    }
     
-    public void PlayKickFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayKick(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Kick + "/" + direction, fromMillis);
     }
     
-    public void PlayPunch(CreatureDirection direction)
-    {
-        PlayPunchFrom(direction);
-    }
-    
-    public void PlayPunchFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayPunch(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Punch + "/" + direction, fromMillis);
     }
     
-    public void PlaySword1HAttack(CreatureDirection direction)
-    {
-        PlaySword1HAttackFrom(direction);
-    }
     
-    public void PlaySword1HAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlaySword1HAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
     }
     
-    public void PlayBlade1HAttack(CreatureDirection direction)
-    {
-        PlayBlade1HAttackFrom(direction);
-    }
     
-    public void PlayBlade1HAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayBlade1HAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
     }
     
-    public void PlayBlade2HAttack(CreatureDirection direction)
-    {
-        PlayBlade2HAttackFrom(direction);
-    }
     
-    public void PlayBlade2HAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayBlade2HAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Blade2H + "/" + direction, fromMillis);
     }
-
     
-    public void PlaySword2HAttack(CreatureDirection direction)
-    {
-        PlaySword2HAttackFrom(direction);
-    }
-    
-    public void PlaySword2HAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlaySword2HAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Sword2H + "/" + direction, fromMillis);
     }
     
-    public void PlayAxeAttack(CreatureDirection direction)
-    {
-        PlayAxeAttackFrom(direction);
-    }
     
-    public void PlayAxeAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayAxeAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Axe + "/" + direction, fromMillis);
     }
     
-    public void PlaySpearAttack(CreatureDirection direction)
-    {
-        PlaySpearAttackFrom(direction);
-    }
     
-    public void PlaySpearAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlaySpearAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Axe + "/" + direction, fromMillis);
     }
     
-    public void PlayBowAttack(CreatureDirection direction)
-    {
-        PlayBowAttackFrom(direction);
-    }
     
-    public void PlayBowAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayBowAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Bow + "/" + direction, fromMillis);
     }
     
-    
-    public void PlayThrowAttack(CreatureDirection direction)
-    {
-        PlayThrowAttackFrom(direction);
-    }
 
-    public void PlayThrowAttackFrom(CreatureDirection direction, int fromMillis = 0)
+    public void PlayThrowAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlayAnimation(AttackAction.Throw + "/" + direction, fromMillis);
     }

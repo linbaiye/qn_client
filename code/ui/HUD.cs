@@ -87,6 +87,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _inventory.UpdateInventoryView(message, _connection);
     }
 
+    public void UpdateAttribute(AttributeMessage message)
+    {
+        _bottom.UpdateAttribute(message);
+    }
+
     public void OnSystemButtonPressed()
     {
         GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);

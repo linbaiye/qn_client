@@ -44,7 +44,7 @@ public partial class TextBubble : RichTextLabel
     }
     
     
-    public void Display(string text, Vector2 textureSize)
+    public void Display(string text, Vector2 xCenterY)
     {
         if (string.IsNullOrEmpty(text))
         {
@@ -56,9 +56,9 @@ public partial class TextBubble : RichTextLabel
             lines = lines[..MaxLines];
         }
         var font = GetThemeFont("normal_font");
-        var size = font.GetStringSize(lines[0]);
+        var size = font.GetStringSize(lines[0], HorizontalAlignment.Left, -1, 12);
         size *= new Vector2(1, lines.Count);
-        size += new Vector2(10, 10);
+        size += new Vector2(20, 10);
         StringBuilder stringBuilder = new StringBuilder();
         foreach (string line in lines)
         {
@@ -66,7 +66,7 @@ public partial class TextBubble : RichTextLabel
         }
         Text = stringBuilder.ToString();
         Size = size;
-        Position = new Vector2(textureSize.X / 2 - Size.X / 2, -50 - size.Y);
+        Position = new Vector2(xCenterY.X - Size.X / 2,  -50 - size.Y);
         _timer.Stop();
         Visible = true;
         _timer.Start(Double.Max(2f, Text.Length * 0.1f));

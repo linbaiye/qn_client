@@ -96,6 +96,12 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
         }
     }
     
+    public void Remove()
+    {
+        EmitEvent(new DeletedEvent(this));
+        QueueFree();
+    }
+    
     public static Npc Create()
     {
         PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/npc.tscn");

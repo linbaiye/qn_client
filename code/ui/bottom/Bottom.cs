@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using QnClient.code.entity.@event;
+using QnClient.code.message;
 using QnClient.code.player.character;
 
 namespace QnClient.code.ui.bottom;
@@ -83,5 +84,16 @@ public partial class Bottom : NinePatchRect
     public void UpdateCoordinate(Vector2I coordinate)
     {
         _coordinate.Text = coordinate.X + ":" + coordinate.Y;
+    }
+
+    public void UpdateAttribute(AttributeMessage message)
+    {
+        FillBar(_lifeBar, message.Health.Percent, message.Health.Text);
+        FillBar(_powerBar , message.Power.Percent, message.Power.Text);
+        FillBar(_innerPowerBar, message.InnerPower.Percent, message.InnerPower.Text);
+        FillBar(_outerPowerBar, message.OuterPower.Percent, message.OuterPower.Text);
+        FillBar(_headLifeBar, message.HeadPercent, message.HeadPercent.ToString());
+        FillBar(_armLifeBar, message.ArmPercent, message.ArmPercent.ToString());
+        FillBar(_legLifeBar, message.LegPercent, message.LegPercent.ToString());
     }
 }

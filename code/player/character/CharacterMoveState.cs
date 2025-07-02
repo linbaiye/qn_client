@@ -31,18 +31,6 @@ public class CharacterMoveState : AbstractCharacterState
         _moveInput = moveInput;
     }
 
-    public void OnLastKeyFrame()
-    {
-        if (!Input.IsMouseButtonPressed(MouseButton.Right))
-        {
-            Logger.Debug("Not Pressed.");
-            return;
-        }
-        Logger.Debug("continue moving.");
-        _nextInput = new MoveInput(_character.GetLocalMousePosition().GetDirection(), _moveInput.Destination);
-        _character.Connection.WriteAndFlush(_nextInput);
-    }
-
     public override void PhysicProcess(double delta)
     {
         if (_elapsedSeconds == 0)
@@ -64,22 +52,23 @@ public class CharacterMoveState : AbstractCharacterState
             return;
         _character.Position = _character.Position.Snapped(VectorUtil.TileSize);
         _character.EmitEvent(new EntityChangeCoordinateEvent(_character));
-        if (_nextInput == null)
+        if (!Input.IsMouseButtonPressed(MouseButton.Right))
         {
             ChangeToStandState();
             return;
         }
-        if (_character.Map.CanMove(_character.Coordinate.Move(_nextInput.Value.Direction)))
+        var moveInput = new MoveInput(_character.GetLocalMousePosition().GetDirection(), _character.Coordinate);
+        if (_character.Map.CanMove(_character.Coordinate.Move(moveInput.Direction)))
         {
             _elapsedSeconds = 0;
             var moveAction = ComputeMoveAction(_character, _action);
-            _character.ChangeState(new CharacterMoveState(_character, moveAction, _nextInput.Value));
+            _character.ChangeState(new CharacterMoveState(_character, moveAction, moveInput));
             return;
         }
-        if (_character.Direction != _nextInput.Value.Direction)
+        if (_character.Direction != moveInput.Direction)
         {
-            _character.Connection.WriteAndFlush(new TurnInput(_nextInput.Value.Direction));
-            _character.Direction = _nextInput.Value.Direction;
+            _character.Connection.WriteAndFlush(new TurnInput(moveInput.Direction));
+            _character.Direction = moveInput.Direction;
         }
         ChangeToStandState();
     }

@@ -6,6 +6,8 @@
 bg_color = Color(0, 0, 0, 0.462745)
 
 [resource]
-RichTextLabel/font_sizes/normal_font_size = 14
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_6p82p")
+RichTextLabel/font_sizes/normal_font_size = 12
 RichTextLabel/fonts/normal_font = ExtResource("1_6p82p")
 RichTextLabel/styles/normal = SubResource("StyleBoxFlat_6p82p")

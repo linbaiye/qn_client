@@ -51,6 +51,8 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.ActiveKungFuList => SyncActiveKungFuListMessage.FromPacket(packet.ActiveKungFuList),
             Packet.TypedPacketOneofCase.PlayerChangeState => PlayerChangeStateMessage.FromPacket(packet.PlayerChangeState),
             Packet.TypedPacketOneofCase.Unequip => new PlayerUnequipMessage(packet.Unequip.Id, (EquipmentType)packet.Unequip.EquipmentType),
+            Packet.TypedPacketOneofCase.Attribute => AttributeMessage.FromPacket(packet.Attribute),
+            Packet.TypedPacketOneofCase.Attack => PlayerAttackMessage.FromPacket(packet.Attack),
             _ => null,
         };
     }

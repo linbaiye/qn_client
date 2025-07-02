@@ -100,21 +100,12 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         }
     }
 
-    private void OnLastKeyFrame()
-    {
-        GD.Print("called back.");
-        if (_characterState is CharacterMoveState moveState)
-        {
-            moveState.OnLastKeyFrame();
-        }
-    }
 
     public void Initialize(JoinRealmMessage message, Connection connection, IMap map)
     {
         _connection = connection;
         _map = map;
         AnimationPlayer.InitializeAnimations(message.Male);
-        AnimationPlayer.ArrivedLastFrame += OnLastKeyFrame;
         base.Initialize(message.Id, message.Coordinate, message.Name);
         Direction = CreatureDirection.Down;
         ChangeState(CharacterStandState.Idle(this));
@@ -154,10 +145,24 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
                 _characterState = CharacterStandState.Idle(this);
                 break;
             default:
-                PlayStateAnimation(newState, direction);
                 _characterState = CharacterWaitingState.Instance;
                 break;
         }
+        PlayStateAnimation(newState, direction);
+    }
+
+    public void SetPosition(Vector2I coordinate, PlayerState state, CreatureDirection direction)
+    {
+        DoSetPosition(coordinate, state, direction);
+        if (state == PlayerState.Idle)
+            ChangeState(CharacterStandState.Idle(this));
+        else if (state == PlayerState.FightStand)
+            ChangeState(CharacterStandState.FightStand(this));
+    }
+
+    public void Attack(AttackAction action, CreatureDirection direction)
+    {
+        PlayAttackAnimation(action, direction);
     }
 
     public void SyncActiveKungFuList(SyncActiveKungFuListMessage message) 

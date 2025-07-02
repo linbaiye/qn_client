@@ -20,17 +20,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
 
     public void SetPosition(SetPositionMessage message)
     {
-        Position = message.Coordinate.ToPosition();
-        switch (message.State)
-        {
-            case PlayerState.Idle:
-                AnimationPlayer.PlayIdle(message.Direction);
-                break;
-            case PlayerState.FightStand:
-                AnimationPlayer.PlayFightStand(message.Direction);
-                break;
-        }
-        EmitEvent(new EntityChangeCoordinateEvent(this));
+        DoSetPosition(message.Coordinate, message.State, message.Direction);
     }
 
     public void Move(MoveMessage message)
@@ -81,22 +71,27 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
     {
         PlayStateAnimation(newState, direction);
     }
+    
+    public void Attack(AttackAction action, CreatureDirection direction)
+    {
+        PlayAttackAnimation(action, direction);
+    }
 
     private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
     {
         switch (action)
         {
             case MoveAction.Fly:
-                AnimationPlayer.PlayFlyFrom(direction, startMillis);
+                AnimationPlayer.PlayFly(direction, startMillis);
                 break;
             case MoveAction.Run:
-                AnimationPlayer.PlayRunFrom(direction, startMillis);
+                AnimationPlayer.PlayRun(direction, startMillis);
                 break;
             case MoveAction.Walk:
                 AnimationPlayer.PlayWalk(direction);
                 break;
             case MoveAction.FightWalk:
-                AnimationPlayer.PlayFightWalkFrom(direction, startMillis);
+                AnimationPlayer.PlayFightWalk(direction, startMillis);
                 break;
         }
     }
@@ -134,5 +129,11 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
     {
         PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/player.tscn");
         return scene.Instantiate<Player>();
+    }
+
+    public void Remove()
+    {
+        EmitEvent(new DeletedEvent(this));
+        QueueFree();
     }
 }

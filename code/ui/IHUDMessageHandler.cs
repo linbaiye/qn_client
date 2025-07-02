@@ -13,4 +13,6 @@ public interface IHUDMessageHandler
 
     void UpdateInventoryView(InventoryMessage message);
 
+    void UpdateAttribute(AttributeMessage message);
+
 }

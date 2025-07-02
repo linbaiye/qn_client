@@ -7,11 +7,11 @@ public class RemoveEntityMessage(long id) : AbstractEntityMessage(id), INpcMessa
 {
     public void Accept(INpcMessageHandler handler)
     {
-        handler.Remove(this);
+        handler.Remove();
     }
 
     public void Accept(IPlayerMessageHandler handler)
     {
-        handler.Remove(this);
+        handler.Remove();
     }
 }

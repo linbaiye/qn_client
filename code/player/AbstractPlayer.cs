@@ -1,8 +1,10 @@
 using System;
 using Godot;
 using QnClient.code.entity;
+using QnClient.code.entity.@event;
 using QnClient.code.message;
 using QnClient.code.ui;
+using QnClient.code.util;
 
 namespace QnClient.code.player;
 
@@ -187,6 +189,21 @@ public abstract partial class AbstractPlayer : AbstractCreature
         }
     }
 
+    protected void DoSetPosition(Vector2I coor, PlayerState state, CreatureDirection direction)
+    {
+        Position = coor.ToPosition();
+        switch (state)
+        {
+            case PlayerState.Idle:
+                AnimationPlayer.PlayIdle(direction);
+                break;
+            case PlayerState.FightStand:
+                AnimationPlayer.PlayFightStand(direction);
+                break;
+        }
+        EmitEvent(new EntityChangeCoordinateEvent(this));
+    }
+
     private void HideWeapon()
     {
         _weapon.Visible = false;
@@ -235,25 +252,62 @@ public abstract partial class AbstractPlayer : AbstractCreature
         switch (newState)
         {
             case PlayerState.Idle:
-                _animationPlayer.PlayIdleFrom(direction, startMillis);
+                _animationPlayer.PlayIdle(direction, startMillis);
                 break;
             case PlayerState.FightStand:
-                _animationPlayer.PlayFightStandFrom(direction, startMillis);
+                _animationPlayer.PlayFightStand(direction, startMillis);
                 break;
             case PlayerState.Hurt:
-                _animationPlayer.PlayHurtFrom(direction, startMillis);
+                _animationPlayer.PlayHurt(direction, startMillis);
                 break;
             case PlayerState.Die:
-                _animationPlayer.PlayDieFrom(direction, startMillis);
+                _animationPlayer.PlayDie(direction, startMillis);
                 break;
             case PlayerState.Sit:
-                _animationPlayer.PlaySitFrom(direction, startMillis);
+                _animationPlayer.PlaySit(direction, startMillis);
                 break;
             case PlayerState.StandUp:
-                _animationPlayer.PlayStandUpFrom(direction, startMillis);
+                _animationPlayer.PlayStandUp(direction, startMillis);
                 break;
             case PlayerState.Hello:
-                _animationPlayer.PlayHelloFrom(direction, startMillis);
+                _animationPlayer.PlayHello(direction, startMillis);
+                break;
+        }
+    }
+
+    protected void PlayAttackAnimation(AttackAction action, CreatureDirection direction, int startMillis = 0)
+    {
+        switch (action)
+        {
+            case AttackAction.Punch:
+                _animationPlayer.PlayPunch(direction, startMillis);
+                break;
+            case AttackAction.Kick:
+                _animationPlayer.PlayKick(direction, startMillis);
+                break;
+            case AttackAction.Sword1H:
+                _animationPlayer.PlaySword1HAttack(direction, startMillis);
+                break;
+            case AttackAction.Sword2H:
+                _animationPlayer.PlaySword2HAttack(direction, startMillis);
+                break;
+            case AttackAction.Blade1H:
+                _animationPlayer.PlayBlade1HAttack(direction, startMillis);
+                break;
+            case AttackAction.Blade2H:
+                _animationPlayer.PlayBlade2HAttack(direction, startMillis);
+                break;
+            case AttackAction.Axe:
+                _animationPlayer.PlayAxeAttack(direction, startMillis);
+                break;
+            case AttackAction.Spear:
+                _animationPlayer.PlaySpearAttack(direction, startMillis);
+                break;
+            case AttackAction.Bow:
+                _animationPlayer.PlayBowAttack(direction, startMillis);
+                break;
+            case AttackAction.Throw:
+                _animationPlayer.PlayThrowAttack(direction, startMillis);
                 break;
         }
     }

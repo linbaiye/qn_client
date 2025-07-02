@@ -18,5 +18,6 @@ public interface IPlayerMessageHandler : IEntityMessageHandler
     void ChangeState(PlayerState newState, CreatureDirection direction);
     
     void Unequip(EquipmentType type);
-
+    
+    void Attack(AttackAction action, CreatureDirection direction);
 }
