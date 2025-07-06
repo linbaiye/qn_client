@@ -52,7 +52,6 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
     }
 
 
-
     private void CreateMover(CreatureDirection direction, float elapsedSeconds = 0)
     {
         var length = _animationPlayer.MoveAnimationLength;
@@ -61,13 +60,14 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
 
     public void Move(MoveMessage message)
     {
-        Position = message.From.ToPosition();
+        Position = message.Start.ToPosition();
         _animationPlayer.PlayMove(message.Direction);
         CreateMover(message.Direction);
     }
 
     public void SetPosition(SetPositionMessage message)
     {
+        Mover = null;
         Position = message.Coordinate.ToPosition();
         _animationPlayer.PlayIdle(message.Direction);
         EmitEvent(new EntityChangeCoordinateEvent(this));
@@ -75,6 +75,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
 
     public void ChangeState(NpcChangeStateMessage message)
     {
+        Mover = null;
         _animationPlayer.Play(message.State,  message.Direction);
     }
 

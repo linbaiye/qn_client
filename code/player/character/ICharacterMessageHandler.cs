@@ -18,7 +18,6 @@ public interface ICharacterMessageHandler
 
     void SetPosition(Vector2I coordinate, PlayerState state, CreatureDirection direction);
 
-    void Attack(AttackAction action, CreatureDirection direction);
-
+    void Attack(AttackAction action, CreatureDirection direction, string effect);
 
 }

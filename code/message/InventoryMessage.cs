@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using QnClient.code.ui;
+using QnClient.code.hud;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;

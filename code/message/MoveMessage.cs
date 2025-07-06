@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Godot;
 using QnClient.code.entity;
 using QnClient.code.player;
@@ -5,14 +6,13 @@ using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class MoveMessage(Vector2I from, CreatureDirection direction, long id, MoveAction? action = null) : AbstractEntityMessage(id),
+public class MoveMessage(CreatureDirection direction, long id, Vector2I start, MoveAction? action = null) : AbstractEntityMessage(id),
     IPlayerMessage, INpcMessage
 {
-
-    public Vector2I From { get; } = from;
     public CreatureDirection Direction { get; } = direction;
-    
     public MoveAction? Action { get; } = action;
+
+    public Vector2I Start { get; } = start;
 
     public void Accept(IPlayerMessageHandler messageHandler)
     {
@@ -24,15 +24,14 @@ public class MoveMessage(Vector2I from, CreatureDirection direction, long id, Mo
         handler.Move(this);
     }
 
-    public override string ToString()
+    public static MoveMessage FromPacket(NpcMovePacket packet)
     {
-        return $"{nameof(From)}: {From}, {nameof(Direction)}: {Direction}";
+        return new MoveMessage((CreatureDirection)packet.Direction, packet.Id, new Vector2I(packet.X, packet.Y));
     }
 
-
-    public static MoveMessage FromPacket(MonsterMoveEventPacket packet)
+    public static MoveMessage FromPacket(PlayerMovePacket packet)
     {
-        return new MoveMessage(new Vector2I(packet.X, packet.Y), (CreatureDirection)packet.Direction, packet.Id) ;
+        return new MoveMessage((CreatureDirection)packet.MovePacket.Direction, packet.MovePacket.Id, new Vector2I(packet.MovePacket.X, packet.MovePacket.Y), (MoveAction)packet.MoveAction);
     }
 
 }

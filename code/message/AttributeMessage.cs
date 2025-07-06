@@ -1,5 +1,5 @@
+using QnClient.code.hud;
 using QnClient.code.player.character;
-using QnClient.code.ui;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;

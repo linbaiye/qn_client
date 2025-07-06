@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Godot;
+using QnClient.code.hud;
 using QnClient.code.player.character;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class JoinRealmMessage 
+public class JoinRealmMessage  : IHUDMessage
 {
     public string MapFile { get; private init; }
     public string ResourceName { get; private init; }
@@ -26,6 +27,8 @@ public class JoinRealmMessage
     public Vector2I Coordinate { get; private init; }
     
     public string Name { get; private init; }
+    
+    public string Bgm { get;private init; }
     
     public List<PlayerEquipMessage> Equipments { get;private init; }
     
@@ -55,9 +58,15 @@ public class JoinRealmMessage
             LegLifeBar= new ValueBar(joinPacket.Attribute.LegPercent, 100),
             AttackKungFu = joinPacket.AttackKungFu,
             Equipments = equipMessages,
+            Bgm = "1301",
             //ProtectionKungFu = joinPacket.HasProtectionKungFu? new KungFu(joinPacket.ProtectionKungFu) : null,
             //FootKungFu = joinPacket.HasFootKungFuName ? new FootKungFu(joinPacket.FootKungFuName, joinPacket.FootKungFuCanFly) : null,
             //AssistantKungFu= joinPacket.HasAssistantKungFu ? new KungFu(joinPacket.AssistantKungFu) : null,
         };
+    }
+
+    public void Accept(IHUDMessageHandler handler)
+    {
+        handler.OnCharacterJoined(this);
     }
 }

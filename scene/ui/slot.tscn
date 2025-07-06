@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx0wc1sposys5"]
 
-[ext_resource type="Script" uid="uid://cas7grlvk6bo5" path="res://code/ui/Slot.cs" id="1_k2ex0"]
-[ext_resource type="Script" uid="uid://bd1076hn1pbyb" path="res://code/ui/SlotButton.cs" id="2_3j8rd"]
+[ext_resource type="Script" uid="uid://cas7grlvk6bo5" path="res://code/hud/Slot.cs" id="1_k2ex0"]
+[ext_resource type="Script" uid="uid://bd1076hn1pbyb" path="res://code/hud/SlotButton.cs" id="2_3j8rd"]
 
 [node name="Slot" type="CenterContainer"]
 offset_right = 26.0

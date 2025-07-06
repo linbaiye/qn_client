@@ -2,9 +2,7 @@
 using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Channels;
-using Godot;
 using NLog;
-using QnClient.code.entity;
 using QnClient.code.message;
 using QnClient.code.player;
 using Source.Networking.Protobuf;
@@ -15,31 +13,14 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
 {
     private static readonly ILogger Logger  = LogManager.GetCurrentClassLogger();
     
-    private enum PositionType
-    {
-        Move = 1,
-        Set = 3,
-    }
-
-
-    private object DecodePosition(PositionPacket packet)
-    {
-        return (PositionType)packet.Type switch
-        {
-            PositionType.Move => new MoveMessage(new Vector2I(packet.X, packet.Y), (CreatureDirection) packet.Direction, packet.Id, (MoveAction)packet.MoveAction),
-            PositionType.Set => new SetPositionMessage(packet.Id, new Vector2I(packet.X, packet.Y), (CreatureDirection) packet.Direction, (PlayerState)packet.State),
-            _ => null,
-        };
-    }
-    
     private object Decode(Packet packet)
     {
         return packet.TypedPacketCase switch
         {
             Packet.TypedPacketOneofCase.JoinRealm => JoinRealmMessage.Parse(packet.JoinRealm),
-            Packet.TypedPacketOneofCase.PositionPacket => DecodePosition(packet.PositionPacket),
             Packet.TypedPacketOneofCase.NpcSnapshot => NpcSnapshot.FromPacket(packet.NpcSnapshot),
-            Packet.TypedPacketOneofCase.MonsterMove => MoveMessage.FromPacket(packet.MonsterMove),
+            Packet.TypedPacketOneofCase.NpcMove => MoveMessage.FromPacket(packet.NpcMove),
+            Packet.TypedPacketOneofCase.PlayerMove => MoveMessage.FromPacket(packet.PlayerMove),
             Packet.TypedPacketOneofCase.ChangeStatePacket => NpcChangeStateMessage.FromPacket(packet.ChangeStatePacket),
             Packet.TypedPacketOneofCase.RemoveEntity => new RemoveEntityMessage(packet.RemoveEntity.Id),
             Packet.TypedPacketOneofCase.KungFuBook => KungFuBookMessage.FromPacket(packet.KungFuBook),
@@ -53,6 +34,9 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.Unequip => new PlayerUnequipMessage(packet.Unequip.Id, (EquipmentType)packet.Unequip.EquipmentType),
             Packet.TypedPacketOneofCase.Attribute => AttributeMessage.FromPacket(packet.Attribute),
             Packet.TypedPacketOneofCase.Attack => PlayerAttackMessage.FromPacket(packet.Attack),
+            Packet.TypedPacketOneofCase.PositionPacket => SetPositionMessage.FromPacket(packet.PositionPacket),
+            Packet.TypedPacketOneofCase.PlayerSetPosition => SetPositionMessage.FromPacket(packet.PlayerSetPosition),
+            Packet.TypedPacketOneofCase.EntitySound => new SoundMessage(packet.EntitySound.EntityName, packet.EntitySound.Sound),
             _ => null,
         };
     }

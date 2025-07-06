@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bctgfm8bqvxki"]
+
+[ext_resource type="Script" uid="uid://bjsooq6mbcvs2" path="res://code/hud/AudioManager.cs" id="1_h5pei"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_h5pei")
+
+[node name="BgmPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer1" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer2" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer3" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer4" type="AudioStreamPlayer2D" parent="."]

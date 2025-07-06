@@ -2,9 +2,10 @@ using System;
 using Godot;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
+using QnClient.code.hud;
 using QnClient.code.message;
-using QnClient.code.ui;
 using QnClient.code.util;
+using BodySprite = QnClient.code.entity.BodySprite;
 
 namespace QnClient.code.player;
 
@@ -275,8 +276,9 @@ public abstract partial class AbstractPlayer : AbstractCreature
         }
     }
 
-    protected void PlayAttackAnimation(AttackAction action, CreatureDirection direction, int startMillis = 0)
+    protected void PlayAttackAnimation(AttackAction action, CreatureDirection direction, string effect, int startMillis = 0)
     {
+        _animationPlayer.SetEffectAnimationIfNamePresent(effect, action);
         switch (action)
         {
             case AttackAction.Punch:

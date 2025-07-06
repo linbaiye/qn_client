@@ -1,4 +1,4 @@
-using QnClient.code.ui;
+using QnClient.code.hud;
 
 namespace QnClient.code.message;
 

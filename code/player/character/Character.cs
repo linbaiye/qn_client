@@ -1,4 +1,5 @@
 ﻿using Godot;
+using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
 using QnClient.code.input;
@@ -15,22 +16,13 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     private ICharacterState? _characterState;
     
     public FootKungFu? FootKungFu { get; private set; }
-    public string AttackKungFu { get; private set; }
-    public string ProtectionKungFu { get; private set; } = "";
-    public string BreathKungFu { get; private set; } = "";
-    public string AssistantKungFu { get; private set; } = "";
 
     private IMap? _map;
 
     private Connection? _connection;
 
-    public ValueBar LifeBar { get; set; } = ValueBar.Default;
-    public ValueBar PowerBar { get; set; } = ValueBar.Default;
-    public ValueBar InnerPowerBar { get; set; } = ValueBar.Default;
-    public ValueBar OuterPowerBar { get; set; } = ValueBar.Default;
-    public ValueBar HeadLifeBar { get; set; } = ValueBar.Default;
-    public ValueBar ArmLifeBar { get; set; } = ValueBar.Default;
-    public ValueBar LegLifeBar { get; set; } = ValueBar.Default;
+    
+    private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
     public void ChangeState(ICharacterState state)
     {
@@ -109,20 +101,11 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         base.Initialize(message.Id, message.Coordinate, message.Name);
         Direction = CreatureDirection.Down;
         ChangeState(CharacterStandState.Idle(this));
-        LifeBar = message.LifeBar;
-        HeadLifeBar = message.HeadLifeBar;
-        ArmLifeBar = message.ArmLifeBar;
-        LegLifeBar = message.LegLifeBar;
-        PowerBar = message.PowerBar;
-        InnerPowerBar = message.InnerPowerBar;
-        OuterPowerBar = message.OuterPowerBar;
-        AttackKungFu = message.AttackKungFu;
         foreach (var equipMessage in message.Equipments)
         {
             HandleEntityMessage(equipMessage);
         }
         ResetPhysicsInterpolation();
-        EmitEvent(CharacterEvent.Join(this));
         map.Occupy(this);
     }
 
@@ -158,20 +141,17 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
             ChangeState(CharacterStandState.Idle(this));
         else if (state == PlayerState.FightStand)
             ChangeState(CharacterStandState.FightStand(this));
+        Log.Debug("Position {}.", Position.ToCoordinate());
     }
 
-    public void Attack(AttackAction action, CreatureDirection direction)
+    public void Attack(AttackAction action, CreatureDirection direction, string effect)
     {
-        PlayAttackAnimation(action, direction);
+        PlayAttackAnimation(action, direction, effect);
+        ChangeState(CharacterWaitingState.Instance);
     }
 
     public void SyncActiveKungFuList(SyncActiveKungFuListMessage message) 
     {
         FootKungFu = message.FootKungFu;
-        AttackKungFu = message.AttackKungFu;
-        ProtectionKungFu = message.ProtectionKungFu;
-        AssistantKungFu = message.AssistantKungFu;
-        BreathKungFu = message.BreathKungFu;
-        EmitEvent(CharacterEvent.Join(this));
     }
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnx66jyukm7f2"]
 
-[ext_resource type="Script" uid="uid://c3hx04cingw62" path="res://code/ui/TextBubble.cs" id="1_jnlly"]
+[ext_resource type="Script" uid="uid://c3hx04cingw62" path="res://code/hud/TextBubble.cs" id="1_jnlly"]
 [ext_resource type="Theme" uid="uid://b8hbldyojfhb1" path="res://scene/text_bubble.tres" id="2_qdip0"]
 
 [node name="TextBubble" type="RichTextLabel"]

@@ -89,6 +89,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     private StringName _finished;
 
+    private string _effect;
+
     public override void _Ready()
     {
         _spriteLoader = ZipFileSpriteLoader.Instance;
@@ -662,13 +664,56 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         UpdateSpriteIfSitFinished("RightWrist", _rightWristTextureIdx, _rightWristOffsetIdx);
     }
 
-    public void SetBladeEffectAnimation(string name)
+    private void SetEffectAnimation(string name, AttackAction action1, AttackAction? action2 = null, int action2SpriteNumber = 0, int action2Offset = 0)
     {
+        if (name.Equals(_effect))
+        {
+            return;
+        }
+        _effect = name;
         var sprites = _spriteLoader.Load(name);
-        UpdateNodeAnimationLibrary(AttackAction.Sword1H.ToString(), _attackEffectTextureIdx, _attackEffectOffsetIdx, sprites);
-        int index = Sword1HSpriteNumber * DirectionNumber;
-        var tmp = new OffsetTexture[Sword1HSpriteNumber * DirectionNumber];
-        Array.Copy(sprites, index, tmp, 0, tmp.Length);
-        UpdateNodeAnimationLibrary(AttackAction.Blade2H.ToString(), _attackEffectTextureIdx, _attackEffectOffsetIdx, tmp);
+        UpdateNodeAnimationLibrary(action1.ToString(), _attackEffectTextureIdx, _attackEffectOffsetIdx, sprites);
+        if (action2 == null)
+        {
+            return;
+        }
+        var tmp = new OffsetTexture[action2SpriteNumber * DirectionNumber];
+        Array.Copy(sprites, action2Offset, tmp, 0, tmp.Length);
+        UpdateNodeAnimationLibrary(action2.Value.ToString(), _attackEffectTextureIdx, _attackEffectOffsetIdx, tmp);
+    }
+
+    public void SetEffectAnimationIfNamePresent(string name, AttackAction action)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            GetNode<Sprite2D>("../AttackEffect").Visible = false;
+            return;
+        }
+        switch (action)
+        {
+            case AttackAction.Kick:
+            case AttackAction.Punch:
+                SetEffectAnimation(name, AttackAction.Kick, AttackAction.Punch, PunchSpriteNumber, KickSpriteNumber * DirectionNumber);
+                break;
+            case AttackAction.Blade1H:
+            case AttackAction.Blade2H:
+                SetEffectAnimation(name, AttackAction.Sword1H, AttackAction.Blade2H, Blade2HSpriteNumber, Sword1HSpriteNumber * DirectionNumber);
+                break;
+            case AttackAction.Sword1H:
+            case AttackAction.Sword2H:
+                SetEffectAnimation(name, AttackAction.Sword1H, AttackAction.Sword2H, Sword2HSpriteNumber, (Sword1HSpriteNumber + Blade2HSpriteNumber) * DirectionNumber);
+                break;
+            case AttackAction.Axe:
+            case AttackAction.Spear:
+                SetEffectAnimation(name, AttackAction.Axe);
+                break;
+            case AttackAction.Throw:
+                SetEffectAnimation(name, AttackAction.Sword1H);
+                break;
+            case AttackAction.Bow:
+                SetEffectAnimation(name, AttackAction.Bow);
+                break;
+        }
+        GetNode<Sprite2D>("../AttackEffect").Visible = true;
     }
 }

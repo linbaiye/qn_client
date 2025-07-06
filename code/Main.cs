@@ -4,7 +4,7 @@ using NLog;
 using QnClient.code.input;
 using QnClient.code.network;
 using QnClient.code.sprite;
-using QnClient.code.ui;
+using HUD = QnClient.code.hud.HUD;
 
 namespace QnClient.code;
 

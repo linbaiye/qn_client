@@ -1,5 +1,5 @@
 ﻿using Godot;
-using QnClient.code.ui;
+using TextBubble = QnClient.code.hud.TextBubble;
 
 namespace QnClient.code.debug;
 

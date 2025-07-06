@@ -1,8 +1,9 @@
 using System;
 using Godot;
 using QnClient.code.message;
-using QnClient.code.ui;
 using QnClient.code.util;
+using BodySprite = QnClient.code.entity.BodySprite;
+using TextBubble = QnClient.code.hud.TextBubble;
 
 namespace QnClient.code.entity;
 

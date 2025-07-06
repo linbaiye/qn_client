@@ -26,20 +26,5 @@ public interface ICharacter : ICreature
     
     FootKungFu? FootKungFu { get; }
     
-    string AttackKungFu { get; }
-    
-    string ProtectionKungFu{ get; }
-    
-    string BreathKungFu { get; }
-    
-    string AssistantKungFu { get; }
-    
     Connection Connection { get; }
-    ValueBar LifeBar { get; }
-    ValueBar PowerBar { get; }
-    ValueBar InnerPowerBar { get; }
-    ValueBar OuterPowerBar { get; }
-    ValueBar HeadLifeBar { get; }
-    ValueBar ArmLifeBar { get; }
-    ValueBar LegLifeBar { get; }
 }

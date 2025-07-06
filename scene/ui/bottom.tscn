@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxtgsrbww28cd"]
 
 [ext_resource type="Texture2D" uid="uid://848ebxjhtxgp" path="res://ui/hud/hud_bottom.png" id="1_nx1bh"]
-[ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/ui/bottom/Bottom.cs" id="2_8bsu8"]
+[ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/hud/bottom/Bottom.cs" id="2_8bsu8"]
 [ext_resource type="Texture2D" uid="uid://fr1w8gxhc48h" path="res://ui/hud/life_bar.png" id="2_q6f08"]
 [ext_resource type="Texture2D" uid="uid://wr2sy6sknwrw" path="res://ui/hud/hal_bar.png" id="3_378wf"]
 [ext_resource type="Texture2D" uid="uid://btlyxppsvu1lk" path="res://ui/hud/power_bar.png" id="3_m2yg2"]
 [ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom.tres" id="5_ydt51"]
-[ext_resource type="Script" uid="uid://bcbnx6d4w7vio" path="res://code/ui/bottom/ActiveKungFuList.cs" id="7_67i83"]
-[ext_resource type="Script" uid="uid://q5ee2aaqao31" path="res://code/ui/bottom/TextArea.cs" id="8_3hfix"]
+[ext_resource type="Script" uid="uid://bcbnx6d4w7vio" path="res://code/hud/bottom/ActiveKungFuList.cs" id="7_67i83"]
+[ext_resource type="Script" uid="uid://q5ee2aaqao31" path="res://code/hud/bottom/TextArea.cs" id="8_3hfix"]
 
 [node name="Bottom" type="NinePatchRect"]
 custom_minimum_size = Vector2(1024, 198)

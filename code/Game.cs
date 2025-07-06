@@ -7,8 +7,8 @@ using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player;
-using QnClient.code.ui;
 using Character = QnClient.code.player.character.Character;
+using HUD = QnClient.code.hud.HUD;
 
 namespace QnClient.code;
 
@@ -75,9 +75,10 @@ public partial class Game : Node2D
                 case IEntityMessage entityMessage:
                     _entityManager.Find(entityMessage.Id)?.HandleEntityMessage(entityMessage);
                     break;
-                case IHUDMessage hudMessage:
-                    hudMessage.Accept(_hud);
-                    break;
+            }
+            if (msg is IHUDMessage hudMessage)
+            {
+                hudMessage.Accept(_hud);
             }
         }
     }

@@ -20,6 +20,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
 
     public void SetPosition(SetPositionMessage message)
     {
+        Mover = null;
         DoSetPosition(message.Coordinate, message.State, message.Direction);
     }
 
@@ -27,7 +28,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
     {
         if (message.Action == null)
             throw new NotSupportedException();
-        Position = message.From.ToPosition();
+        Position = message.Start.ToPosition();
         PlayMoveAnimation(message.Action.Value, message.Direction);
         CreateMover(message.Action.Value, message.Direction);
     }
@@ -64,17 +65,18 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
             snapshotEquipMessage.Accept(this);
         }
         EmitEvent(new EntityChangeCoordinateEvent(this));
-        GD.Print("Created player " + Id);
     }
 
     public void ChangeState(PlayerState newState, CreatureDirection direction)
     {
+        Mover = null;
         PlayStateAnimation(newState, direction);
     }
     
-    public void Attack(AttackAction action, CreatureDirection direction)
+    public void Attack(AttackAction action, CreatureDirection direction, string effect)
     {
-        PlayAttackAnimation(action, direction);
+        Mover = null;
+        PlayAttackAnimation(action, direction, effect);
     }
 
     private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
