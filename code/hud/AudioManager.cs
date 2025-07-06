@@ -49,13 +49,14 @@ public partial class AudioManager : Node
         }
         foreach (var t in _soundPlayers)
         {
-            if (!t.Playing)
+            if (t.Playing) continue;
+            var stream = LoadSound(sound);
+            if (stream != null)
             {
-                var stream = LoadSound(sound);
                 t.Stream = stream;
                 t.Play();
-                break;
             }
+            break;
         }
     }
 
