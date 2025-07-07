@@ -1,7 +1,6 @@
 ﻿using Godot;
 using NLog;
 using QnClient.code.entity;
-using QnClient.code.entity.@event;
 using QnClient.code.input;
 using QnClient.code.map;
 using QnClient.code.message;
