@@ -20,4 +20,8 @@ public interface IPlayerMessageHandler : IEntityMessageHandler
     void Unequip(EquipmentType type);
     
     void Attack(AttackAction action, CreatureDirection direction, string effect);
+    
+    void ShowLifeBar(int percent);
+
+
 }

@@ -37,6 +37,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.PositionPacket => SetPositionMessage.FromPacket(packet.PositionPacket),
             Packet.TypedPacketOneofCase.PlayerSetPosition => SetPositionMessage.FromPacket(packet.PlayerSetPosition),
             Packet.TypedPacketOneofCase.EntitySound => new SoundMessage(packet.EntitySound.EntityName, packet.EntitySound.Sound),
+            Packet.TypedPacketOneofCase.PlayerDamaged => PlayerDamagedMessage.FromPacket(packet.PlayerDamaged),
             _ => null,
         };
     }

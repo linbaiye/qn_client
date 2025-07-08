@@ -24,6 +24,8 @@ public partial class BodySprite: Sprite2D
         _mouseArea.Clicked += () => Clicked?.Invoke();
         _mouseArea.AttackInvoked += () => AttackInvoked?.Invoke();
     }
+    
+    public Vector2 Center => new(_mouseArea.Size.X / 2 + Offset.X, _mouseArea.Size.Y / 2 + Offset.Y);
 
     public Vector2 XCenterY => new(_mouseArea.Size.X / 2 + Offset.X, Offset.Y);
 }

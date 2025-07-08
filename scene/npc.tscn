@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bar3f645sox4s"]
+[gd_scene load_steps=7 format=3 uid="uid://bar3f645sox4s"]
 
 [ext_resource type="Script" uid="uid://cqmthwdfgvgtu" path="res://code/entity/Npc.cs" id="1_rnog4"]
 [ext_resource type="Script" uid="uid://dn8dv61le8ouc" path="res://code/entity/MonsterAnimationPlayer.cs" id="2_7ngcd"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_rnog4"]
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="4_8oust"]
+[ext_resource type="Theme" uid="uid://b8hbldyojfhb1" path="res://scene/text_bubble.tres" id="4_pesj1"]
+[ext_resource type="PackedScene" uid="uid://dagprws1ut6fs" path="res://scene/life_bar.tscn" id="6_06vv4"]
 
 [node name="Npc" type="Node2D"]
 script = ExtResource("1_rnog4")
@@ -28,9 +30,12 @@ offset_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_pesj1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextBubble" parent="." instance=ExtResource("4_8oust")]
 z_index = 5
 z_as_relative = false
+
+[node name="LifeBar" parent="." instance=ExtResource("6_06vv4")]

@@ -2,7 +2,6 @@ using System;
 using Godot;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
-using QnClient.code.hud;
 using QnClient.code.message;
 using QnClient.code.util;
 using BodySprite = QnClient.code.entity.BodySprite;
@@ -275,7 +274,7 @@ public abstract partial class AbstractPlayer : AbstractCreature
                 break;
         }
     }
-
+    
     protected void PlayAttackAnimation(AttackAction action, CreatureDirection direction, string effect, int startMillis = 0)
     {
         _animationPlayer.SetEffectAnimationIfNamePresent(effect, action);

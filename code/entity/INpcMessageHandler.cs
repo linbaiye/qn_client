@@ -13,4 +13,7 @@ public interface INpcMessageHandler : IEntityMessageHandler
     void Initialize(NpcSnapshot snapshot);
 
     void Say(CreatureSayMessage message);
+    
+    void ShowLifeBar(int percent);
+
 }

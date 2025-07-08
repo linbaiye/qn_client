@@ -149,6 +149,11 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         ChangeState(CharacterWaitingState.Instance);
     }
 
+    public void Damaged(PlayerDamagedMessage message)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void SyncActiveKungFuList(SyncActiveKungFuListMessage message) 
     {
         FootKungFu = message.FootKungFu;

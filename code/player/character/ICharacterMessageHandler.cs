@@ -20,4 +20,6 @@ public interface ICharacterMessageHandler
 
     void Attack(AttackAction action, CreatureDirection direction, string effect);
 
+    void ShowLifeBar(int percent);
+
 }
