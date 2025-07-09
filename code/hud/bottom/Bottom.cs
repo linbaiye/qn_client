@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using QnClient.code.message;
+using QnClient.code.player;
 
 namespace QnClient.code.hud.bottom;
 
@@ -23,9 +24,12 @@ public partial class Bottom : NinePatchRect
     public event Action? KungFuBookButtonPressed;
     public event Action? AssistanceButtonPressed;
     public event Action? SystemButtonPressed;
+    
     private TextArea _textArea;
 
     private EquipView _equipView;
+    
+    public event Action<EquipmentType>? UnequipPressed;
 
     public override void _Ready()
     {
@@ -46,6 +50,7 @@ public partial class Bottom : NinePatchRect
         GetNode<Button>("Assistance").Pressed += () => AssistanceButtonPressed?.Invoke();
         GetNode<Button>("System").Pressed += () => SystemButtonPressed?.Invoke();
         _equipView = GetNode<EquipView>("EquipView");
+        _equipView.UnequipPressed += type => UnequipPressed?.Invoke(type);
     }
 
     private void FillBar(TextureProgressBar bar, int value, string tooltip)
@@ -111,5 +116,15 @@ public partial class Bottom : NinePatchRect
         FillBar(_headLifeBar, message.Head, message.Head.ToString());
         FillBar(_armLifeBar, message.Arm, message.Arm.ToString());
         FillBar(_legLifeBar, message.Leg, message.Leg.ToString());
+    }
+
+    public void Unequip(EquipmentType type)
+    {
+        _equipView.Unequip(type);
+    }
+
+    public void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null)
+    {
+        _equipView.Equip(type, prefix, name, color, pairedPrefix);
     }
 }

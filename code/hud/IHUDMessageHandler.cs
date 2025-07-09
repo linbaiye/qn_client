@@ -1,4 +1,5 @@
 using QnClient.code.message;
+using QnClient.code.player;
 
 namespace QnClient.code.hud;
 
@@ -24,5 +25,9 @@ public interface IHUDMessageHandler
     void KungFuGainExp(string name, int level);
 
     void BlinkText(string text);
+
+    void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null);
+    
+    void Unequip(EquipmentType type);
 
 }

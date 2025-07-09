@@ -10,7 +10,7 @@ shader_parameter/deform = Vector2(0.3, 0.2)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/modulate = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xi8q5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofaag"]
 
 [node name="Body" type="Sprite2D"]
 material = SubResource("ShaderMaterial_wjvvu")
@@ -20,5 +20,5 @@ script = ExtResource("2_w6pjy")
 [node name="MouseArea" type="Panel" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_xi8q5")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ofaag")
 script = ExtResource("3_ofaag")

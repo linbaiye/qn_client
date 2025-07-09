@@ -2,8 +2,10 @@ using Godot;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
+using QnClient.code.input;
 using QnClient.code.message;
 using QnClient.code.network;
+using QnClient.code.player;
 using QnClient.code.player.character;
 using Bottom = QnClient.code.hud.bottom.Bottom;
 using Inventory = QnClient.code.hud.inventory.Inventory;
@@ -34,8 +36,16 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _inventory = GetNode<Inventory>("Inventory");
         _inventory.ItemDragRelesed += OnInventoryItemDragReleased;
         _audioManager = GetNode<AudioManager>("AudioManager");
+        _bottom.UnequipPressed += UnequipPressed;
         Visible = false;
     }
+
+    private void UnequipPressed(EquipmentType t)
+    {
+        _connection.WriteAndFlush(new UnequipInput(t));
+    }
+        
+    
 
     public void CharacterEventHandler(IEntityEvent entityEvent)
     {
@@ -75,6 +85,16 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void BlinkText(string text)
     {
         _bottom.BlinkText(text);
+    }
+
+    public void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null)
+    {
+        _bottom.Equip(type, prefix, name, color, pairedPrefix);
+    }
+
+    public void Unequip(EquipmentType type)
+    {
+        _bottom.Unequip(type);
     }
 
     public void DisplayText(string text)

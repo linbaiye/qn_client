@@ -39,3 +39,4 @@ z_index = 5
 z_as_relative = false
 
 [node name="LifeBar" parent="." instance=ExtResource("6_06vv4")]
+offset_bottom = 2.0

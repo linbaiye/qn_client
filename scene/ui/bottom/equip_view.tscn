@@ -1,7 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3emj3mvd5bf0"]
+[gd_scene load_steps=12 format=3 uid="uid://c3emj3mvd5bf0"]
 
 [ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom/bottom.tres" id="1_4ali5"]
 [ext_resource type="Script" uid="uid://cnimkn4rj5ry5" path="res://code/hud/bottom/EquipView.cs" id="1_ruhb1"]
+[ext_resource type="Shader" uid="uid://cpk0addbvfhxh" path="res://shader/Dyer.gdshader" id="2_d6nge"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tv7e1"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6nge"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7weuy"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v8s0"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkx2x"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uagll"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sb6nk"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_527r4"]
+shader = ExtResource("2_d6nge")
+shader_parameter/ar = 0.0
+shader_parameter/ag = 0.0
+shader_parameter/ab = 0.0
+shader_parameter/add = 0.0
 
 [node name="EquipView" type="NinePatchRect"]
 self_modulate = Color(1, 1, 1, 0)
@@ -14,40 +71,48 @@ script = ExtResource("1_ruhb1")
 y_sort_enabled = true
 layout_mode = 2
 
-[node name="Trouser" type="TextureButton" parent="."]
+[node name="Leg" type="TextureButton" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_tv7e1")
 layout_mode = 2
 
 [node name="Boot" type="TextureButton" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_d6nge")
 layout_mode = 0
 
-[node name="Clothing" type="TextureButton" parent="."]
+[node name="Vest" type="TextureButton" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_7weuy")
 layout_mode = 0
 
-[node name="Chest" type="TextureButton" parent="."]
+[node name="Hair" type="TextureButton" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_0v8s0")
+layout_mode = 0
+
+[node name="Hat" type="TextureButton" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_mkx2x")
 layout_mode = 0
 
 [node name="Weapon" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 2
 
+[node name="Armor" type="TextureButton" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_uagll")
+layout_mode = 0
+
 [node name="LeftWrist" type="TextureButton" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_sb6nk")
 layout_mode = 0
 
 [node name="RightWrist" type="TextureButton" parent="."]
 y_sort_enabled = true
-layout_mode = 0
-
-[node name="Hair" type="TextureButton" parent="."]
-y_sort_enabled = true
-layout_mode = 0
-
-[node name="Hat" type="TextureButton" parent="."]
-y_sort_enabled = true
+material = SubResource("ShaderMaterial_527r4")
 layout_mode = 0
 
 [node name="EquipText" type="Label" parent="."]

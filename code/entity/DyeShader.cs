@@ -51,7 +51,6 @@ public static class DyeShader
         shaderMaterial.SetShaderParameter("add", add / Max);
     }
 
-
     public static ShaderMaterial CreateShaderMaterial(int clrIndex)
     {
         var shader = ResourceLoader.Load<Shader>("res://shader/Dyer.gdshader");

@@ -1,12 +1,13 @@
+using QnClient.code.hud;
 using QnClient.code.player;
 using QnClient.code.player.character;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage
+public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage, IHUDMessage
 {
-    private PlayerEquipMessage(long id, int color, EquipmentType type, WeaponType weaponType, string spritePrefix, string pairedSpritePrefix)
+    private PlayerEquipMessage(long id, int color, string name, EquipmentType type, WeaponType weaponType, string spritePrefix, string pairedSpritePrefix)
     {
         Id = id;
         Color = color;
@@ -14,7 +15,12 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage
         WeaponType = weaponType;
         SpritePrefix = spritePrefix;
         PairedSpritePrefix = pairedSpritePrefix;
+        Name = name;
     }
+
+    public string Name { get; }
+
+    private bool BelongToCharacter { get; set; } = false;
 
     public long Id { get; }
     
@@ -38,11 +44,18 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage
         EquipmentType equipmentType = (EquipmentType)packet.EquipmentType;
         WeaponType weaponType = equipmentType == EquipmentType.Weapon ? (WeaponType)packet.WeaponType : WeaponType.None;
         var paired = equipmentType == EquipmentType.Wrist ? packet.PairedPrefix : "";
-        return new PlayerEquipMessage(packet.Id, packet.Color, equipmentType, weaponType, packet.Prefix, paired);
+        return new PlayerEquipMessage(packet.Id, packet.Color, packet.Name, equipmentType, weaponType, packet.Prefix, paired);
     }
 
     public void Accept(ICharacterMessageHandler handler)
     {
+        BelongToCharacter = true;
         handler.Equip(this);
+    }
+
+    public void Accept(IHUDMessageHandler handler)
+    {
+        if (BelongToCharacter)
+            handler.Equip(Type, SpritePrefix, Name, Color, PairedSpritePrefix);
     }
 }

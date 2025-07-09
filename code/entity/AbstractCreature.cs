@@ -35,7 +35,6 @@ public abstract partial class AbstractCreature : Node2D, IEntity
         var label = GetNode<Label>("Name");
         label.Text = name;
         label.Visible = false;
-
     }
 
     public long Id { get; private set; }

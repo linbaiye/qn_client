@@ -155,3 +155,4 @@ clip_contents = false
 text = ""
 
 [node name="LifeBar" parent="." instance=ExtResource("7_hp4bs")]
+offset_bottom = 2.0
