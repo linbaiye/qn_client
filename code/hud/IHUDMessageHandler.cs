@@ -19,4 +19,6 @@ public interface IHUDMessageHandler
     
     void PlaySound(string entityName, string soundName);
 
+    void UpdateLifeBars(PlayerDamagedMessage message);
+
 }

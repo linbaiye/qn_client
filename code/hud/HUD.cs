@@ -104,6 +104,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _audioManager.PlaySound(entityName, soundName);
     }
 
+    public void UpdateLifeBars(PlayerDamagedMessage message)
+    {
+        _bottom.UpdateLifeBars(message);
+    }
+
     public void OnSystemButtonPressed()
     {
         GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);

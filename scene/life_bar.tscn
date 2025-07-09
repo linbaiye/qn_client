@@ -6,8 +6,8 @@
 [node name="LifeBar" type="TextureProgressBar"]
 z_index = 5
 z_as_relative = false
-offset_right = 98.0
-offset_bottom = 7.0
+offset_right = 26.0
+offset_bottom = 3.0
 value = 10.0
 nine_patch_stretch = true
 texture_under = ExtResource("1_xy2hk")

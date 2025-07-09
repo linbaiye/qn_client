@@ -14,7 +14,9 @@ public partial class LifeBar: TextureProgressBar
     }
     public void Show(int value, Vector2 xcenterY)
     {
-        Position = new Vector2(xcenterY.X - Size.X / 2, xcenterY.Y - 6);
+        if (!Visible)
+            Position = new Vector2(xcenterY.X - Size.X / 2, xcenterY.Y - 6);
+        Value = value;
         _timer.Stop();
         Visible = true;
         _timer.Start(3);

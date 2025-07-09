@@ -13,6 +13,7 @@ public class PlayerDamagedMessage(long id, ValueBar life, int head, int arm, int
     public int Head { get; } = head;
     public int Arm { get; } = arm;
     public int Leg { get; } = leg;
+    
     public void Accept(ICharacterMessageHandler handler)
     {
         handler.ShowLifeBar(life.Percent);
@@ -20,8 +21,8 @@ public class PlayerDamagedMessage(long id, ValueBar life, int head, int arm, int
 
     public void Accept(IHUDMessageHandler handler)
     {
+        handler.UpdateLifeBars(this);
     }
-
     public static PlayerDamagedMessage FromPacket(PlayerDamagedPacket packet)
     {
         return new PlayerDamagedMessage(packet.Id, new ValueBar(packet.CurLife, packet.MaxLife), packet.HeadPercent,

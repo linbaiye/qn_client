@@ -87,4 +87,12 @@ public partial class Bottom : NinePatchRect
         FillBar(_armLifeBar, message.ArmPercent, message.ArmPercent.ToString());
         FillBar(_legLifeBar, message.LegPercent, message.LegPercent.ToString());
     }
+    
+    public void UpdateLifeBars(PlayerDamagedMessage message)
+    {
+        FillBar(_lifeBar, message.LifeBar.Percent, message.LifeBar.Text);
+        FillBar(_headLifeBar, message.Head, message.Head.ToString());
+        FillBar(_armLifeBar, message.Arm, message.Arm.ToString());
+        FillBar(_legLifeBar, message.Leg, message.Leg.ToString());
+    }
 }

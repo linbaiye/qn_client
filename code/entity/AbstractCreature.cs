@@ -82,6 +82,5 @@ public abstract partial class AbstractCreature : Node2D, IEntity
     public void Say(CreatureSayMessage sayMessage)
     {
         _textBubble.Display(sayMessage.Text, _bodySprite.XCenterY);
-        _lifeBar.Show(10, _bodySprite.XCenterY);
     }
 }
