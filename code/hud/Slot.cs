@@ -74,6 +74,12 @@ public partial class Slot : CenterContainer
             _slotButton.Material = DyeShader.CreateShaderMaterial(color);
     }
 
+    public string Tip
+    {
+        get => _slotButton.TooltipText;
+        set => _slotButton.TooltipText = value;
+    }
+
     public void Clear()
     {
         _slotButton.TextureNormal = null;

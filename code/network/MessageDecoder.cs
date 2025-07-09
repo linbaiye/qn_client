@@ -39,6 +39,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.EntitySound => new SoundMessage(packet.EntitySound.EntityName, packet.EntitySound.Sound),
             Packet.TypedPacketOneofCase.PlayerDamaged => PlayerDamagedMessage.FromPacket(packet.PlayerDamaged),
             Packet.TypedPacketOneofCase.EntityDamaged => new EntityLifeBarMessage(packet.EntityDamaged.Id, packet.EntityDamaged.Percent),
+            Packet.TypedPacketOneofCase.GainExp => packet.GainExp.KungFu ? new KungFuGainExpMessage(packet.GainExp.Level, packet.GainExp.Name) : new GainExpMessage(packet.GainExp.Name),
             _ => null,
         };
     }

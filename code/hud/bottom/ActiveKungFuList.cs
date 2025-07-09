@@ -6,23 +6,30 @@ namespace QnClient.code.hud.bottom;
 public partial class ActiveKungFuList : VBoxContainer
 {
 
-    private RichTextLabel[] _kungFuArray = new RichTextLabel[4];
+    private BlinkingLabel[] _kungFuArray = new BlinkingLabel[4];
     public override void _Ready()
     {
         for (var i = 0; i < 4; i++)
         {
-            _kungFuArray[i] = GetNode<RichTextLabel>("KungFu" + i);
+            _kungFuArray[i] = GetNode<BlinkingLabel>("KungFu" + i);
         }
     }
 
-    private string MakeText(string text)
-    {
-        return "[center]" + text + "[/center]";
-    }
 
     public void SetAttackKungFu(string name)
     {
-        _kungFuArray[0].Text = MakeText(name);
+        _kungFuArray[0].SetKungFuName(name);
+    }
+
+    public void BlinkKungFu(string name)
+    {
+        foreach (var activeKungFuLabel in _kungFuArray)
+        {
+            if (activeKungFuLabel.BlinkIfMatches(name))
+            {
+                break;
+            }
+        }
     }
     
     public void SyncActiveKungFu(SyncActiveKungFuListMessage message)
@@ -32,14 +39,14 @@ public partial class ActiveKungFuList : VBoxContainer
             label.Text = "";
         }
         int index = 0;
-        _kungFuArray[index++].Text = MakeText(message.AttackKungFu);
+        _kungFuArray[index++].SetKungFuName(message.AttackKungFu);
         if (!string.IsNullOrEmpty(message.ProtectionKungFu)) 
-            _kungFuArray[index++].Text = MakeText(message.ProtectionKungFu);
+            _kungFuArray[index++].SetKungFuName(message.ProtectionKungFu);
         if (!string.IsNullOrEmpty(message.BreathKungFu)) 
-            _kungFuArray[index++].Text = MakeText(message.BreathKungFu);
+            _kungFuArray[index++].SetKungFuName(message.BreathKungFu);
         if (!string.IsNullOrEmpty(message.AssistantKungFu))
-            _kungFuArray[index++].Text = MakeText(message.AssistantKungFu);
+            _kungFuArray[index++].SetKungFuName(message.AssistantKungFu);
         if (message.FootKungFu != null)
-            _kungFuArray[index].Text = MakeText(message.FootKungFu.Name);
+            _kungFuArray[index].SetKungFuName(message.FootKungFu.Name);
     }
 }

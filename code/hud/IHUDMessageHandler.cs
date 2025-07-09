@@ -21,4 +21,8 @@ public interface IHUDMessageHandler
 
     void UpdateLifeBars(PlayerDamagedMessage message);
 
+    void KungFuGainExp(string name, int level);
+
+    void BlinkText(string text);
+
 }

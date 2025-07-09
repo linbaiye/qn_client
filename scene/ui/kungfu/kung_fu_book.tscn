@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bnrgbxn7sip6r" path="res://scene/ui/kungfu.tres" id="1_nf4rs"]
 [ext_resource type="Texture2D" uid="uid://d16ke1cg8vfkp" path="res://ui/kungfu/kungfu.png" id="1_xuyn1"]
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom.tres" id="2_uxxlc"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom/bottom.tres" id="2_uxxlc"]
 [ext_resource type="Script" uid="uid://brce2oqt2iu5e" path="res://code/hud/kungfu/KungFuBook.cs" id="3_2jh5i"]
 [ext_resource type="PackedScene" uid="uid://c2e0aa3ffa4em" path="res://scene/ui/kungfu/kung_fu_tab.tscn" id="5_yo8yw"]
 

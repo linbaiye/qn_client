@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxtgsrbww28cd"]
+[gd_scene load_steps=11 format=3 uid="uid://bxtgsrbww28cd"]
 
 [ext_resource type="Texture2D" uid="uid://848ebxjhtxgp" path="res://ui/hud/hud_bottom.png" id="1_nx1bh"]
 [ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/hud/bottom/Bottom.cs" id="2_8bsu8"]
 [ext_resource type="Texture2D" uid="uid://fr1w8gxhc48h" path="res://ui/hud/life_bar.png" id="2_q6f08"]
 [ext_resource type="Texture2D" uid="uid://wr2sy6sknwrw" path="res://ui/hud/hal_bar.png" id="3_378wf"]
 [ext_resource type="Texture2D" uid="uid://btlyxppsvu1lk" path="res://ui/hud/power_bar.png" id="3_m2yg2"]
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom.tres" id="5_ydt51"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom/bottom.tres" id="5_ydt51"]
 [ext_resource type="Script" uid="uid://bcbnx6d4w7vio" path="res://code/hud/bottom/ActiveKungFuList.cs" id="7_67i83"]
 [ext_resource type="Script" uid="uid://q5ee2aaqao31" path="res://code/hud/bottom/TextArea.cs" id="8_3hfix"]
+[ext_resource type="PackedScene" uid="uid://c2mb51tivs363" path="res://scene/ui/blinking_lable.tscn" id="8_mkk8q"]
+[ext_resource type="PackedScene" uid="uid://c3emj3mvd5bf0" path="res://scene/ui/bottom/equip_view.tscn" id="10_w6ao7"]
 
 [node name="Bottom" type="NinePatchRect"]
 custom_minimum_size = Vector2(1024, 198)
@@ -127,33 +129,17 @@ offset_right = 126.0
 offset_bottom = 158.0
 script = ExtResource("7_67i83")
 
-[node name="KungFu0" type="RichTextLabel" parent="ActiveKungFuList"]
-custom_minimum_size = Vector2(0, 15)
+[node name="KungFu0" parent="ActiveKungFuList" instance=ExtResource("8_mkk8q")]
 layout_mode = 2
-theme = ExtResource("5_ydt51")
-bbcode_enabled = true
-text = "[center]无名步法[/center]"
 
-[node name="KungFu1" type="RichTextLabel" parent="ActiveKungFuList"]
-custom_minimum_size = Vector2(0, 15)
+[node name="KungFu1" parent="ActiveKungFuList" instance=ExtResource("8_mkk8q")]
 layout_mode = 2
-theme = ExtResource("5_ydt51")
-bbcode_enabled = true
-text = "[center]无名拳法[/center]"
 
-[node name="KungFu2" type="RichTextLabel" parent="ActiveKungFuList"]
-custom_minimum_size = Vector2(0, 15)
+[node name="KungFu2" parent="ActiveKungFuList" instance=ExtResource("8_mkk8q")]
 layout_mode = 2
-theme = ExtResource("5_ydt51")
-bbcode_enabled = true
-text = "[center]黑纱刚体[/center]"
 
-[node name="KungFu3" type="RichTextLabel" parent="ActiveKungFuList"]
-custom_minimum_size = Vector2(0, 15)
+[node name="KungFu3" parent="ActiveKungFuList" instance=ExtResource("8_mkk8q")]
 layout_mode = 2
-theme = ExtResource("5_ydt51")
-bbcode_enabled = true
-text = "[center]灵动八方[/center]"
 
 [node name="Coordinate" type="Label" parent="."]
 layout_mode = 0
@@ -218,3 +204,18 @@ layout_mode = 2
 theme = ExtResource("5_ydt51")
 bbcode_enabled = true
 text = "测试5"
+
+[node name="EquipView" parent="." instance=ExtResource("10_w6ao7")]
+layout_mode = 0
+offset_left = 762.0
+offset_top = 76.0
+offset_right = 844.0
+offset_bottom = 177.0
+
+[node name="BlinkingLable" parent="." instance=ExtResource("8_mkk8q")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 0
+offset_left = 762.0
+offset_top = 176.0
+offset_right = 844.0
+offset_bottom = 190.0

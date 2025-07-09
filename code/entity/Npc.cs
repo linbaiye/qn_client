@@ -29,17 +29,8 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
                 CreateMover(snapshot.Direction, (float)snapshot.ElapsedMillis / 1000);
                 _animationPlayer.PlayMove(snapshot.Direction, snapshot.ElapsedMillis);
                 break;
-            case NpcState.Idle:
-                _animationPlayer.PlayIdle(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case NpcState.Attack:
-                _animationPlayer.PlayAttack(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case NpcState.Die:
-                _animationPlayer.PlayDie(snapshot.Direction, snapshot.ElapsedMillis);
-                break;
-            case NpcState.Hurt:
-                _animationPlayer.PlayHurt(snapshot.Direction, snapshot.ElapsedMillis);
+            default:
+                _animationPlayer.Play(snapshot.NpcState, snapshot.Direction, snapshot.ElapsedMillis);
                 break;
         }
         Visible = true;

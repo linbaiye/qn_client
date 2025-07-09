@@ -15,13 +15,17 @@ public partial class Bottom : NinePatchRect
     private TextureProgressBar _legLifeBar;
     private Label _coordinate;
     private Label _mapName;
-    private hud.bottom.ActiveKungFuList _activeKungFuList;
+    private ActiveKungFuList _activeKungFuList;
+
+    private BlinkingLabel _blinkingLabel;
 
     public event Action? InventoryButtonPressed;
     public event Action? KungFuBookButtonPressed;
     public event Action? AssistanceButtonPressed;
     public event Action? SystemButtonPressed;
     private TextArea _textArea;
+
+    private EquipView _equipView;
 
     public override void _Ready()
     {
@@ -35,11 +39,13 @@ public partial class Bottom : NinePatchRect
         _coordinate = GetNode<Label>("Coordinate");
         _mapName = GetNode<Label>("MapName");
         _textArea = GetNode<TextArea>("TextArea");
-        _activeKungFuList = GetNode<hud.bottom.ActiveKungFuList>("ActiveKungFuList");
+        _activeKungFuList = GetNode<ActiveKungFuList>("ActiveKungFuList");
+        _blinkingLabel = GetNode<BlinkingLabel>("BlinkingLable");
         GetNode<Button>("Inventory").Pressed += () => InventoryButtonPressed?.Invoke();
         GetNode<Button>("KungFu").Pressed += () => KungFuBookButtonPressed?.Invoke();
         GetNode<Button>("Assistance").Pressed += () => AssistanceButtonPressed?.Invoke();
         GetNode<Button>("System").Pressed += () => SystemButtonPressed?.Invoke();
+        _equipView = GetNode<EquipView>("EquipView");
     }
 
     private void FillBar(TextureProgressBar bar, int value, string tooltip)
@@ -56,6 +62,16 @@ public partial class Bottom : NinePatchRect
     public void DisplayText(string text)
     {
         _textArea.Display(text);
+    }
+
+    public void BlinkKungFu(string name)
+    {
+        _activeKungFuList.BlinkKungFu(name);
+    }
+
+    public void BlinkText(string text)
+    {
+        _blinkingLabel.BlinkThenHide(text);
     }
 
     public void UpdateCoordinate(Vector2I coordinate)
@@ -75,6 +91,7 @@ public partial class Bottom : NinePatchRect
         UpdateCoordinate(message.Coordinate);
         _activeKungFuList.SetAttackKungFu(message.AttackKungFu);
         _mapName.Text = message.ResourceName;
+        _equipView.OnCharacterJoined(message);
     }
 
     public void UpdateAttribute(AttributeMessage message)

@@ -162,59 +162,42 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
         }
     }
     
-    public void PlayIdle(CreatureDirection direction)
+    public void Play(NpcState state, CreatureDirection direction, int fromMillis = 0)
     {
-        Play(NpcState.Idle + "/" + direction);
-    }
-
-    public void Play(NpcState state, CreatureDirection direction)
-    {
-        Play(state + "/" + direction);
+        Play(state + "/" + direction, (float)fromMillis / 1000);
     }
     
-    public void PlayIdle(CreatureDirection direction, int fromMillis)
+    public void PlayIdle(CreatureDirection direction, int fromMillis = 0)
     {
         PlaySection(NpcState.Idle + "/" + direction, (float)fromMillis / 1000);
     }
     
-    public void PlayMove(CreatureDirection direction)
-    {
-        Play(NpcState.Move+ "/" + direction);
-    }
     
-    public void PlayMove(CreatureDirection direction, int fromMillis)
+    public void PlayMove(CreatureDirection direction, int fromMillis = 0)
     {
         PlaySection(NpcState.Move+ "/" + direction, (float)fromMillis / 1000);
     }
     
-    public void PlayHurt(CreatureDirection direction)
-    {
-        Play(NpcState.Hurt + "/" + direction);
-    }
     
-    public void PlayHurt(CreatureDirection direction, int fromMillis)
+    public void PlayHurt(CreatureDirection direction, int fromMillis = 0)
     {
         PlaySection(NpcState.Hurt + "/" + direction, (float)fromMillis / 1000);
     }
     
-    public void PlayAttack(CreatureDirection direction)
-    {
-        Play(NpcState.Attack+ "/" + direction);
-    }
     
-    public void PlayAttack(CreatureDirection direction, int fromMillis)
+    public void PlayAttack(CreatureDirection direction, int fromMillis = 0)
     {
         PlaySection(NpcState.Attack + "/" + direction, (float)fromMillis / 1000);
     }
     
-    public void PlayDie(CreatureDirection direction)
-    {
-        Play(NpcState.Die+ "/" + direction);
-    }
-    
-    public void PlayDie(CreatureDirection direction, int fromMillis)
+    public void PlayDie(CreatureDirection direction, int fromMillis = 0)
     {
         PlaySection(NpcState.Die + "/" + direction, (float)fromMillis / 1000);
+    }
+    
+    public void PlayTurn(CreatureDirection direction, int fromMillis = 0)
+    {
+        PlaySection(NpcState.Turn+ "/" + direction, (float)fromMillis / 1000);
     }
     
 }

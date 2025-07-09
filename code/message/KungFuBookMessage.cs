@@ -13,12 +13,10 @@ public class KungFuBookMessage(List<KungFuBookMessage.KungFu> unnamed, List<Kung
     
     public readonly struct KungFu(int l, string name, int icon, int slot)
     {
-        private string Name { get; } = name;
-        private string Level { get; } = l / 100 + "." + (l % 100).ToString("00");
+        public string Name { get; } = name;
+        public int Level { get; } = l;
         public int Icon { get; } = icon;
         public int Slot { get; } = slot;
-
-        public string ToolTip => Name + ": " + Level;
     }
 
 

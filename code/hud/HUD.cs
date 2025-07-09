@@ -24,7 +24,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     
     private AudioManager _audioManager;
 
-    
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -65,6 +64,17 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void UpdateKungFuBookView(KungFuBookMessage message)
     {
         _kungFuBook.ShowKungFuBook(message, _connection);
+    }
+
+    public void KungFuGainExp(string name, int level)
+    {
+        _kungFuBook.KungFuGainExp(name, level);
+        _bottom.BlinkKungFu(name);
+    }
+
+    public void BlinkText(string text)
+    {
+        _bottom.BlinkText(text);
     }
 
     public void DisplayText(string text)

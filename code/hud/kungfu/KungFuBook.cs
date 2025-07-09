@@ -21,8 +21,8 @@ public partial class KungFuBook : AbstractSlotContainer
     private Texture2D[] _icons;
 
 
-    private hud.kungfu.KungFuTab _unnamedTab;
-    private hud.kungfu.KungFuTab _basicTab;
+    private KungFuTab _unnamedTab;
+    private KungFuTab _basicTab;
     
     private KungFuBookMessage _message;
     
@@ -108,12 +108,19 @@ public partial class KungFuBook : AbstractSlotContainer
         Logger.Debug("Slot {} right rleased.", number);
     }
 
+    private string FormatKungFuTip(string name, int l)
+    {
+        string level = l / 100 + "." + (l % 100).ToString("00");
+        return name + ": " + level;
+    }
+    
+
     private void RefreshKungFuSlots(List<KungFuBookMessage.KungFu> kungFuList)
     {
         ForeachSlot(slot => slot.SetTextureAndTip(_icons[0], ""));
         foreach (var kungFu in kungFuList)
         {
-            GetSlot(kungFu.Slot).SetTextureAndTip(_icons[kungFu.Icon], kungFu.ToolTip);
+            GetSlot(kungFu.Slot).SetTextureAndTip(_icons[kungFu.Icon], FormatKungFuTip(kungFu.Name, kungFu.Level));
         }
     }
     private void OnBasicPressed()
@@ -129,6 +136,19 @@ public partial class KungFuBook : AbstractSlotContainer
         _unnamedTab.GainFocus();
         _basicTab.LoseFocus();
         RefreshKungFuSlots(_message.Unnamed);
+    }
+
+    public void KungFuGainExp(string name, int level)
+    {
+        if (!Visible)
+            return;
+        ForeachSlot(s =>
+        {
+            if (s.Tip.StartsWith(name + ":"))
+            {
+                s.Tip = FormatKungFuTip(name, level);
+            }
+        });
     }
 
 

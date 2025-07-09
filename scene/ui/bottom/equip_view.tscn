@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3emj3mvd5bf0"]
+
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom/bottom.tres" id="1_4ali5"]
+[ext_resource type="Script" uid="uid://cnimkn4rj5ry5" path="res://code/hud/bottom/EquipView.cs" id="1_ruhb1"]
+
+[node name="EquipView" type="NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 82.0
+offset_bottom = 114.0
+draw_center = false
+script = ExtResource("1_ruhb1")
+
+[node name="Body" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 2
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="Trouser" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 2
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="Boot" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="Clothing" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+mouse_filter = 0
+
+[node name="Chest" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="Weapon" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 2
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="LeftWrist" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="RightWrist" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="Hair" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="Hat" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+mouse_filter = 0
+stretch_mode = 2
+
+[node name="EquipText" type="Label" parent="."]
+layout_mode = 0
+offset_right = 82.0
+offset_bottom = 14.0
+theme = ExtResource("1_4ali5")
+theme_override_colors/font_color = Color(0.898039, 0.890196, 0, 1)
+horizontal_alignment = 1
