@@ -10,64 +10,45 @@ offset_bottom = 114.0
 draw_center = false
 script = ExtResource("1_ruhb1")
 
-[node name="Body" type="TextureRect" parent="."]
+[node name="Body" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 2
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="Trouser" type="TextureRect" parent="."]
+[node name="Trouser" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 2
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="Boot" type="TextureRect" parent="."]
+[node name="Boot" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 0
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="Clothing" type="TextureRect" parent="."]
+[node name="Clothing" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 0
-mouse_filter = 0
 
-[node name="Chest" type="TextureRect" parent="."]
+[node name="Chest" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 0
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="Weapon" type="TextureRect" parent="."]
+[node name="Weapon" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 2
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="LeftWrist" type="TextureRect" parent="."]
+[node name="LeftWrist" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 0
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="RightWrist" type="TextureRect" parent="."]
+[node name="RightWrist" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 0
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="Hair" type="TextureRect" parent="."]
+[node name="Hair" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 0
-mouse_filter = 0
-stretch_mode = 2
 
-[node name="Hat" type="TextureRect" parent="."]
+[node name="Hat" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 0
-mouse_filter = 0
-stretch_mode = 2
 
 [node name="EquipText" type="Label" parent="."]
 layout_mode = 0
