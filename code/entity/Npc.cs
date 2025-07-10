@@ -54,6 +54,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
         Position = message.Start.ToPosition();
         _animationPlayer.PlayMove(message.Direction);
         CreateMover(message.Direction);
+        EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 
     public void SetPosition(SetPositionMessage message)
@@ -66,6 +67,9 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
 
     public void ChangeState(NpcChangeStateMessage message)
     {
+        Logger.Debug("Changed to {}.", message.State);
+        if (message.State == NpcState.Turn)
+            Logger.Debug("Turn .");
         Mover = null;
         _animationPlayer.Play(message.State,  message.Direction);
     }

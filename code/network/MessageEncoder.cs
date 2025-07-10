@@ -15,6 +15,5 @@ public class MessageEncoder : MessageToByteEncoder<I2ServerMessage>
     protected override void Encode(IChannelHandlerContext context, I2ServerMessage message, IByteBuffer output)
     {
         output.WriteBytes(message.ToPacket().ToByteArray());
-        Logger.Debug("Sent message.");
     }
 }

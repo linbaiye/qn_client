@@ -30,7 +30,6 @@ public class ZipFileMapTextureLoader
 		long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 		var zipPath = MakePath(fileName);
 		var texture2Ds = new Dictionary<int, Texture2D>();
-		GD.Print("Loading file:" + zipPath);
 		try
 		{
 			using var zipArchive = ZipUtil.LoadZipFile(zipPath);

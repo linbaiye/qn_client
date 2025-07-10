@@ -37,7 +37,7 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
     };
 
 
-    private void CreateAnimation(AnimationDescriptor descriptor, OffsetTexture[] sprites, Animation.LoopModeEnum loopModeEnum = Animation.LoopModeEnum.None)
+    private void CreateAnimation(AnimationDescriptor descriptor, OffsetTexture[] sprites, Animation.LoopModeEnum loopModeEnum, OffsetTexture[]? effect = null)
     {
         var animationLibrary = new AnimationLibrary();
         if (HasAnimationLibrary(descriptor.State.ToString()))
@@ -87,8 +87,16 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
             animation.TrackInsertKey(bodyOffsetIdx, time, textureOffset);
             animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
             animation.TrackInsertKey(mouseAreaSize, time, sprites[frameIndex].OriginalSize);
-            animation.TrackInsertKey(attackEffectTextureIdx, time, empty);
-            animation.TrackInsertKey(attackEffectOffsetIdx, time, Vector2.Zero);
+            if (effect != null)
+            {
+                animation.TrackInsertKey(attackEffectTextureIdx, time, effect[frameIndex].Texture);
+                animation.TrackInsertKey(attackEffectOffsetIdx, time, effect[frameIndex].Offset + VectorUtil.DefaultTextureOffset);
+            }
+            else
+            {
+                animation.TrackInsertKey(attackEffectTextureIdx, time, empty);
+                animation.TrackInsertKey(attackEffectOffsetIdx, time, Vector2.Zero);
+            }
             time += step;
         }
     }
@@ -136,7 +144,7 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
                 continue;
             }
             string action = tokens[1];
-            int frameTime = action.Equals("TURN") ? tokens[4].ToInt() * 10 : tokens[4].ToInt();
+            int frameTime = tokens[4].ToInt();
             if (MonsterActionMap.TryGetValue(action, out var state) && DirectionMap.TryGetValue(tokens[2], out var dire)) 
                 result.Add(new AnimationDescriptor(state, dire, ParseFrameIndices(tokens[3].ToInt(), tokens), frameTime));
         }
@@ -147,57 +155,33 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
 
     public void Initialize(string spriteName, string atd)
     {
-        if (!spriteName.EndsWith(".zip"))
-        {
-            spriteName += ".zip";
-        }
         var sprites = SpriteLoader.Load(spriteName);
+        OffsetTexture[]? effect = SpriteLoader.Exists(spriteName + "m")
+            ? SpriteLoader.Load(spriteName + "m")
+            : null;
         var animationDescriptors = LoadAnimationDescriptors(atd);
         foreach (var animationDescriptor in animationDescriptors)
         {
             if (animationDescriptor.State == NpcState.Idle)
-                CreateAnimation(animationDescriptor, sprites, Animation.LoopModeEnum.Pingpong);
+                CreateAnimation(animationDescriptor, sprites, Animation.LoopModeEnum.Pingpong, effect);
             else
-                CreateAnimation(animationDescriptor, sprites);
+                CreateAnimation(animationDescriptor, sprites, Animation.LoopModeEnum.None, effect);
         }
     }
     
     public void Play(NpcState state, CreatureDirection direction, int fromMillis = 0)
     {
+        Stop();
         Play(state + "/" + direction, (float)fromMillis / 1000);
     }
     
     public void PlayIdle(CreatureDirection direction, int fromMillis = 0)
     {
-        PlaySection(NpcState.Idle + "/" + direction, (float)fromMillis / 1000);
+        Play(NpcState.Idle, direction, fromMillis);
     }
-    
     
     public void PlayMove(CreatureDirection direction, int fromMillis = 0)
     {
-        PlaySection(NpcState.Move+ "/" + direction, (float)fromMillis / 1000);
+        Play(NpcState.Move, direction, fromMillis);
     }
-    
-    
-    public void PlayHurt(CreatureDirection direction, int fromMillis = 0)
-    {
-        PlaySection(NpcState.Hurt + "/" + direction, (float)fromMillis / 1000);
-    }
-    
-    
-    public void PlayAttack(CreatureDirection direction, int fromMillis = 0)
-    {
-        PlaySection(NpcState.Attack + "/" + direction, (float)fromMillis / 1000);
-    }
-    
-    public void PlayDie(CreatureDirection direction, int fromMillis = 0)
-    {
-        PlaySection(NpcState.Die + "/" + direction, (float)fromMillis / 1000);
-    }
-    
-    public void PlayTurn(CreatureDirection direction, int fromMillis = 0)
-    {
-        PlaySection(NpcState.Turn+ "/" + direction, (float)fromMillis / 1000);
-    }
-    
 }

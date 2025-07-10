@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bar3f645sox4s"]
+[gd_scene load_steps=8 format=3 uid="uid://bar3f645sox4s"]
 
 [ext_resource type="Script" uid="uid://cqmthwdfgvgtu" path="res://code/entity/Npc.cs" id="1_rnog4"]
 [ext_resource type="Script" uid="uid://dn8dv61le8ouc" path="res://code/entity/MonsterAnimationPlayer.cs" id="2_7ngcd"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="4_8oust"]
 [ext_resource type="Theme" uid="uid://b8hbldyojfhb1" path="res://scene/text_bubble.tres" id="4_pesj1"]
 [ext_resource type="PackedScene" uid="uid://dagprws1ut6fs" path="res://scene/life_bar.tscn" id="6_06vv4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_06vv4"]
 
 [node name="Npc" type="Node2D"]
 script = ExtResource("1_rnog4")
@@ -16,6 +18,7 @@ script = ExtResource("1_rnog4")
 script = ExtResource("2_7ngcd")
 
 [node name="AttackEffect" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_06vv4")
 centered = false
 
 [node name="Name" type="Label" parent="."]

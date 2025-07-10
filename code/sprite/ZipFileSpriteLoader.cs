@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using NLog;
+using FileAccess = Godot.FileAccess;
 
 namespace QnClient.code.sprite;
 
@@ -97,15 +98,20 @@ public class ZipFileSpriteLoader
 		return LoadOrderedIcons("res://sprites/item.zip" );
 	}
 
-
-	public OffsetTexture[] Load(string name)
+	private string MakeName(string name)
 	{
-		if (!name.EndsWith(".zip"))
-		{
-			name += ".zip";
-		}
+		return name.EndsWith(".zip") ? name : name + ".zip";
+	}
 
-		name = name.ToLower();
+
+	public bool Exists(string name)
+	{
+		return FileAccess.FileExists("res://sprites/" + MakeName(name));
+	}
+
+	public OffsetTexture[] Load(string spriteName)
+	{
+		var name = MakeName(spriteName).ToLower();
 		var sprites = _cache.Get(name);
 		if (sprites != null)
 		{

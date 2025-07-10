@@ -611,7 +611,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     public void SetHatAnimation(string prefix)
     {
         UpdateNodeAnimation(prefix, _hatTextureIdx, _hatOffsetIdx);
-        UpdateSpriteIfSitFinished("Hat", _hatTextureIdx, _hairOffsetIdx);
+        UpdateSpriteIfSitFinished("Hat", _hatTextureIdx, _hatOffsetIdx);
     }
     
     public void SetLegAnimation(string prefix)
