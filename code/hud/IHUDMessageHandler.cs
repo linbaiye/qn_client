@@ -30,4 +30,5 @@ public interface IHUDMessageHandler
     
     void Unequip(EquipmentType type);
 
+    void UpdateInventorySlot(InventoryItemMessage message);
 }

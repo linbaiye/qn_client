@@ -9,8 +9,8 @@ public partial class SlotButton : TextureButton
     public event Action? LeftButtonDoubleClicked;
     public event Action? LeftButtonReleased;
     public bool MouseHovering { get; private set; }
-    private const float DoubleClickThreshold = 0.25f;
-    private float _lastClickTime = 0;
+    private const float DoubleClickThreshold = 0.2f;
+    private float _lastClickTime;
     private Timer _timer;
     public override void _Ready()
     {

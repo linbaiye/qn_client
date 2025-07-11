@@ -73,6 +73,22 @@ public partial class Inventory : AbstractSlotContainer
         connection.WriteAndFlush(SimpleInput.Inventory);
     }
 
+    private void SetSlot(InventoryItemMessage item)
+    {
+        GetSlot(item.Slot).SetTextureAndTip(_icons[item.Icon], item.ToolTip, item.Color);
+    }
+
+    public void UpdateSlot(InventoryItemMessage message)
+    {
+        if (!Visible)
+            return;
+        var slot = GetSlot(message.Slot);
+        if (message.Removed)
+            slot.Clear();
+        else
+            SetSlot(message);
+    }
+
     public void UpdateInventoryView(InventoryMessage message, Connection connection)
     {
         if (!message.Forceful && !Visible)
@@ -82,7 +98,7 @@ public partial class Inventory : AbstractSlotContainer
         ForeachSlot(sl => sl.Clear());
         foreach (var item in message.Items)
         {
-            GetSlot(item.Slot).SetTextureAndTip(_icons[item.Icon], item.ToolTip, item.Color);
+            SetSlot(item);
         }
         Visible = true;
     }

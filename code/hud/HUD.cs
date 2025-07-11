@@ -97,6 +97,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _bottom.Unequip(type);
     }
 
+    public void UpdateInventorySlot(InventoryItemMessage message)
+    {
+        _inventory.UpdateSlot(message);
+    }
+
     public void DisplayText(string text)
     {
         _bottom.DisplayText(text);
