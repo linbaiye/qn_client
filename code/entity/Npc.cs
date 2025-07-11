@@ -67,9 +67,6 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
 
     public void ChangeState(NpcChangeStateMessage message)
     {
-        Logger.Debug("Changed to {}.", message.State);
-        if (message.State == NpcState.Turn)
-            Logger.Debug("Turn .");
         Mover = null;
         _animationPlayer.Play(message.State,  message.Direction);
     }
