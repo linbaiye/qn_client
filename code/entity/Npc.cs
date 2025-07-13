@@ -19,6 +19,8 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
         ZIndex = 2;
     }
 
+    protected override bool Humanoid => false;
+
     public void Initialize(NpcSnapshot snapshot)
     {
         _animationPlayer.Initialize(snapshot.Shape, snapshot.Animate);

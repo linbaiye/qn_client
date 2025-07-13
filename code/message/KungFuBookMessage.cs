@@ -5,7 +5,7 @@ using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class KungFuBookMessage(List<KungFuBookMessage.KungFu> unnamed, List<KungFuBookMessage.KungFu> basic) : IHUDMessage
+public class KungFuBookMessage(List<KungFuBookMessage.KungFu> unnamed, List<KungFuBookMessage.KungFu> basic, bool force) : IHUDMessage
 {
 
     public List<KungFu> Unnamed { get; } = unnamed;
@@ -18,6 +18,8 @@ public class KungFuBookMessage(List<KungFuBookMessage.KungFu> unnamed, List<Kung
         public int Icon { get; } = icon;
         public int Slot { get; } = slot;
     }
+
+    public bool Forcefull { get; } = force;
 
 
     public static KungFuBookMessage FromPacket(KungFuBookPacket packet)
@@ -32,7 +34,7 @@ public class KungFuBookMessage(List<KungFuBookMessage.KungFu> unnamed, List<Kung
         {
             basic.Add(new KungFu(kungFuPacket.Level, kungFuPacket.Name, kungFuPacket.Icon, kungFuPacket.Slot));
         }
-        return new KungFuBookMessage(unnamed, basic);
+        return new KungFuBookMessage(unnamed, basic, packet.Forceful);
     }
 
     public void Accept(IHUDMessageHandler handler)

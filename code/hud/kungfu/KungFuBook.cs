@@ -41,6 +41,12 @@ public partial class KungFuBook : AbstractSlotContainer
         _basicTab.Pressed += OnBasicPressed;
     }
 
+
+    public void SetConnection(Connection connection)
+    {
+        _connection = connection;
+    }
+
     protected override Slot CreateSlot(string name)
     {
         return Slot.Create(name, new Vector2(28, 28), new Vector2(28, 28));
@@ -157,10 +163,11 @@ public partial class KungFuBook : AbstractSlotContainer
         RefreshKungFuSlots(_unnamedTab.IsFocused ? _message.Unnamed : _message.Basic);
     }
 
-    public void ShowKungFuBook(KungFuBookMessage message, Connection connection)
+    public void ShowKungFuBook(KungFuBookMessage message)
     {
+        if (!message.Forcefull && !Visible)
+            return;
         _message = message;
-        _connection = connection;
         if (!_unnamedTab.IsFocused && !_basicTab.IsFocused)
             _unnamedTab.GainFocus();
         RefreshFocusedTab();

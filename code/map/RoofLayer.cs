@@ -21,7 +21,6 @@ public partial class RoofLayer : Node2D
 		atzMapFileParser.ForeachCell(start, end, (cell, x, y) => DrawRoofAtCoordinate(cell.RoofId, x, y));
 	}
 	
-	
 	private void DrawRoofAtCoordinate(int rofId, int x, int y)
 	{
 		if (_mapRoofInfos.TryGetValue(rofId, out var rofInfo))

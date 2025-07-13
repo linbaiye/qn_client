@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 
 namespace QnClient.code.hud;
@@ -10,8 +11,8 @@ public partial class AudioManager : Node
 
     private string _currentBgm = "";
     
-    private AudioStreamPlayer2D[] _soundPlayers = new AudioStreamPlayer2D[4];
-
+    private AudioStreamPlayer2D[] _soundPlayers = new AudioStreamPlayer2D[8];
+    
     public override void _Ready()
     {
         _bgmPlayer = GetNode<AudioStreamPlayer2D>("BgmPlayer");
@@ -41,20 +42,32 @@ public partial class AudioManager : Node
         return null;
     }
 
-    public void PlaySound(string entityName, string sound)
+    public void PlaySound(string sound)
     {
         if (string.IsNullOrEmpty(sound))
         {
             return;
         }
+
         foreach (var t in _soundPlayers)
         {
-            if (t.Playing) continue;
+            if (!t.HasMeta("name"))
+                continue;
+            if (((string)t.GetMeta("name")).Equals(sound) && t.IsPlaying())
+            {
+                return;
+            }
+        }
+
+        foreach (var t in _soundPlayers)
+        {
+            if (t.IsPlaying()) continue;
             var stream = LoadSound(sound);
             if (stream != null)
             {
                 t.Stream = stream;
                 t.Play();
+                t.SetMeta("name", sound);
             }
             break;
         }

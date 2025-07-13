@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dagprws1ut6fs" path="res://scene/life_bar.tscn" id="6_06vv4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_06vv4"]
+blend_mode = 1
 
 [node name="Npc" type="Node2D"]
 script = ExtResource("1_rnog4")

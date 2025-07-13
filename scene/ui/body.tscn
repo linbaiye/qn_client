@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ctuuxtf2k44ru" path="res://code/entity/BodySprite.cs" id="2_w6pjy"]
 [ext_resource type="Script" uid="uid://r7xoctwkhlau" path="res://code/hud/MouseArea.cs" id="3_ofaag"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjvvu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofaag"]
 shader = ExtResource("1_u5yd7")
 shader_parameter/deform = Vector2(0.3, 0.2)
 shader_parameter/offset = Vector2(0, 0)
@@ -13,7 +13,7 @@ shader_parameter/modulate = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofaag"]
 
 [node name="Body" type="Sprite2D"]
-material = SubResource("ShaderMaterial_wjvvu")
+material = SubResource("ShaderMaterial_ofaag")
 centered = false
 script = ExtResource("2_w6pjy")
 

@@ -8,7 +8,7 @@ using Array = System.Array;
 
 namespace QnClient.code.player;
 
-public partial class PlayerAnimationPlayer : AnimationPlayer
+public partial class PlayerAnimationPlayer : AbstractAnimationPlayer
 {
     private ZipFileSpriteLoader _spriteLoader;
         
@@ -62,8 +62,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     private const int ThrowSpriteNumber = 9;
     private const float ThrowStep = 0.1f;
     
-    private int _bodyTextureIdx = -1;
-    private int _bodyOffsetIdx = -1;
     private int _legTextureIdx = -1;
     private int _legOffsetIdx = -1;
     private int _bootTextureIdx = -1;
@@ -84,6 +82,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     private int _weaponOffsetIdx = -1;
     private int _attackEffectTextureIdx = -1;
     private int _attackEffectOffsetIdx = -1;
+
     
     private const int DirectionNumber = 8;
 
@@ -91,11 +90,13 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     private string _effect;
 
+    
     public override void _Ready()
     {
         _spriteLoader = ZipFileSpriteLoader.Instance;
         AnimationFinished += n => _finished = n;
     }
+    
     
 
     // private void AddCallbackTrackAtTime(AnimationLibrary animationLibrary, float time)
@@ -137,8 +138,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             Animation animation = new Animation();
             animation.Length = step * spritesPerDirection;
             animation.LoopMode = loopModeEnum;
-            _bodyTextureIdx = AddTrack(animation, "Body:texture");
-            _bodyOffsetIdx = AddTrack(animation, "Body:offset");
+            BodyTextureIdx = AddTrack(animation, "Body:texture");
+            BodyOffsetIdx = AddTrack(animation, "Body:offset");
             _legTextureIdx = AddTrack(animation, "Leg:texture");
             _legOffsetIdx = AddTrack(animation, "Leg:offset");
             _bootTextureIdx = AddTrack(animation, "Boot:texture");
@@ -159,22 +160,22 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
             _weaponOffsetIdx = AddTrack(animation, "Weapon:offset");
             _attackEffectTextureIdx = animation.AddTrack(Animation.TrackType.Value);
             _attackEffectOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
-            var mouseAreaPosition = animation.AddTrack(Animation.TrackType.Value);
-            var mouseAreaSize = animation.AddTrack(Animation.TrackType.Value);
-            animation.TrackSetPath(mouseAreaPosition, "Body/MouseArea:position");
-            animation.TrackSetPath(mouseAreaSize, "Body/MouseArea:size");
+            var areaPosition = animation.AddTrack(Animation.TrackType.Value);
+            AreaSize = animation.AddTrack(Animation.TrackType.Value);
+            animation.TrackSetPath(areaPosition, "Body/MouseArea:position");
+            animation.TrackSetPath(AreaSize, "Body/MouseArea:size");
             animation.TrackSetPath(_attackEffectTextureIdx, "AttackEffect:texture");
             animation.TrackSetPath(_attackEffectOffsetIdx, "AttackEffect:offset");
             animation.ValueTrackSetUpdateMode(_attackEffectTextureIdx, Animation.UpdateMode.Discrete);
             animation.ValueTrackSetUpdateMode(_attackEffectOffsetIdx, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(mouseAreaPosition, Animation.UpdateMode.Discrete);
-            animation.ValueTrackSetUpdateMode(mouseAreaSize, Animation.UpdateMode.Discrete);
+            animation.ValueTrackSetUpdateMode(AreaSize, Animation.UpdateMode.Discrete);
+            animation.ValueTrackSetUpdateMode(areaPosition, Animation.UpdateMode.Discrete);
             for (int i = 0; i < spritesPerDirection; i++)
             {
                 var time = step * i;
                 var textureOffset = sprites[start + i].Offset + VectorUtil.DefaultTextureOffset;
-                animation.TrackInsertKey(_bodyTextureIdx, time, sprites[start + i].Texture);
-                animation.TrackInsertKey(_bodyOffsetIdx, time, textureOffset);
+                animation.TrackInsertKey(BodyTextureIdx, time, sprites[start + i].Texture);
+                animation.TrackInsertKey(BodyOffsetIdx, time, textureOffset);
                 animation.TrackInsertKey(_legTextureIdx, time, empty);
                 animation.TrackInsertKey(_legOffsetIdx, time, Vector2.Zero);
                 animation.TrackInsertKey(_bootTextureIdx, time, empty);
@@ -195,8 +196,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
                 animation.TrackInsertKey(_weaponOffsetIdx, time, Vector2.Zero);
                 animation.TrackInsertKey(_attackEffectTextureIdx, time, empty);
                 animation.TrackInsertKey(_attackEffectOffsetIdx, time, Vector2.Zero);
-                animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
-                animation.TrackInsertKey(mouseAreaSize, time, sprites[start + i].OriginalSize);
+                animation.TrackInsertKey(AreaSize, time, sprites[start + i].OriginalSize);
+                animation.TrackInsertKey(areaPosition, time, textureOffset);
             }
             animationLibrary.AddAnimation(dir.ToString(), animation);
             start += spritesPerDirection;
@@ -296,6 +297,7 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
         
         sprites = _spriteLoader.Load(prefix + "4");
         AddAnimationLibrary(AttackAction.Bow.ToString(), CreateAnimationLibrary(BowSpriteNumber, BowStep, sprites));
+        ExtractIdlePositions();
     }
 
     
@@ -314,8 +316,6 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
     {
         PlayAnimation(PlayerState.Idle + "/" + direction, fromMillis, 2f);
     }
-    
-    
     
     public void PlayIdle(CreatureDirection direction, int fromMillis = 0)
     {
@@ -420,16 +420,17 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     private void PlayAnimation(string name, int millis, float speed = 1)
     {
+        CurrentDirection = Enum.Parse<CreatureDirection>(name.Split("/")[1]);
         _finished = "";
-        var animation = GetAnimation(name);
-        int aniLengthMillis = (int)(animation.Length * 1000);
-        int startMillis = millis % aniLengthMillis;
         if (!string.IsNullOrEmpty(CurrentAnimation))
             Stop(true);
-        //PlayWithCapture(name, -1, -1, 1, false, Tween.TransitionType.Cubic);
-        PlaySection(name, startMillis, -1, -1, speed);
+        var aniLength = GetAnimation(name).Length;
+        var fromSec = ((float)millis / 1000);
+        if (fromSec > aniLength)
+            PlayLastFrame(name);
+        else
+            PlaySection(name, fromSec, -1, -1, speed);
     }
-    
 
     private void UpdateNodeAnimationLibrary(string libraryName, int textureTrack, int offsetTrack, OffsetTexture[] sprites)
     {
@@ -565,6 +566,8 @@ public partial class PlayerAnimationPlayer : AnimationPlayer
 
     private void UpdateSpriteIfSitFinished(string nodeName, int textureTrack, int offsetTrack)
     {
+        if (string.IsNullOrEmpty(_finished))
+            return;
         if (_finished.ToString().StartsWith(PlayerState.Sit.ToString()))
         {
             var animation = GetAnimation(_finished);

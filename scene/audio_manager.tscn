@@ -14,3 +14,11 @@ script = ExtResource("1_h5pei")
 [node name="SoundPlayer3" type="AudioStreamPlayer2D" parent="."]
 
 [node name="SoundPlayer4" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer5" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer6" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer7" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SoundPlayer8" type="AudioStreamPlayer2D" parent="."]

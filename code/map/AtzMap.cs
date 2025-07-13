@@ -68,6 +68,18 @@ public class AtzMap(
         if (entityEvent is EntityChangeCoordinateEvent movementEvent)
         {
             Occupy(movementEvent.Source);
+            if (entityEvent.Source is not Character c)
+            {
+                return;
+            }
+            if (_fileParser.ShouldHideRoof(c.Coordinate))
+            {
+                roofLayer.Hide();
+            } 
+            else if (!roofLayer.Visible)
+            {
+                roofLayer.Show();
+            }
         }
         else if (entityEvent is DeletedEvent)
         {

@@ -32,14 +32,14 @@ shader_parameter/ag = 0.0
 shader_parameter/ab = 0.0
 shader_parameter/add = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkx2x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uagll"]
 shader = ExtResource("2_d6nge")
 shader_parameter/ar = 0.0
 shader_parameter/ag = 0.0
 shader_parameter/ab = 0.0
 shader_parameter/add = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uagll"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkx2x"]
 shader = ExtResource("2_d6nge")
 shader_parameter/ar = 0.0
 shader_parameter/ag = 0.0
@@ -91,18 +91,18 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_0v8s0")
 layout_mode = 0
 
-[node name="Hat" type="TextureButton" parent="."]
+[node name="Armor" type="TextureButton" parent="."]
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_mkx2x")
+material = SubResource("ShaderMaterial_uagll")
 layout_mode = 0
 
 [node name="Weapon" type="TextureButton" parent="."]
 y_sort_enabled = true
 layout_mode = 2
 
-[node name="Armor" type="TextureButton" parent="."]
+[node name="Hat" type="TextureButton" parent="."]
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_uagll")
+material = SubResource("ShaderMaterial_mkx2x")
 layout_mode = 0
 
 [node name="LeftWrist" type="TextureButton" parent="."]

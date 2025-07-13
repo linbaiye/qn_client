@@ -12,13 +12,15 @@ public abstract partial class AbstractCreature : Node2D, IEntity
 
     private string _name;
 
-    public string EntityName => _name;
+    private string EntityName => _name;
 
     private TextBubble _textBubble;
     
     private BodySprite _bodySprite;
 
     private LifeBar _lifeBar;
+
+    private AbstractAnimationPlayer _animationPlayer;
     
     public event Action<long>? AttackTriggered;
     
@@ -27,13 +29,15 @@ public abstract partial class AbstractCreature : Node2D, IEntity
         _textBubble = GetNode<TextBubble>("TextBubble");
         _bodySprite = GetNode<BodySprite>("Body");
         _lifeBar = GetNode<LifeBar>("LifeBar");
+        _animationPlayer = GetNode<AbstractAnimationPlayer>("AnimationPlayer");
     }
     
-    private void SetViewName(string name)
+    
+    private void InitializeViewName(string name)
     {
         _name = name;
         var label = GetNode<Label>("Name");
-        label.Text = name;
+        label.SetText(name);
         label.Visible = false;
     }
 
@@ -46,13 +50,24 @@ public abstract partial class AbstractCreature : Node2D, IEntity
     {
         OnEntityEvent?.Invoke(entityEvent);
     }
+    
+    protected abstract bool Humanoid { get; }
 
     private void OnMouseEntered()
     {
         var label = GetNode<Label>("Name");
-        var xCenterY = _bodySprite.Center;
+        var offset = _animationPlayer.BodyOffset;
+        var size = _animationPlayer.BodySize;
+        if (Humanoid)
+            offset += new Vector2(size.X / 2, 12);
+        else
+            offset += new Vector2(size.X / 2,  5);
+        label.Position = new Vector2(offset.X - label.Size.X / 2,  offset.Y);
+        /*//var p = new Vector2(positionTexture.Value.OriginalSize.X / 2 + positionTexture.Value.Offset.X, positionTexture.Value.Offset.Y);
+        var idle = _animationPlayer.GetCurrentDirectionIdle();
         var size = label.Size;
-        label.Position = new Vector2(xCenterY.X - size.X / 2,  xCenterY.Y - 20);
+        var anchor = new Vector2(idle.Offset.X,  idle.Offset.Y + idle.OriginalSize.Y / 2);
+        label.Position = new Vector2(anchor.X,  anchor.Y);*/
         label.Visible = true;
     }
     
@@ -65,7 +80,7 @@ public abstract partial class AbstractCreature : Node2D, IEntity
         bodySprite.MouseExited += () => GetNode<Label>("Name").Visible = false;
         bodySprite.AttackInvoked += () => AttackTriggered?.Invoke(Id);
         Position = coordinate.ToPosition();
-        SetViewName(name);
+        InitializeViewName(name);
     }
 
     protected void Initialize(AbstractCreatureSnapshot snapshot)
@@ -73,13 +88,23 @@ public abstract partial class AbstractCreature : Node2D, IEntity
         Initialize(snapshot.Id, snapshot.Coordinate, snapshot.Name);
     }
 
+    private Vector2 CenterXy
+    {
+        get
+        {
+            var offset = _animationPlayer.BodyOffset;
+            var size = _animationPlayer.BodySize;
+            return offset + new Vector2(size.X / 2, 0);
+        }
+    }
+
     public void ShowLifeBar(int percent)
     {
-        _lifeBar.Show(percent, _bodySprite.XCenterY);
+        _lifeBar.Show(percent, CenterXy);
     }
 
     public void Say(CreatureSayMessage sayMessage)
     {
-        _textBubble.Display(sayMessage.Text, _bodySprite.XCenterY);
+        _textBubble.Display(sayMessage.Text, CenterXy);
     }
 }

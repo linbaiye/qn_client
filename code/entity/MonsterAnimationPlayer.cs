@@ -7,7 +7,7 @@ using QnClient.code.util;
 
 namespace QnClient.code.entity;
 
-public partial class MonsterAnimationPlayer : AnimationPlayer
+public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
 {
     
     private static readonly ZipFileSpriteLoader SpriteLoader = ZipFileSpriteLoader.Instance;
@@ -36,7 +36,6 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
         { "DR_7", CreatureDirection.UpLeft },
     };
 
-
     private void CreateAnimation(AnimationDescriptor descriptor, OffsetTexture[] sprites, Animation.LoopModeEnum loopModeEnum, OffsetTexture[]? effect = null)
     {
         var animationLibrary = new AnimationLibrary();
@@ -61,32 +60,32 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
         float step = (float)(descriptor.TickPerFrame * 10) / 1000;
         animation.Length = step * descriptor.FrameIndices.Length;
         animation.LoopMode = loopModeEnum;
-        var bodyTextureIdx = animation.AddTrack(Animation.TrackType.Value);
-        var bodyOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
+        BodyTextureIdx = animation.AddTrack(Animation.TrackType.Value);
+        BodyOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
         var attackEffectTextureIdx = animation.AddTrack(Animation.TrackType.Value);
         var attackEffectOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
         var mouseAreaPosition = animation.AddTrack(Animation.TrackType.Value);
-        var mouseAreaSize = animation.AddTrack(Animation.TrackType.Value);
-        animation.TrackSetPath(bodyTextureIdx, "Body:texture");
-        animation.TrackSetPath(bodyOffsetIdx, "Body:offset");
+        AreaSize = animation.AddTrack(Animation.TrackType.Value);
+        animation.TrackSetPath(BodyTextureIdx, "Body:texture");
+        animation.TrackSetPath(BodyOffsetIdx, "Body:offset");
         animation.TrackSetPath(attackEffectTextureIdx, "AttackEffect:texture");
         animation.TrackSetPath(attackEffectOffsetIdx, "AttackEffect:offset");
         animation.TrackSetPath(mouseAreaPosition, "Body/MouseArea:position");
-        animation.TrackSetPath(mouseAreaSize, "Body/MouseArea:size");
-        animation.ValueTrackSetUpdateMode(bodyTextureIdx, Animation.UpdateMode.Discrete);
-        animation.ValueTrackSetUpdateMode(bodyOffsetIdx, Animation.UpdateMode.Discrete);
+        animation.TrackSetPath(AreaSize, "Body/MouseArea:size");
+        animation.ValueTrackSetUpdateMode(BodyTextureIdx, Animation.UpdateMode.Discrete);
+        animation.ValueTrackSetUpdateMode(BodyOffsetIdx, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(attackEffectTextureIdx, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(attackEffectOffsetIdx, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(mouseAreaPosition, Animation.UpdateMode.Discrete);
-        animation.ValueTrackSetUpdateMode(mouseAreaSize, Animation.UpdateMode.Discrete);
+        animation.ValueTrackSetUpdateMode(AreaSize, Animation.UpdateMode.Discrete);
         float time = 0;
         foreach (var frameIndex in descriptor.FrameIndices)
         {
             var textureOffset = sprites[frameIndex].Offset + VectorUtil.DefaultTextureOffset;
-            animation.TrackInsertKey(bodyTextureIdx, time, sprites[frameIndex].Texture);
-            animation.TrackInsertKey(bodyOffsetIdx, time, textureOffset);
+            animation.TrackInsertKey(BodyTextureIdx, time, sprites[frameIndex].Texture);
+            animation.TrackInsertKey(BodyOffsetIdx, time, textureOffset);
             animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
-            animation.TrackInsertKey(mouseAreaSize, time, sprites[frameIndex].OriginalSize);
+            animation.TrackInsertKey(AreaSize, time, sprites[frameIndex].OriginalSize);
             if (effect != null)
             {
                 animation.TrackInsertKey(attackEffectTextureIdx, time, effect[frameIndex].Texture);
@@ -153,6 +152,12 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
 
     public float MoveAnimationLength => GetAnimation(NpcState.Move + "/" + CreatureDirection.Up).Length;
 
+    /// <summary>
+    /// Initialize animations and return the OffsetTexture that used for positioning labels.
+    /// </summary>
+    /// <param name="spriteName"></param>
+    /// <param name="atd"></param>
+    /// <returns></returns>
     public void Initialize(string spriteName, string atd)
     {
         var sprites = SpriteLoader.Load(spriteName);
@@ -167,12 +172,19 @@ public partial class MonsterAnimationPlayer : AnimationPlayer
             else
                 CreateAnimation(animationDescriptor, sprites, Animation.LoopModeEnum.None, effect);
         }
+        ExtractIdlePositions();
     }
     
     public void Play(NpcState state, CreatureDirection direction, int fromMillis = 0)
     {
         Stop();
-        Play(state + "/" + direction, (float)fromMillis / 1000);
+        CurrentDirection = direction;
+        var from = (float)fromMillis / 1000;
+        var aniLength = GetAnimation(state + "/" + direction).Length;
+        var name = state + "/" + direction;
+        if (from >= aniLength)
+            PlayLastFrame(name);
+        PlaySection(state + "/" + direction, from);
     }
     
     public void PlayIdle(CreatureDirection direction, int fromMillis = 0)

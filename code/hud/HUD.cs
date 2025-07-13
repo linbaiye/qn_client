@@ -69,11 +69,12 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void SetConnection(Connection connection)
     {
         _connection = connection;
+        _kungFuBook.SetConnection(connection);
     }
 
     public void UpdateKungFuBookView(KungFuBookMessage message)
     {
-        _kungFuBook.ShowKungFuBook(message, _connection);
+        _kungFuBook.ShowKungFuBook(message);
     }
 
     public void KungFuGainExp(string name, int level)
@@ -136,7 +137,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void PlaySound(string entityName, string soundName)
     {
-        _audioManager.PlaySound(entityName, soundName);
+        _audioManager.PlaySound(soundName);
     }
 
     public void UpdateLifeBars(PlayerDamagedMessage message)
