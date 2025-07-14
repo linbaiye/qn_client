@@ -276,16 +276,16 @@ public abstract partial class AbstractPlayer : AbstractCreature
         }
     }
 
-    private static readonly Dictionary<CreatureDirection, Vector2> PlayerOffsetPosition = new()
+    private static readonly Dictionary<CreatureDirection, Vector2> ProjectileLetOffPoints = new()
     {
-        { CreatureDirection.Up , new Vector2(6, -36) },
-        { CreatureDirection.UpRight, new Vector2(24, -30) },
-        { CreatureDirection.Right , new Vector2(29, -19) },
-        { CreatureDirection.DownRight, new Vector2(19, -10) },
-        { CreatureDirection.Down, new Vector2(25, 0) },
-        { CreatureDirection.DownLeft, new Vector2(6, -9) },
-        { CreatureDirection.Left, new Vector2(1, -21) },
-        { CreatureDirection.UpLeft, new Vector2(10, 5) },
+        { CreatureDirection.Up , new Vector2(6, 5) },
+        { CreatureDirection.UpRight, new Vector2(40, 6) },
+        { CreatureDirection.Right , new Vector2(40, 5) },
+        { CreatureDirection.DownRight, new Vector2(30, 20) },
+        { CreatureDirection.Down, new Vector2(15, 38) },
+        { CreatureDirection.DownLeft, new Vector2(5, 30) },
+        { CreatureDirection.Left, new Vector2(24, 15) },
+        { CreatureDirection.UpLeft, new Vector2(20, 15) },
     };
 
     private bool _shoot;
@@ -296,8 +296,18 @@ public abstract partial class AbstractPlayer : AbstractCreature
     {
         _shoot = true;
         var creatureDirection = Coordinate.GetDirection(target.Coordinate);
-        _animationPlayer.PlayBowAttack(creatureDirection);
+        _animationPlayer.PlayThrowAttack(creatureDirection);
         _target = target;
+    }
+
+    public void FireProjectile(long targetId, string sprite, int flyMillis)
+    {
+        var ani = _animationPlayer.CurrentAnimation;
+        if (string.IsNullOrEmpty(ani))
+            return;
+        CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.Split("/")[1]);
+        var position = Position + _body.Offset + ProjectileLetOffPoints.GetValueOrDefault(direction, Vector2.Zero);
+        ShootEvent?.Invoke(new ShootEvent(targetId, position, sprite, flyMillis));
     }
     
     public override void _Process(double delta)
@@ -307,15 +317,15 @@ public abstract partial class AbstractPlayer : AbstractCreature
         var ani = _animationPlayer.CurrentAnimation;
         if (string.IsNullOrEmpty(ani))
             return;
-        if (!ani.Split("/")[0].Equals(AttackAction.Bow.ToString()))
+        if (!ani.Split("/")[0].Equals(AttackAction.Throw.ToString()))
         {
             return;
         }
         if (_animationPlayer.CurrentAnimationPosition < 0.2f) 
             return;
         CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.Split("/")[1]);
-        var position = Position + _body.Offset + PlayerOffsetPosition.GetValueOrDefault(direction, Vector2.Zero);
-        ShootEvent?.Invoke(new ShootEvent(_target.CenterPoint, position));
+        var position = Position + _body.Offset + ProjectileLetOffPoints.GetValueOrDefault(direction, Vector2.Zero);
+        //ShootEvent?.Invoke(new ShootEvent(_target.ProjectileAimPoint, position));
         _shoot = false;
         _target = null;
     }

@@ -2,9 +2,13 @@ using Godot;
 
 namespace QnClient.code.entity.@event;
 
-public struct ShootEvent(Vector2 target, Vector2 start)
+public readonly struct ShootEvent(long targetId, Vector2 start, string srpite, int flyMillis)
 {
-    public Vector2 Target { get; } = target;
+    public long TargetId { get; } = targetId;
 
     public Vector2 Start { get; } = start;
+    
+    public string Sprite { get; } = srpite;
+
+    public int FlyMillis { get; } = flyMillis;
 }

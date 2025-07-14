@@ -72,7 +72,9 @@ public partial class Game : Node2D
                     AddEntity(Npc.Create(), snapshot);
                     break;
                 case PlayerSnapshot playerSnapshot:
-                    AddEntity(Player.Create(), playerSnapshot);
+                    var player = Player.Create();
+                    player.ShootEvent += HandleShoot;
+                    AddEntity(player, playerSnapshot);
                     break;
                 case IEntityMessage entityMessage:
                     _entityManager.Find(entityMessage.Id)?.HandleEntityMessage(entityMessage);
@@ -87,7 +89,10 @@ public partial class Game : Node2D
 
     private void HandleShoot(ShootEvent shootEvent)
     {
-        var test = Projectile.Test(shootEvent.Start, shootEvent.Target);
+        var entity = _entityManager.Find(shootEvent.TargetId);
+        if (entity == null)
+            return;
+        var test = Projectile.Test(shootEvent.Start, entity.ProjectileAimPoint, shootEvent.Sprite, shootEvent.FlyMillis);
         AddChild(test);
     }
 

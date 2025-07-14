@@ -18,24 +18,16 @@ public partial class Projectile: Sprite2D
     
     private float _speed;
 
-    private static readonly Dictionary<CreatureDirection, Vector2> PlayerOffsetPosition = new()
-    {
-        { CreatureDirection.Up , new Vector2(6, -36) },
-        { CreatureDirection.UpRight, new Vector2(24, -30) },
-        { CreatureDirection.Right , new Vector2(29, -19) },
-        { CreatureDirection.DownRight, new Vector2(19, -10) },
-        { CreatureDirection.Down, new Vector2(25, 0) },
-        { CreatureDirection.DownLeft, new Vector2(6, -9) },
-        { CreatureDirection.Left, new Vector2(1, -21) },
-        { CreatureDirection.UpLeft, new Vector2(12, -32) },
-    };
     
-    private void Init(Vector2 start, Vector2 end)
+    private void Init(Vector2 start, Vector2 end, Texture2D texture, int millis)
     {
-        var distance = start.DistanceTo(end);
+        Texture = texture;
+        //var distance = start.DistanceTo(end);
+        Offset = new Vector2(0, Texture.GetSize().Y / 2);
         Position = start;
-        _lengthSeconds = distance * 0.15f;
+        //_lengthSeconds = distance * 0.15f;
         //_lengthSeconds = distance * 0.0015f;
+        _lengthSeconds = (float)millis / 1000;
         var rect = end - Position;
         Rotation = rect.Normalized().Angle();
         _velocity = rect / _lengthSeconds;
@@ -51,16 +43,23 @@ public partial class Projectile: Sprite2D
         }
     }
     
-    public static Projectile Test(Vector2 start, Vector2 end)
+    /*public static Projectile Test(Vector2 start, Vector2 end)
     {
-        var textures = SpriteLoader.Load("y2");
+        var textures = SpriteLoader.Load("y1");
         PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/projectile.tscn");
         var arrow = scene.Instantiate<Projectile>();
-        arrow.Init(start, end);
-        arrow.Texture = textures[20].Texture;
+        arrow.Init(start, end, textures[20].Texture);
+        return arrow;
+    }*/
+    
+    public static Projectile Test(Vector2 start, Vector2 end, string sprite, int millis)
+    {
+        var textures = SpriteLoader.Load(sprite);
+        PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/projectile.tscn");
+        var arrow = scene.Instantiate<Projectile>();
+        arrow.Init(start, end, textures[20].Texture, millis);
         return arrow;
     }
-
 
     // public static Projectile Create(string id)
     // {

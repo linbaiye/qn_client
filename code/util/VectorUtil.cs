@@ -78,7 +78,7 @@ public static class VectorUtil
         return (p2 - p1).GetDirection();
     }
 
-    public static CreatureDirection GetDirection(this Godot.Vector2 vector)
+    public static CreatureDirection GetDirection(this Vector2 vector)
     {
         var angle = Mathf.Snapped(vector.Angle(), Mathf.Pi / 4) / (Mathf.Pi / 4);
         int dir = Mathf.Wrap((int)angle, 0, 8);

@@ -242,7 +242,7 @@ namespace Source.Networking.Protobuf {
             "ZXQSCgoCaWQYASABKAMiQgoTUGxheWVyR2FpbkV4cFBhY2tldBIMCgRuYW1l",
             "GAEgASgJEg0KBWxldmVsGAIgASgFEg4KBmt1bmdGdRgDIAEoCCJaChBQcm9q",
             "ZWN0aWxlUGFja2V0EgoKAmlkGAEgASgDEhAKCHRhcmdldElkGAIgASgDEhgK",
-            "EGZseWluZ1RpbWVNaWxsaXMYAyABKAUSDgoGc3ByaXRlGAQgASgFIl0KE0l0",
+            "EGZseWluZ1RpbWVNaWxsaXMYAyABKAUSDgoGc3ByaXRlGAQgASgJIl0KE0l0",
             "ZW1BdHRyaWJ1dGVQYWNrZXQSDAoEdHlwZRgBIAEoBRIOCgZzbG90SWQYAiAB",
             "KAUSEQoEcGFnZRgDIAEoBUgAiAEBEgwKBHRleHQYBCABKAlCBwoFX3BhZ2Ui",
             "+wEKF1Nob3dEeW5hbWljT2JqZWN0UGFja2V0EgoKAmlkGAEgASgDEgkKAXgY",
@@ -22947,13 +22947,13 @@ namespace Source.Networking.Protobuf {
 
     /// <summary>Field number for the "sprite" field.</summary>
     public const int SpriteFieldNumber = 4;
-    private int sprite_;
+    private string sprite_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Sprite {
+    public string Sprite {
       get { return sprite_; }
       set {
-        sprite_ = value;
+        sprite_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -22986,7 +22986,7 @@ namespace Source.Networking.Protobuf {
       if (Id != 0L) hash ^= Id.GetHashCode();
       if (TargetId != 0L) hash ^= TargetId.GetHashCode();
       if (FlyingTimeMillis != 0) hash ^= FlyingTimeMillis.GetHashCode();
-      if (Sprite != 0) hash ^= Sprite.GetHashCode();
+      if (Sprite.Length != 0) hash ^= Sprite.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -23017,9 +23017,9 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(24);
         output.WriteInt32(FlyingTimeMillis);
       }
-      if (Sprite != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Sprite);
+      if (Sprite.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Sprite);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -23043,9 +23043,9 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(24);
         output.WriteInt32(FlyingTimeMillis);
       }
-      if (Sprite != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Sprite);
+      if (Sprite.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Sprite);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -23066,8 +23066,8 @@ namespace Source.Networking.Protobuf {
       if (FlyingTimeMillis != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(FlyingTimeMillis);
       }
-      if (Sprite != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Sprite);
+      if (Sprite.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Sprite);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -23090,7 +23090,7 @@ namespace Source.Networking.Protobuf {
       if (other.FlyingTimeMillis != 0) {
         FlyingTimeMillis = other.FlyingTimeMillis;
       }
-      if (other.Sprite != 0) {
+      if (other.Sprite.Length != 0) {
         Sprite = other.Sprite;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -23120,8 +23120,8 @@ namespace Source.Networking.Protobuf {
             FlyingTimeMillis = input.ReadInt32();
             break;
           }
-          case 32: {
-            Sprite = input.ReadInt32();
+          case 34: {
+            Sprite = input.ReadString();
             break;
           }
         }
@@ -23151,8 +23151,8 @@ namespace Source.Networking.Protobuf {
             FlyingTimeMillis = input.ReadInt32();
             break;
           }
-          case 32: {
-            Sprite = input.ReadInt32();
+          case 34: {
+            Sprite = input.ReadString();
             break;
           }
         }
