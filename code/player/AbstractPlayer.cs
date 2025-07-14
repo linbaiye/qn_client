@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
@@ -21,6 +22,7 @@ public abstract partial class AbstractPlayer : AbstractCreature
     private Sprite2D _hair;
     private Sprite2D _armor;
     private Sprite2D _weapon;
+    public event Action<ShootEvent>? ShootEvent;
     
     public override void _Ready()
     {
@@ -273,7 +275,51 @@ public abstract partial class AbstractPlayer : AbstractCreature
                 break;
         }
     }
+
+    private static readonly Dictionary<CreatureDirection, Vector2> PlayerOffsetPosition = new()
+    {
+        { CreatureDirection.Up , new Vector2(6, -36) },
+        { CreatureDirection.UpRight, new Vector2(24, -30) },
+        { CreatureDirection.Right , new Vector2(29, -19) },
+        { CreatureDirection.DownRight, new Vector2(19, -10) },
+        { CreatureDirection.Down, new Vector2(25, 0) },
+        { CreatureDirection.DownLeft, new Vector2(6, -9) },
+        { CreatureDirection.Left, new Vector2(1, -21) },
+        { CreatureDirection.UpLeft, new Vector2(10, 5) },
+    };
+
+    private bool _shoot;
+
+    private AbstractCreature _target;
+
+    public void Shoot(AbstractCreature target)
+    {
+        _shoot = true;
+        var creatureDirection = Coordinate.GetDirection(target.Coordinate);
+        _animationPlayer.PlayBowAttack(creatureDirection);
+        _target = target;
+    }
     
+    public override void _Process(double delta)
+    {
+        if (!_shoot)
+            return;
+        var ani = _animationPlayer.CurrentAnimation;
+        if (string.IsNullOrEmpty(ani))
+            return;
+        if (!ani.Split("/")[0].Equals(AttackAction.Bow.ToString()))
+        {
+            return;
+        }
+        if (_animationPlayer.CurrentAnimationPosition < 0.2f) 
+            return;
+        CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.Split("/")[1]);
+        var position = Position + _body.Offset + PlayerOffsetPosition.GetValueOrDefault(direction, Vector2.Zero);
+        ShootEvent?.Invoke(new ShootEvent(_target.CenterPoint, position));
+        _shoot = false;
+        _target = null;
+    }
+
     protected void PlayAttackAnimation(AttackAction action, CreatureDirection direction, string effect, int startMillis = 0)
     {
         _animationPlayer.SetEffectAnimationIfNamePresent(effect, action);

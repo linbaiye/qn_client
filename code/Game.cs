@@ -2,6 +2,7 @@ using System;
 using Godot;
 using NLog;
 using QnClient.code.entity;
+using QnClient.code.entity.@event;
 using QnClient.code.input;
 using QnClient.code.map;
 using QnClient.code.message;
@@ -63,6 +64,7 @@ public partial class Game : Node2D
                     _map.Draw(message.MapFile, message.ResourceName);
                     _character.Initialize(message, _connection, _map);
                     _character.OnEntityEvent += _map.HandleEntityEvent;
+                    _character.ShootEvent += HandleShoot;
                     _entityManager.Add(_character);
                     Visible = true;
                     break;
@@ -81,6 +83,12 @@ public partial class Game : Node2D
                 hudMessage.Accept(_hud);
             }
         }
+    }
+
+    private void HandleShoot(ShootEvent shootEvent)
+    {
+        var test = Projectile.Test(shootEvent.Start, shootEvent.Target);
+        AddChild(test);
     }
 
     public override void _Process(double delta)
@@ -102,6 +110,14 @@ public partial class Game : Node2D
         _character.OnEntityEvent += _hud.CharacterEventHandler;
     }
 
+    private void TestArrow()
+    {
+        var entity = _entityManager.Find("向导");
+        if (entity == null)
+            return;
+        _character.Shoot(entity);
+    }
+
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event is not InputEventKey eventKey || eventKey.Pressed)
@@ -111,17 +127,14 @@ public partial class Game : Node2D
 
         switch (eventKey.Keycode)
         {
-            case Key.Key1:
-                _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷剑"));
-                break;
-            case Key.Key2:
-                _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "回转狂天飞"));
-                break;
-            case Key.Key3:
+            case Key.E:
                 _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 你是没死过么？"));
                 break;
-            case Key.Key4:
+            case Key.Q:
                 _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 用户在使用cherry键盘的时候如果想要关闭f1到f12的功能键的话，是无法做到的，只能关闭功能键的热键功能，无法关闭其中所有的功能。"));
+                break;
+            case Key.W:
+                TestArrow();
                 break;
         }
         

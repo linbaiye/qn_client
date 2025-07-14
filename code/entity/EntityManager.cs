@@ -18,6 +18,18 @@ public class EntityManager
     {
         return _entities.GetValueOrDefault(id);
     }
+    
+    public AbstractCreature? Find(string name)
+    {
+        foreach (var entitiesValue in _entities.Values)
+        {
+            if (entitiesValue is AbstractCreature creature && creature.EntityName.Equals(name))
+            {
+                return creature;
+            }
+        }
+        return null;
+    }
 
     public void HandleEntityEvent(IEntityEvent entityEvent)
     {

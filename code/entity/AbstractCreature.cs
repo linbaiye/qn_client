@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using QnClient.code.entity.@event;
 using QnClient.code.message;
 using QnClient.code.util;
 using TextBubble = QnClient.code.hud.TextBubble;
@@ -11,8 +12,9 @@ public abstract partial class AbstractCreature : Node2D, IEntity
     public event Action<IEntityEvent>? OnEntityEvent;
 
     private string _name;
+    
 
-    private string EntityName => _name;
+    public string EntityName => _name;
 
     private TextBubble _textBubble;
     
@@ -87,6 +89,9 @@ public abstract partial class AbstractCreature : Node2D, IEntity
     {
         Initialize(snapshot.Id, snapshot.Coordinate, snapshot.Name);
     }
+
+    public Vector2 CenterPoint => _bodySprite.Center + Position;
+        
 
     private Vector2 CenterXy
     {

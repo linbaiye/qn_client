@@ -148,13 +148,27 @@ public partial class KungFuBook : AbstractSlotContainer
     {
         if (!Visible)
             return;
-        ForeachSlot(s =>
+        foreach (var kungFu in _message.Basic)
         {
-            if (s.Tip.StartsWith(name + ":"))
+            if (kungFu.Name.Equals(name))
             {
-                s.Tip = FormatKungFuTip(name, level);
+                kungFu.Level = level;
+                if (_basicTab.IsFocused)
+                {
+                    RefreshFocusedTab();
+                }
+                return;
             }
-        });
+        }
+        foreach (var kungFu in _message.Unnamed)
+        {
+            if (kungFu.Name.Equals(name))
+            {
+                kungFu.Level = level;
+                break;
+            }
+        }
+        RefreshFocusedTab();
     }
 
 

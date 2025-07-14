@@ -74,9 +74,9 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
             if (input != null)
             {
                 _connection?.WriteAndFlush(input);
+                GetViewport().SetInputAsHandled();
             }
         }
-        GetViewport().SetInputAsHandled();
     }
 
     public override void _UnhandledInput(InputEvent @event)

@@ -36,7 +36,7 @@ public partial class ActiveKungFuList : VBoxContainer
     {
         foreach (var label in _kungFuArray)
         {
-            label.Text = "";
+            label.SetKungFuName("");
         }
         int index = 0;
         _kungFuArray[index++].SetKungFuName(message.AttackKungFu);

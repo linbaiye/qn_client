@@ -83,9 +83,11 @@ public class CharacterMoveState : AbstractCharacterState
     
     private static MoveAction ComputeMoveAction(ICharacter character, MoveAction current)
     {
-        if (character.FootKungFu != null)
-            return character.FootKungFu.CanFly ? MoveAction.Fly : MoveAction.Run;
-        return current;
+        if (character.FootKungFu == null)
+        {
+            return current == MoveAction.FightWalk ? current : MoveAction.Walk;
+        }
+        return character.FootKungFu.CanFly ? MoveAction.Fly : MoveAction.Run;
     }
 
     private static MoveAction ComputeMoveAction(ICharacter character)

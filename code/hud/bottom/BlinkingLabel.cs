@@ -23,6 +23,7 @@ public partial class BlinkingLabel : RichTextLabel
 
     public void SetKungFuName(string text)
     {
+        _timer.Stop();
         _text = text;
         Text = CenterText;
     }

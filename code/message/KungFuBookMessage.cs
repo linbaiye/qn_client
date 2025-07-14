@@ -11,10 +11,10 @@ public class KungFuBookMessage(List<KungFuBookMessage.KungFu> unnamed, List<Kung
     public List<KungFu> Unnamed { get; } = unnamed;
     public List<KungFu> Basic { get; } = basic;
     
-    public readonly struct KungFu(int l, string name, int icon, int slot)
+    public class KungFu(int l, string name, int icon, int slot)
     {
         public string Name { get; } = name;
-        public int Level { get; } = l;
+        public int Level { get; set; } = l;
         public int Icon { get; } = icon;
         public int Slot { get; } = slot;
     }

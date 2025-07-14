@@ -145,7 +145,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _bottom.UpdateLifeBars(message);
     }
 
-    public void OnSystemButtonPressed()
+    private void OnSystemButtonPressed()
     {
         GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);
     }
