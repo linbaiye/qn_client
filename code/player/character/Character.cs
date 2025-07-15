@@ -36,8 +36,12 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public override void _PhysicsProcess(double delta)
     {
+        if (_timer > 0)
+            _timer -= delta;
         _characterState?.PhysicProcess(delta);
     }
+
+    private double _timer = 0;
 
     private void HandleMouseEvent(InputEventMouse eventMouse)
     {

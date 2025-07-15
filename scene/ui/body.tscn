@@ -20,5 +20,6 @@ script = ExtResource("2_w6pjy")
 [node name="MouseArea" type="Panel" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ofaag")
 script = ExtResource("3_ofaag")

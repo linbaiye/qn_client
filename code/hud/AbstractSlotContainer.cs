@@ -35,6 +35,8 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
         }
     }
 
+
+
     protected Slot GetSlot(int slotNumber)
     {
         return _slots[slotNumber - 1];

@@ -27,14 +27,18 @@ public partial class SlotButton : TextureButton
     }
     public override void _GuiInput(InputEvent @event)
     {
-        if (@event is not InputEventMouseButton button)
+        if (@event is not InputEventMouse mouse)
+        {
+            return;
+        }
+        GetViewport().SetInputAsHandled();
+        if (mouse is not InputEventMouseButton button)
         {
             return;
         }
         if (button.ButtonIndex == MouseButton.Right && button.IsReleased())
         {
             RightButtonReleased?.Invoke();
-            GetViewport().SetInputAsHandled();
             return;
         }
         if (button.ButtonIndex != MouseButton.Left)
@@ -55,6 +59,5 @@ public partial class SlotButton : TextureButton
             }
             _lastClickTime = cur;
         }
-        GetViewport().SetInputAsHandled();
     }
 }

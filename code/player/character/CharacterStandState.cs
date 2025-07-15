@@ -1,4 +1,5 @@
-﻿using QnClient.code.input;
+﻿using Godot;
+using QnClient.code.input;
 using QnClient.code.util;
 
 namespace QnClient.code.player.character;
@@ -9,6 +10,8 @@ public class CharacterStandState : AbstractCharacterState
 
     private readonly PlayerState _state;
 
+    private double _timer = 0.3f;
+
     private CharacterStandState(ICharacter character, PlayerState state)
     {
         _character = character;
@@ -18,7 +21,20 @@ public class CharacterStandState : AbstractCharacterState
             character.AnimationPlayer.PlayFightStand(character.Direction);
         _state = state;
     }
-    
+
+    public override void PhysicProcess(double delta)
+    {
+        _timer -= delta;
+        if (_timer > 0)
+            return;
+        _timer = 0.3f;
+        if (Input.IsMouseButtonPressed(MouseButton.Right))
+        {
+            var moveInput = new MoveInput(_character.GetLocalMousePosition().GetDirection(), _character.Coordinate);
+            Move(moveInput);
+        }
+    }
+
     public override void Move(MoveInput input)
     {
         if (!_character.Map.CanMove(_character.Coordinate.Move(input.Direction)))

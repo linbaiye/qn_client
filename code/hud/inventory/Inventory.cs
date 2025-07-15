@@ -89,6 +89,13 @@ public partial class Inventory : AbstractSlotContainer
             SetSlot(message);
     }
 
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouse)
+            GetViewport().SetInputAsHandled();
+    }
+
+
     public void UpdateInventoryView(InventoryMessage message, Connection connection)
     {
         if (!message.Forceful && !Visible)
