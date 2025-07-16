@@ -11,8 +11,6 @@ public interface IEntity
 
     void HandleEntityMessage(IEntityMessage message);
 
-    void EmitEvent(IEntityEvent entityEvent);
     
-    Vector2 ProjectileAimPoint { get; }
 
 }

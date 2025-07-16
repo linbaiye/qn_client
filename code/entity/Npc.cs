@@ -39,6 +39,16 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
         EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 
+    private Vector2 ComputeProjectileStartPoint(CreatureDirection direction)
+    {
+        return Position + VectorUtil.DefaultTextureOffset;
+    }
+
+    public void FireProjectile(long targetId, string sprite, int flyMillis)
+    {
+        FireProjectile(targetId, sprite, flyMillis, ComputeProjectileStartPoint);
+    }
+
     private Vector2 ComputeVelocity(CreatureDirection direction)
     {
         return VectorUtil.VelocityUnit(direction) / _animationPlayer.MoveAnimationLength;

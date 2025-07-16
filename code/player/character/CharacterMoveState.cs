@@ -19,8 +19,6 @@ public class CharacterMoveState : AbstractCharacterState
 
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     
-    private MoveInput? _nextInput;
-
     private CharacterMoveState(ICharacter character, MoveAction action, MoveInput moveInput)
     {
         _character = character;
@@ -52,12 +50,12 @@ public class CharacterMoveState : AbstractCharacterState
             return;
         _character.Position = _character.Position.Snapped(VectorUtil.TileSize);
         _character.EmitEvent(new EntityChangeCoordinateEvent(_character));
-        if (!Input.IsMouseButtonPressed(MouseButton.Right))
+        if (_character.NextMoveDirection == null)
         {
             ChangeToStandState();
             return;
         }
-        var moveInput = new MoveInput(_character.GetLocalMousePosition().GetDirection(), _character.Coordinate);
+        var moveInput = new MoveInput(_character.NextMoveDirection.Value, _character.Coordinate);
         if (_character.Map.CanMove(_character.Coordinate.Move(moveInput.Direction)))
         {
             _elapsedSeconds = 0;

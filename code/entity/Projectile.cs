@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using Godot;
 using QnClient.code.sprite;
-using QnClient.code.util;
 
 namespace QnClient.code.entity;
 
-public partial class Projectile: Sprite2D
+public partial class Projectile: AnimatedSprite2D
 {
     
     private static readonly ZipFileSpriteLoader SpriteLoader = ZipFileSpriteLoader.Instance;
@@ -19,18 +17,32 @@ public partial class Projectile: Sprite2D
     private float _speed;
 
     
-    private void Init(Vector2 start, Vector2 end, Texture2D texture, int millis)
+    private void Init(Vector2 start, Vector2 end, OffsetTexture[] textures, int millis)
     {
-        Texture = texture;
-        //var distance = start.DistanceTo(end);
-        Offset = new Vector2(0, Texture.GetSize().Y / 2);
+        
+        SpriteFrames frames = new SpriteFrames();
+        for (int i = 0; i < 10; i++)
+        {
+            frames.AddFrame("default", textures[20 + i].Texture);
+        }
+        Autoplay = "default";
+        SpriteFrames = frames;
+        Offset = new Vector2(0, textures[20].Texture.GetSize().Y / 2);
         Position = start;
+        /*var ani = new AnimatedSprite2D()
+        {
+            Centered = false,
+            SpriteFrames = frames,
+            YSortEnabled = true,
+            Autoplay = "default",
+        };*/
+        //var distance = start.DistanceTo(end);
         //_lengthSeconds = distance * 0.15f;
         //_lengthSeconds = distance * 0.0015f;
         _lengthSeconds = (float)millis / 1000;
-        var rect = end - Position;
-        Rotation = rect.Normalized().Angle();
-        _velocity = rect / _lengthSeconds;
+        var diff = end - Position;
+        Rotation = diff.Normalized().Angle();
+        _velocity = diff / _lengthSeconds;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -52,12 +64,12 @@ public partial class Projectile: Sprite2D
         return arrow;
     }*/
     
-    public static Projectile Test(Vector2 start, Vector2 end, string sprite, int millis)
+    public static Projectile Create(Vector2 start, Vector2 end, string sprite, int millis)
     {
         var textures = SpriteLoader.Load(sprite);
         PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/projectile.tscn");
         var arrow = scene.Instantiate<Projectile>();
-        arrow.Init(start, end, textures[20].Texture, millis);
+        arrow.Init(start, end, textures, millis);
         return arrow;
     }
 

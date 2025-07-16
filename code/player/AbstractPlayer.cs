@@ -22,7 +22,6 @@ public abstract partial class AbstractPlayer : AbstractCreature
     private Sprite2D _hair;
     private Sprite2D _armor;
     private Sprite2D _weapon;
-    public event Action<ShootEvent>? ShootEvent;
     
     public override void _Ready()
     {
@@ -300,14 +299,15 @@ public abstract partial class AbstractPlayer : AbstractCreature
         _target = target;
     }
 
+
+    private Vector2 ComputeShootStartPoint(CreatureDirection direction)
+    {
+        return Position + _body.Offset + ProjectileLetOffPoints.GetValueOrDefault(direction, Vector2.Zero);
+    }
+
     public void FireProjectile(long targetId, string sprite, int flyMillis)
     {
-        var ani = _animationPlayer.CurrentAnimation;
-        if (string.IsNullOrEmpty(ani))
-            return;
-        CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.Split("/")[1]);
-        var position = Position + _body.Offset + ProjectileLetOffPoints.GetValueOrDefault(direction, Vector2.Zero);
-        ShootEvent?.Invoke(new ShootEvent(targetId, position, sprite, flyMillis));
+        FireProjectile(targetId, sprite, flyMillis, ComputeShootStartPoint);
     }
     
     public override void _Process(double delta)

@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 render_mode blend_mix;
 
-uniform vec2 deform = vec2(2.0, 2.0);
+uniform vec2 deform = vec2(0.3, 0.2);
 uniform vec2 offset = vec2(0.0, 0.0);
 uniform vec4 modulate : source_color;
 

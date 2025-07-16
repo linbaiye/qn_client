@@ -37,8 +37,7 @@ public partial class Inventory : AbstractSlotContainer
         var slot = FindSlotHasHovering();
         if (slot != null && slot.Number != number)
         {
-            Log.Debug("Swaping {} {}.", number, slot.Number);
-            _connection.WriteAndFlush(new SwapInventoryItemInput(number, slot.Number));
+            _connection.WriteAndFlush(SwapSlotInput.Inventory(number, slot.Number));
         }
         else
         {
@@ -89,11 +88,7 @@ public partial class Inventory : AbstractSlotContainer
             SetSlot(message);
     }
 
-    public override void _GuiInput(InputEvent @event)
-    {
-        if (@event is InputEventMouse)
-            GetViewport().SetInputAsHandled();
-    }
+
 
 
     public void UpdateInventoryView(InventoryMessage message, Connection connection)

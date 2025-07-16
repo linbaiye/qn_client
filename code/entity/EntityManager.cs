@@ -19,6 +19,14 @@ public class EntityManager
         return _entities.GetValueOrDefault(id);
     }
     
+    public T? Find<T>(long id)
+    {
+        var v = _entities.GetValueOrDefault(id);
+        if (v is T t)
+            return t;
+        return default;
+    }
+    
     public AbstractCreature? Find(string name)
     {
         foreach (var entitiesValue in _entities.Values)

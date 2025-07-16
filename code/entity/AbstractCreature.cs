@@ -1,15 +1,14 @@
 using System;
 using Godot;
+using QnClient.code.entity.@event;
 using QnClient.code.message;
 using QnClient.code.util;
 using TextBubble = QnClient.code.hud.TextBubble;
 
 namespace QnClient.code.entity;
 
-public abstract partial class AbstractCreature : Node2D, IEntity
+public abstract partial class AbstractCreature : AbstractEntity, ICreature
 {
-    public event Action<IEntityEvent>? OnEntityEvent;
-
     private string _name;
 
     public string EntityName => _name;
@@ -23,6 +22,7 @@ public abstract partial class AbstractCreature : Node2D, IEntity
     private AbstractAnimationPlayer _animationPlayer;
     
     public event Action<long>? AttackTriggered;
+    public event Action<ShootEvent>? ShootEvent;
     
     public override void _Ready()
     {
@@ -32,23 +32,12 @@ public abstract partial class AbstractCreature : Node2D, IEntity
         _animationPlayer = GetNode<AbstractAnimationPlayer>("AnimationPlayer");
     }
     
-    
     private void InitializeViewName(string name)
     {
         _name = name;
         var label = GetNode<Label>("Name");
         label.SetText(name);
         label.Visible = false;
-    }
-
-    public long Id { get; private set; }
-    public Vector2I Coordinate => Position.ToCoordinate();
-    
-    public abstract void HandleEntityMessage(IEntityMessage message);
-
-    public void EmitEvent(IEntityEvent entityEvent)
-    {
-        OnEntityEvent?.Invoke(entityEvent);
     }
     
     protected abstract bool Humanoid { get; }
@@ -63,12 +52,16 @@ public abstract partial class AbstractCreature : Node2D, IEntity
         else
             offset += new Vector2(size.X / 2,  5);
         label.Position = new Vector2(offset.X - label.Size.X / 2,  offset.Y);
-        /*//var p = new Vector2(positionTexture.Value.OriginalSize.X / 2 + positionTexture.Value.Offset.X, positionTexture.Value.Offset.Y);
-        var idle = _animationPlayer.GetCurrentDirectionIdle();
-        var size = label.Size;
-        var anchor = new Vector2(idle.Offset.X,  idle.Offset.Y + idle.OriginalSize.Y / 2);
-        label.Position = new Vector2(anchor.X,  anchor.Y);*/
         label.Visible = true;
+    }
+
+
+    private ShaderMaterial CreateShadowShader()
+    {
+        var shader = ResourceLoader.Load<Shader>("res://shader/Shadow.gdshader");
+        var shaderMaterial = new ShaderMaterial();
+        shaderMaterial.Shader = shader;
+        return shaderMaterial;
     }
     
 
@@ -76,6 +69,7 @@ public abstract partial class AbstractCreature : Node2D, IEntity
     {
         Id = id;
         var bodySprite = GetNode<BodySprite>("Body");
+        bodySprite.Material = CreateShadowShader();
         bodySprite.MouseEntered += OnMouseEntered;
         bodySprite.MouseExited += () => GetNode<Label>("Name").Visible = false;
         bodySprite.AttackInvoked += () => AttackTriggered?.Invoke(Id);
@@ -88,8 +82,17 @@ public abstract partial class AbstractCreature : Node2D, IEntity
         Initialize(snapshot.Id, snapshot.Coordinate, snapshot.Name);
     }
 
-    public Vector2 ProjectileAimPoint => _bodySprite.ProjectileAimPoint + Position;
-        
+    public Vector2 ProjectileAimPoint
+    {
+        get
+        {
+            var offset = _bodySprite.Offset;
+            var texture = _bodySprite.GetTexture();
+            var point = offset + new Vector2(Math.Min(15, texture.GetSize().X / 2), texture.GetSize().Y / 2);
+            return point + Position;
+        }
+    }
+
     private Vector2 CenterXy
     {
         get
@@ -98,6 +101,15 @@ public abstract partial class AbstractCreature : Node2D, IEntity
             var size = _animationPlayer.BodySize;
             return offset + new Vector2(size.X / 2, 0);
         }
+    }
+    
+    protected void FireProjectile(long targetId, string sprite, int flyMillis, Func<CreatureDirection, Vector2> startPoint)
+    {
+        var ani = _animationPlayer.CurrentAnimation;
+        if (string.IsNullOrEmpty(ani))
+            return;
+        CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.Split("/")[1]);
+        ShootEvent?.Invoke(new ShootEvent(targetId, startPoint.Invoke(direction), sprite, flyMillis));
     }
 
     public void ShowLifeBar(int percent)

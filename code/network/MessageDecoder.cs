@@ -42,6 +42,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.GainExp => packet.GainExp.KungFu ? new KungFuGainExpMessage(packet.GainExp.Level, packet.GainExp.Name) : new GainExpMessage(packet.GainExp.Name),
             Packet.TypedPacketOneofCase.UpdateSlot => InventoryItemMessage.FromPacket(packet.UpdateSlot),
             Packet.TypedPacketOneofCase.Projectile => ProjectileFiredMessage.FromPacket(packet.Projectile),
+            Packet.TypedPacketOneofCase.ShowItem => GroundItemSnapshot.FromPacket(packet.ShowItem),
             _ => null,
         };
     }

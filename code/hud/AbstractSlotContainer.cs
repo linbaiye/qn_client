@@ -15,7 +15,7 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
             _slots[i] = CreateSlot("Slot" + (i + 1));
             _slots[i].LeftMouseButtonReleased += OnSlotLeftMouseButtonReleased;
             _slots[i].LeftMouseButtonDoubleClicked += OnSlotLeftButtonDoubleClicked;
-            _slots[i].RightMouseButtonReleased += OnSlotLeftButtonDoubleClicked;
+            _slots[i].RightMouseButtonReleased += OnSlotRightMouseButtonReleased;
             GetNode<GridContainer>("GridContainer").AddChild(_slots[i]);
             Visible = false;
         }
@@ -35,7 +35,13 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
         }
     }
 
-
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouse)
+        {
+            GetViewport().SetInputAsHandled();
+        }
+    }
 
     protected Slot GetSlot(int slotNumber)
     {

@@ -45,9 +45,20 @@ public partial class Game : Node2D
         AddChild(creature);
         creature.OnEntityEvent += _map.HandleEntityEvent;
         creature.OnEntityEvent += _entityManager.HandleEntityEvent;
+        creature.ShootEvent += HandleShoot;
         creature.HandleEntityMessage(message);
         creature.AttackTriggered += id => _connection.WriteAndFlush(new AttackInput(id));
         _entityManager.Add(creature);
+    }
+
+    private void AddGroundItem(GroundItemSnapshot snapshot)
+    {
+        var groundItem = GroundItem.Create();
+        AddChild(groundItem);
+        groundItem.OnEntityEvent += _entityManager.HandleEntityEvent;
+        groundItem.Picked += i => _connection.WriteAndFlush(i);
+        _entityManager.Add(groundItem);
+        groundItem.Init(snapshot);
     }
 
 
@@ -72,12 +83,13 @@ public partial class Game : Node2D
                     AddEntity(Npc.Create(), snapshot);
                     break;
                 case PlayerSnapshot playerSnapshot:
-                    var player = Player.Create();
-                    player.ShootEvent += HandleShoot;
-                    AddEntity(player, playerSnapshot);
+                    AddEntity(Player.Create(), playerSnapshot);
                     break;
                 case IEntityMessage entityMessage:
                     _entityManager.Find(entityMessage.Id)?.HandleEntityMessage(entityMessage);
+                    break;
+                case GroundItemSnapshot itemSnapshot:
+                    AddGroundItem(itemSnapshot);
                     break;
             }
             if (msg is IHUDMessage hudMessage)
@@ -89,11 +101,11 @@ public partial class Game : Node2D
 
     private void HandleShoot(ShootEvent shootEvent)
     {
-        var entity = _entityManager.Find(shootEvent.TargetId);
+        var entity = _entityManager.Find<ICreature>(shootEvent.TargetId);
         if (entity == null)
             return;
-        var test = Projectile.Test(shootEvent.Start, entity.ProjectileAimPoint, shootEvent.Sprite, shootEvent.FlyMillis);
-        AddChild(test);
+        var projectile = Projectile.Create(shootEvent.Start, entity.ProjectileAimPoint, shootEvent.Sprite, shootEvent.FlyMillis);
+        AddChild(projectile);
     }
 
     public override void _Process(double delta)
@@ -133,7 +145,8 @@ public partial class Game : Node2D
         switch (eventKey.Keycode)
         {
             case Key.E:
-                _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 你是没死过么？"));
+                AddGroundItem(GroundItemSnapshot.Test());
+                // _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 你是没死过么？"));
                 break;
             case Key.Q:
                 _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 用户在使用cherry键盘的时候如果想要关闭f1到f12的功能键的话，是无法做到的，只能关闭功能键的热键功能，无法关闭其中所有的功能。"));

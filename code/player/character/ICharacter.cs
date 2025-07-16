@@ -20,11 +20,14 @@ public interface ICharacter : ICreature
         get;
     }
     
+    CreatureDirection Direction { get; set; }
+    
     Vector2 Position { get; set; }
-
-    Vector2 GetLocalMousePosition();
     
     FootKungFu? FootKungFu { get; }
     
     Connection Connection { get; }
+    CreatureDirection? NextMoveDirection { get; }
+    
+    void EmitEvent(IEntityEvent entityEvent);
 }

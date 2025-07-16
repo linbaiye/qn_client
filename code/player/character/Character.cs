@@ -36,12 +36,10 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public override void _PhysicsProcess(double delta)
     {
-        if (_timer > 0)
-            _timer -= delta;
         _characterState?.PhysicProcess(delta);
     }
 
-    private double _timer = 0;
+    public CreatureDirection? NextMoveDirection { get; private set; }
 
     private void HandleMouseEvent(InputEventMouse eventMouse)
     {
@@ -49,9 +47,19 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         {
             if (mouseButton.Pressed)
             {
-                _characterState?.Move(new MoveInput(GetLocalMousePosition().GetDirection(), Coordinate));
+                NextMoveDirection = GetLocalMousePosition().GetDirection();
+                _characterState?.Move(new MoveInput(NextMoveDirection.Value, Coordinate));
             }
-            GetViewport().SetInputAsHandled();
+            else if (mouseButton.IsReleased())
+            {
+                NextMoveDirection = null;
+            }
+        }
+        else
+        {
+            if (eventMouse.ButtonMask != MouseButtonMask.Right)
+                return;
+            NextMoveDirection = GetLocalMousePosition().GetDirection();
         }
     }
 
@@ -122,6 +130,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void ChangeState(PlayerState newState, CreatureDirection direction)
     {
+        Direction = direction;
         switch (newState)
         {
             case PlayerState.FightStand:
@@ -140,6 +149,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     public void SetPosition(Vector2I coordinate, PlayerState state, CreatureDirection direction)
     {
         DoSetPosition(coordinate, state, direction);
+        Direction = direction;
         if (state == PlayerState.Idle)
             ChangeState(CharacterStandState.Idle(this));
         else if (state == PlayerState.FightStand)
@@ -150,6 +160,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     public void Attack(AttackAction action, CreatureDirection direction, string effect)
     {
         PlayAttackAnimation(action, direction, effect);
+        Direction = direction;
         ChangeState(CharacterWaitingState.Instance);
     }
 

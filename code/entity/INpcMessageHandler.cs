@@ -15,5 +15,6 @@ public interface INpcMessageHandler : IEntityMessageHandler
     void Say(CreatureSayMessage message);
     
     void ShowLifeBar(int percent);
-
+    
+    void FireProjectile(long targetId, string sprite, int flyMillis);
 }

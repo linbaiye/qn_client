@@ -1,19 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo6fmqnji3bfj"]
+[gd_scene load_steps=4 format=3 uid="uid://bo6fmqnji3bfj"]
 
-[ext_resource type="Shader" uid="uid://bxa233gh76t0f" path="res://shader/Shadow.gdshader" id="1_u5yd7"]
 [ext_resource type="Script" uid="uid://ctuuxtf2k44ru" path="res://code/entity/BodySprite.cs" id="2_w6pjy"]
 [ext_resource type="Script" uid="uid://r7xoctwkhlau" path="res://code/hud/MouseArea.cs" id="3_ofaag"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofaag"]
-shader = ExtResource("1_u5yd7")
-shader_parameter/deform = Vector2(0.3, 0.2)
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/modulate = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofaag"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xi8q5"]
 
 [node name="Body" type="Sprite2D"]
-material = SubResource("ShaderMaterial_ofaag")
 centered = false
 script = ExtResource("2_w6pjy")
 
@@ -21,5 +13,5 @@ script = ExtResource("2_w6pjy")
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ofaag")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xi8q5")
 script = ExtResource("3_ofaag")

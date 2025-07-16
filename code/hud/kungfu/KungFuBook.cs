@@ -54,12 +54,12 @@ public partial class KungFuBook : AbstractSlotContainer
 
     protected override void OnSlotLeftMouseButtonReleased(int number)
     {
-        Logger.Debug("Slot {} released.", number);
         var slot = FindSlotHasHovering();
         if (slot != null && slot.Number != number)
         {
-            Logger.Debug("Slot {} has hovering.", slot.Number);
-            // swap kungfu
+            if (!_basicTab.IsFocused)
+                return;
+            _connection.WriteAndFlush(SwapSlotInput.KungFu(2, number, slot.Number));
         }
         else
         {

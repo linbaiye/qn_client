@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://8oqm26m1sqy4"]
+
+[ext_resource type="Script" uid="uid://c6kkuyciir2sh" path="res://code/entity/GroundItem.cs" id="1_k5hs7"]
+[ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="1_qjtyw"]
+[ext_resource type="Theme" uid="uid://b8hbldyojfhb1" path="res://scene/text_bubble.tres" id="2_k5hs7"]
+
+[node name="GroundItem" type="Node2D"]
+script = ExtResource("1_k5hs7")
+
+[node name="Body" parent="." instance=ExtResource("1_qjtyw")]
+
+[node name="Tip" type="Label" parent="."]
+z_index = 5
+z_as_relative = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("2_k5hs7")
