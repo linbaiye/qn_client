@@ -55,10 +55,10 @@ public partial class Game : Node2D
     {
         var groundItem = GroundItem.Create();
         AddChild(groundItem);
+        groundItem.Init(snapshot);
         groundItem.OnEntityEvent += _entityManager.HandleEntityEvent;
         groundItem.Picked += i => _connection.WriteAndFlush(i);
         _entityManager.Add(groundItem);
-        groundItem.Init(snapshot);
     }
 
 

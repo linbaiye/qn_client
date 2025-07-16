@@ -11,6 +11,4 @@ public interface IEntity
 
     void HandleEntityMessage(IEntityMessage message);
 
-    
-
 }

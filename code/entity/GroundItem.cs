@@ -22,7 +22,7 @@ public partial class GroundItem : AbstractEntity
         _bodySprite = GetNode<BodySprite>("Body");
         _bodySprite.MouseEntered += () => _tip.Visible = true;
         _bodySprite.MouseExited += () => _tip.Visible = false;
-        _bodySprite.Clicked += () => Picked?.Invoke(new PickInput(Id));
+        _bodySprite.Clicked += OnPicked;
         _tip.Visible = false;
         Visible = false;
     }
@@ -41,10 +41,14 @@ public partial class GroundItem : AbstractEntity
         _bodySprite.MouseArea.Size = _bodySprite.Texture.GetSize();
         var tip = snapshot.Number > 1 ? snapshot.Name + ": " + snapshot.Number : snapshot.Name;
         _tip.Text = tip;
-        var font = _tip.GetThemeFont("normal_font");
-        var size = font.GetStringSize(tip, HorizontalAlignment.Left, -1, 12);
+        var size = _tip.GetTextSize(tip);
         _tip.Position = new Vector2(16, 12) - size / 2;
         Visible = true;
+    }
+
+    private void OnPicked()
+    {
+          Picked?.Invoke(new PickInput(Id));
     }
 
     public static GroundItem Create()
@@ -60,5 +64,10 @@ public partial class GroundItem : AbstractEntity
             EmitEvent(new DeletedEvent(this));
             QueueFree();
         }
+    }
+
+    public void Remove()
+    {
+        
     }
 }

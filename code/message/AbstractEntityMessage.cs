@@ -1,3 +1,4 @@
+
 namespace QnClient.code.message;
 
 public abstract class AbstractEntityMessage(long id) : IEntityMessage

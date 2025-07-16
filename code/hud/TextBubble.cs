@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Godot;
+using QnClient.code.util;
 
 namespace QnClient.code.hud;
 
@@ -55,8 +56,7 @@ public partial class TextBubble : RichTextLabel
         {
             lines = lines[..MaxLines];
         }
-        var font = GetThemeFont("normal_font");
-        var size = font.GetStringSize(lines[0], HorizontalAlignment.Left, -1, 12);
+        var size = this.GetTextSize(lines[0]);
         size *= new Vector2(1, lines.Count);
         size += new Vector2(20, 10);
         StringBuilder stringBuilder = new StringBuilder();
