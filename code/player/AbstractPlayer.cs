@@ -39,7 +39,7 @@ public abstract partial class AbstractPlayer : AbstractCreature
         _weapon = GetNode<Sprite2D>("Weapon");
     }
 
-    protected override bool Humanoid => true;
+    protected override bool IsPlayer => true;
     
     public PlayerAnimationPlayer AnimationPlayer => _animationPlayer;
     
