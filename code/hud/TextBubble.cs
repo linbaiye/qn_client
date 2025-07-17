@@ -56,9 +56,20 @@ public partial class TextBubble : RichTextLabel
         {
             lines = lines[..MaxLines];
         }
-        var size = this.GetTextSize(lines[0]);
-        size *= new Vector2(1, lines.Count);
-        size += new Vector2(20, 10);
+        Vector2 size = Vector2.Zero;
+        foreach (var line in lines)
+        {
+            var tmp = this.GetTextSize(line);
+            if (size.X < tmp.X + 20)
+            {
+                size = new Vector2(tmp.X + 20, size.Y);
+            }
+            if (size.Y < tmp.Y)
+            {
+                size = new Vector2(size.X, tmp.Y);
+            }
+        }
+        size = new Vector2(size.X, size.Y * lines.Count + 10);
         StringBuilder stringBuilder = new StringBuilder();
         foreach (string line in lines)
         {

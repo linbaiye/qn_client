@@ -37,21 +37,23 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
         _name = name;
         var label = GetNode<Label>("Name");
         label.SetText(name);
+        label.Position = new Vector2(18, -20) - label.GetTextSize(name) / 2;
+        //label.Position = (IsPlayer ? new Vector2(18, -20) : new Vector2(16, -20)) - label.GetTextSize(name) / 2;
         label.Visible = false;
     }
     
-    protected abstract bool Humanoid { get; }
+    protected abstract bool IsPlayer { get; }
 
     private void OnMouseEntered()
     {
         var label = GetNode<Label>("Name");
-        var offset = _animationPlayer.BodyOffset;
-        var size = _animationPlayer.BodySize;
-        if (Humanoid)
-            offset += new Vector2(size.X / 2, 12);
-        else
-            offset += new Vector2(size.X / 2,  5);
-        label.Position = new Vector2(offset.X - label.Size.X / 2,  offset.Y);
+        // var offset = _animationPlayer.BodyOffset;
+        // var size = _animationPlayer.BodySize;
+        // if (Humanoid)
+        //     offset += new Vector2(size.X / 2, 12);
+        // else
+        //     offset += new Vector2(size.X / 2,  5);
+        // label.Position = new Vector2(offset.X - label.Size.X / 2,  offset.Y);
         label.Visible = true;
     }
 
@@ -114,7 +116,7 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
 
     public void ShowLifeBar(int percent)
     {
-        _lifeBar.Show(percent, CenterXy);
+        _lifeBar.Show(percent);
     }
 
     public void Say(CreatureSayMessage sayMessage)
