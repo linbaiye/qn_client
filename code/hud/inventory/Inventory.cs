@@ -20,7 +20,7 @@ public partial class Inventory : AbstractSlotContainer
     private Connection _connection;
     
     private InventoryMessage _message;
-    public event Action<int>? ItemDragRelesed;
+    public event Action<int>? ItemDragReleased;
     public override void _Ready()
     {
         base._Ready();
@@ -38,16 +38,18 @@ public partial class Inventory : AbstractSlotContainer
         if (slot != null && slot.Number != number)
         {
             _connection.WriteAndFlush(SwapSlotInput.Inventory(number, slot.Number));
+            return;
         }
-        else
+        if (slot != null && slot.Number == number)
         {
-            foreach (var messageItem in _message.Items)
+            return;
+        }
+        foreach (var messageItem in _message.Items)
+        {
+            if (messageItem.Slot == number)
             {
-                if (messageItem.Slot == number)
-                {
-                    ItemDragRelesed?.Invoke(number);
-                    break;
-                }
+                ItemDragReleased?.Invoke(number);
+                break;
             }
         }
     }
@@ -85,10 +87,27 @@ public partial class Inventory : AbstractSlotContainer
         if (message.Removed)
             slot.Clear();
         else
+        {
+            _message.ReplaceOrAdd(message);
             SetSlot(message);
+        }
     }
 
 
+    public void StartDropItem(ItemModifyInput window, string name, int number, int slot, Vector2I coordinate)
+    {
+        window.SetInUse(true);
+        window.SetExtra("coordinate", coordinate);
+        window.SetExtra("slot", slot);
+        window.Confirmed = OnDropItemConfirmed;
+        window.SetNameAndNumber(name, number);
+    }
+    
+    private void OnDropItemConfirmed(ItemModifyInput input)
+    {
+        _connection.WriteAndFlush(new ConfirmDropItemInput(input.GetExtra<int>("slot"), input.Number, input.GetExtra<Vector2I>("coordinate")));
+        input.SetInUse(false);
+    }
 
 
     public void UpdateInventoryView(InventoryMessage message, Connection connection)

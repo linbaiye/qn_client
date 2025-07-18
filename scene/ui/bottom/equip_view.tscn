@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c3emj3mvd5bf0"]
 
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom/bottom.tres" id="1_4ali5"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="1_4ali5"]
 [ext_resource type="Script" uid="uid://cnimkn4rj5ry5" path="res://code/hud/bottom/EquipView.cs" id="1_ruhb1"]
 [ext_resource type="Shader" uid="uid://cpk0addbvfhxh" path="res://shader/Dyer.gdshader" id="2_d6nge"]
 

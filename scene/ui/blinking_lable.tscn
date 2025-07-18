@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2mb51tivs363"]
 
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom/bottom.tres" id="1_7bp5x"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="1_7bp5x"]
 [ext_resource type="Script" uid="uid://blp4k73s6cf8i" path="res://code/hud/bottom/BlinkingLabel.cs" id="2_vt4si"]
 
 [node name="BlinkingLable" type="RichTextLabel"]

@@ -12,52 +12,52 @@ public partial class SlotButton : TextureButton
     private const float DoubleClickThreshold = 0.2f;
     private float _lastClickTime;
     private Timer _timer;
-    public override void _Ready()
-    {
-        MouseEntered += () => MouseHovering = true;
-        MouseExited += () => MouseHovering = false;
-        _timer = GetNode<Timer>("Timer");
-        _timer.OneShot = true;
-        _timer.Timeout += OnTimeout;
-    }
-
-    private void OnTimeout()
-    {
-        LeftButtonReleased?.Invoke();
-    }
-    public override void _GuiInput(InputEvent @event)
-    {
-        if (@event is not InputEventMouse mouse)
-        {
-            return;
-        }
-        GetViewport().SetInputAsHandled();
-        if (mouse is not InputEventMouseButton button)
-        {
-            return;
-        }
-        if (button.ButtonIndex == MouseButton.Right && button.IsReleased())
-        {
-            RightButtonReleased?.Invoke();
-            return;
-        }
-        if (button.ButtonIndex != MouseButton.Left)
-        {
-            return;
-        }
-        if (button.IsReleased())
-        {
-            var cur = Time.GetTicksMsec() / 1000;
-            if (cur - _lastClickTime <= DoubleClickThreshold)
-            {
-                LeftButtonDoubleClicked?.Invoke();
-                _timer.Stop();
-            }
-            else
-            {
-                _timer.Start(DoubleClickThreshold);
-            }
-            _lastClickTime = cur;
-        }
-    }
+    // public override void _Ready()
+    // {
+    //     MouseEntered += () => MouseHovering = true;
+    //     MouseExited += () => MouseHovering = false;
+    //     _timer = GetNode<Timer>("Timer");
+    //     _timer.OneShot = true;
+    //     _timer.Timeout += OnTimeout;
+    // }
+    //
+    // private void OnTimeout()
+    // {
+    //     LeftButtonReleased?.Invoke();
+    // }
+    // public override void _GuiInput(InputEvent @event)
+    // {
+    //     if (@event is not InputEventMouse mouse)
+    //     {
+    //         return;
+    //     }
+    //     GetViewport().SetInputAsHandled();
+    //     if (mouse is not InputEventMouseButton button)
+    //     {
+    //         return;
+    //     }
+    //     if (button.ButtonIndex == MouseButton.Right && button.IsReleased())
+    //     {
+    //         RightButtonReleased?.Invoke();
+    //         return;
+    //     }
+    //     if (button.ButtonIndex != MouseButton.Left)
+    //     {
+    //         return;
+    //     }
+    //     if (button.IsReleased())
+    //     {
+    //         var cur = Time.GetTicksMsec() / 1000;
+    //         if (cur - _lastClickTime <= DoubleClickThreshold)
+    //         {
+    //             LeftButtonDoubleClicked?.Invoke();
+    //             _timer.Stop();
+    //         }
+    //         else
+    //         {
+    //             _timer.Start(DoubleClickThreshold);
+    //         }
+    //         _lastClickTime = cur;
+    //     }
+    // }
 }

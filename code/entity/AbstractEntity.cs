@@ -14,7 +14,8 @@ public abstract partial class AbstractEntity : Node2D, IEntity
     public Vector2I Coordinate => Position.ToCoordinate();
 
     public abstract void HandleEntityMessage(IEntityMessage message);
-    
+    public abstract bool IsCoveringPosition(Vector2 position);
+
     public void EmitEvent(IEntityEvent entityEvent)
     {
         OnEntityEvent?.Invoke(entityEvent);

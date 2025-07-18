@@ -16,7 +16,7 @@ public readonly struct InventoryItemMessage(string name, int icon, int slot, lon
 
     public static InventoryItemMessage FromPacket(InventoryItemPacket packet)
     {
-        long number = packet.HasNumber ? packet.Number : 0;
+        long number = packet.HasNumber ? packet.Number : -1;
         return new InventoryItemMessage(packet.Name, packet.Icon, packet.SlotId, number, packet.Color);
     }
 

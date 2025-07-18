@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnx66jyukm7f2"]
+[gd_scene load_steps=4 format=3 uid="uid://bnx66jyukm7f2"]
 
 [ext_resource type="Script" uid="uid://c3hx04cingw62" path="res://code/hud/TextBubble.cs" id="1_jnlly"]
-[ext_resource type="Theme" uid="uid://b8hbldyojfhb1" path="res://scene/text_bubble.tres" id="2_qdip0"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="1_qdip0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdip0"]
+bg_color = Color(0, 0, 0, 0.74902)
 
 [node name="TextBubble" type="RichTextLabel"]
 anchors_preset = 8
@@ -14,7 +17,8 @@ offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("2_qdip0")
+theme = ExtResource("1_qdip0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qdip0")
 bbcode_enabled = true
 text = "无名剑法"
 scroll_active = false

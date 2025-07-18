@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://diewx5q5mjx67"]
+
+[ext_resource type="Texture2D" uid="uid://ds8f6vihnmexw" path="res://ui/hud/npc_main_menu.png" id="1_giweh"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="2_vtewx"]
+
+[node name="NpcMainMenu" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -644.0
+offset_bottom = -464.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_giweh")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 5.0
+offset_right = 303.0
+offset_bottom = 27.0
+theme = ExtResource("2_vtewx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Greetings" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 50.0
+offset_right = 358.0
+offset_bottom = 128.0
+theme = ExtResource("2_vtewx")
+text = "有什么可以为侠士效劳的吗？"
+
+[node name="Caption" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 51.0
+offset_right = 103.0
+offset_bottom = 153.0
+
+[node name="SubmenuItems" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 147.0
+offset_right = 317.0
+offset_bottom = 251.0
+
+[node name="Button0" type="Button" parent="SubmenuItems"]
+layout_mode = 2
+theme = ExtResource("2_vtewx")
+
+[node name="Button1" type="Button" parent="SubmenuItems"]
+layout_mode = 2
+theme = ExtResource("2_vtewx")
+
+[node name="Button2" type="Button" parent="SubmenuItems"]
+layout_mode = 2
+theme = ExtResource("2_vtewx")
+
+[node name="Button3" type="Button" parent="SubmenuItems"]
+layout_mode = 2
+theme = ExtResource("2_vtewx")
+
+[node name="Button4" type="Button" parent="SubmenuItems"]
+layout_mode = 2
+theme = ExtResource("2_vtewx")

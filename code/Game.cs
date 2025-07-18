@@ -8,6 +8,7 @@ using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player;
+using QnClient.code.util;
 using Character = QnClient.code.player.character.Character;
 using HUD = QnClient.code.hud.HUD;
 
@@ -26,6 +27,7 @@ public partial class Game : Node2D
     private Connection _connection;
 
     private HUD _hud;
+    
 
     public override void _Ready()
     {
@@ -48,6 +50,7 @@ public partial class Game : Node2D
         creature.ShootEvent += HandleShoot;
         creature.HandleEntityMessage(message);
         creature.AttackTriggered += id => _connection.WriteAndFlush(new AttackInput(id));
+        creature.Clicked += id => _connection.WriteAndFlush(new ClickEntityInput(id));
         _entityManager.Add(creature);
     }
 
@@ -59,6 +62,20 @@ public partial class Game : Node2D
         groundItem.OnEntityEvent += _entityManager.HandleEntityEvent;
         groundItem.Picked += i => _connection.WriteAndFlush(i);
         _entityManager.Add(groundItem);
+    }
+
+    private void OnInventoryItemDropped(int slot)
+    {
+        var globalMousePosition = GetGlobalMousePosition();
+        var entity = _entityManager.FindFirst<IEntity>(e => e.IsCoveringPosition(globalMousePosition));
+        if (entity != null)
+        {
+            Logger.Debug("Dropped on {}.", entity.Id);
+        }
+        else
+        {
+            _connection.WriteAndFlush(new DropItemInput(slot, globalMousePosition.ToCoordinate()));
+        }
     }
 
 
@@ -125,6 +142,7 @@ public partial class Game : Node2D
         _connection = connection;
         _hud = hud;
         _character.OnEntityEvent += _hud.CharacterEventHandler;
+        _hud.InventoryItemDropped += OnInventoryItemDropped;
     }
 
     private void TestArrow()

@@ -1,3 +1,4 @@
+using Godot;
 using QnClient.code.message;
 using QnClient.code.player;
 
@@ -31,4 +32,6 @@ public interface IHUDMessageHandler
     void Unequip(EquipmentType type);
 
     void UpdateInventorySlot(InventoryItemMessage message);
+
+    void StartDropItem(string name, int number, int slot, Vector2I coordinate);
 }

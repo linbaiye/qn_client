@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cqmthwdfgvgtu" path="res://code/entity/Npc.cs" id="1_rnog4"]
 [ext_resource type="Script" uid="uid://dn8dv61le8ouc" path="res://code/entity/MonsterAnimationPlayer.cs" id="2_7ngcd"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_rnog4"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="4_06vv4"]
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="4_8oust"]
-[ext_resource type="Theme" uid="uid://b8hbldyojfhb1" path="res://scene/text_bubble.tres" id="4_pesj1"]
 [ext_resource type="PackedScene" uid="uid://dagprws1ut6fs" path="res://scene/life_bar.tscn" id="6_06vv4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_06vv4"]
@@ -27,7 +27,7 @@ z_index = 5
 z_as_relative = false
 offset_right = 1.0
 offset_bottom = 23.0
-theme = ExtResource("4_pesj1")
+theme = ExtResource("4_06vv4")
 horizontal_alignment = 1
 vertical_alignment = 1
 

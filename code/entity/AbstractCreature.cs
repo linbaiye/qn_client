@@ -22,6 +22,8 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
     private AbstractAnimationPlayer _animationPlayer;
     
     public event Action<long>? AttackTriggered;
+    
+    public event Action<long>? Clicked;
     public event Action<ShootEvent>? ShootEvent;
     
     public override void _Ready()
@@ -75,6 +77,7 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
         bodySprite.MouseEntered += OnMouseEntered;
         bodySprite.MouseExited += () => GetNode<Label>("Name").Visible = false;
         bodySprite.AttackInvoked += () => AttackTriggered?.Invoke(Id);
+        bodySprite.Clicked += () => Clicked?.Invoke(id);
         Position = coordinate.ToPosition();
         InitializeViewName(name);
     }
@@ -122,5 +125,12 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
     public void Say(CreatureSayMessage sayMessage)
     {
         _textBubble.Display(sayMessage.Text, CenterXy);
+    }
+
+    public override bool IsCoveringPosition(Vector2 position)
+    {
+        var end = Position + _bodySprite.GetOffset() + _bodySprite.Position + _bodySprite.Texture.GetSize();
+        return Position.X <= position.X && end.X >= position.X &&
+               Position.Y <= position.Y && end.Y >= position.Y;
     }
 }

@@ -1,13 +1,14 @@
 using System;
 using System.Text.RegularExpressions;
 using Godot;
+using NLog;
 using QnClient.code.entity;
 
 namespace QnClient.code.hud;
 
-public partial class Slot : CenterContainer
+public partial class Slot : Panel
 {
-    private SlotButton _slotButton;
+    private TextureRect _slotTexture;
 
     public event Action<int>? LeftMouseButtonReleased;
     public event Action<int>? RightMouseButtonReleased;
@@ -16,25 +17,31 @@ public partial class Slot : CenterContainer
     private Vector2 _slotSize;
     private Vector2 _iconSize;
     private bool _scaleTexture;
-    // private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+    private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+    
+    public bool MouseHovering { get; private set; }
+    private const float DoubleClickThreshold = 0.2f;
+    private float _lastClickTime;
+    private Timer _timer;
     
     public override void _Ready()
     {
-        _slotButton = GetNode<SlotButton>("SlotButton");
-        _slotButton.RightButtonReleased += OnRightButtonReleased;
-        _slotButton.LeftButtonDoubleClicked += OnLeftButtonDoubleClicked;
-        _slotButton.LeftButtonReleased += OnLeftButtonReleased;
+        _slotTexture = GetNode<TextureRect>("SlotTexture");
         Number = GetNumber();
-        _slotButton.CustomMinimumSize = _iconSize;
-        _slotButton.StretchMode =
-            _scaleTexture ? TextureButton.StretchModeEnum.Scale : TextureButton.StretchModeEnum.KeepCentered;
+        _slotTexture.CustomMinimumSize = _iconSize;
+        _slotTexture.StretchMode =
+            _scaleTexture ? TextureRect.StretchModeEnum.Scale : TextureRect.StretchModeEnum.KeepCentered;
         CustomMinimumSize = _slotSize;
         Size = _slotSize;
+        MouseEntered += () => MouseHovering = true;
+        MouseExited += () => MouseHovering = false;
+        _timer = GetNode<Timer>("Timer");
+        _timer.OneShot = true;
+        _timer.Timeout += OnLeftButtonReleased;
     }
     
     public int Number { get; private set; }
 
-    public bool MouseHovering => _slotButton.MouseHovering;
 
     private int GetNumber()
     {
@@ -57,7 +64,44 @@ public partial class Slot : CenterContainer
             RightMouseButtonReleased?.Invoke(Number);
         }
     }
-    
+
+
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is not InputEventMouse mouse)
+        {
+            return;
+        }
+        GetViewport().SetInputAsHandled();
+        if (mouse is not InputEventMouseButton button)
+        {
+            return;
+        }
+        if (button.ButtonIndex == MouseButton.Right && button.IsReleased())
+        {
+            OnRightButtonReleased();
+            return;
+        }
+        if (button.ButtonIndex != MouseButton.Left)
+        {
+            return;
+        }
+        if (button.IsReleased())
+        {
+            var cur = Time.GetTicksMsec() / 1000;
+            if (cur - _lastClickTime <= DoubleClickThreshold)
+            {
+                OnLeftButtonDoubleClicked();
+                _timer.Stop();
+            }
+            else
+            {
+                _timer.Start(DoubleClickThreshold);
+            }
+            _lastClickTime = cur;
+        }
+    }
+
     private void OnLeftButtonDoubleClicked()
     {
         if (Number != -1)
@@ -68,22 +112,18 @@ public partial class Slot : CenterContainer
 
     public void SetTextureAndTip(Texture2D texture2D, string tip, int color = 0)
     {
-        _slotButton.TextureNormal = texture2D;
-        _slotButton.TooltipText = tip;
+        _slotTexture.Texture = texture2D;
         if (color != 0)
-            _slotButton.Material = DyeShader.CreateShaderMaterial(color);
+            _slotTexture.Material = DyeShader.CreateShaderMaterial(color);
+        TooltipText = tip;
     }
 
-    public string Tip
-    {
-        get => _slotButton.TooltipText;
-        set => _slotButton.TooltipText = value;
-    }
+    private string Tip => TooltipText;
 
     public void Clear()
     {
-        _slotButton.TextureNormal = null;
-        _slotButton.TooltipText = null;
+        _slotTexture.Texture = null;
+        TooltipText = null;
     }
 
     public static Slot Create(string name, Vector2 slotSize, Vector2 iconSize, bool scale = true)

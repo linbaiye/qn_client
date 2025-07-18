@@ -11,4 +11,6 @@ public interface IEntity
 
     void HandleEntityMessage(IEntityMessage message);
 
+    bool IsCoveringPosition(Vector2 position);
+
 }

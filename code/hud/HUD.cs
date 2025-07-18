@@ -1,7 +1,9 @@
+using System;
 using Godot;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
+using QnClient.code.hud.inventory;
 using QnClient.code.input;
 using QnClient.code.message;
 using QnClient.code.network;
@@ -26,6 +28,10 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     
     private AudioManager _audioManager;
 
+    private ItemModifyInput _itemModifyInput;
+
+    public event Action<int>? InventoryItemDropped;
+
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -34,9 +40,10 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _bottom.SystemButtonPressed += OnSystemButtonPressed;
         _kungFuBook = GetNode<KungFuBook>("KungFuBook");
         _inventory = GetNode<Inventory>("Inventory");
-        _inventory.ItemDragRelesed += OnInventoryItemDragReleased;
+        _inventory.ItemDragReleased += s => InventoryItemDropped?.Invoke(s);
         _audioManager = GetNode<AudioManager>("AudioManager");
         _bottom.UnequipPressed += UnequipPressed;
+        _itemModifyInput = GetNode<ItemModifyInput>("ItemModifyInput");
         Visible = false;
     }
 
@@ -103,14 +110,17 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _inventory.UpdateSlot(message);
     }
 
+    public void StartDropItem(string name, int number, int slot, Vector2I coordinate)
+    {
+        if (_itemModifyInput.Using)
+            _bottom.DisplayText("另一操作正在进行中。");
+        else
+            _inventory.StartDropItem(_itemModifyInput, name, number, slot, coordinate);
+    }
+
     public void DisplayText(string text)
     {
         _bottom.DisplayText(text);
-    }
-
-    private void OnInventoryItemDragReleased(int number)
-    {
-        Logger.Debug("Dragged inventory slot {}", number);
     }
 
     public void UpdateInventoryView(InventoryMessage message)
@@ -144,6 +154,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     {
         _bottom.UpdateLifeBars(message);
     }
+
 
     private void OnSystemButtonPressed()
     {

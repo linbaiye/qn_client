@@ -66,8 +66,8 @@ public partial class GroundItem : AbstractEntity
         }
     }
 
-    public void Remove()
+    public override bool IsCoveringPosition(Vector2 position)
     {
-        
+        return false;
     }
 }

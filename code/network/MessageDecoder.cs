@@ -2,6 +2,7 @@
 using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Channels;
+using Godot;
 using NLog;
 using QnClient.code.message;
 using QnClient.code.player;
@@ -43,6 +44,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.UpdateSlot => InventoryItemMessage.FromPacket(packet.UpdateSlot),
             Packet.TypedPacketOneofCase.Projectile => ProjectileFiredMessage.FromPacket(packet.Projectile),
             Packet.TypedPacketOneofCase.ShowItem => GroundItemSnapshot.FromPacket(packet.ShowItem),
+            Packet.TypedPacketOneofCase.DropItemPacket => StartDropItemMessage.FromPacket(packet.DropItemPacket),
             _ => null,
         };
     }

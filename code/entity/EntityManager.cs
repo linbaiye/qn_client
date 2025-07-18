@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using QnClient.code.entity.@event;
 
 namespace QnClient.code.entity;
@@ -24,6 +26,16 @@ public class EntityManager
         var v = _entities.GetValueOrDefault(id);
         if (v is T t)
             return t;
+        return default;
+    }
+    
+    public T? FindFirst<T>(Func<IEntity, bool> tester)
+    {
+        var entity = _entities.Values.Where(tester).FirstOrDefault();
+        if (entity is T t)
+        {
+            return t;
+        }
         return default;
     }
     

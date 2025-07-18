@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://fr1w8gxhc48h" path="res://ui/hud/life_bar.png" id="2_q6f08"]
 [ext_resource type="Texture2D" uid="uid://wr2sy6sknwrw" path="res://ui/hud/hal_bar.png" id="3_378wf"]
 [ext_resource type="Texture2D" uid="uid://btlyxppsvu1lk" path="res://ui/hud/power_bar.png" id="3_m2yg2"]
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui/bottom/bottom.tres" id="5_ydt51"]
+[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="5_ydt51"]
 [ext_resource type="Script" uid="uid://bcbnx6d4w7vio" path="res://code/hud/bottom/ActiveKungFuList.cs" id="7_67i83"]
 [ext_resource type="Script" uid="uid://q5ee2aaqao31" path="res://code/hud/bottom/TextArea.cs" id="8_3hfix"]
 [ext_resource type="PackedScene" uid="uid://c2mb51tivs363" path="res://scene/ui/blinking_lable.tscn" id="8_mkk8q"]
@@ -119,7 +119,7 @@ offset_top = 166.0
 offset_right = 1002.0
 offset_bottom = 188.0
 theme = ExtResource("5_ydt51")
-text = "系统"
+text = "退出"
 
 [node name="ActiveKungFuList" type="VBoxContainer" parent="."]
 layout_mode = 0
