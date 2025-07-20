@@ -29,9 +29,9 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     private AudioManager _audioManager;
 
     private ItemModifyInput _itemModifyInput;
-
     public event Action<int>? InventoryItemDropped;
 
+    private npc.NpcMainMenu _npcMainMenu;
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -44,6 +44,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _audioManager = GetNode<AudioManager>("AudioManager");
         _bottom.UnequipPressed += UnequipPressed;
         _itemModifyInput = GetNode<ItemModifyInput>("ItemModifyInput");
+        _npcMainMenu = GetNode<npc.NpcMainMenu>("NpcMainMenu");
         Visible = false;
     }
 
@@ -64,19 +65,23 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     private void OnInventoryPressed()
     {
-        _inventory.OnShortcutButtonClicked(_connection);
+        _inventory.OnShortcutButtonClicked();
     }
     
     private void OnKungFuBookPressed()
     {
-        _kungFuBook.OnShortcutButtonClicked(_connection);
+        _kungFuBook.OnShortcutButtonClicked();
     }
 
 
     public void SetConnection(Connection connection)
     {
         _connection = connection;
-        _kungFuBook.SetConnection(connection);
+        foreach (var child in GetChildren())
+        {
+            if (child is IConnectionAware connectionAware)
+                connectionAware.SetConnection(connection);
+        }
     }
 
     public void UpdateKungFuBookView(KungFuBookMessage message)
@@ -116,6 +121,14 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
             _bottom.DisplayText("另一操作正在进行中。");
         else
             _inventory.StartDropItem(_itemModifyInput, name, number, slot, coordinate);
+    }
+
+    public void ShowNpcMenu(NpcMenuMessage message)
+    {
+        if (_itemModifyInput.Using)
+            _bottom.DisplayText("另一操作正在进行中。");
+        else
+            _npcMainMenu.Show(message);
     }
 
     public void DisplayText(string text)

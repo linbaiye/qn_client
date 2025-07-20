@@ -34,4 +34,5 @@ public interface IHUDMessageHandler
     void UpdateInventorySlot(InventoryItemMessage message);
 
     void StartDropItem(string name, int number, int slot, Vector2I coordinate);
+    void ShowNpcMenu(NpcMenuMessage message);
 }

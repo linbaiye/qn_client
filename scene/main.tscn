@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch785oi1vsnly"]
+[gd_scene load_steps=10 format=3 uid="uid://ch785oi1vsnly"]
 
 [ext_resource type="PackedScene" uid="uid://idx0qd14bsb2" path="res://scene/game.tscn" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://drt6jdp3j6pen" path="res://code/Main.cs" id="1_v0l8b"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://xmwuu6wmvhi4" path="res://scene/ui/kungfu/kung_fu_book.tscn" id="4_0ha60"]
 [ext_resource type="PackedScene" uid="uid://dysv1ro1g8nhc" path="res://scene/ui/inventory/inventory.tscn" id="5_4j5ol"]
 [ext_resource type="PackedScene" uid="uid://bctgfm8bqvxki" path="res://scene/audio_manager.tscn" id="6_p1hux"]
-[ext_resource type="PackedScene" uid="uid://qnfa1yksg3mv" path="res://scene/ui/inventory/item_modify_input.tscn" id="7_of57s"]
+[ext_resource type="PackedScene" uid="uid://c0thnwkoxgdlr" path="res://scene/ui/inventory/item_modify_input.tscn" id="7_of57s"]
+[ext_resource type="PackedScene" uid="uid://diewx5q5mjx67" path="res://scene/ui/npc/npc_main_menu.tscn" id="8_b5f6u"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")
@@ -35,6 +36,7 @@ offset_top = -192.0
 offset_right = 252.0
 offset_bottom = 192.0
 grow_horizontal = 1
+theme = null
 
 [node name="Inventory" parent="HUD" instance=ExtResource("5_4j5ol")]
 anchors_preset = 6
@@ -46,6 +48,7 @@ offset_top = -192.0
 offset_right = 0.0
 offset_bottom = 192.0
 grow_horizontal = 0
+theme = null
 
 [node name="AudioManager" parent="HUD" instance=ExtResource("6_p1hux")]
 
@@ -55,6 +58,8 @@ offset_left = 17.0
 offset_top = 458.0
 offset_right = -783.0
 offset_bottom = -159.0
+
+[node name="NpcMainMenu" parent="HUD" instance=ExtResource("8_b5f6u")]
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1024, 648)

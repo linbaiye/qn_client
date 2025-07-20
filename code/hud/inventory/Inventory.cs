@@ -8,7 +8,7 @@ using QnClient.code.sprite;
 
 namespace QnClient.code.hud.inventory;
 
-public partial class Inventory : AbstractSlotContainer
+public partial class Inventory : AbstractSlotContainer, IConnectionAware
 {
     
     private readonly ILogger Log = LogManager.GetCurrentClassLogger();
@@ -64,14 +64,14 @@ public partial class Inventory : AbstractSlotContainer
         Log.Debug("Right released on {}", number);
     }
 
-    public void OnShortcutButtonClicked(Connection connection)
+    public void OnShortcutButtonClicked()
     {
         if (Visible)
         {
             Visible = false;
             return;
         }
-        connection.WriteAndFlush(SimpleInput.Inventory);
+        _connection.WriteAndFlush(SimpleInput.Inventory);
     }
 
     private void SetSlot(InventoryItemMessage item)
@@ -122,5 +122,10 @@ public partial class Inventory : AbstractSlotContainer
             SetSlot(item);
         }
         Visible = true;
+    }
+
+    public void SetConnection(Connection connection)
+    {
+        _connection = connection;
     }
 }

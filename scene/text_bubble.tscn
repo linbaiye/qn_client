@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bnx66jyukm7f2"]
 
 [ext_resource type="Script" uid="uid://c3hx04cingw62" path="res://code/hud/TextBubble.cs" id="1_jnlly"]
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="1_qdip0"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="1_qdip0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdip0"]
-bg_color = Color(0, 0, 0, 0.74902)
+bg_color = Color(0, 0, 0, 0.443137)
 
 [node name="TextBubble" type="RichTextLabel"]
 anchors_preset = 8

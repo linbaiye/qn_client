@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://c3emj3mvd5bf0"]
 
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="1_4ali5"]
 [ext_resource type="Script" uid="uid://cnimkn4rj5ry5" path="res://code/hud/bottom/EquipView.cs" id="1_ruhb1"]
 [ext_resource type="Shader" uid="uid://cpk0addbvfhxh" path="res://shader/Dyer.gdshader" id="2_d6nge"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_d6nge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tv7e1"]
 shader = ExtResource("2_d6nge")
@@ -119,6 +119,6 @@ layout_mode = 0
 layout_mode = 0
 offset_right = 82.0
 offset_bottom = 14.0
-theme = ExtResource("1_4ali5")
+theme = ExtResource("3_d6nge")
 theme_override_colors/font_color = Color(0.898039, 0.890196, 0, 1)
 horizontal_alignment = 1

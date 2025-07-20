@@ -28,8 +28,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
         switch (snapshot.NpcState)
         {
             case NpcState.Move:
-                CreateMover(snapshot.Direction, (float)snapshot.ElapsedMillis / 1000);
-                _animationPlayer.PlayMove(snapshot.Direction, snapshot.ElapsedMillis);
+                Move(snapshot.DurationMillis, snapshot.Direction, snapshot.ElapsedMillis);
                 break;
             default:
                 _animationPlayer.Play(snapshot.NpcState, snapshot.Direction, snapshot.ElapsedMillis);
@@ -49,23 +48,27 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
         FireProjectile(targetId, sprite, flyMillis, ComputeProjectileStartPoint);
     }
 
-    private Vector2 ComputeVelocity(CreatureDirection direction)
+    private Vector2 ComputeVelocity(CreatureDirection direction, float duration)
     {
-        return VectorUtil.VelocityUnit(direction) / _animationPlayer.MoveAnimationLength;
+        return VectorUtil.VelocityUnit(direction) / duration;
     }
+    
 
-
-    private void CreateMover(CreatureDirection direction, float elapsedSeconds = 0)
+    private void Move(int durationMillis, CreatureDirection direction, int elapsedMillis = 0)
     {
+        var durationSec = (float)durationMillis / 1000;
         var length = _animationPlayer.MoveAnimationLength;
-        Mover = new EntityMover(this, length, ComputeVelocity(direction), elapsedSeconds);
+        var playSpeed = length / durationSec;
+        _animationPlayer.PlayMove(direction, elapsedMillis, playSpeed);
+        if (length > durationSec)
+            length = durationSec;
+        Mover = new EntityMover(this, length, ComputeVelocity(direction, length), (float) elapsedMillis / 1000);
     }
 
     public void Move(MoveMessage message)
     {
         Position = message.Start.ToPosition();
-        _animationPlayer.PlayMove(message.Direction);
-        CreateMover(message.Direction);
+        Move(message.DurationMillis, message.Direction);
         EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 

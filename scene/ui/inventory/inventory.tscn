@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dysv1ro1g8nhc"]
+[gd_scene load_steps=5 format=3 uid="uid://dysv1ro1g8nhc"]
 
-[ext_resource type="Theme" uid="uid://bnrgbxn7sip6r" path="res://scene/ui/slot.tres" id="1_khedw"]
 [ext_resource type="Texture2D" uid="uid://l1wd8fr8y8v" path="res://ui/inventory/inventory.png" id="2_d77iw"]
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="3_a8y50"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_a8y50"]
 [ext_resource type="Script" uid="uid://tfmairhavlvl" path="res://code/hud/inventory/Inventory.cs" id="3_khedw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nf4rs"]
@@ -20,7 +19,7 @@ offset_bottom = -342.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("1_khedw")
+theme = ExtResource("3_a8y50")
 texture = ExtResource("2_d77iw")
 script = ExtResource("3_khedw")
 

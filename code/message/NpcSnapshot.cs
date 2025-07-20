@@ -10,8 +10,10 @@ public class NpcSnapshot  : AbstractCreatureSnapshot, INpcMessage
         Animate = packet.Animate;
         Shape = packet.Shape;
         NpcState = (NpcState)packet.State;
+        DurationMillis = packet.Speed;
     }
 
+    public int DurationMillis { get; set; }
 
     public void Accept(INpcMessageHandler handler)
     {

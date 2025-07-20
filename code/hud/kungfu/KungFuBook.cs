@@ -11,7 +11,7 @@ using ILogger = NLog.ILogger;
 
 namespace QnClient.code.hud.kungfu;
 
-public partial class KungFuBook : AbstractSlotContainer
+public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
 {
     
     private readonly ILogger Logger = LogManager.GetCurrentClassLogger();
@@ -71,15 +71,14 @@ public partial class KungFuBook : AbstractSlotContainer
     /// <summary>
     /// When the '武功' button clicked.
     /// </summary>
-    /// <param name="connection"></param>
-    public void OnShortcutButtonClicked(Connection connection)
+    public void OnShortcutButtonClicked()
     {
         if (Visible)
         {
             Visible = false;
             return;
         }
-        connection.WriteAndFlush(SimpleInput.KungFuBook);
+        _connection.WriteAndFlush(SimpleInput.KungFuBook);
     }
 
 

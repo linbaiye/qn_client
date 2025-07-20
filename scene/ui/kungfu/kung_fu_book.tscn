@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://xmwuu6wmvhi4"]
+[gd_scene load_steps=6 format=3 uid="uid://xmwuu6wmvhi4"]
 
-[ext_resource type="Theme" uid="uid://bnrgbxn7sip6r" path="res://scene/ui/slot.tres" id="1_nf4rs"]
 [ext_resource type="Texture2D" uid="uid://d16ke1cg8vfkp" path="res://ui/kungfu/kungfu.png" id="1_xuyn1"]
-[ext_resource type="Theme" uid="uid://dyqd3de7r21dk" path="res://scene/ui.tres" id="2_uxxlc"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_uxxlc"]
 [ext_resource type="Script" uid="uid://brce2oqt2iu5e" path="res://code/hud/kungfu/KungFuBook.cs" id="3_2jh5i"]
 [ext_resource type="PackedScene" uid="uid://c2e0aa3ffa4em" path="res://scene/ui/kungfu/kung_fu_tab.tscn" id="5_yo8yw"]
 
@@ -21,7 +20,7 @@ offset_bottom = -342.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("1_nf4rs")
+theme = ExtResource("2_uxxlc")
 texture = ExtResource("1_xuyn1")
 script = ExtResource("3_2jh5i")
 

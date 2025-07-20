@@ -175,7 +175,7 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
         ExtractIdlePositions();
     }
     
-    public void Play(NpcState state, CreatureDirection direction, int fromMillis = 0)
+    public void Play(NpcState state, CreatureDirection direction, int fromMillis = 0, float speed = 1)
     {
         Stop();
         CurrentDirection = direction;
@@ -184,16 +184,18 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
         var name = state + "/" + direction;
         if (from >= aniLength)
             PlayLastFrame(name);
-        PlaySection(state + "/" + direction, from);
+        PlaySection(state + "/" + direction, from, -1, -1, speed);
     }
+    
     
     public void PlayIdle(CreatureDirection direction, int fromMillis = 0)
     {
         Play(NpcState.Idle, direction, fromMillis);
     }
     
-    public void PlayMove(CreatureDirection direction, int fromMillis = 0)
+    public void PlayMove(CreatureDirection direction, int fromMillis = 0, float speed = 1)
     {
-        Play(NpcState.Move, direction, fromMillis);
+        Play(NpcState.Move, direction, fromMillis, speed);
     }
+
 }

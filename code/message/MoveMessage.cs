@@ -6,7 +6,7 @@ using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class MoveMessage(CreatureDirection direction, long id, Vector2I start, MoveAction? action = null) : AbstractEntityMessage(id),
+public class MoveMessage(CreatureDirection direction, long id, Vector2I start, MoveAction? action = null, int durationMillis = 0) : AbstractEntityMessage(id),
     IPlayerMessage, INpcMessage
 {
     public CreatureDirection Direction { get; } = direction;
@@ -24,9 +24,11 @@ public class MoveMessage(CreatureDirection direction, long id, Vector2I start, M
         handler.Move(this);
     }
 
+    public int DurationMillis { get; } = durationMillis;
+
     public static MoveMessage FromPacket(NpcMovePacket packet)
     {
-        return new MoveMessage((CreatureDirection)packet.Direction, packet.Id, new Vector2I(packet.X, packet.Y));
+        return new MoveMessage((CreatureDirection)packet.Direction, packet.Id, new Vector2I(packet.X, packet.Y), null, packet.SpeedMillis);
     }
 
     public static MoveMessage FromPacket(PlayerMovePacket packet)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://brl3lwfss84w8"]
+
+[ext_resource type="Script" uid="uid://7od5evud7gc2" path="res://code/hud/npc/ScrollItemContainer.cs" id="1_wqcie"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_1i2y8"]
+
+[node name="ScrollItemContainer" type="ScrollContainer"]
+offset_right = 353.0
+offset_bottom = 152.0
+script = ExtResource("1_wqcie")
+
+[node name="ItemContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_1i2y8")
+theme_override_constants/separation = 1
