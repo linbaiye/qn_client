@@ -35,4 +35,6 @@ public interface IHUDMessageHandler
 
     void StartDropItem(string name, int number, int slot, Vector2I coordinate);
     void ShowNpcMenu(NpcMenuMessage message);
+
+    void ShowNpcSellMenu(NpcSellMenuMessage message);
 }

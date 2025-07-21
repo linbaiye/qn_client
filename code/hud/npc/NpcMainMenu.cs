@@ -14,6 +14,7 @@ public partial class NpcMainMenu : AbstractNpcMenu
     
     public override void _Ready()
     {
+        base._Ready();
         _submenuItems = GetNode<VBoxContainer>("SubmenuItems");
         _submenuButtons = new Button[_submenuItems.GetChildCount()];
         for (int i = 0; i < _submenuButtons.Length; i++)

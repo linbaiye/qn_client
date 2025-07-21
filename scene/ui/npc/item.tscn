@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwu4hdppidtua"]
+[gd_scene load_steps=3 format=3 uid="uid://bwu4hdppidtua"]
 
+[ext_resource type="Script" uid="uid://dx78q6ohihxp0" path="res://code/hud/npc/Item.cs" id="1_o2koo"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_dbu8q"]
 
 [node name="Item" type="Panel"]
 custom_minimum_size = Vector2(0, 30)
+script = ExtResource("1_o2koo")
 
 [node name="DetailsContainer" type="VFlowContainer" parent="."]
 layout_mode = 1
@@ -41,7 +43,7 @@ theme = ExtResource("3_dbu8q")
 vertical_alignment = 1
 text_direction = 3
 
-[node name="LockedReason" type="Label" parent="DetailsContainer"]
+[node name="Cost" type="Label" parent="DetailsContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 6

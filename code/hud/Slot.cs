@@ -126,6 +126,8 @@ public partial class Slot : Panel
         TooltipText = null;
     }
 
+    public bool Empty => _slotTexture.Texture == null && TooltipText == null;
+
     public static Slot Create(string name, Vector2 slotSize, Vector2 iconSize, bool scale = true)
     {
         PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/ui/slot.tscn");

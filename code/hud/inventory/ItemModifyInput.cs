@@ -39,6 +39,7 @@ public partial class ItemModifyInput : NinePatchRect
         Visible = _using;
         _extra.Clear();
         _error.Text = null;
+        _input.Editable = true;
     }
 
     private void OnConfirmed()
@@ -85,12 +86,24 @@ public partial class ItemModifyInput : NinePatchRect
         }
     }
 
-    public void SetNameAndNumber(string name, int number)
+    public void ToggleEditable(bool flag)
+    {
+        _input.Editable = flag;
+    }
+
+    public void SetNameNumber(string name, int number)
     {
         _name.Text = name;
-        _input.Text = number.ToString();
+        _input.Text = number > 0 ? number.ToString() : null;
         _maxNumber = number;
     }
+    
+    public void SetNameNumberFocus(string name, int number)
+    {
+        SetNameNumber(name, number);
+        _input.GrabFocus();
+    }
+    
         
     public void SetExtra(string key, object value)
     {

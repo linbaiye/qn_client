@@ -4,6 +4,7 @@ using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
 using QnClient.code.hud.inventory;
+using QnClient.code.hud.npc;
 using QnClient.code.input;
 using QnClient.code.message;
 using QnClient.code.network;
@@ -31,7 +32,14 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     private ItemModifyInput _itemModifyInput;
     public event Action<int>? InventoryItemDropped;
 
-    private npc.NpcMainMenu _npcMainMenu;
+    private NpcMainMenu _npcMainMenu;
+    
+    private NpcTradeMenu _npcTradeMenu;
+
+    private NpcTradeMenu _tradeMenu;
+
+    private NpcTradeManager _tradeManager;
+    
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -44,7 +52,9 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _audioManager = GetNode<AudioManager>("AudioManager");
         _bottom.UnequipPressed += UnequipPressed;
         _itemModifyInput = GetNode<ItemModifyInput>("ItemModifyInput");
-        _npcMainMenu = GetNode<npc.NpcMainMenu>("NpcMainMenu");
+        _npcMainMenu = GetNode<NpcMainMenu>("NpcMainMenu");
+        _npcTradeMenu = GetNode<NpcTradeMenu>("NpcTradeMenu");
+        _tradeManager = new NpcTradeManager(_npcTradeMenu, _npcMainMenu, _itemModifyInput, _inventory, error => _bottom.DisplayText(error));
         Visible = false;
     }
 
@@ -53,8 +63,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _connection.WriteAndFlush(new UnequipInput(t));
     }
         
-    
-
     public void CharacterEventHandler(IEntityEvent entityEvent)
     {
         if (entityEvent is EntityChangeCoordinateEvent { Source: ICharacter })
@@ -125,10 +133,12 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void ShowNpcMenu(NpcMenuMessage message)
     {
-        if (_itemModifyInput.Using)
-            _bottom.DisplayText("另一操作正在进行中。");
-        else
-            _npcMainMenu.Show(message);
+        _tradeManager.ShowNpcMenu(message);
+    }
+
+    public void ShowNpcSellMenu(NpcSellMenuMessage message)
+    {
+        _tradeManager.ShowNpcSellMenu(message);
     }
 
     public void DisplayText(string text)
@@ -138,7 +148,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void UpdateInventoryView(InventoryMessage message)
     {
-        _inventory.UpdateInventoryView(message, _connection);
+        _inventory.UpdateInventoryView(message);
     }
 
     public void UpdateAttribute(AttributeMessage message)
