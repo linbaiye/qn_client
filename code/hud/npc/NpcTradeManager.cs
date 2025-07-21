@@ -54,7 +54,6 @@ public class NpcTradeManager(
         {
             _inventory = inventory;
             _tradeMenu = tradeMenu;
-            _tradeMenu.ItemDoubleClicked = OnItemDoubleClicked;
             _input = input;
             _input.Confirmed = OnInputConfirm;
             _items = _inventory.CloneItems();

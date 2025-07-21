@@ -36,10 +36,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     
     private NpcTradeMenu _npcTradeMenu;
 
-    private NpcTradeMenu _tradeMenu;
-
-    private NpcTradeManager _tradeManager;
-    
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -54,7 +50,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _itemModifyInput = GetNode<ItemModifyInput>("ItemModifyInput");
         _npcMainMenu = GetNode<NpcMainMenu>("NpcMainMenu");
         _npcTradeMenu = GetNode<NpcTradeMenu>("NpcTradeMenu");
-        _tradeManager = new NpcTradeManager(_npcTradeMenu, _npcMainMenu, _itemModifyInput, _inventory, error => _bottom.DisplayText(error));
+        _npcTradeMenu.SetInput(_itemModifyInput);
         Visible = false;
     }
 
@@ -133,12 +129,28 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void ShowNpcMenu(NpcMenuMessage message)
     {
-        _tradeManager.ShowNpcMenu(message);
+        if (_itemModifyInput.Using)
+        {
+            _bottom.DisplayText("另一操作正在进行中。");
+        }
+        else
+        {
+            _npcTradeMenu.Visible = false;
+            _npcMainMenu.Show(message);
+        }
     }
 
     public void ShowNpcSellMenu(NpcSellMenuMessage message)
     {
-        _tradeManager.ShowNpcSellMenu(message);
+        if (_itemModifyInput.Using)
+        {
+            _bottom.DisplayText("另一操作正在进行中。");
+        }
+        else
+        {
+            _npcMainMenu.Visible = false;
+            _npcTradeMenu.ShowSellMenu(message);
+        }
     }
 
     public void DisplayText(string text)

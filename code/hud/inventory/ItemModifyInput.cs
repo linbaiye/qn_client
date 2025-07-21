@@ -17,7 +17,6 @@ public partial class ItemModifyInput : NinePatchRect
     private readonly Dictionary<string, object> _extra = new();
     public Action<ItemModifyInput>? Confirmed { get; set; }
 
-    private int _maxNumber;
     public override void _Ready()
     {
         _name = GetNode<Label>("Name");
@@ -72,7 +71,7 @@ public partial class ItemModifyInput : NinePatchRect
                 return false;
             }
             var number = int.Parse(_input.Text);
-            return number > 0 && number <= _maxNumber;
+            return number > 0;
         }
     }
 
@@ -95,7 +94,6 @@ public partial class ItemModifyInput : NinePatchRect
     {
         _name.Text = name;
         _input.Text = number > 0 ? number.ToString() : null;
-        _maxNumber = number;
     }
     
     public void SetNameNumberFocus(string name, int number)

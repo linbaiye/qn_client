@@ -6,7 +6,6 @@ namespace QnClient.code.hud;
 
 public interface IHUDMessageHandler
 {
-
     void UpdateKungFuBookView(KungFuBookMessage message);
 
     void DisplayText(string text);
