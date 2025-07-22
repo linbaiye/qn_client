@@ -4,13 +4,14 @@ using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class NpcSellMenuMessage(
+public class NpcTradeMenuMessage(
     long id,
     string name,
     string sprite,
-    List<NpcSellMenuMessage.NpcItemMessage> items,
+    List<NpcTradeMenuMessage.NpcItemMessage> items,
     int image,
-    string greetings)
+    string greetings,
+    bool sale)
     : IHUDMessage
 {
     public long Id { get;  } = id;
@@ -19,6 +20,8 @@ public class NpcSellMenuMessage(
     public List<NpcItemMessage> Items = items;
     public int Image = image;
     public string Greetings { get;  } = greetings;
+
+    public bool Sale { get; } = sale;
 
     public readonly struct NpcItemMessage(string name, int price, int icon, int color, bool canStack)
     {
@@ -34,7 +37,7 @@ public class NpcSellMenuMessage(
         handler.ShowNpcSellMenu(this);
     }
 
-    public static NpcSellMenuMessage FromPacket(NpcSellMenuPacket packet)
+    public static NpcTradeMenuMessage FromPacket(NpcTradeMenuPacket packet)
     {
         List<NpcItemMessage> result = new List<NpcItemMessage>();
         foreach (var item in packet.Items)
@@ -42,6 +45,6 @@ public class NpcSellMenuMessage(
             NpcItemMessage message = new NpcItemMessage(item.Name, item.Price, item.Icon, item.Color, item.CanStack);
             result.Add(message);
         }
-        return new NpcSellMenuMessage(packet.Id, packet.Name, packet.Sprite, result, packet.Image, packet.Greetings);
+        return new NpcTradeMenuMessage(packet.Id, packet.Name, packet.Sprite, result, packet.Image, packet.Greetings, packet.Sale);
     }
 }

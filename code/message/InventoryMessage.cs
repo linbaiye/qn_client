@@ -6,7 +6,7 @@ namespace QnClient.code.message;
 
 public class InventoryMessage(List<InventoryItemMessage> items, bool force) : IHUDMessage
 {
-    public List<InventoryItemMessage> Items { get; set; } = items;
+    public List<InventoryItemMessage> Items { get; } = items;
     
 
     public bool Forceful => force;
@@ -16,7 +16,7 @@ public class InventoryMessage(List<InventoryItemMessage> items, bool force) : IH
         List<InventoryItemMessage> items = new List<InventoryItemMessage>();
         foreach (var itemPacket in packet.Items)
         {
-            items.Add(new InventoryItemMessage(itemPacket.Name, itemPacket.Icon, itemPacket.SlotId, itemPacket.Number, itemPacket.Color));
+            items.Add(InventoryItemMessage.FromPacket(itemPacket));
         }
         return new InventoryMessage(items, packet.Forceful);
     }

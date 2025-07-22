@@ -5,6 +5,10 @@
 [resource]
 Button/font_sizes/font_size = 12
 Button/fonts/font = ExtResource("1_fscql")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 1
+Label/font_sizes/font_size = 8
+Label/fonts/font = ExtResource("1_fscql")
 TooltipPanel/constants/title_outline_size = 1
 TooltipPanel/font_sizes/title_font_size = 12
 TooltipPanel/fonts/title_font = ExtResource("1_fscql")

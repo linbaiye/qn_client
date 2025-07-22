@@ -122,10 +122,10 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
 
     private void RefreshKungFuSlots(List<KungFuBookMessage.KungFu> kungFuList)
     {
-        ForeachSlot(slot => slot.SetTextureAndTip(_icons[0], ""));
+        ForeachSlot(slot => slot.SetDetails(_icons[0], ""));
         foreach (var kungFu in kungFuList)
         {
-            GetSlot(kungFu.Slot).SetTextureAndTip(_icons[kungFu.Icon], FormatKungFuTip(kungFu.Name, kungFu.Level));
+            GetSlot(kungFu.Slot).SetDetails(_icons[kungFu.Icon], FormatKungFuTip(kungFu.Name, kungFu.Level));
         }
     }
     private void OnBasicPressed()

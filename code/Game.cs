@@ -70,7 +70,7 @@ public partial class Game : Node2D
         var entity = _entityManager.FindFirst<IEntity>(e => e.IsCoveringPosition(globalMousePosition));
         if (entity != null)
         {
-            Logger.Debug("Dropped on {}.", entity.Id);
+            _connection.WriteAndFlush(new DropOnEntityInput(entity.Id, slot));
         }
         else
         {
@@ -145,13 +145,6 @@ public partial class Game : Node2D
         _hud.InventoryItemDropped += OnInventoryItemDropped;
     }
 
-    private void TestArrow()
-    {
-        var entity = _entityManager.Find("向导");
-        if (entity == null)
-            return;
-        _character.Shoot(entity);
-    }
 
     public override void _UnhandledInput(InputEvent @event)
     {
@@ -169,10 +162,6 @@ public partial class Game : Node2D
             case Key.Q:
                 _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 用户在使用cherry键盘的时候如果想要关闭f1到f12的功能键的话，是无法做到的，只能关闭功能键的热键功能，无法关闭其中所有的功能。"));
                 break;
-            case Key.W:
-                TestArrow();
-                break;
         }
-        
     }
 }

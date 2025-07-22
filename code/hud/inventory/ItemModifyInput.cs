@@ -50,8 +50,17 @@ public partial class ItemModifyInput : NinePatchRect
         }
         Confirmed?.Invoke(this);
     }
-    
-    
+
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (@event is InputEventKey key && key.Keycode == Key.Enter)
+        {
+            OnConfirmed();
+            GetViewport().SetInputAsHandled();
+        }
+    }
+
+
     public T? GetExtra<T>(string key)
     {
         if (_extra.TryGetValue(key, out var obj))
@@ -90,13 +99,13 @@ public partial class ItemModifyInput : NinePatchRect
         _input.Editable = flag;
     }
 
-    public void SetNameNumber(string name, int number)
+    public void SetNameNumber(string name, long number)
     {
         _name.Text = name;
         _input.Text = number > 0 ? number.ToString() : null;
     }
     
-    public void SetNameNumberFocus(string name, int number)
+    public void SetNameNumberFocus(string name, long number)
     {
         SetNameNumber(name, number);
         _input.GrabFocus();

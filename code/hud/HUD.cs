@@ -50,7 +50,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _itemModifyInput = GetNode<ItemModifyInput>("ItemModifyInput");
         _npcMainMenu = GetNode<NpcMainMenu>("NpcMainMenu");
         _npcTradeMenu = GetNode<NpcTradeMenu>("NpcTradeMenu");
-        _npcTradeMenu.SetInput(_itemModifyInput);
+        _npcTradeMenu.SetInputInventory(_itemModifyInput, _inventory, _bottom.DisplayText);
         Visible = false;
     }
 
@@ -140,7 +140,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         }
     }
 
-    public void ShowNpcSellMenu(NpcSellMenuMessage message)
+    public void ShowNpcSellMenu(NpcTradeMenuMessage message)
     {
         if (_itemModifyInput.Using)
         {

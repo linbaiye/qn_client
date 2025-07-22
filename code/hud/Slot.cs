@@ -23,6 +23,7 @@ public partial class Slot : Panel
     private const float DoubleClickThreshold = 0.2f;
     private float _lastClickTime;
     private Timer _timer;
+    private Label _keyLabel;
     
     public override void _Ready()
     {
@@ -38,6 +39,7 @@ public partial class Slot : Panel
         _timer = GetNode<Timer>("Timer");
         _timer.OneShot = true;
         _timer.Timeout += OnLeftButtonReleased;
+        _keyLabel = GetNode<Label>("KeyLabel");
     }
     
     public int Number { get; private set; }
@@ -65,6 +67,16 @@ public partial class Slot : Panel
         }
     }
 
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (@event is not InputEventKey key || !MouseHovering)
+        {
+            return;
+        }
+        GetViewport().SetInputAsHandled();
+        if (key.IsPressed())
+            _keyLabel.Text = key.AsText();
+    }
 
     public override void _GuiInput(InputEvent @event)
     {
@@ -110,23 +122,22 @@ public partial class Slot : Panel
         }
     }
 
-    public void SetTextureAndTip(Texture2D texture2D, string tip, int color = 0)
+    public void SetDetails(Texture2D texture2D, string tip, int color = 0)
     {
         _slotTexture.Texture = texture2D;
         if (color != 0)
             _slotTexture.Material = DyeShader.CreateShaderMaterial(color);
         TooltipText = tip;
     }
-
+    
     private string Tip => TooltipText;
+
 
     public void Clear()
     {
         _slotTexture.Texture = null;
         TooltipText = null;
     }
-
-    public bool Empty => _slotTexture.Texture == null && TooltipText == null;
 
     public static Slot Create(string name, Vector2 slotSize, Vector2 iconSize, bool scale = true)
     {

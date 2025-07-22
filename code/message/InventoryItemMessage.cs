@@ -12,17 +12,12 @@ public readonly struct InventoryItemMessage(string name, int icon, int slot, lon
     public int Color { get; } = color;
 
     public bool Removed => string.IsNullOrEmpty(Name);
-    public string ToolTip => Number != -1 ? Name + ": " + Number : Name;
+    public string ToolTip => Number != 1 ? Name + ": " + Number : Name;
 
     public static InventoryItemMessage FromPacket(InventoryItemPacket packet)
     {
-        long number = packet.HasNumber ? packet.Number : -1;
+        long number = packet.HasNumber && packet.Number > 0 ? packet.Number : 1;
         return new InventoryItemMessage(packet.Name, packet.Icon, packet.SlotId, number, packet.Color);
-    }
-
-    public InventoryItemMessage Clone()
-    {
-        return new InventoryItemMessage(Name, Icon, Slot, Number, Color);
     }
 
     public void Accept(IHUDMessageHandler handler)

@@ -66,6 +66,14 @@ public partial class Item : Panel
         }
     }
 
+    public void Clear()
+    {
+        RemoveThemeStyleboxOverride("panel");
+        var textureRect = _iconContainer.GetNode<TextureRect>("Icon");
+        textureRect.Material = null;
+        textureRect.Texture = null;
+    }
+
     public override void _GuiInput(InputEvent inputEvent)
     {
         if (inputEvent.IsPressed() &&
@@ -99,25 +107,11 @@ public partial class Item : Panel
         Icon = icon;
     }
 
-    public void Lock(string text = "")
-    {
-        RemoveThemeStyleboxOverride("panel");
-        _costLabel.Text = text;
-        AddThemeStyleboxOverride("panel", new StyleBoxFlat()
-        {
-            BgColor = new Color("4a4a4a")
-        });
-    }
 
     public void AddCost(int cost) 
     {
         _cost += cost;
         _costLabel.Text = _cost.ToString();
-        // if (GetThemeStylebox("panel") == null)
-        //     AddThemeStyleboxOverride("panel", new StyleBoxFlat()
-        //     {
-        //         BgColor = new Color("4a4a4a")
-        //     });
     }
 
     public static Item Create()

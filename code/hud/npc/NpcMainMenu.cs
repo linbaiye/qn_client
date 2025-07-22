@@ -25,6 +25,11 @@ public partial class NpcMainMenu : AbstractNpcMenu
         }
     }
 
+    protected override void OnClose()
+    {
+        Visible = false;
+    }
+
     private void OnAbilityClicked(int n)
     {
         SendMessage(new ClickNpcAbilityInput(NpcId, _submenuButtons[n].Text));

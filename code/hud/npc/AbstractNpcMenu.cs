@@ -21,7 +21,7 @@ public abstract partial class AbstractNpcMenu : NinePatchRect, IConnectionAware
         _greetings = GetNode<Label>("Greetings");
         _caption = GetNode<TextureRect>("Caption");
         _closeButton = GetNode<Button>("CloseButton");
-        _closeButton.Pressed += () => Visible = false;
+        _closeButton.Pressed += OnClose;
         Visible = false;
     }
     
@@ -35,6 +35,8 @@ public abstract partial class AbstractNpcMenu : NinePatchRect, IConnectionAware
         var textures = ZipFileSpriteLoader.Instance.Load(sprite);
         _caption.Texture = textures[index].Texture;
     }
+
+    protected abstract void OnClose();
 
     public void SetConnection(Connection connection)
     {

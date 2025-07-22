@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using QnClient.code.message;
 using QnClient.code.sprite;
@@ -35,19 +36,37 @@ public partial class ScrollItemContainer : ScrollContainer
         ItemDoubleClicked?.Invoke(item);
     }
 
-    public void ShowItems(List<NpcSellMenuMessage.NpcItemMessage> items)
+
+    private void ShowItems(List<NpcTradeMenuMessage.NpcItemMessage> items, bool sell)
     {
         foreach (var child in _itemContainer.GetChildren())
         {
+            if (child is Item item)
+                item.Clear();
             _itemContainer.RemoveChild(child);
         }
         foreach (var msg in items)
         {
             Item item = Item.Create();
             _itemContainer.AddChild(item);
-            item.Clicked += OnItemClicked;
-            item.DoubleClicked += OnItemDoubleClicked;
+            if (sell)
+            {
+                item.Clicked += OnItemClicked;
+                item.DoubleClicked += OnItemDoubleClicked;
+            }
             item.SetDetails(msg.Name, _itemIconTexture2Ds[msg.Icon], msg.Color, msg.Price, msg.CanStack, msg.Icon);
         }
+    }
+
+    public IEnumerable<Item> GetItems => _itemContainer.GetChildren().OfType<Item>();
+
+    public void ShowSellItems(List<NpcTradeMenuMessage.NpcItemMessage> items)
+    {
+        ShowItems(items, true);
+    }
+    
+    public void ShowBuyItems(List<NpcTradeMenuMessage.NpcItemMessage> items)
+    {
+        ShowItems(items, false);
     }
 }

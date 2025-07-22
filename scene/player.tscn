@@ -143,7 +143,6 @@ offset_bottom = 40.0
 z_index = 5
 z_as_relative = false
 clip_contents = false
-theme = ExtResource("7_2fvbb")
 text = ""
 
 [node name="LifeBar" parent="." instance=ExtResource("7_hp4bs")]

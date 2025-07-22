@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Godot;
 using NLog;
 using QnClient.code.input;
@@ -22,6 +21,9 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     
     private InventoryMessage _message;
     public event Action<int>? ItemDragReleased;
+
+    public Action<int, string, long>? DoubleClickedHandler { get; set; }
+    
     public override void _Ready()
     {
         base._Ready();
@@ -55,9 +57,32 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         }
     }
 
+    private string GetItemName(int slot)
+    {
+        foreach (var item in _message.Items)
+        {
+            if (item.Slot == slot)
+                return item.Name;
+        }
+        return null;
+    }
+    
+    private long GetItemNumber(int slot)
+    {
+        foreach (var item in _message.Items)
+        {
+            if (item.Slot == slot)
+                return item.Number;
+        }
+        return 0;
+    }
+
     protected override void OnSlotLeftButtonDoubleClicked(int number)
     {
-        _connection.WriteAndFlush(ClickInventoryInput.LeftDoubleClick(number));
+        if (DoubleClickedHandler == null)
+            _connection.WriteAndFlush(ClickInventoryInput.LeftDoubleClick(number));
+        else
+            DoubleClickedHandler.Invoke(number, GetItemName(number), GetItemNumber(number));
     }
 
     protected override void OnSlotRightMouseButtonReleased(int number)
@@ -77,7 +102,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
 
     private void SetSlot(InventoryItemMessage item)
     {
-        GetSlot(item.Slot).SetTextureAndTip(_icons[item.Icon], item.ToolTip, item.Color);
+        GetSlot(item.Slot).SetDetails(_icons[item.Icon], item.ToolTip, item.Color);
     }
 
     public void UpdateSlot(InventoryItemMessage message)
@@ -110,18 +135,6 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         input.SetInUse(false);
     }
     
-    public List<InventoryItemMessage> CloneItems()
-    {
-        List<InventoryItemMessage> result = new List<InventoryItemMessage>();
-        if (_message == null)
-            return result;
-        foreach (var item in _message.Items)
-        {
-            result.Add(item.Clone());
-        }
-        return result;
-    }
-
     public void UpdateInventoryView(InventoryMessage message)
     {
         _message = message;
@@ -133,58 +146,6 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
             SetSlot(item);
         }
         Visible = true;
-    }
-
-    public bool CanAfford(int cost)
-    {
-        foreach (var message in _message.Items)
-        {
-            if (message.Name.Equals("钱币"))
-                return message.Number >= cost;
-        }
-        return false;
-    }
-
-    public bool AddNonStack(string name, int icon, int color = 0)
-    {
-        if (_message.Items.Count >= 30)
-            return false;
-        int targetSlot = -1;
-        for (int i = 1; i <= 30; i++)
-        {
-            targetSlot = i;
-            foreach (var message in _message.Items)
-            {
-                if (message.Slot == i)
-                {
-                    targetSlot = -1;
-                    break;
-                }
-            }
-        }
-        if (targetSlot == -1)
-            return false;
-        _message.Items.Add(new InventoryItemMessage(name, icon, targetSlot, 1, color));
-        ForeachSlot(sl => sl.Clear());
-        foreach (var item in _message.Items)
-        {
-            SetSlot(item);
-        }
-        return true;
-    }
-
-    public void Update(List<InventoryItemMessage> items)
-    {
-        if (_message == null)
-            return;
-        _message.Items = items;
-        if (!Visible)
-            return;
-        ForeachSlot(sl => sl.Clear());
-        foreach (var item in items)
-        {
-            SetSlot(item);
-        }
     }
 
     public void SetConnection(Connection connection)
