@@ -5,7 +5,6 @@ namespace QnClient.code.hud;
 
 public partial class MouseArea : Panel
 {
-
     public event Action? AttackInvoked;
     
     public event Action? Clicked;

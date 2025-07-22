@@ -36,6 +36,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     
     private NpcTradeMenu _npcTradeMenu;
 
+    private PlayerTradeWindow _playerTradeWindow;
+
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -51,6 +53,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _npcMainMenu = GetNode<NpcMainMenu>("NpcMainMenu");
         _npcTradeMenu = GetNode<NpcTradeMenu>("NpcTradeMenu");
         _npcTradeMenu.SetInputInventory(_itemModifyInput, _inventory, _bottom.DisplayText);
+        _playerTradeWindow = GetNode<PlayerTradeWindow>("PlayerTradeWindow");
+        _playerTradeWindow.SetInputInventory(_itemModifyInput, _inventory);
         Visible = false;
     }
 
@@ -151,6 +155,23 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
             _npcMainMenu.Visible = false;
             _npcTradeMenu.ShowSellMenu(message);
         }
+    }
+
+    public void OpenTradeWindow(OpenPlayerTradeWindowMessage message)
+    {
+        if (_itemModifyInput.Using)
+        {
+            _bottom.DisplayText("另一操作正在进行中。");
+        }
+        else
+        {
+            _playerTradeWindow.OpenWindow(message);
+        }
+    }
+
+    public void CloseTradeWindow()
+    {
+        _playerTradeWindow.Close();
     }
 
     public void DisplayText(string text)

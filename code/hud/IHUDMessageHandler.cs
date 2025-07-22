@@ -36,4 +36,8 @@ public interface IHUDMessageHandler
     void ShowNpcMenu(NpcMenuMessage message);
 
     void ShowNpcSellMenu(NpcTradeMenuMessage message);
+    
+    void OpenTradeWindow(OpenPlayerTradeWindowMessage message);
+
+    void CloseTradeWindow();
 }

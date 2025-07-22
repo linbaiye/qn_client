@@ -47,6 +47,8 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.DropItemPacket => StartDropItemMessage.FromPacket(packet.DropItemPacket),
             Packet.TypedPacketOneofCase.NpcMenuPacket => NpcMenuMessage.FromPacket(packet.NpcMenuPacket),
             Packet.TypedPacketOneofCase.TradeMenuPacket => NpcTradeMenuMessage.FromPacket(packet.TradeMenuPacket),
+            Packet.TypedPacketOneofCase.OpenTradeWindow => OpenPlayerTradeWindowMessage.FromPacket(packet.OpenTradeWindow),
+            Packet.TypedPacketOneofCase.CloseTradePacket => ClosePlayerTradeWindowMessage.Instance,
             _ => null,
         };
     }

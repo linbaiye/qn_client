@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch785oi1vsnly"]
+[gd_scene load_steps=12 format=3 uid="uid://ch785oi1vsnly"]
 
 [ext_resource type="PackedScene" uid="uid://idx0qd14bsb2" path="res://scene/game.tscn" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://drt6jdp3j6pen" path="res://code/Main.cs" id="1_v0l8b"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c0thnwkoxgdlr" path="res://scene/ui/inventory/item_modify_input.tscn" id="7_of57s"]
 [ext_resource type="PackedScene" uid="uid://diewx5q5mjx67" path="res://scene/ui/npc/npc_main_menu.tscn" id="8_b5f6u"]
 [ext_resource type="PackedScene" uid="uid://cwcoajck7ih3d" path="res://scene/ui/npc/npc_trade_menu.tscn" id="9_tqoya"]
+[ext_resource type="PackedScene" uid="uid://h2f2w11bhty3" path="res://scene/ui/player_trade_window.tscn" id="10_k65ib"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")
@@ -63,6 +64,12 @@ offset_bottom = -159.0
 [node name="NpcMainMenu" parent="HUD" instance=ExtResource("8_b5f6u")]
 
 [node name="NpcTradeMenu" parent="HUD" instance=ExtResource("9_tqoya")]
+
+[node name="PlayerTradeWindow" parent="HUD" instance=ExtResource("10_k65ib")]
+offset_left = 17.0
+offset_top = 190.0
+offset_right = -789.0
+offset_bottom = -321.0
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1024, 648)
