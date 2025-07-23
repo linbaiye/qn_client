@@ -12,7 +12,7 @@ public readonly struct InventoryItemMessage(string name, int icon, int slot, lon
     public int Color { get; } = color;
 
     public bool Removed => string.IsNullOrEmpty(Name);
-    public string ToolTip => Number != 1 ? Name + ": " + Number : Name;
+    public string Tip => Number != 1 ? Name + ": " + Number : Name;
 
     public static InventoryItemMessage FromPacket(InventoryItemPacket packet)
     {

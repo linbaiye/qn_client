@@ -6,7 +6,7 @@ using QnClient.code.message;
 
 namespace QnClient.code.hud.npc;
 
-public partial class NpcTradeMenu : AbstractNpcMenu
+public partial class NpcTradeMenu : AbstractNpcMenu, ITradeAware
 {
     private ScrollItemContainer _itemContainer;
 
@@ -22,17 +22,20 @@ public partial class NpcTradeMenu : AbstractNpcMenu
         _itemContainer = GetNode<ScrollItemContainer>("ScrollItemContainer");
         _itemContainer.ItemDoubleClicked += OnItemDoubleClicked;
         GetNode<Button>("Cancel").Pressed += OnClose;
+        _input = ItemModifyInput.Create();
+        var p = new Vector2(GetSize().X, GetSize().Y - _input.GetSize().Y);
+        _input.Position = p;
+        AddChild(_input);
     }
 
     protected override void OnClose()
     {
-        _inventory.DoubleClickedHandler = null;
+        _inventory.UninstallDoubleClickHandler(this);
         Visible = false;
     }
 
-    public void SetInputInventory(ItemModifyInput input, Inventory inventory, Action<string> errorHandler)
+    public void SetInputInventory(Inventory inventory, Action<string> errorHandler)
     {
-        _input = input;
         _inventory = inventory;
         _errorHandler = errorHandler;
     }
@@ -100,8 +103,10 @@ public partial class NpcTradeMenu : AbstractNpcMenu
         {
             _itemContainer.ShowBuyItems(message.Items);
             _input.Confirmed = ConfirmPlayerSell;
-            _inventory.DoubleClickedHandler = OnInventoryItemDoubleClicked;
+            _inventory.InstallDoubleClickHandler(this, OnInventoryItemDoubleClicked);
         }
         Visible = true;
     }
+
+    public bool IsTrading => Visible;
 }

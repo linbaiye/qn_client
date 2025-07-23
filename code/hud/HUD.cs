@@ -3,7 +3,6 @@ using Godot;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
-using QnClient.code.hud.inventory;
 using QnClient.code.hud.npc;
 using QnClient.code.input;
 using QnClient.code.message;
@@ -28,8 +27,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     private Connection _connection;
     
     private AudioManager _audioManager;
-
-    private ItemModifyInput _itemModifyInput;
     public event Action<int>? InventoryItemDropped;
 
     private NpcMainMenu _npcMainMenu;
@@ -49,12 +46,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _inventory.ItemDragReleased += s => InventoryItemDropped?.Invoke(s);
         _audioManager = GetNode<AudioManager>("AudioManager");
         _bottom.UnequipPressed += UnequipPressed;
-        _itemModifyInput = GetNode<ItemModifyInput>("ItemModifyInput");
         _npcMainMenu = GetNode<NpcMainMenu>("NpcMainMenu");
         _npcTradeMenu = GetNode<NpcTradeMenu>("NpcTradeMenu");
-        _npcTradeMenu.SetInputInventory(_itemModifyInput, _inventory, _bottom.DisplayText);
+        _npcTradeMenu.SetInputInventory(_inventory, _bottom.DisplayText);
         _playerTradeWindow = GetNode<PlayerTradeWindow>("PlayerTradeWindow");
-        _playerTradeWindow.SetInputInventory(_itemModifyInput, _inventory);
+        _playerTradeWindow.SetInventory(_inventory);
         Visible = false;
     }
 
@@ -125,53 +121,34 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void StartDropItem(string name, int number, int slot, Vector2I coordinate)
     {
-        if (_itemModifyInput.Using)
-            _bottom.DisplayText("另一操作正在进行中。");
-        else
-            _inventory.StartDropItem(_itemModifyInput, name, number, slot, coordinate);
+        _inventory.StartDropItem(name, number, slot, coordinate);
     }
 
     public void ShowNpcMenu(NpcMenuMessage message)
     {
-        if (_itemModifyInput.Using)
-        {
-            _bottom.DisplayText("另一操作正在进行中。");
-        }
-        else
-        {
-            _npcTradeMenu.Visible = false;
-            _npcMainMenu.Show(message);
-        }
+        _npcTradeMenu.Visible = false;
+        _npcMainMenu.Show(message);
     }
 
     public void ShowNpcSellMenu(NpcTradeMenuMessage message)
     {
-        if (_itemModifyInput.Using)
-        {
-            _bottom.DisplayText("另一操作正在进行中。");
-        }
-        else
-        {
-            _npcMainMenu.Visible = false;
-            _npcTradeMenu.ShowSellMenu(message);
-        }
+        _npcMainMenu.Visible = false;
+        _npcTradeMenu.ShowSellMenu(message);
     }
 
     public void OpenTradeWindow(OpenPlayerTradeWindowMessage message)
     {
-        if (_itemModifyInput.Using)
-        {
-            _bottom.DisplayText("另一操作正在进行中。");
-        }
-        else
-        {
-            _playerTradeWindow.OpenWindow(message);
-        }
+        _playerTradeWindow.OpenWindow(message);
     }
 
     public void CloseTradeWindow()
     {
         _playerTradeWindow.Close();
+    }
+
+    public void UpdateTradeWindowSlot(bool self, InventoryItemMessage item)
+    {
+        _playerTradeWindow.UpdateSlot(self, item);
     }
 
     public void DisplayText(string text)

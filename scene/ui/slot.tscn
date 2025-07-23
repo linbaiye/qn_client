@@ -24,7 +24,7 @@ offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-expand_mode = 1
+theme = ExtResource("1_3j8rd")
 stretch_mode = 3
 
 [node name="Timer" type="Timer" parent="."]
@@ -33,3 +33,4 @@ stretch_mode = 3
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 10.0
+theme = ExtResource("1_3j8rd")

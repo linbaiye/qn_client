@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://h2f2w11bhty3"]
+[gd_scene load_steps=5 format=3 uid="uid://p14txp45obh0"]
 
 [ext_resource type="Texture2D" uid="uid://b0rqpuav78gbd" path="res://ui/hud/player_trade_window.png" id="1_kw6si"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_t41l4"]
 [ext_resource type="Script" uid="uid://d0eifrw7f0a8l" path="res://code/hud/PlayerTradeWindow.cs" id="2_tiiua"]
-[ext_resource type="PackedScene" uid="uid://cx0wc1sposys5" path="res://scene/ui/slot.tscn" id="3_tiiua"]
 [ext_resource type="Texture2D" uid="uid://ddrtuldsmjvg0" path="res://ui/hud/confirm_down.png" id="5_yil2g"]
 
 [node name="PlayerTradeWindow" type="NinePatchRect"]
@@ -41,22 +40,6 @@ offset_right = 197.0
 offset_bottom = 113.0
 theme_override_constants/separation = 6
 
-[node name="Slot0" parent="SelfBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="Slot1" parent="SelfBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="Slot2" parent="SelfBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="Slot3" parent="SelfBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
 [node name="AnotherBox" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 19.0
@@ -64,22 +47,6 @@ offset_top = 156.0
 offset_right = 197.0
 offset_bottom = 197.0
 theme_override_constants/separation = 6
-
-[node name="Slot0" parent="AnotherBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="Slot1" parent="AnotherBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="Slot2" parent="AnotherBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="Slot3" parent="AnotherBox" instance=ExtResource("3_tiiua")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
 
 [node name="Confirm" type="TextureButton" parent="."]
 layout_mode = 0

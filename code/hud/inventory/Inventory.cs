@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using NLog;
 using QnClient.code.input;
@@ -22,12 +24,48 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     private InventoryMessage _message;
     public event Action<int>? ItemDragReleased;
 
-    public Action<int, string, long>? DoubleClickedHandler { get; set; }
+    private ItemModifyInput _input;
+
+    private class DoubleClickHandler(object o, Action<int, string, long> a)
+    {
+        public object Owner { get;  } = o;
+        public Action<int, string, long> Action { get; } = a;
+    }
+
+    private readonly List<DoubleClickHandler> _handlers = new();
     
     public override void _Ready()
     {
         base._Ready();
         _icons = _zipFileSpriteLoader.LoadOrderedItemIcons();
+        _input = ItemModifyInput.Create();
+        var p = new Vector2(-_input.GetSize().X, GetSize().Y - _input.GetSize().Y);
+        _input.Position = p;
+        AddChild(_input);
+    }
+
+    public void InstallDoubleClickHandler(object owner, Action<int, string, long> handler)
+    {
+        foreach (var h in _handlers)
+        {
+            if (Equals(owner, h.Owner))
+            {
+                return;
+            }
+        }
+        _handlers.Add(new DoubleClickHandler(owner, handler));
+    }
+    
+    public void UninstallDoubleClickHandler(object owner)
+    {
+        foreach (var h in _handlers)
+        {
+            if (Equals(owner, h.Owner))
+            {
+                _handlers.Remove(h);
+                break;
+            }
+        }
     }
 
     protected override Slot CreateSlot(string name)
@@ -79,10 +117,10 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
 
     protected override void OnSlotLeftButtonDoubleClicked(int number)
     {
-        if (DoubleClickedHandler == null)
-            _connection.WriteAndFlush(ClickInventoryInput.LeftDoubleClick(number));
+        if (_handlers.Count != 0)
+            _handlers.Last().Action(number, GetItemName(number), GetItemNumber(number));
         else
-            DoubleClickedHandler.Invoke(number, GetItemName(number), GetItemNumber(number));
+            _connection.WriteAndFlush(ClickInventoryInput.LeftDoubleClick(number));
     }
 
     protected override void OnSlotRightMouseButtonReleased(int number)
@@ -102,7 +140,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
 
     private void SetSlot(InventoryItemMessage item)
     {
-        GetSlot(item.Slot).SetDetails(_icons[item.Icon], item.ToolTip, item.Color);
+        GetSlot(item.Slot).SetDetails(_icons[item.Icon], item.Tip, item.Color);
     }
 
     public void UpdateSlot(InventoryItemMessage message)
@@ -120,13 +158,13 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     }
 
 
-    public void StartDropItem(ItemModifyInput window, string name, int number, int slot, Vector2I coordinate)
+    public void StartDropItem(string name, int number, int slot, Vector2I coordinate)
     {
-        window.SetInUse(true);
-        window.SetExtra("coordinate", coordinate);
-        window.SetExtra("slot", slot);
-        window.Confirmed = OnDropItemConfirmed;
-        window.SetNameNumber(name, number);
+        _input.SetInUse(true);
+        _input.SetExtra("coordinate", coordinate);
+        _input.SetExtra("slot", slot);
+        _input.Confirmed = OnDropItemConfirmed;
+        _input.SetNameNumber(name, number);
     }
     
     private void OnDropItemConfirmed(ItemModifyInput input)

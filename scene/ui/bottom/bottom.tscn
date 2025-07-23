@@ -91,6 +91,7 @@ offset_left = 850.0
 offset_top = 166.0
 offset_right = 882.0
 offset_bottom = 188.0
+focus_mode = 0
 theme = ExtResource("9_2r2ah")
 text = "物品"
 
@@ -100,6 +101,7 @@ offset_left = 891.0
 offset_top = 166.0
 offset_right = 923.0
 offset_bottom = 188.0
+focus_mode = 0
 theme = ExtResource("9_2r2ah")
 text = "武功"
 
@@ -109,6 +111,7 @@ offset_left = 931.0
 offset_top = 166.0
 offset_right = 963.0
 offset_bottom = 188.0
+focus_mode = 0
 theme = ExtResource("9_2r2ah")
 text = "辅助"
 
@@ -118,6 +121,7 @@ offset_left = 970.0
 offset_top = 166.0
 offset_right = 1002.0
 offset_bottom = 188.0
+focus_mode = 0
 theme = ExtResource("9_2r2ah")
 text = "退出"
 

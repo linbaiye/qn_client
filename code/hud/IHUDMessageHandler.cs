@@ -40,4 +40,6 @@ public interface IHUDMessageHandler
     void OpenTradeWindow(OpenPlayerTradeWindowMessage message);
 
     void CloseTradeWindow();
+
+    void UpdateTradeWindowSlot(bool self, InventoryItemMessage item);
 }

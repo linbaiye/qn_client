@@ -3,6 +3,7 @@ using QnClient.code.hud.inventory;
 using QnClient.code.input;
 using QnClient.code.message;
 using QnClient.code.network;
+using QnClient.code.sprite;
 
 namespace QnClient.code.hud;
 
@@ -24,6 +25,7 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
     private Inventory _inventory;
 
     private TextureButton _confirm;
+    
     private Button _cancel;
 
     public override void _Ready()
@@ -36,7 +38,24 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
         _cancel = GetNode<Button>("Cancel");
         _cancel.Pressed += OnCancel;
         _confirm.Pressed += OnConfirmPressed;
+        AddSlots(_selfBox);
+        AddSlots(_anotherBox);
+        _input = ItemModifyInput.Create();
+        var p = new Vector2(GetSize().X, GetSize().Y - _input.GetSize().Y);
+        _input.Position = p;
+        AddChild(_input);
+        _input.Confirmed = OnInputConfirmed;
         Visible = false;
+    }
+
+
+    private void AddSlots(HBoxContainer container)
+    {
+        for (int slot = 1; slot <= 4; slot++)
+        {
+            var s = Slot.Create("Slot" + slot, new Vector2(40, 40), new Vector2(30, 30), false);
+            container.AddChild(s);
+        }
     }
 
     public void SetConnection(Connection connection)
@@ -44,15 +63,13 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
         _connection = connection;
     }
 
-    public void SetInputInventory(ItemModifyInput input, Inventory inventory)
+    public void SetInventory(Inventory inventory)
     {
-        _input = input;
         _inventory = inventory;
     }
 
     private void OnCancel()
     {
-        _inventory.DoubleClickedHandler = null;
         _connection.WriteAndFlush(PlayerTradeStateInput.Cancel);
     }
 
@@ -81,7 +98,9 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
 
     private void OnInventorySlotDoubleClicked(int slot, string itemName, long number)
     {
-        
+        _input.SetInUse(true);
+        _input.SetExtra("slot", slot);
+        _input.SetNameNumber(itemName, number);
     }
 
     private void OnInputConfirmed(ItemModifyInput input)
@@ -93,7 +112,7 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
 
     public void Close()
     {
-        _inventory.DoubleClickedHandler = null;
+        _inventory.UninstallDoubleClickHandler(this);
         Visible = false;
         _input.SetInUse(false);
     }
@@ -102,10 +121,9 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
     {
         ClearBox(_selfBox);
         ClearBox(_anotherBox);
-        _inventory.DoubleClickedHandler = OnInventorySlotDoubleClicked;
+        _inventory.InstallDoubleClickHandler(this, OnInventorySlotDoubleClicked);
         _selfName.Text = message.SelfName;
         _anotherName.Text = message.AnotherName;
-        _input.Confirmed = OnInputConfirmed;
         if (message.Proactive)
         {
             _input.SetInUse(true);
@@ -113,6 +131,19 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
             _input.SetExtra("slot", message.Slot);
             _input.SetNameNumber(message.ItemName, 1);
         }
+        _confirm.SetPressed(false);
         Visible = true;
+    }
+
+    private void UpdateSlot(HBoxContainer container, InventoryItemMessage message)
+    {
+        var slot = container.GetNode<Slot>("Slot" + (message.Slot));
+        var icons = ZipFileSpriteLoader.Instance.LoadOrderedItemIcons();
+         slot.SetDetails(icons[message.Icon], message.Tip, message.Color);
+    }
+
+    public void UpdateSlot(bool self, InventoryItemMessage message)
+    {
+        UpdateSlot(self ? _selfBox : _anotherBox, message);
     }
 }

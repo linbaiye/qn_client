@@ -29,13 +29,9 @@ public partial class ItemModifyInput : NinePatchRect
         SetInUse(false);
     }
 
-    private bool _using;
-    public bool Using => _using;
-    
     public void SetInUse(bool use)
     {
-        _using = use;
-        Visible = _using;
+        Visible = use;
         _extra.Clear();
         _error.Text = null;
         _input.Editable = true;
@@ -53,6 +49,8 @@ public partial class ItemModifyInput : NinePatchRect
 
     public override void _UnhandledKeyInput(InputEvent @event)
     {
+        if (!Visible)
+            return;
         if (@event is InputEventKey key && key.Keycode == Key.Enter)
         {
             OnConfirmed();
@@ -75,12 +73,11 @@ public partial class ItemModifyInput : NinePatchRect
     {
         get
         {
-            if (!_input.Text.All(char.IsDigit))
+            if (string.IsNullOrEmpty(_input.Text)|| !_input.Text.Trim().All(char.IsDigit))
             {
                 return false;
             }
-            var number = int.Parse(_input.Text);
-            return number > 0;
+            return int.Parse(_input.Text.Trim()) > 0;
         }
     }
 
@@ -90,7 +87,7 @@ public partial class ItemModifyInput : NinePatchRect
         {
             if (!IsNumberOk)
                 throw new Exception("Bad input.");
-            return int.Parse(_input.Text);
+            return int.Parse(_input.Text.Trim());
         }
     }
 
@@ -117,5 +114,10 @@ public partial class ItemModifyInput : NinePatchRect
         _extra.Remove(key);
         _extra.Add(key, value);
     }
-
+    
+    public static ItemModifyInput Create()
+    {
+        PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/ui/item_modify_input.tscn");
+        return scene.Instantiate<ItemModifyInput>();
+    }
 }

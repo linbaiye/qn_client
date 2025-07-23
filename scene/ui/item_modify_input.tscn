@@ -5,13 +5,8 @@
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_p3n5b"]
 
 [node name="ItemModifyInput" type="NinePatchRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -800.0
-offset_bottom = -617.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 224.0
+offset_bottom = 151.0
 texture = ExtResource("1_cllt0")
 script = ExtResource("2_4ml31")
 
