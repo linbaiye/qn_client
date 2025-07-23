@@ -27,7 +27,7 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
     private TextureButton _confirm;
     
     private Button _cancel;
-
+    
     public override void _Ready()
     {
         _selfName = GetNode<Label>("SelfName");
@@ -75,14 +75,9 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
 
     private void OnConfirmPressed()
     {
-        if (_confirm.IsPressed())
-        {
-            _connection.WriteAndFlush(PlayerTradeStateInput.Confirm);
-        }
-        else
-        {
-            _connection.WriteAndFlush(PlayerTradeStateInput.Unconfirmed);
-        }
+        _connection.WriteAndFlush(_confirm.IsPressed()
+            ? PlayerTradeStateInput.Confirm
+            : PlayerTradeStateInput.Unconfirmed);
     }
 
     private void ClearBox(HBoxContainer container)
@@ -139,7 +134,8 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
     {
         var slot = container.GetNode<Slot>("Slot" + (message.Slot));
         var icons = ZipFileSpriteLoader.Instance.LoadOrderedItemIcons();
-         slot.SetDetails(icons[message.Icon], message.Tip, message.Color);
+        slot.Clear();
+        slot.SetDetails(icons[message.Icon], message.Tip, message.Color);
     }
 
     public void UpdateSlot(bool self, InventoryItemMessage message)

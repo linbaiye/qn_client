@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1yw17ofdw0vb"]
+
+[ext_resource type="Script" uid="uid://c1k4q46k676wt" path="res://code/hud/MouseEventHandler.cs" id="1_kp4b8"]
+
+[node name="MouseEventHandler" type="Timer"]
+script = ExtResource("1_kp4b8")

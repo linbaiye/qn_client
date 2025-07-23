@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo6fmqnji3bfj"]
+[gd_scene load_steps=5 format=3 uid="uid://bo6fmqnji3bfj"]
 
 [ext_resource type="Script" uid="uid://ctuuxtf2k44ru" path="res://code/entity/BodySprite.cs" id="2_w6pjy"]
+[ext_resource type="PackedScene" uid="uid://d1yw17ofdw0vb" path="res://scene/ui/mouse_event_handler.tscn" id="3_lyiy0"]
 [ext_resource type="Script" uid="uid://r7xoctwkhlau" path="res://code/hud/MouseArea.cs" id="3_ofaag"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xi8q5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofaag"]
 
 [node name="Body" type="Sprite2D"]
 centered = false
@@ -13,5 +14,7 @@ script = ExtResource("2_w6pjy")
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_xi8q5")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ofaag")
 script = ExtResource("3_ofaag")
+
+[node name="MouseEventHandler" parent="MouseArea" instance=ExtResource("3_lyiy0")]

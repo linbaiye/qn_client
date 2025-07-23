@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://c4p3dfu83sben"]
+
+[node name="DynamicObject" type="Node2D"]

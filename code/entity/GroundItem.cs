@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using NLog;
 using QnClient.code.entity.@event;
 using QnClient.code.input;
 using QnClient.code.message;
@@ -15,6 +16,7 @@ public partial class GroundItem : AbstractEntity
     private Label _tip;
 
     public event Action<PickInput>? Picked;
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     
     public override void _Ready()
     {
@@ -36,8 +38,11 @@ public partial class GroundItem : AbstractEntity
         Position = snapshot.Coordinate.ToPosition();
         _bodySprite.Texture = icon;
         _bodySprite.Material = shaderMaterial;
-        _bodySprite.Position = new Vector2(16, 12) - icon.GetSize() / 2;
+        var iconSize = icon.GetSize();
+        _bodySprite.Position = new Vector2(16, 12) - iconSize / 2;
         _bodySprite.MouseArea.Position = _bodySprite.Position;
+        if (iconSize.X < 32 && iconSize.Y < 24)
+            _bodySprite.MouseArea.Position -= iconSize / 2;
         _bodySprite.MouseArea.Size = _bodySprite.Texture.GetSize();
         var tip = snapshot.Number > 1 ? snapshot.Name + ": " + snapshot.Number : snapshot.Name;
         _tip.Text = tip;

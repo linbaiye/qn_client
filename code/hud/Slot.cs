@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.JavaScript;
 using System.Text.RegularExpressions;
 using Godot;
 using NLog;
@@ -18,32 +19,30 @@ public partial class Slot : Panel
     private Vector2 _iconSize;
     private bool _scaleTexture;
     private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
-    
     public bool MouseHovering { get; private set; }
-    private const float DoubleClickThreshold = 0.2f;
     private float _lastClickTime;
-    private Timer _timer;
     private Label _keyLabel;
+    private MouseEventHandler _mouseEventHandler;
     
     public override void _Ready()
     {
         _slotTexture = GetNode<TextureRect>("SlotTexture");
-        Number = GetNumber();
         _slotTexture.CustomMinimumSize = _iconSize;
         _slotTexture.StretchMode =
             _scaleTexture ? TextureRect.StretchModeEnum.Scale : TextureRect.StretchModeEnum.KeepCentered;
         CustomMinimumSize = _slotSize;
         Size = _slotSize;
+        _mouseEventHandler = GetNode<MouseEventHandler>("MouseEventHandler");
         MouseEntered += () => MouseHovering = true;
         MouseExited += () => MouseHovering = false;
-        _timer = GetNode<Timer>("Timer");
-        _timer.OneShot = true;
-        _timer.Timeout += OnLeftButtonReleased;
+        _mouseEventHandler.DoubleClicked += OnLeftButtonDoubleClicked;
+        _mouseEventHandler.RightClicked += OnRightButtonReleased;
+        _mouseEventHandler.Clicked += OnLeftButtonReleased;
         _keyLabel = GetNode<Label>("KeyLabel");
+        Number = GetNumber();
     }
     
     public int Number { get; private set; }
-
 
     private int GetNumber()
     {
@@ -85,32 +84,9 @@ public partial class Slot : Panel
             return;
         }
         GetViewport().SetInputAsHandled();
-        if (mouse is not InputEventMouseButton button)
+        if (mouse is InputEventMouseButton button)
         {
-            return;
-        }
-        if (button.ButtonIndex == MouseButton.Right && button.IsReleased())
-        {
-            OnRightButtonReleased();
-            return;
-        }
-        if (button.ButtonIndex != MouseButton.Left)
-        {
-            return;
-        }
-        if (button.IsReleased())
-        {
-            var cur = Time.GetTicksMsec() / 1000;
-            if (cur - _lastClickTime <= DoubleClickThreshold)
-            {
-                OnLeftButtonDoubleClicked();
-                _timer.Stop();
-            }
-            else
-            {
-                _timer.Start(DoubleClickThreshold);
-            }
-            _lastClickTime = cur;
+            _mouseEventHandler.HandleMouseButton(button);
         }
     }
 
