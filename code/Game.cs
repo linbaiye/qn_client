@@ -64,6 +64,18 @@ public partial class Game : Node2D
         _entityManager.Add(groundItem);
     }
 
+    private DynamicObject _dynamicObject;
+
+    private void AddDynamicObject(DynamicObjectSnapshot snapshot)
+    {
+        var obj = DynamicObject.Create();
+        obj.OnEntityEvent += _entityManager.HandleEntityEvent;
+        obj.OnEntityEvent += _map.HandleEntityEvent;
+        AddChild(obj);
+        obj.Initialize(snapshot);
+        _dynamicObject = obj;
+    }
+
     private void OnInventoryItemDropped(int slot)
     {
         var mousePosition = GetLocalMousePosition();
@@ -145,6 +157,7 @@ public partial class Game : Node2D
         _hud.InventoryItemDropped += OnInventoryItemDropped;
     }
 
+    
 
     public override void _UnhandledInput(InputEvent @event)
     {
@@ -156,11 +169,15 @@ public partial class Game : Node2D
         switch (eventKey.Keycode)
         {
             case Key.E:
-                AddGroundItem(GroundItemSnapshot.Test());
-                // _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 你是没死过么？"));
+                AddDynamicObject(DynamicObjectSnapshot.Test());
                 break;
             case Key.Q:
                 _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 用户在使用cherry键盘的时候如果想要关闭f1到f12的功能键的话，是无法做到的，只能关闭功能键的热键功能，无法关闭其中所有的功能。"));
+                break;
+            case Key.Key1:
+            case Key.Key2:
+            case Key.Key3:
+                _dynamicObject.Play(@event);
                 break;
         }
     }

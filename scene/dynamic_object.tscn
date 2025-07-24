@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://c4p3dfu83sben"]
+[gd_scene load_steps=4 format=3 uid="uid://coo0105rnse0o"]
+
+[ext_resource type="Script" uid="uid://eg7kgx45why7" path="res://code/entity/DynamicObject.cs" id="1_3y3gr"]
+[ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_24itq"]
+[ext_resource type="Script" uid="uid://dded0vp465hup" path="res://code/entity/DynamicObjectAnimationPlayer.cs" id="3_24itq"]
 
 [node name="DynamicObject" type="Node2D"]
+script = ExtResource("1_3y3gr")
+
+[node name="Body" parent="." instance=ExtResource("2_24itq")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+script = ExtResource("3_24itq")

@@ -67,7 +67,10 @@ public class AtzMap(
     {
         if (entityEvent is EntityChangeCoordinateEvent movementEvent)
         {
-            Occupy(movementEvent.Source);
+            if (movementEvent.Source is DynamicObject dynamicObject)
+                Occupy(dynamicObject);
+            else
+                Occupy(movementEvent.Source);
             if (entityEvent.Source is not Character c)
             {
                 return;
@@ -83,18 +86,20 @@ public class AtzMap(
         }
         else if (entityEvent is DeletedEvent)
         {
-            Free(entityEvent.Source);
+            if (entityEvent.Source is DynamicObject dynamicObject)
+                Free(dynamicObject);
+            else
+                Free(entityEvent.Source);
         }
     }
-    
 
-    /*public void Occupy(GameDynamicObject dynamicObject)
+    private void Occupy(DynamicObject dynamicObject)
     {
         _entityCoordinates.TryAdd(dynamicObject.Id, new HashSet<Vector2I>(dynamicObject.Coordinates));
     }
-	
-    public void Free(GameDynamicObject dynamicObject)
+
+    private void Free(DynamicObject dynamicObject)
     {
         _entityCoordinates.Remove(dynamicObject.Id);
-    }*/
+    }
 }
