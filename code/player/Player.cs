@@ -29,6 +29,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         if (message.Action == null)
             throw new NotSupportedException();
         Position = message.Start.ToPosition();
+        EmitEvent(new EntityChangeCoordinateEvent(this));
         PlayMoveAnimation(message.Action.Value, message.Direction);
         CreateMover(message.Action.Value, message.Direction);
     }
@@ -67,8 +68,10 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 
-    public void ChangeState(PlayerState newState, CreatureDirection direction)
+    public void ChangeState(Vector2I coor, PlayerState newState, CreatureDirection direction)
     {
+        Position = coor.ToPosition();
+        EmitEvent(new EntityChangeCoordinateEvent(this));
         Mover = null;
         PlayStateAnimation(newState, direction);
     }

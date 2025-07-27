@@ -1,9 +1,10 @@
+using Godot;
 using QnClient.code.entity;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class NpcChangeStateMessage(long id, NpcState state,CreatureDirection direction) : AbstractEntityMessage(id), INpcMessage
+public class NpcChangeStateMessage(long id, NpcState state,CreatureDirection direction, Vector2I coordinate) : AbstractEntityMessage(id), INpcMessage
 {
     public void Accept(INpcMessageHandler handler)
     {
@@ -12,7 +13,9 @@ public class NpcChangeStateMessage(long id, NpcState state,CreatureDirection dir
 
     public NpcState State { get; } = state;
     public CreatureDirection Direction { get; } = direction;
-
+    
+    public Vector2I Coordinate { get; } = coordinate;
+    
     public override string ToString()
     {
         return $"{nameof(State)}: {State}, {nameof(Direction)}: {Direction}";
@@ -20,6 +23,6 @@ public class NpcChangeStateMessage(long id, NpcState state,CreatureDirection dir
 
     public static NpcChangeStateMessage FromPacket(ChangeStatePacket packet)
     {
-        return new NpcChangeStateMessage(packet.Id, (NpcState)packet.State, (CreatureDirection)packet.Direction);
+        return new NpcChangeStateMessage(packet.Id, (NpcState)packet.State, (CreatureDirection)packet.Direction, new Vector2I(packet.X, packet.Y));
     }
 }

@@ -1,4 +1,5 @@
-﻿using QnClient.code.message;
+﻿using Godot;
+using QnClient.code.message;
 using QnClient.code.player;
 
 namespace QnClient.code.entity;
@@ -12,7 +13,7 @@ public interface IBasePlayerMessageHandler
     
     void Say(CreatureSayMessage message);
 
-    void ChangeState(PlayerState newState, CreatureDirection direction);
+    void ChangeState(Vector2I coordinate, PlayerState newState, CreatureDirection direction);
     
     void Unequip(EquipmentType type);
     

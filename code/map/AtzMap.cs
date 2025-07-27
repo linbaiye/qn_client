@@ -91,10 +91,16 @@ public class AtzMap(
             else
                 Free(entityEvent.Source);
         }
+        else if (entityEvent is LiftCoordinatesEvent)
+        {
+            if (entityEvent.Source is DynamicObject dynamicObject)
+                Free(dynamicObject);
+        }
     }
 
     private void Occupy(DynamicObject dynamicObject)
     {
+        Free(dynamicObject);
         _entityCoordinates.TryAdd(dynamicObject.Id, new HashSet<Vector2I>(dynamicObject.Coordinates));
     }
 

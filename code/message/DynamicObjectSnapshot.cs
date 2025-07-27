@@ -8,7 +8,7 @@ public class DynamicObjectSnapshot
 {
     private DynamicObjectSnapshot(string name, long id, string shape, Vector2I coordinate,
         int aniId, int elapsed,
-        IEnumerable<Vector2I> coordinates, List<Animate> animations)
+        IEnumerable<Vector2I> coordinates, List<Animate> animations, bool occupying)
     {
         Name = name;
         Id = id;
@@ -18,9 +18,11 @@ public class DynamicObjectSnapshot
         Coordinates = coordinates;
         Animations = animations;
         AnimateId = aniId;
+        Occupying = occupying;
     }
     
     public int AnimateId { get; }
+    public bool Occupying { get; }
     
     public class Animate(bool loop, int start, int end, int id)
     {
@@ -34,7 +36,6 @@ public class DynamicObjectSnapshot
     public Vector2I Coordinate { get; }
 
     public List<Animate> Animations { get; } 
-    
     public string Name { get; }
     public long Id { get; }
     public string Shape { get; }
@@ -45,22 +46,21 @@ public class DynamicObjectSnapshot
     {
         List<Animate> animates =
             [new Animate(true, 0, 0, 1), new Animate(false, 0, 9, 2), new Animate(true, 10, 19, 3)];
-        return new DynamicObjectSnapshot("1", 999, "x14", new Vector2I(176, 242), 3, 0, new[]{new Vector2I(176, 242)}, animates);
+        return new DynamicObjectSnapshot("1", 999, "x14", new Vector2I(176, 242), 3, 0, new[]{new Vector2I(176, 242)}, animates, true);
     }
 
-    public static DynamicObjectSnapshot FromPacket(ShowDynamicObjectPacket packet)
+    public static DynamicObjectSnapshot FromPacket(DynamicObjectSnapshotPacket packet)
     {
-        List<Vector2I> coordinates = new List<Vector2I>();
-        for (var i = 0; i < packet.GuardX.Count; i++)
+        List<Animate> animates = new List<Animate>();
+        for (int i = 0; i < packet.AniId.Count; i++)
         {
-            var x = packet.GuardX[i];
-            var y = packet.GuardY[i];
-            coordinates.Add(new Vector2I(x, y));
+            animates.Add(new Animate(packet.AniLoop[i], packet.AniStart[i], packet.AniEnd[i], packet.AniId[i]));
         }
-
-        return null;
-        // return new DynamicObjectSnapshot(packet.HasName ? packet.Name : "", packet.Id, packet.Shape, 
-        // new Vector2I(packet.X, packet.Y), packet.Start, packet.End, packet.Elapsed, coordinates, packet.Loop);
+        ISet<Vector2I> coordinates = new HashSet<Vector2I>();
+        for (int i = 0; i < packet.GuardX.Count; i++)
+        {
+            coordinates.Add(new Vector2I(packet.GuardX[i], packet.GuardY[i]));
+        }
+        return new DynamicObjectSnapshot(packet.ViewName, packet.Id, packet.Shape, new Vector2I(packet.X, packet.Y), packet.CurrentAni, packet.CurrentElapsed, coordinates, animates, packet.Occupying);
     }
-    
 }

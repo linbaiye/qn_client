@@ -42,7 +42,7 @@ public partial class Game : Node2D
     
 
 
-    private void AddEntity(AbstractCreature creature, IEntityMessage message)
+    private void AddCreature(AbstractCreature creature, IEntityMessage message)
     {
         AddChild(creature);
         creature.OnEntityEvent += _map.HandleEntityEvent;
@@ -64,16 +64,16 @@ public partial class Game : Node2D
         _entityManager.Add(groundItem);
     }
 
-    private DynamicObject _dynamicObject;
 
     private void AddDynamicObject(DynamicObjectSnapshot snapshot)
     {
         var obj = DynamicObject.Create();
+        AddChild(obj);
         obj.OnEntityEvent += _entityManager.HandleEntityEvent;
         obj.OnEntityEvent += _map.HandleEntityEvent;
-        AddChild(obj);
         obj.Initialize(snapshot);
-        _dynamicObject = obj;
+        obj.AttackTriggered += id => _connection.WriteAndFlush(new AttackInput(id));
+        _entityManager.Add(obj);
     }
 
     private void OnInventoryItemDropped(int slot)
@@ -109,16 +109,19 @@ public partial class Game : Node2D
                     Visible = true;
                     break;
                 case NpcSnapshot snapshot:
-                    AddEntity(Npc.Create(), snapshot);
+                    AddCreature(Npc.Create(), snapshot);
                     break;
                 case PlayerSnapshot playerSnapshot:
-                    AddEntity(Player.Create(), playerSnapshot);
-                    break;
-                case IEntityMessage entityMessage:
-                    _entityManager.Find(entityMessage.Id)?.HandleEntityMessage(entityMessage);
+                    AddCreature(Player.Create(), playerSnapshot);
                     break;
                 case GroundItemSnapshot itemSnapshot:
                     AddGroundItem(itemSnapshot);
+                    break;
+                case DynamicObjectSnapshot dynamicObjectSnapshot:
+                    AddDynamicObject(dynamicObjectSnapshot);
+                    break;
+                case IEntityMessage entityMessage:
+                    _entityManager.Find(entityMessage.Id)?.HandleEntityMessage(entityMessage);
                     break;
             }
             if (msg is IHUDMessage hudMessage)
@@ -169,7 +172,7 @@ public partial class Game : Node2D
         switch (eventKey.Keycode)
         {
             case Key.E:
-                AddDynamicObject(DynamicObjectSnapshot.Test());
+                //AddDynamicObject(DynamicObjectSnapshot.Test());
                 break;
             case Key.Q:
                 _character.HandleEntityMessage(CreatureSayMessage.Test(_character, "雷震子： 用户在使用cherry键盘的时候如果想要关闭f1到f12的功能键的话，是无法做到的，只能关闭功能键的热键功能，无法关闭其中所有的功能。"));
@@ -177,7 +180,7 @@ public partial class Game : Node2D
             case Key.Key1:
             case Key.Key2:
             case Key.Key3:
-                _dynamicObject.Play(@event);
+                //_dynamicObject.Play(@event);
                 break;
         }
     }

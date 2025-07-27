@@ -119,7 +119,7 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
 
     public void ShowLifeBar(int percent)
     {
-        _lifeBar.Show(percent);
+        _lifeBar.ShowWithPosition(percent);
     }
 
     public void Say(CreatureSayMessage sayMessage)
@@ -129,9 +129,6 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
 
     public override bool IsCoveringPosition(Vector2 position)
     {
-        var start = Position + _bodySprite.MouseArea.Position;
-        var end = start + _bodySprite.MouseArea.GetSize();
-        return start.X <= position.X && end.X >= position.X &&
-               start.Y <= position.Y && end.Y >= position.Y;
+        return _bodySprite.IsCovering(position - Position);
     }
 }

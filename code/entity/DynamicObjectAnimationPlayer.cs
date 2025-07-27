@@ -29,7 +29,6 @@ public partial class DynamicObjectAnimationPlayer : AnimationPlayer
         animation.ValueTrackSetUpdateMode(bodyOffset, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(mouseAreaPosition, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(areaSize, Animation.UpdateMode.Discrete);
-        animation.SetStep(Step);
         for (int i = start, t = 0; i <= end; i++, t++)
         {
             var textureOffset = _sprites[i].Offset + VectorUtil.DefaultTextureOffset;
@@ -41,7 +40,7 @@ public partial class DynamicObjectAnimationPlayer : AnimationPlayer
         }
     }
     
-    public void Initialize(string sprite, List<DynamicObjectSnapshot.Animate> animates)
+    public OffsetTexture Initialize(string sprite, List<DynamicObjectSnapshot.Animate> animates)
     {
         _sprites = ZipFileSpriteLoader.Instance.Load(sprite);
         var library = new AnimationLibrary();
@@ -52,6 +51,7 @@ public partial class DynamicObjectAnimationPlayer : AnimationPlayer
             library.AddAnimation(ani.Id.ToString(), animation);
         }
         AddAnimationLibrary("default", library);
+        return _sprites[0];
     }
 
     public void PlayId(int n, int elapsedMillis = 0)

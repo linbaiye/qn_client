@@ -118,6 +118,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         }
         ResetPhysicsInterpolation();
         map.Occupy(this);
+        Log.Debug("Position {}.", Position);
     }
 
     public override void HandleEntityMessage(IEntityMessage message)
@@ -128,8 +129,9 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         }
     }
 
-    public void ChangeState(PlayerState newState, CreatureDirection direction)
+    public void ChangeState(Vector2I coordinate, PlayerState newState, CreatureDirection direction)
     {
+        Position = coordinate.ToPosition();
         Direction = direction;
         switch (newState)
         {
@@ -154,7 +156,6 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
             ChangeState(CharacterStandState.Idle(this));
         else if (state == PlayerState.FightStand)
             ChangeState(CharacterStandState.FightStand(this));
-        Log.Debug("Position {}.", Position.ToCoordinate());
     }
 
     public void Attack(AttackAction action, CreatureDirection direction, string effect)

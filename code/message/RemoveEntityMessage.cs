@@ -3,7 +3,7 @@ using QnClient.code.player;
 
 namespace QnClient.code.message;
 
-public class RemoveEntityMessage(long id) : AbstractEntityMessage(id), INpcMessage, IPlayerMessage
+public class RemoveEntityMessage(long id) : AbstractEntityMessage(id), INpcMessage, IPlayerMessage, IDynamicObjectMessage
 {
     public void Accept(INpcMessageHandler handler)
     {
@@ -11,6 +11,11 @@ public class RemoveEntityMessage(long id) : AbstractEntityMessage(id), INpcMessa
     }
 
     public void Accept(IPlayerMessageHandler handler)
+    {
+        handler.Remove();
+    }
+    
+    public void Accept(IDynamicObjectMessageHandler handler)
     {
         handler.Remove();
     }

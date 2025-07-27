@@ -12,10 +12,18 @@ public partial class LifeBar: TextureProgressBar
         _timer.Timeout += () => Visible = false;
         Visible = false;
     }
-    public void Show(int value)
+    public void ShowWithPosition(int value)
     {
         if (!Visible)
             Position = new Vector2(18 - Size.X / 2, -42);
+        Value = value;
+        _timer.Stop();
+        Visible = true;
+        _timer.Start(3);
+    }
+    
+    public void Show(int value)
+    {
         Value = value;
         _timer.Stop();
         Visible = true;

@@ -50,6 +50,8 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.OpenTradeWindow => OpenPlayerTradeWindowMessage.FromPacket(packet.OpenTradeWindow),
             Packet.TypedPacketOneofCase.CloseTradePacket => ClosePlayerTradeWindowMessage.Instance,
             Packet.TypedPacketOneofCase.UpdateTradeWindowSlot => UpdateTradeWindowSlotMessage.FromPacket(packet.UpdateTradeWindowSlot),
+            Packet.TypedPacketOneofCase.DynamicObjectSnapshot => DynamicObjectSnapshot.FromPacket(packet.DynamicObjectSnapshot),
+            Packet.TypedPacketOneofCase.DynamicObjectShift => DynamicObjectShiftMessage.FromPacket(packet.DynamicObjectShift),
             _ => null,
         };
     }
