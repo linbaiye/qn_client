@@ -25,6 +25,7 @@ public partial class GroundItem : AbstractEntity
         _bodySprite.MouseEntered += () => _tip.Visible = true;
         _bodySprite.MouseExited += () => _tip.Visible = false;
         _bodySprite.Clicked += OnPicked;
+        _bodySprite.AttackInvoked += OnPicked;
         _tip.Visible = false;
         Visible = false;
     }
@@ -36,13 +37,11 @@ public partial class GroundItem : AbstractEntity
         var shaderMaterial = DyeShader.CreateShaderMaterial(snapshot.Color);
         Id = snapshot.Id;
         Position = snapshot.Coordinate.ToPosition();
+        GD.Print(Position);
         _bodySprite.Texture = icon;
         _bodySprite.Material = shaderMaterial;
         var iconSize = icon.GetSize();
         _bodySprite.Position = new Vector2(16, 12) - iconSize / 2;
-        _bodySprite.MouseArea.Position = _bodySprite.Position;
-        if (iconSize.X < 32 && iconSize.Y < 24)
-            _bodySprite.MouseArea.Position -= iconSize / 2;
         _bodySprite.MouseArea.Size = _bodySprite.Texture.GetSize();
         var tip = snapshot.Number > 1 ? snapshot.Name + ": " + snapshot.Number : snapshot.Name;
         _tip.Text = tip;
