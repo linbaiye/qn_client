@@ -186,7 +186,7 @@ public partial class Game : Node2D
             case Key.Key6:
             case Key.Key7:
                 var dir = (CreatureDirection)(int)eventKey.Keycode - (int)Key.Key0;
-                _character.FollowRope(dir);
+                //_character.FollowRope(dir);
                 //_dynamicObject.Play(@event);
                 break;
         }

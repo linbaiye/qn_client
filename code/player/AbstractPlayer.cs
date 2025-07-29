@@ -287,18 +287,6 @@ public abstract partial class AbstractPlayer : AbstractCreature
         { CreatureDirection.UpLeft, new Vector2(20, 15) },
     };
 
-    private bool _shoot;
-
-    private AbstractCreature _target;
-
-    public void Shoot(AbstractCreature target)
-    {
-        _shoot = true;
-        var creatureDirection = Coordinate.GetDirection(target.Coordinate);
-        _animationPlayer.PlayThrowAttack(creatureDirection);
-        _target = target;
-    }
-    
     protected EntityMover? Mover
     {
         get;
@@ -323,26 +311,6 @@ public abstract partial class AbstractPlayer : AbstractCreature
         FireProjectile(targetId, sprite, flyMillis, ComputeShootStartPoint);
     }
     
-    public override void _Process(double delta)
-    {
-        if (!_shoot)
-            return;
-        var ani = _animationPlayer.CurrentAnimation;
-        if (string.IsNullOrEmpty(ani))
-            return;
-        if (!ani.Split("/")[0].Equals(AttackAction.Throw.ToString()))
-        {
-            return;
-        }
-        if (_animationPlayer.CurrentAnimationPosition < 0.2f) 
-            return;
-        CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.Split("/")[1]);
-        var position = Position + _body.Offset + ProjectileLetOffPoints.GetValueOrDefault(direction, Vector2.Zero);
-        //ShootEvent?.Invoke(new ShootEvent(_target.ProjectileAimPoint, position));
-        _shoot = false;
-        _target = null;
-    }
-
     protected void PlayAttackAnimation(AttackAction action, CreatureDirection direction, string effect, int startMillis = 0)
     {
         _animationPlayer.SetEffectAnimationIfNamePresent(effect, action);
@@ -380,6 +348,21 @@ public abstract partial class AbstractPlayer : AbstractCreature
                 break;
         }
     }
-
-
+    
+    public void FollowRope(FollowRopeMessage message)
+    {
+        Position = message.Coordinate.ToPosition();
+        EmitEvent(new EntityChangeCoordinateEvent(this));
+        AnimationPlayer.PlayDie(message.Direction, 2000);
+        if (message.DurationMillis == 0)
+        {
+            Mover = null;
+        }
+        else
+        {
+            var duration = (float)message.DurationMillis / 1000;
+            var v = VectorUtil.VelocityUnit(message.Direction) / duration;
+            Mover = new EntityMover(this, duration, v );
+        }
+    }
 }

@@ -169,15 +169,6 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         ChangeState(CharacterWaitingState.Instance);
     }
 
-    public void FollowRope(CreatureDirection direction)
-    {
-        AnimationPlayer.PlayDie(direction, 2000);
-        Mover = null;
-        var v = VectorUtil.VelocityUnit(direction) / 0.2f;
-        Mover = new EntityMover(this, 0.2f, v, 0);
-    }
-
-
     public void SyncActiveKungFuList(SyncActiveKungFuListMessage message) 
     {
         FootKungFu = message.FootKungFu;

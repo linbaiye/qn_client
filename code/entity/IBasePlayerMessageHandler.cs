@@ -23,5 +23,5 @@ public interface IBasePlayerMessageHandler
     
     void FireProjectile(long targetId, string sprite, int flyMillis);
 
-    void FollowRope(CreatureDirection direction);
+    void FollowRope(FollowRopeMessage message);
 }

@@ -82,11 +82,6 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         PlayAttackAnimation(action, direction, effect);
     }
 
-    public void FollowRope(CreatureDirection direction)
-    {
-        throw new NotImplementedException();
-    }
-
     private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
     {
         switch (action)
