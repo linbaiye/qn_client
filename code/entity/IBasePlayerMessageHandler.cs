@@ -22,4 +22,6 @@ public interface IBasePlayerMessageHandler
     void ShowLifeBar(int percent);
     
     void FireProjectile(long targetId, string sprite, int flyMillis);
+
+    void FollowRope(CreatureDirection direction);
 }

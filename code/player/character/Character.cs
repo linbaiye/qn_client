@@ -37,6 +37,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     public override void _PhysicsProcess(double delta)
     {
         _characterState?.PhysicProcess(delta);
+        UpdateMover(delta);
     }
 
     public CreatureDirection? NextMoveDirection { get; private set; }
@@ -131,6 +132,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void ChangeState(Vector2I coordinate, PlayerState newState, CreatureDirection direction)
     {
+        Mover = null;
         Position = coordinate.ToPosition();
         Direction = direction;
         switch (newState)
@@ -150,6 +152,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void SetPosition(Vector2I coordinate, PlayerState state, CreatureDirection direction)
     {
+        Mover = null;
         DoSetPosition(coordinate, state, direction);
         Direction = direction;
         if (state == PlayerState.Idle)
@@ -160,10 +163,20 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void Attack(AttackAction action, CreatureDirection direction, string effect)
     {
+        Mover = null;
         PlayAttackAnimation(action, direction, effect);
         Direction = direction;
         ChangeState(CharacterWaitingState.Instance);
     }
+
+    public void FollowRope(CreatureDirection direction)
+    {
+        AnimationPlayer.PlayDie(direction, 2000);
+        Mover = null;
+        var v = VectorUtil.VelocityUnit(direction) / 0.2f;
+        Mover = new EntityMover(this, 0.2f, v, 0);
+    }
+
 
     public void SyncActiveKungFuList(SyncActiveKungFuListMessage message) 
     {

@@ -426,7 +426,7 @@ public partial class PlayerAnimationPlayer : AbstractAnimationPlayer
             Stop(true);
         var aniLength = GetAnimation(name).Length;
         var fromSec = ((float)millis / 1000);
-        if (fromSec > aniLength)
+        if (fromSec >= aniLength)
             PlayLastFrame(name);
         else
             PlaySection(name, fromSec, -1, -1, speed);

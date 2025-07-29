@@ -298,7 +298,20 @@ public abstract partial class AbstractPlayer : AbstractCreature
         _animationPlayer.PlayThrowAttack(creatureDirection);
         _target = target;
     }
+    
+    protected EntityMover? Mover
+    {
+        get;
+        set;
+    }
 
+    protected void UpdateMover(double delta)
+    {
+        if (Mover == null || !Mover.PhysicProcess(delta))
+            return;
+        EmitEvent(new EntityChangeCoordinateEvent(this));
+        Mover = null;
+    }
 
     private Vector2 ComputeShootStartPoint(CreatureDirection direction)
     {
@@ -367,5 +380,6 @@ public abstract partial class AbstractPlayer : AbstractCreature
                 break;
         }
     }
+
 
 }

@@ -16,13 +16,14 @@ public class PlayerDamagedMessage(long id, ValueBar life, int head, int arm, int
     
     public void Accept(ICharacterMessageHandler handler)
     {
-        handler.ShowLifeBar(life.Percent);
+        handler.ShowLifeBar(LifeBar.Percent);
     }
 
     public void Accept(IHUDMessageHandler handler)
     {
         handler.UpdateLifeBars(this);
     }
+    
     public static PlayerDamagedMessage FromPacket(PlayerDamagedPacket packet)
     {
         return new PlayerDamagedMessage(packet.Id, new ValueBar(packet.CurLife, packet.MaxLife), packet.HeadPercent,

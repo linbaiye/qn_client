@@ -82,6 +82,11 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         PlayAttackAnimation(action, direction, effect);
     }
 
+    public void FollowRope(CreatureDirection direction)
+    {
+        throw new NotImplementedException();
+    }
+
     private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
     {
         switch (action)
@@ -101,11 +106,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         }
     }
     
-    private EntityMover? Mover
-    {
-        get;
-        set;
-    }
+
 
     private void CreateMover(MoveAction action, CreatureDirection direction, int elapsedMillis = 0)
     {
@@ -116,10 +117,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Mover == null || !Mover.PhysicProcess(delta))
-            return;
-        EmitEvent(new EntityChangeCoordinateEvent(this));
-        Mover = null;
+        UpdateMover(delta);
     }
 
     public override void HandleEntityMessage(IEntityMessage message)
