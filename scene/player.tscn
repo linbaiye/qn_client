@@ -65,7 +65,7 @@ shader_parameter/ab = 0.0
 shader_parameter/add = 0.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hjaqi"]
-blend_mode = 2
+blend_mode = 1
 
 [node name="Player" type="Node2D"]
 y_sort_enabled = true
