@@ -25,7 +25,7 @@ public class AtzMap(
 
     public void Draw(string name, string textureResourceName)
     {
-        if (_fileParser != null && !_fileParser.Name.Equals(name))
+        if (_fileParser != null && _fileParser.Name.Equals(name))
             return;
         _fileParser = AtzMapFileParser.ParseFile("res://maps/" + name + ".map");
         if (_fileParser == null)

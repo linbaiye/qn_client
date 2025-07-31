@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://vnt7meijm4ut"]
+
+[ext_resource type="Script" uid="uid://coqu0v6uus45u" path="res://code/entity/Teleport.cs" id="1_mqjf8"]
+[ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_ak4hm"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_sedei"]
+
+[node name="Teleport" type="Node2D"]
+script = ExtResource("1_mqjf8")
+
+[node name="Body" parent="." instance=ExtResource("2_ak4hm")]
+
+[node name="Tip" type="Label" parent="."]
+z_index = 5
+z_as_relative = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("3_sedei")

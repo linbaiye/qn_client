@@ -95,7 +95,7 @@ public partial class Bottom : NinePatchRect
         FillBar(_legLifeBar, message.LegLifeBar.Percent, message.LegLifeBar.Percent.ToString());
         UpdateCoordinate(message.Coordinate);
         _activeKungFuList.SetAttackKungFu(message.AttackKungFu);
-        _mapName.Text = message.ResourceName;
+        _mapName.Text = message.MapTile;
         _equipView.OnCharacterJoined(message);
     }
 
@@ -108,6 +108,12 @@ public partial class Bottom : NinePatchRect
         FillBar(_headLifeBar, message.HeadPercent, message.HeadPercent.ToString());
         FillBar(_armLifeBar, message.ArmPercent, message.ArmPercent.ToString());
         FillBar(_legLifeBar, message.LegPercent, message.LegPercent.ToString());
+    }
+
+    public void OnCharacterTeleported(string mapTitle, Vector2I coordinate)
+    {
+        _mapName.Text = mapTitle;
+        UpdateCoordinate(coordinate);
     }
     
     public void UpdateLifeBars(PlayerDamagedMessage message)

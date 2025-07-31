@@ -34,13 +34,15 @@ public partial class TextBubble : RichTextLabel
         for (int i = 0; i < text.Length; i++) {
             stringBuilder.Append(text[i]);
             copiedNumber++;
-            if (copiedNumber > MaxLineLength)
+            if (copiedNumber >= MaxLineLength)
             {
                 copiedNumber = 0;
                 lines.Add(stringBuilder.ToString());
                 stringBuilder = new StringBuilder();
             }
         }
+        if (stringBuilder.Length > 0)
+            lines.Add(stringBuilder.ToString());
         return lines;
     }
     

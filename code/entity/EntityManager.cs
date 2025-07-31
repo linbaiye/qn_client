@@ -38,6 +38,11 @@ public class EntityManager
         }
         return default;
     }
+
+    public IEnumerable<IEntity> Where(Func<IEntity, bool> where)
+    {
+        return _entities.Values.Where(where);
+    }
     
     public AbstractCreature? Find(string name)
     {
@@ -49,6 +54,11 @@ public class EntityManager
             }
         }
         return null;
+    }
+    
+    public bool Contains(long id)
+    {
+        return _entities.Keys.Contains(id);
     }
 
     public void HandleEntityEvent(IEntityEvent entityEvent)

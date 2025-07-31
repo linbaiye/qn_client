@@ -42,4 +42,6 @@ public interface IHUDMessageHandler
     void CloseTradeWindow();
 
     void UpdateTradeWindowSlot(bool self, InventoryItemMessage item);
+
+    void OnCharacterTeleported(TeleportMessage message);
 }

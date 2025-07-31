@@ -21,7 +21,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
     public void SetPosition(SetPositionMessage message)
     {
         Mover = null;
-        DoSetPosition(message.Coordinate, message.State, message.Direction);
+        DoSetPositionState(message.Coordinate, message.State, message.Direction);
     }
 
     public void Move(MoveMessage message)

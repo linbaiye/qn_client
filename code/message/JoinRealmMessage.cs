@@ -28,6 +28,8 @@ public class JoinRealmMessage  : IHUDMessage
     
     public string Name { get; private init; }
     
+    public string MapTile { get; private init; }
+    
     public string Bgm { get;private init; }
     
     public List<PlayerEquipMessage> Equipments { get;private init; }
@@ -58,7 +60,8 @@ public class JoinRealmMessage  : IHUDMessage
             LegLifeBar= new ValueBar(joinPacket.Attribute.LegPercent, 100),
             AttackKungFu = joinPacket.AttackKungFu,
             Equipments = equipMessages,
-            Bgm = "1301",
+            Bgm = joinPacket.Teleport.Bgm,
+            MapTile = joinPacket.Teleport.Title,
             //ProtectionKungFu = joinPacket.HasProtectionKungFu? new KungFu(joinPacket.ProtectionKungFu) : null,
             //FootKungFu = joinPacket.HasFootKungFuName ? new FootKungFu(joinPacket.FootKungFuName, joinPacket.FootKungFuCanFly) : null,
             //AssistantKungFu= joinPacket.HasAssistantKungFu ? new KungFu(joinPacket.AssistantKungFu) : null,

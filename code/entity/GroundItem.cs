@@ -37,7 +37,6 @@ public partial class GroundItem : AbstractEntity
         var shaderMaterial = DyeShader.CreateShaderMaterial(snapshot.Color);
         Id = snapshot.Id;
         Position = snapshot.Coordinate.ToPosition();
-        GD.Print(Position);
         _bodySprite.Texture = icon;
         _bodySprite.Material = shaderMaterial;
         var iconSize = icon.GetSize();

@@ -191,7 +191,7 @@ public abstract partial class AbstractPlayer : AbstractCreature
         }
     }
 
-    protected void DoSetPosition(Vector2I coor, PlayerState state, CreatureDirection direction)
+    protected void DoSetPositionState(Vector2I coor, PlayerState state, CreatureDirection direction)
     {
         Position = coor.ToPosition();
         switch (state)

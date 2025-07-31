@@ -63,6 +63,15 @@ public partial class Game : Node2D
         groundItem.Picked += i => _connection.WriteAndFlush(i);
         _entityManager.Add(groundItem);
     }
+    
+    private void AddTeleport(TeleportSnapshot snapshot)
+    {
+        var teleport = Teleport.Create();
+        AddChild(teleport);
+        teleport.Init(snapshot.Id, snapshot.Name, snapshot.Coordinate, snapshot.Icon);
+        teleport.OnEntityEvent += _entityManager.HandleEntityEvent;
+        _entityManager.Add(teleport);
+    }
 
 
     private void AddDynamicObject(DynamicObjectSnapshot snapshot)
@@ -90,6 +99,28 @@ public partial class Game : Node2D
         }
     }
 
+    private void OnCharacterJoined(JoinRealmMessage message)
+    {
+        _map.Draw(message.MapFile, message.ResourceName);
+        _character.Initialize(message, _connection, _map);
+        _character.OnEntityEvent += _map.HandleEntityEvent;
+        _character.ShootEvent += HandleShoot;
+        _entityManager.Add(_character);
+        Visible = true;
+    }
+
+
+    private void OnCharacterTeleported(TeleportMessage teleportMessage)
+    {
+        var entities = _entityManager.Where(e => e.Id != _character.Id);
+        foreach (var entity in entities)
+        {
+            entity.HandleEntityMessage(new RemoveEntityMessage(entity.Id));
+        }
+        _map.Draw(teleportMessage.MapFile, teleportMessage.ResourceName);
+        _character.ChangeCoordinate(teleportMessage.Coordinate);
+    }
+
 
     private void HandleMessages()
     {
@@ -101,12 +132,7 @@ public partial class Game : Node2D
             switch (msg)
             {
                 case JoinRealmMessage message:
-                    _map.Draw(message.MapFile, message.ResourceName);
-                    _character.Initialize(message, _connection, _map);
-                    _character.OnEntityEvent += _map.HandleEntityEvent;
-                    _character.ShootEvent += HandleShoot;
-                    _entityManager.Add(_character);
-                    Visible = true;
+                    OnCharacterJoined(message);
                     break;
                 case NpcSnapshot snapshot:
                     AddCreature(Npc.Create(), snapshot);
@@ -120,8 +146,14 @@ public partial class Game : Node2D
                 case DynamicObjectSnapshot dynamicObjectSnapshot:
                     AddDynamicObject(dynamicObjectSnapshot);
                     break;
+                case TeleportSnapshot teleportSnapshot:
+                    AddTeleport(teleportSnapshot);
+                    break;
                 case IEntityMessage entityMessage:
                     _entityManager.Find(entityMessage.Id)?.HandleEntityMessage(entityMessage);
+                    break;
+                case TeleportMessage teleportMessage:
+                    OnCharacterTeleported(teleportMessage);
                     break;
             }
             if (msg is IHUDMessage hudMessage)

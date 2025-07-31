@@ -151,6 +151,12 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _playerTradeWindow.UpdateSlot(self, item);
     }
 
+    public void OnCharacterTeleported(TeleportMessage message)
+    {
+        _audioManager.PlayBgm(message.Bgm);
+        _bottom.OnCharacterTeleported(message.MapTitle, message.Coordinate);
+    }
+
     public void DisplayText(string text)
     {
         _bottom.DisplayText(text);

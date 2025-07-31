@@ -53,6 +53,8 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.DynamicObjectSnapshot => DynamicObjectSnapshot.FromPacket(packet.DynamicObjectSnapshot),
             Packet.TypedPacketOneofCase.DynamicObjectShift => DynamicObjectShiftMessage.FromPacket(packet.DynamicObjectShift),
             Packet.TypedPacketOneofCase.FollowRope => FollowRopeMessage.FromPacket(packet.FollowRope),
+            Packet.TypedPacketOneofCase.ShowTeleport => TeleportSnapshot.FromPacket(packet.ShowTeleport),
+            Packet.TypedPacketOneofCase.Teleport => TeleportMessage.FromPacket(packet.Teleport),
             _ => null,
         };
     }

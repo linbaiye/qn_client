@@ -1,6 +1,7 @@
 ﻿using Godot;
 using NLog;
 using QnClient.code.entity;
+using QnClient.code.entity.@event;
 using QnClient.code.input;
 using QnClient.code.map;
 using QnClient.code.message;
@@ -130,6 +131,12 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         }
     }
 
+    public void ChangeCoordinate(Vector2I coor)
+    {
+        Position = coor.ToPosition();
+        EmitEvent(new EntityChangeCoordinateEvent(this));
+    }
+
     public void ChangeState(Vector2I coordinate, PlayerState newState, CreatureDirection direction)
     {
         Mover = null;
@@ -153,7 +160,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     public void SetPosition(Vector2I coordinate, PlayerState state, CreatureDirection direction)
     {
         Mover = null;
-        DoSetPosition(coordinate, state, direction);
+        DoSetPositionState(coordinate, state, direction);
         Direction = direction;
         if (state == PlayerState.Idle)
             ChangeState(CharacterStandState.Idle(this));
