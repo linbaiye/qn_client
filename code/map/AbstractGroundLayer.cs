@@ -27,5 +27,13 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
         }
     }
 
-    public abstract void Paint(IDictionary<int, Texture2D> tileIdTextures, AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end);
+    protected void ClearTiles()
+    {
+        foreach (var usedCell in GetUsedCells())
+        {
+            EraseCell(usedCell);
+        }
+    }
+
+    public abstract void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end);
 }

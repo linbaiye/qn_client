@@ -18,6 +18,7 @@ public class SyncActiveKungFuListMessage : ICharacterMessage, IHUDMessage
     public string AssistantKungFu { get; private set; }
     
     public string BreathKungFu { get; private set; }
+    public int AttackLevel { get; private set; }
     
     public void Accept(ICharacterMessageHandler handler)
     {
@@ -34,6 +35,7 @@ public class SyncActiveKungFuListMessage : ICharacterMessage, IHUDMessage
             ProtectionKungFu = packet.HasProtectionKungFu ? packet.ProtectionKungFu : "",
             AssistantKungFu = packet.HasAssistantKungFu ? packet.AssistantKungFu : "",
             BreathKungFu = packet.HasBreathKungFu ? packet.BreathKungFu : "",
+            AttackLevel = packet.AttackKungFuLevel,
         };
     }
 

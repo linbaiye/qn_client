@@ -16,6 +16,7 @@ public partial class Teleport : AbstractEntity
     {
         _tip = GetNode<Label>("Tip");
         _bodySprite = GetNode<BodySprite>("Body");
+        ZIndex = 1;
     }
 
     public void Init(long id, string viewName, Vector2I coordinate, int icon)

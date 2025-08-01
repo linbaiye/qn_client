@@ -34,7 +34,6 @@ public static class ZipUtil
         if (error != Error.Ok)
         {
             Log.Debug("Failed to load {}.", entry.FullName);
-            
         }
         return error == Error.Ok ? ImageTexture.CreateFromImage(image) : null;
     }

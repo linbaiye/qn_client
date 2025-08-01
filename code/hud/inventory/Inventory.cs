@@ -23,6 +23,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     
     private InventoryMessage _message;
     public event Action<int>? ItemDragReleased;
+    
 
     private ItemModifyInput _input;
 
@@ -189,5 +190,36 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     public void SetConnection(Connection connection)
     {
         _connection = connection;
+    }
+    
+    private readonly Dictionary<object, int> _hotKeys = new();
+
+    public void BindHotKey(object source, int slotNumber)
+    {
+        _hotKeys.Remove(source);
+        _hotKeys.Add(source, slotNumber);
+    }
+
+    public object GetHotKey(int slotNumber)
+    {
+        foreach (var keyValuePair in _hotKeys)
+        {
+            if (keyValuePair.Value == slotNumber)
+                return keyValuePair.Key;
+        }
+        return default;
+    }
+
+    public void RemoveHotKey(object source)
+    {
+        _hotKeys.Remove(source);
+    }
+
+    public void HotKeyPressed(object source)
+    {
+        if (_hotKeys.TryGetValue(source, out var number))
+        {
+            _connection.WriteAndFlush(ClickInventoryInput.LeftDoubleClick(number));
+        }
     }
 }

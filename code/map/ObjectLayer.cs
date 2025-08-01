@@ -11,9 +11,20 @@ public partial class ObjectLayer : Node2D
 	private IDictionary<int, MapObject> _idObjects = new Dictionary<int, MapObject>();
 	private readonly ZipFileMapTextureLoader _textureLoader = ZipFileMapTextureLoader.Instance;
 
-	public void Paint(string textureResourceName, AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
+	private string _name;
+
+	public void LoadTextures(string textureResourceName)
 	{
+		if (textureResourceName.Equals(_name))
+			return;
+		_name = textureResourceName;
         _idObjects = _textureLoader.LoadObjects(textureResourceName);
+	}
+
+	public void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
+	{
+		if (_idObjects.Count == 0)
+			return;
         foreach (var child in GetChildren())
         {
 	        if (child is not AnimatedSprite2D animatedSprite2D  ||

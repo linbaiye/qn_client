@@ -97,7 +97,6 @@ public class ZipFileMapTextureLoader
 	{
 		IDictionary<int, MapObject> dictionary = new Dictionary<int, MapObject>();
 		var path = MakePath(mapName);
-		Logger.Debug("Loading zip path " + path);
 		try
 		{
 			using var zipArchive = ZipUtil.LoadZipFile(path);

@@ -473,60 +473,61 @@ namespace Source.Networking.Protobuf {
             "CgRwYWdlGAEgASgFEgwKBHNsb3QYAiABKAUSEQoJY2xpY2tUeXBlGAMgASgF",
             "IkAKHUNsaWNrSW52ZW50b3J5U2xvdElucHV0UGFja2V0EgwKBHNsb3QYASAB",
             "KAUSEQoJY2xpY2tUeXBlGAMgASgFIiEKEVNpbXBsZUlucHV0UGFja2V0EgwK",
-            "BHR5cGUYASABKAUikAIKD0pvaW5SZWFsbVBhY2tldBI+CglhdHRyaWJ1dGUY",
+            "BHR5cGUYASABKAUiqwIKD0pvaW5SZWFsbVBhY2tldBI+CglhdHRyaWJ1dGUY",
             "ASABKAsyKy5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5BdHRyaWJ1dGVQ",
             "YWNrZXQSQQoKZXF1aXBtZW50cxgCIAMoCzItLlNvdXJjZS5OZXR3b3JraW5n",
             "LlByb3RvYnVmLlBsYXllckVxdWlwUGFja2V0EjwKCHRlbGVwb3J0GAMgASgL",
             "MiouU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuVGVsZXBvcnRQYWNrZXQS",
             "DAoEbWFsZRgEIAEoCBIMCgRuYW1lGAUgASgJEgoKAmlkGAYgASgDEhQKDGF0",
-            "dGFja0t1bmdGdRgHIAEoCSLOAQoYUGxheWVyVG9nZ2xlS3VuZ0Z1UGFja2V0",
-            "EhQKDGF0dGFja0t1bmdGdRgBIAEoCRIXCgpmb290S3VuZ0Z1GAIgASgJSACI",
-            "AQESDgoGY2FuRmx5GAMgASgIEh0KEHByb3RlY3Rpb25LdW5nRnUYBCABKAlI",
-            "AYgBARIcCg9hc3Npc3RhbnRLdW5nRnUYBSABKAlIAogBAUINCgtfZm9vdEt1",
-            "bmdGdUITChFfcHJvdGVjdGlvbkt1bmdGdUISChBfYXNzaXN0YW50S3VuZ0Z1",
-            "InYKFkNyZWF0dXJlQmFzZUluZm9QYWNrZXQSFQoNZWxhcHNlZE1pbGxpcxgC",
-            "IAEoBRIRCglkaXJlY3Rpb24YAyABKAUSCQoBeBgEIAEoBRIJCgF5GAUgASgF",
-            "EhAKCHZpZXdOYW1lGAYgASgJEgoKAmlkGAcgASgDItABChRQbGF5ZXJTbmFw",
-            "c2hvdFBhY2tldBJECghiYXNlSW5mbxgBIAEoCzIyLlNvdXJjZS5OZXR3b3Jr",
-            "aW5nLlByb3RvYnVmLkNyZWF0dXJlQmFzZUluZm9QYWNrZXQSEgoKbW92ZUFj",
-            "dGlvbhgCIAEoBRJBCgplcXVpcG1lbnRzGAMgAygLMi0uU291cmNlLk5ldHdv",
-            "cmtpbmcuUHJvdG9idWYuUGxheWVyRXF1aXBQYWNrZXQSDAoEbWFsZRgEIAEo",
-            "CBINCgVzdGF0ZRgFIAEoBSKXAQoRTnBjU25hcHNob3RQYWNrZXQSRAoIYmFz",
-            "ZUluZm8YASABKAsyMi5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5DcmVh",
-            "dHVyZUJhc2VJbmZvUGFja2V0Eg0KBXNoYXBlGAIgASgJEg8KB2FuaW1hdGUY",
-            "AyABKAkSDQoFc3RhdGUYBCABKAUSDQoFc3BlZWQYBSABKAUiLQoRQ3JlYXR1",
-            "cmVTYXlQYWNrZXQSCgoCaWQYASABKAMSDAoEdGV4dBgCIAEoCSKOAgoWU3lu",
-            "Y0FjdGl2ZUt1bmdGdVBhY2tldBIUCgxhdHRhY2tLdW5nRnUYASABKAkSHQoQ",
-            "cHJvdGVjdGlvbkt1bmdGdRgCIAEoCUgAiAEBEhkKDGJyZWF0aEt1bmdGdRgD",
-            "IAEoCUgBiAEBEhwKD2Fzc2lzdGFudEt1bmdGdRgEIAEoCUgCiAEBEhcKCmZv",
-            "b3RLdW5nRnUYBSABKAlIA4gBARIYChBmb290S3VuZ0Z1Q2FuRmx5GAYgASgI",
-            "EgoKAmlkGAcgASgDQhMKEV9wcm90ZWN0aW9uS3VuZ0Z1Qg8KDV9icmVhdGhL",
-            "dW5nRnVCEgoQX2Fzc2lzdGFudEt1bmdGdUINCgtfZm9vdEt1bmdGdSJdChdQ",
-            "bGF5ZXJDaGFuZ2VTdGF0ZVBhY2tldBIKCgJpZBgBIAEoAxINCgVzdGF0ZRgC",
-            "IAEoBRIRCglkaXJlY3Rpb24YAyABKAUSCQoBeBgEIAEoBRIJCgF5GAUgASgF",
-            "ImYKF1BsYXllclNldFBvc2l0aW9uUGFja2V0EjwKCHBvc2l0aW9uGAEgASgL",
-            "MiouU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuUG9zaXRpb25QYWNrZXQS",
-            "DQoFc3RhdGUYAiABKAUiWQoSUGxheWVyQXR0YWNrUGFja2V0EgoKAmlkGAEg",
-            "ASgDEg4KBmFjdGlvbhgCIAEoBRIRCglkaXJlY3Rpb24YAyABKAUSFAoMZWZm",
-            "ZWN0U3ByaXRlGAQgASgJIh8KEUF0dGFja0lucHV0UGFja2V0EgoKAmlkGEAg",
-            "ASgDIh0KD1BpY2tJbnB1dFBhY2tldBIKCgJpZBhAIAEoAyI5ChNEcm9wSXRl",
-            "bUlucHV0UGFja2V0EgwKBHNsb3QYASABKAUSCQoBeBgCIAEoBRIJCgF5GAMg",
-            "ASgFIjcKG0Ryb3BJdGVtT25FbnRpdHlJbnB1dFBhY2tldBIMCgRzbG90GAEg",
-            "ASgFEgoKAmlkGAIgASgDIlAKGkNvbmZpcm1Ecm9wSXRlbUlucHV0UGFja2V0",
-            "Eg4KBm51bWJlchgBIAEoBRIMCgRzbG90GAIgASgFEgkKAXgYAyABKAUSCQoB",
-            "eRgEIAEoBSI9ChpDbGlja05wY0FiaWxpdHlJbnB1dFBhY2tldBIKCgJpZBgB",
-            "IAEoAxITCgthYmlsaXR5TmFtZRgCIAEoCSI+ChJCdXlJdGVtSW5wdXRQYWNr",
-            "ZXQSCgoCaWQYASABKAMSDAoEbmFtZRgCIAEoCRIOCgZudW1iZXIYAyABKAUi",
-            "PwoTU2VsbEl0ZW1JbnB1dFBhY2tldBIKCgJpZBgBIAEoAxIMCgRzbG90GAIg",
-            "ASgFEg4KBm51bWJlchgDIAEoBSJlChBQbGF5ZXJNb3ZlUGFja2V0Ej0KCm1v",
-            "dmVQYWNrZXQYASABKAsyKS5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5O",
-            "cGNNb3ZlUGFja2V0EhIKCm1vdmVBY3Rpb24YAiABKAUigAEKE1BsYXllckRh",
-            "bWFnZWRQYWNrZXQSDwoHY3VyTGlmZRgBIAEoBRIPCgdtYXhMaWZlGAIgASgF",
-            "EgoKAmlkGAMgASgDEhMKC2hlYWRQZXJjZW50GAQgASgFEhIKCmFybVBlcmNl",
-            "bnQYBSABKAUSEgoKbGVnUGVyY2VudBgGIAEoBSJqChtVcGRhdGVUcmFkZVdp",
-            "bmRvd1Nsb3RQYWNrZXQSDAoEc2VsZhgBIAEoCBI9CgRpdGVtGAIgASgLMi8u",
-            "U291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuSW52ZW50b3J5SXRlbVBhY2tl",
-            "dGIGcHJvdG8z"));
+            "dGFja0t1bmdGdRgHIAEoCRIZChFhdHRhY2tLdW5nRnVMZXZlbBgIIAEoBSLO",
+            "AQoYUGxheWVyVG9nZ2xlS3VuZ0Z1UGFja2V0EhQKDGF0dGFja0t1bmdGdRgB",
+            "IAEoCRIXCgpmb290S3VuZ0Z1GAIgASgJSACIAQESDgoGY2FuRmx5GAMgASgI",
+            "Eh0KEHByb3RlY3Rpb25LdW5nRnUYBCABKAlIAYgBARIcCg9hc3Npc3RhbnRL",
+            "dW5nRnUYBSABKAlIAogBAUINCgtfZm9vdEt1bmdGdUITChFfcHJvdGVjdGlv",
+            "bkt1bmdGdUISChBfYXNzaXN0YW50S3VuZ0Z1InYKFkNyZWF0dXJlQmFzZUlu",
+            "Zm9QYWNrZXQSFQoNZWxhcHNlZE1pbGxpcxgCIAEoBRIRCglkaXJlY3Rpb24Y",
+            "AyABKAUSCQoBeBgEIAEoBRIJCgF5GAUgASgFEhAKCHZpZXdOYW1lGAYgASgJ",
+            "EgoKAmlkGAcgASgDItABChRQbGF5ZXJTbmFwc2hvdFBhY2tldBJECghiYXNl",
+            "SW5mbxgBIAEoCzIyLlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNyZWF0",
+            "dXJlQmFzZUluZm9QYWNrZXQSEgoKbW92ZUFjdGlvbhgCIAEoBRJBCgplcXVp",
+            "cG1lbnRzGAMgAygLMi0uU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuUGxh",
+            "eWVyRXF1aXBQYWNrZXQSDAoEbWFsZRgEIAEoCBINCgVzdGF0ZRgFIAEoBSKX",
+            "AQoRTnBjU25hcHNob3RQYWNrZXQSRAoIYmFzZUluZm8YASABKAsyMi5Tb3Vy",
+            "Y2UuTmV0d29ya2luZy5Qcm90b2J1Zi5DcmVhdHVyZUJhc2VJbmZvUGFja2V0",
+            "Eg0KBXNoYXBlGAIgASgJEg8KB2FuaW1hdGUYAyABKAkSDQoFc3RhdGUYBCAB",
+            "KAUSDQoFc3BlZWQYBSABKAUiLQoRQ3JlYXR1cmVTYXlQYWNrZXQSCgoCaWQY",
+            "ASABKAMSDAoEdGV4dBgCIAEoCSKpAgoWU3luY0FjdGl2ZUt1bmdGdVBhY2tl",
+            "dBIUCgxhdHRhY2tLdW5nRnUYASABKAkSHQoQcHJvdGVjdGlvbkt1bmdGdRgC",
+            "IAEoCUgAiAEBEhkKDGJyZWF0aEt1bmdGdRgDIAEoCUgBiAEBEhwKD2Fzc2lz",
+            "dGFudEt1bmdGdRgEIAEoCUgCiAEBEhcKCmZvb3RLdW5nRnUYBSABKAlIA4gB",
+            "ARIYChBmb290S3VuZ0Z1Q2FuRmx5GAYgASgIEgoKAmlkGAcgASgDEhkKEWF0",
+            "dGFja0t1bmdGdUxldmVsGAggASgFQhMKEV9wcm90ZWN0aW9uS3VuZ0Z1Qg8K",
+            "DV9icmVhdGhLdW5nRnVCEgoQX2Fzc2lzdGFudEt1bmdGdUINCgtfZm9vdEt1",
+            "bmdGdSJdChdQbGF5ZXJDaGFuZ2VTdGF0ZVBhY2tldBIKCgJpZBgBIAEoAxIN",
+            "CgVzdGF0ZRgCIAEoBRIRCglkaXJlY3Rpb24YAyABKAUSCQoBeBgEIAEoBRIJ",
+            "CgF5GAUgASgFImYKF1BsYXllclNldFBvc2l0aW9uUGFja2V0EjwKCHBvc2l0",
+            "aW9uGAEgASgLMiouU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuUG9zaXRp",
+            "b25QYWNrZXQSDQoFc3RhdGUYAiABKAUiWQoSUGxheWVyQXR0YWNrUGFja2V0",
+            "EgoKAmlkGAEgASgDEg4KBmFjdGlvbhgCIAEoBRIRCglkaXJlY3Rpb24YAyAB",
+            "KAUSFAoMZWZmZWN0U3ByaXRlGAQgASgJIh8KEUF0dGFja0lucHV0UGFja2V0",
+            "EgoKAmlkGEAgASgDIh0KD1BpY2tJbnB1dFBhY2tldBIKCgJpZBhAIAEoAyI5",
+            "ChNEcm9wSXRlbUlucHV0UGFja2V0EgwKBHNsb3QYASABKAUSCQoBeBgCIAEo",
+            "BRIJCgF5GAMgASgFIjcKG0Ryb3BJdGVtT25FbnRpdHlJbnB1dFBhY2tldBIM",
+            "CgRzbG90GAEgASgFEgoKAmlkGAIgASgDIlAKGkNvbmZpcm1Ecm9wSXRlbUlu",
+            "cHV0UGFja2V0Eg4KBm51bWJlchgBIAEoBRIMCgRzbG90GAIgASgFEgkKAXgY",
+            "AyABKAUSCQoBeRgEIAEoBSI9ChpDbGlja05wY0FiaWxpdHlJbnB1dFBhY2tl",
+            "dBIKCgJpZBgBIAEoAxITCgthYmlsaXR5TmFtZRgCIAEoCSI+ChJCdXlJdGVt",
+            "SW5wdXRQYWNrZXQSCgoCaWQYASABKAMSDAoEbmFtZRgCIAEoCRIOCgZudW1i",
+            "ZXIYAyABKAUiPwoTU2VsbEl0ZW1JbnB1dFBhY2tldBIKCgJpZBgBIAEoAxIM",
+            "CgRzbG90GAIgASgFEg4KBm51bWJlchgDIAEoBSJlChBQbGF5ZXJNb3ZlUGFj",
+            "a2V0Ej0KCm1vdmVQYWNrZXQYASABKAsyKS5Tb3VyY2UuTmV0d29ya2luZy5Q",
+            "cm90b2J1Zi5OcGNNb3ZlUGFja2V0EhIKCm1vdmVBY3Rpb24YAiABKAUigAEK",
+            "E1BsYXllckRhbWFnZWRQYWNrZXQSDwoHY3VyTGlmZRgBIAEoBRIPCgdtYXhM",
+            "aWZlGAIgASgFEgoKAmlkGAMgASgDEhMKC2hlYWRQZXJjZW50GAQgASgFEhIK",
+            "CmFybVBlcmNlbnQYBSABKAUSEgoKbGVnUGVyY2VudBgGIAEoBSJqChtVcGRh",
+            "dGVUcmFkZVdpbmRvd1Nsb3RQYWNrZXQSDAoEc2VsZhgBIAEoCBI9CgRpdGVt",
+            "GAIgASgLMi8uU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuSW52ZW50b3J5",
+            "SXRlbVBhY2tldGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -639,13 +640,13 @@ namespace Source.Networking.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClickKungFuInputPacket), global::Source.Networking.Protobuf.ClickKungFuInputPacket.Parser, new[]{ "Page", "Slot", "ClickType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClickInventorySlotInputPacket), global::Source.Networking.Protobuf.ClickInventorySlotInputPacket.Parser, new[]{ "Slot", "ClickType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.SimpleInputPacket), global::Source.Networking.Protobuf.SimpleInputPacket.Parser, new[]{ "Type" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.JoinRealmPacket), global::Source.Networking.Protobuf.JoinRealmPacket.Parser, new[]{ "Attribute", "Equipments", "Teleport", "Male", "Name", "Id", "AttackKungFu" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.JoinRealmPacket), global::Source.Networking.Protobuf.JoinRealmPacket.Parser, new[]{ "Attribute", "Equipments", "Teleport", "Male", "Name", "Id", "AttackKungFu", "AttackKungFuLevel" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.PlayerToggleKungFuPacket), global::Source.Networking.Protobuf.PlayerToggleKungFuPacket.Parser, new[]{ "AttackKungFu", "FootKungFu", "CanFly", "ProtectionKungFu", "AssistantKungFu" }, new[]{ "FootKungFu", "ProtectionKungFu", "AssistantKungFu" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.CreatureBaseInfoPacket), global::Source.Networking.Protobuf.CreatureBaseInfoPacket.Parser, new[]{ "ElapsedMillis", "Direction", "X", "Y", "ViewName", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.PlayerSnapshotPacket), global::Source.Networking.Protobuf.PlayerSnapshotPacket.Parser, new[]{ "BaseInfo", "MoveAction", "Equipments", "Male", "State" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.NpcSnapshotPacket), global::Source.Networking.Protobuf.NpcSnapshotPacket.Parser, new[]{ "BaseInfo", "Shape", "Animate", "State", "Speed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.CreatureSayPacket), global::Source.Networking.Protobuf.CreatureSayPacket.Parser, new[]{ "Id", "Text" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.SyncActiveKungFuPacket), global::Source.Networking.Protobuf.SyncActiveKungFuPacket.Parser, new[]{ "AttackKungFu", "ProtectionKungFu", "BreathKungFu", "AssistantKungFu", "FootKungFu", "FootKungFuCanFly", "Id" }, new[]{ "ProtectionKungFu", "BreathKungFu", "AssistantKungFu", "FootKungFu" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.SyncActiveKungFuPacket), global::Source.Networking.Protobuf.SyncActiveKungFuPacket.Parser, new[]{ "AttackKungFu", "ProtectionKungFu", "BreathKungFu", "AssistantKungFu", "FootKungFu", "FootKungFuCanFly", "Id", "AttackKungFuLevel" }, new[]{ "ProtectionKungFu", "BreathKungFu", "AssistantKungFu", "FootKungFu" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.PlayerChangeStatePacket), global::Source.Networking.Protobuf.PlayerChangeStatePacket.Parser, new[]{ "Id", "State", "Direction", "X", "Y" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.PlayerSetPositionPacket), global::Source.Networking.Protobuf.PlayerSetPositionPacket.Parser, new[]{ "Position", "State" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.PlayerAttackPacket), global::Source.Networking.Protobuf.PlayerAttackPacket.Parser, new[]{ "Id", "Action", "Direction", "EffectSprite" }, null, null, null, null),
@@ -39811,6 +39812,7 @@ namespace Source.Networking.Protobuf {
       name_ = other.name_;
       id_ = other.id_;
       attackKungFu_ = other.attackKungFu_;
+      attackKungFuLevel_ = other.attackKungFuLevel_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -39903,6 +39905,18 @@ namespace Source.Networking.Protobuf {
       }
     }
 
+    /// <summary>Field number for the "attackKungFuLevel" field.</summary>
+    public const int AttackKungFuLevelFieldNumber = 8;
+    private int attackKungFuLevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AttackKungFuLevel {
+      get { return attackKungFuLevel_; }
+      set {
+        attackKungFuLevel_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -39925,6 +39939,7 @@ namespace Source.Networking.Protobuf {
       if (Name != other.Name) return false;
       if (Id != other.Id) return false;
       if (AttackKungFu != other.AttackKungFu) return false;
+      if (AttackKungFuLevel != other.AttackKungFuLevel) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -39939,6 +39954,7 @@ namespace Source.Networking.Protobuf {
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (Id != 0L) hash ^= Id.GetHashCode();
       if (AttackKungFu.Length != 0) hash ^= AttackKungFu.GetHashCode();
+      if (AttackKungFuLevel != 0) hash ^= AttackKungFuLevel.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -39982,6 +39998,10 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(58);
         output.WriteString(AttackKungFu);
       }
+      if (AttackKungFuLevel != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(AttackKungFuLevel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -40017,6 +40037,10 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(58);
         output.WriteString(AttackKungFu);
       }
+      if (AttackKungFuLevel != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(AttackKungFuLevel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -40045,6 +40069,9 @@ namespace Source.Networking.Protobuf {
       }
       if (AttackKungFu.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(AttackKungFu);
+      }
+      if (AttackKungFuLevel != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AttackKungFuLevel);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -40082,6 +40109,9 @@ namespace Source.Networking.Protobuf {
       }
       if (other.AttackKungFu.Length != 0) {
         AttackKungFu = other.AttackKungFu;
+      }
+      if (other.AttackKungFuLevel != 0) {
+        AttackKungFuLevel = other.AttackKungFuLevel;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -40132,6 +40162,10 @@ namespace Source.Networking.Protobuf {
             AttackKungFu = input.ReadString();
             break;
           }
+          case 64: {
+            AttackKungFuLevel = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -40179,6 +40213,10 @@ namespace Source.Networking.Protobuf {
           }
           case 58: {
             AttackKungFu = input.ReadString();
+            break;
+          }
+          case 64: {
+            AttackKungFuLevel = input.ReadInt32();
             break;
           }
         }
@@ -41895,6 +41933,7 @@ namespace Source.Networking.Protobuf {
       footKungFu_ = other.footKungFu_;
       footKungFuCanFly_ = other.footKungFuCanFly_;
       id_ = other.id_;
+      attackKungFuLevel_ = other.attackKungFuLevel_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -42044,6 +42083,18 @@ namespace Source.Networking.Protobuf {
       }
     }
 
+    /// <summary>Field number for the "attackKungFuLevel" field.</summary>
+    public const int AttackKungFuLevelFieldNumber = 8;
+    private int attackKungFuLevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AttackKungFuLevel {
+      get { return attackKungFuLevel_; }
+      set {
+        attackKungFuLevel_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -42066,6 +42117,7 @@ namespace Source.Networking.Protobuf {
       if (FootKungFu != other.FootKungFu) return false;
       if (FootKungFuCanFly != other.FootKungFuCanFly) return false;
       if (Id != other.Id) return false;
+      if (AttackKungFuLevel != other.AttackKungFuLevel) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -42080,6 +42132,7 @@ namespace Source.Networking.Protobuf {
       if (HasFootKungFu) hash ^= FootKungFu.GetHashCode();
       if (FootKungFuCanFly != false) hash ^= FootKungFuCanFly.GetHashCode();
       if (Id != 0L) hash ^= Id.GetHashCode();
+      if (AttackKungFuLevel != 0) hash ^= AttackKungFuLevel.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -42126,6 +42179,10 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(56);
         output.WriteInt64(Id);
       }
+      if (AttackKungFuLevel != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(AttackKungFuLevel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -42164,6 +42221,10 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(56);
         output.WriteInt64(Id);
       }
+      if (AttackKungFuLevel != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(AttackKungFuLevel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -42194,6 +42255,9 @@ namespace Source.Networking.Protobuf {
       }
       if (Id != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
+      }
+      if (AttackKungFuLevel != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AttackKungFuLevel);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -42227,6 +42291,9 @@ namespace Source.Networking.Protobuf {
       }
       if (other.Id != 0L) {
         Id = other.Id;
+      }
+      if (other.AttackKungFuLevel != 0) {
+        AttackKungFuLevel = other.AttackKungFuLevel;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -42271,6 +42338,10 @@ namespace Source.Networking.Protobuf {
             Id = input.ReadInt64();
             break;
           }
+          case 64: {
+            AttackKungFuLevel = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -42312,6 +42383,10 @@ namespace Source.Networking.Protobuf {
           }
           case 56: {
             Id = input.ReadInt64();
+            break;
+          }
+          case 64: {
+            AttackKungFuLevel = input.ReadInt32();
             break;
           }
         }

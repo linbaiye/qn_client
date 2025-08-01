@@ -101,9 +101,9 @@ public partial class Game : Node2D
 
     private void OnCharacterJoined(JoinRealmMessage message)
     {
-        _map.Draw(message.MapFile, message.ResourceName);
-        _character.Initialize(message, _connection, _map);
+        _map.Load(message.MapFile, message.ResourceName);
         _character.OnEntityEvent += _map.HandleEntityEvent;
+        _character.Initialize(message, _connection, _map);
         _character.ShootEvent += HandleShoot;
         _entityManager.Add(_character);
         Visible = true;
@@ -117,8 +117,8 @@ public partial class Game : Node2D
         {
             entity.HandleEntityMessage(new RemoveEntityMessage(entity.Id));
         }
-        _map.Draw(teleportMessage.MapFile, teleportMessage.ResourceName);
-        _character.ChangeCoordinate(teleportMessage.Coordinate);
+        _map.Load(teleportMessage.MapFile, teleportMessage.ResourceName);
+        _character.Teleported(teleportMessage.Coordinate);
     }
 
 

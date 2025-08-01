@@ -119,8 +119,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
             HandleEntityMessage(equipMessage);
         }
         ResetPhysicsInterpolation();
-        map.Occupy(this);
-        Log.Debug("Position {}.", Position);
+        Teleported(message.Coordinate);
     }
 
     public override void HandleEntityMessage(IEntityMessage message)
@@ -131,9 +130,16 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         }
     }
 
-    public void ChangeCoordinate(Vector2I coor)
+    public void Teleported(Vector2I coor)
     {
+        var camera = GetNode<Camera2D>("Camera2D");
         Position = coor.ToPosition();
+        var start = _map.Start.ToPosition();
+        camera.LimitLeft = (int)start.X;
+        camera.LimitTop = (int)start.Y;
+        var end = _map.End.ToPosition();
+        camera.LimitRight = (int)end.X;
+        camera.LimitBottom = (int)end.Y;
         EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 

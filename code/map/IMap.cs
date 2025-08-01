@@ -10,7 +10,9 @@ public interface IMap
 
     void Occupy(IEntity entity);
     
-    void Free(IEntity entity);
     
-    string Name { get; }
+    Vector2I Start { get; }
+    Vector2I End { get; }
+    
+    
 }

@@ -6,7 +6,7 @@ namespace QnClient.code.hud;
 
 public partial class MouseEventHandler : Timer
 {
-    private const float DoubleClickThreshold = 0.1f;
+    private const float DoubleClickThreshold = 0.15f;
     
     private float _lastClickTime;
     
@@ -26,6 +26,7 @@ public partial class MouseEventHandler : Timer
 
     private void OnTimeout()
     {
+        GD.Print("Timed out.");
         Clicked?.Invoke();
     }
 
@@ -45,6 +46,7 @@ public partial class MouseEventHandler : Timer
         }
         if (button.IsPressed() && TimeLeft > 0)
         {
+            GD.Print("Double click");
             Stop();
             DoubleClicked?.Invoke();
             return;

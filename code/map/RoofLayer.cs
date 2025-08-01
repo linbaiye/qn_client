@@ -10,9 +10,20 @@ public partial class RoofLayer : Node2D
 	
 	private readonly ZipFileMapTextureLoader _textureLoader = ZipFileMapTextureLoader.Instance;
 
-	public void Paint(string textureResourceName, AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
+	private string _name;
+
+	public void LoadTextures(string textureResourceName)
 	{
+		if (textureResourceName.Equals(_name))
+			return;
+		_name = textureResourceName;
 		_mapRoofInfos = _textureLoader.LoadRoof(textureResourceName);
+	}
+
+	public void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
+	{
+		if (_mapRoofInfos.Count == 0)
+			return;
 		foreach (var child in GetChildren())
 		{
 			RemoveChild(child);

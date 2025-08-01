@@ -175,6 +175,17 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     {
         RefreshKungFuSlots(_unnamedTab.IsFocused ? _message.Unnamed : _message.Basic);
     }
+    
+    private class HotkeyValue
+    {
+        private readonly int _page;
+        private readonly int _slot;
+    }
+
+    public void RemoveHotKey(object source)
+    {
+        
+    }
 
     public void ShowKungFuBook(KungFuBookMessage message)
     {

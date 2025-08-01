@@ -7,6 +7,8 @@ namespace QnClient.code.hud;
 public abstract partial class AbstractSlotContainer : NinePatchRect
 {
     private Slot[] _slots = new Slot[30];
+    
+    public event Action<int, InputEventKey>? SlotKeyPressed;
 
     public override void _Ready()
     {
@@ -16,6 +18,7 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
             _slots[i].LeftMouseButtonReleased += OnSlotLeftMouseButtonReleased;
             _slots[i].LeftMouseButtonDoubleClicked += OnSlotLeftButtonDoubleClicked;
             _slots[i].RightMouseButtonReleased += OnSlotRightMouseButtonReleased;
+            _slots[i].KeyPressed += OnKeyPressed;
             GetNode<GridContainer>("GridContainer").AddChild(_slots[i]);
             Visible = false;
         }
@@ -43,7 +46,12 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
         }
     }
 
-    protected Slot GetSlot(int slotNumber)
+    private void OnKeyPressed(int number, InputEventKey key)
+    {
+        SlotKeyPressed?.Invoke(number, key);
+    }
+
+    public Slot GetSlot(int slotNumber)
     {
         return _slots[slotNumber - 1];
     }

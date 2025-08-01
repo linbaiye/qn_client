@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxtgsrbww28cd"]
+[gd_scene load_steps=13 format=3 uid="uid://bxtgsrbww28cd"]
 
 [ext_resource type="Texture2D" uid="uid://848ebxjhtxgp" path="res://ui/hud/hud_bottom.png" id="1_nx1bh"]
 [ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/hud/bottom/Bottom.cs" id="2_8bsu8"]
 [ext_resource type="Texture2D" uid="uid://fr1w8gxhc48h" path="res://ui/hud/life_bar.png" id="2_q6f08"]
 [ext_resource type="Texture2D" uid="uid://wr2sy6sknwrw" path="res://ui/hud/hal_bar.png" id="3_378wf"]
 [ext_resource type="Texture2D" uid="uid://btlyxppsvu1lk" path="res://ui/hud/power_bar.png" id="3_m2yg2"]
+[ext_resource type="Texture2D" uid="uid://c8775o7ganqp6" path="res://ui/hud/exp_up.png" id="5_4ooyh"]
+[ext_resource type="Texture2D" uid="uid://iwr5pkujqpqr" path="res://ui/hud/exp_down.png" id="6_1gyhx"]
 [ext_resource type="Script" uid="uid://bcbnx6d4w7vio" path="res://code/hud/bottom/ActiveKungFuList.cs" id="7_67i83"]
 [ext_resource type="Script" uid="uid://q5ee2aaqao31" path="res://code/hud/bottom/TextArea.cs" id="8_3hfix"]
 [ext_resource type="PackedScene" uid="uid://c2mb51tivs363" path="res://scene/ui/blinking_lable.tscn" id="8_mkk8q"]
@@ -39,6 +41,34 @@ offset_right = 995.0
 offset_bottom = 139.0
 value = 100.0
 texture_progress = ExtResource("3_m2yg2")
+
+[node name="ExpUp" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = 170.0
+offset_top = 90.0
+offset_right = 241.0
+offset_bottom = 96.0
+value = 100.0
+texture_progress = ExtResource("5_4ooyh")
+
+[node name="Energy" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = 896.0
+offset_top = 87.0
+offset_right = 996.0
+offset_bottom = 93.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("5_4ooyh")
+
+[node name="ExpDown" type="TextureProgressBar" parent="."]
+layout_mode = 1
+offset_left = 170.0
+offset_top = 99.0
+offset_right = 241.0
+offset_bottom = 105.0
+value = 100.0
+texture_progress = ExtResource("6_1gyhx")
 
 [node name="OuterPower" type="TextureProgressBar" parent="."]
 layout_mode = 1
@@ -223,3 +253,19 @@ offset_left = 762.0
 offset_top = 176.0
 offset_right = 844.0
 offset_bottom = 190.0
+
+[node name="LeftHotKeys" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 29.0
+offset_right = 483.0
+offset_bottom = 61.0
+theme_override_constants/separation = 2
+
+[node name="RightHotKeys" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 29.0
+offset_right = 660.0
+offset_bottom = 61.0
+theme_override_constants/separation = 2

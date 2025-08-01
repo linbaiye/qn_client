@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.InteropServices.JavaScript;
 using System.Text.RegularExpressions;
 using Godot;
 using NLog;
@@ -10,17 +9,16 @@ namespace QnClient.code.hud;
 public partial class Slot : Panel
 {
     private TextureRect _slotTexture;
-
     public event Action<int>? LeftMouseButtonReleased;
     public event Action<int>? RightMouseButtonReleased;
     public event Action<int>? LeftMouseButtonDoubleClicked;
+    public event Action<int, InputEventKey>? KeyPressed;
 
     private Vector2 _slotSize;
     private Vector2 _iconSize;
     private bool _scaleTexture;
     private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
     public bool MouseHovering { get; private set; }
-    private float _lastClickTime;
     private Label _keyLabel;
     private MouseEventHandler _mouseEventHandler;
     
@@ -73,8 +71,19 @@ public partial class Slot : Panel
             return;
         }
         GetViewport().SetInputAsHandled();
-        if (key.IsPressed())
-            _keyLabel.Text = key.AsText();
+        if (key.IsPressed() && Number != -1)
+            KeyPressed?.Invoke(Number, key);
+    }
+
+    public void SetKeyLabel(string key)
+    {
+        _keyLabel.Text = key;
+    }
+
+    public void ClearKeyLabelIfMatch(string key)
+    {
+        if (_keyLabel.Text.Equals(key))
+            _keyLabel.Text = null;
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -108,12 +117,21 @@ public partial class Slot : Panel
     
     private string Tip => TooltipText;
 
+    public bool Empty => _slotTexture.Texture == null;
 
     public void Clear()
     {
         _slotTexture.Texture = null;
         TooltipText = null;
     }
+
+    public void CopyDetails(Slot another)
+    {
+        _slotTexture.Texture = another._slotTexture.Texture;
+        _slotTexture.Material = another._slotTexture.Material;
+        TooltipText = another.TooltipText;
+    }
+
 
     public static Slot Create(string name, Vector2 slotSize, Vector2 iconSize, bool scale = true)
     {

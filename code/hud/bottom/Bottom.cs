@@ -1,5 +1,8 @@
 using System;
 using Godot;
+using QnClient.code.hud.hotkey;
+using QnClient.code.hud.inventory;
+using QnClient.code.hud.kungfu;
 using QnClient.code.message;
 using QnClient.code.player;
 
@@ -28,9 +31,12 @@ public partial class Bottom : NinePatchRect
     private TextArea _textArea;
 
     private EquipView _equipView;
-    
+    private TextureProgressBar _expUp;
+    private TextureProgressBar _expDown;
     public event Action<EquipmentType>? UnequipPressed;
 
+    private HotKeyManager _hotKeyManager;
+    
     public override void _Ready()
     {
         _lifeBar = GetNode<TextureProgressBar>("LifeBar");
@@ -50,7 +56,21 @@ public partial class Bottom : NinePatchRect
         GetNode<Button>("Assistance").Pressed += () => AssistanceButtonPressed?.Invoke();
         GetNode<Button>("System").Pressed += () => SystemButtonPressed?.Invoke();
         _equipView = GetNode<EquipView>("EquipView");
+        _expUp = GetNode<TextureProgressBar>("ExpUp");
+        _expDown = GetNode<TextureProgressBar>("ExpDown");
+        var keys = GetNode<HBoxContainer>("LeftHotKeys");
+        for (int i = 1; i <= 4; i++)
+            keys.AddChild(Slot.Create("Slot" + i, new Vector2(28, 28), new Vector2(28, 28), false));
+        keys = GetNode<HBoxContainer>("RightHotKeys");
+        for (int i = 1; i <= 4; i++)
+            keys.AddChild(Slot.Create("Slot" + i, new Vector2(28, 28), new Vector2(28, 28), false));
         _equipView.UnequipPressed += type => UnequipPressed?.Invoke(type);
+    }
+
+    public void SetBookAndInventory(KungFuBook kungFuBook, Inventory inventory)
+    {
+        _hotKeyManager = new HotKeyManager(GetNode<HBoxContainer>("LeftHotKeys"),
+            GetNode<HBoxContainer>("RightHotKeys"), inventory, kungFuBook);
     }
 
     private void FillBar(TextureProgressBar bar, int value, string tooltip)
@@ -84,6 +104,14 @@ public partial class Bottom : NinePatchRect
         _coordinate.Text = coordinate.X + ":" + coordinate.Y;
     }
 
+    public void UpdateExpBar(int level)
+    {
+        if (level == 0)
+            return;
+        _expDown.Value = level % 100;
+        _expUp.Value = level / 100;
+    }
+
     public void OnCharacterJoined(JoinRealmMessage message)
     {
         FillBar(_lifeBar, message.LifeBar.Percent, message.LifeBar.Text);
@@ -97,6 +125,7 @@ public partial class Bottom : NinePatchRect
         _activeKungFuList.SetAttackKungFu(message.AttackKungFu);
         _mapName.Text = message.MapTile;
         _equipView.OnCharacterJoined(message);
+        UpdateExpBar(message.AttackKungFuLevel);
     }
 
     public void UpdateAttribute(AttributeMessage message)
@@ -132,5 +161,23 @@ public partial class Bottom : NinePatchRect
     public void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null)
     {
         _equipView.Equip(type, prefix, name, color, pairedPrefix);
+    }
+
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (_hotKeyManager.HandleKeyEvent(@event))
+        {
+            GetViewport().SetInputAsHandled();
+        }
+    }
+
+    public void OnInventoryUpdated(InventoryMessage message)
+    {
+        _hotKeyManager.OnInventoryUpdated(message);
+    }
+
+    public void OnInventorySlotUpdated(InventoryItemMessage message)
+    {
+        _hotKeyManager.OnInventorySlotUpdated(message);
     }
 }

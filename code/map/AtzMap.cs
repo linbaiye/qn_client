@@ -23,20 +23,30 @@ public class AtzMap(
     
 	private readonly IDictionary<long, ISet<Vector2I>> _entityCoordinates= new Dictionary<long, ISet<Vector2I>>();
 
-    public void Draw(string name, string textureResourceName)
+    private IDictionary<int, Texture2D> _groundTextures;
+
+    private string _resourceName;
+
+    public void Load(string name, string textureResourceName)
     {
-        if (_fileParser != null && _fileParser.Name.Equals(name))
-            return;
-        _fileParser = AtzMapFileParser.ParseFile("res://maps/" + name + ".map");
-        if (_fileParser == null)
+        if (!textureResourceName.Equals(_resourceName))
         {
-            throw new Exception("Can't load map file + " + name);
+            _groundTextures = _textureLoader.LoadTiles(textureResourceName);
+            _resourceName = textureResourceName;
         }
-        IDictionary<int,Texture2D> texture2Ds = _textureLoader.LoadTiles(textureResourceName);
-        groundLayer.Paint(texture2Ds, _fileParser, Vector2I.Zero, _fileParser.End);
-        overGroundLayer.Paint(texture2Ds, _fileParser, Vector2I.Zero, _fileParser.End);
-        objectLayer.Paint(textureResourceName, _fileParser, Vector2I.Zero, _fileParser.End);
-        roofLayer.Paint(textureResourceName, _fileParser, Vector2I.Zero, _fileParser.End);
+        _entityCoordinates.Clear();
+        if (_fileParser == null || !_fileParser.Name.Equals(name))
+        {
+            _fileParser = AtzMapFileParser.ParseFile("res://maps/" + name + ".map");
+            if (_fileParser == null)
+            {
+                throw new Exception("Can't load map file + " + name);
+            }
+            groundLayer.CreateTileSet(_groundTextures, _fileParser);
+            overGroundLayer.CreateTileSet(_groundTextures, _fileParser);
+        }
+        objectLayer.LoadTextures(textureResourceName);
+        roofLayer.LoadTextures(textureResourceName);
     }
     
     public bool CanMove(Vector2I coordinate)
@@ -55,13 +65,20 @@ public class AtzMap(
         _entityCoordinates.TryAdd(entity.Id, new HashSet<Vector2I>() { entity.Coordinate });
     }
 
-
-    public void Free(IEntity entity)
+    private void Free(IEntity entity)
     {
         _entityCoordinates.Remove(entity.Id);
     }
 
-    public string Name => "新手村";
+    private void Draw(Vector2I coordinate)
+    {
+        var start = new Vector2I(Math.Max(coordinate.X - 20, 0), Math.Max(0, coordinate.Y - 20));
+        var end = new Vector2I(Math.Min(coordinate.X + 30, _fileParser.End.X), Math.Min(coordinate.Y + 30, _fileParser.End.Y));
+        groundLayer.Paint(_fileParser, start, end);
+        overGroundLayer.Paint(_fileParser, start, end);
+        objectLayer.Paint(_fileParser, start, end);
+        roofLayer.Paint(_fileParser, start, end);
+    }
 
     public void HandleEntityEvent(IEntityEvent entityEvent)
     {
@@ -75,6 +92,7 @@ public class AtzMap(
             {
                 return;
             }
+            Draw(c.Coordinate);
             if (_fileParser.ShouldHideRoof(c.Coordinate))
             {
                 roofLayer.Hide();
@@ -97,6 +115,9 @@ public class AtzMap(
                 Free(dynamicObject);
         }
     }
+    
+    public Vector2I Start => Vector2I.Zero;
+    public Vector2I End => _fileParser.End;
 
     private void Occupy(DynamicObject dynamicObject)
     {

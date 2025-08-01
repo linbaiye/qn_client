@@ -31,6 +31,7 @@ public class JoinRealmMessage  : IHUDMessage
     public string MapTile { get; private init; }
     
     public string Bgm { get;private init; }
+    public int AttackKungFuLevel { get; private init; }
     
     public List<PlayerEquipMessage> Equipments { get;private init; }
     
@@ -62,6 +63,7 @@ public class JoinRealmMessage  : IHUDMessage
             Equipments = equipMessages,
             Bgm = joinPacket.Teleport.Bgm,
             MapTile = joinPacket.Teleport.Title,
+            AttackKungFuLevel = joinPacket.AttackKungFuLevel,
             //ProtectionKungFu = joinPacket.HasProtectionKungFu? new KungFu(joinPacket.ProtectionKungFu) : null,
             //FootKungFu = joinPacket.HasFootKungFuName ? new FootKungFu(joinPacket.FootKungFuName, joinPacket.FootKungFuCanFly) : null,
             //AssistantKungFu= joinPacket.HasAssistantKungFu ? new KungFu(joinPacket.AssistantKungFu) : null,

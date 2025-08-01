@@ -51,6 +51,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _npcTradeMenu.SetInputInventory(_inventory, _bottom.DisplayText);
         _playerTradeWindow = GetNode<PlayerTradeWindow>("PlayerTradeWindow");
         _playerTradeWindow.SetInventory(_inventory);
+        _bottom.SetBookAndInventory(_kungFuBook, _inventory);
         Visible = false;
     }
 
@@ -97,6 +98,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     {
         _kungFuBook.KungFuGainExp(name, level);
         _bottom.BlinkKungFu(name);
+        _bottom.UpdateExpBar(level);
     }
 
     public void BlinkText(string text)
@@ -117,6 +119,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void UpdateInventorySlot(InventoryItemMessage message)
     {
         _inventory.UpdateSlot(message);
+        _bottom.OnInventorySlotUpdated(message);
     }
 
     public void StartDropItem(string name, int number, int slot, Vector2I coordinate)
@@ -165,6 +168,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void UpdateInventoryView(InventoryMessage message)
     {
         _inventory.UpdateInventoryView(message);
+        _bottom.OnInventoryUpdated(message);
     }
 
     public void UpdateAttribute(AttributeMessage message)
@@ -182,6 +186,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void UpdateActiveKungFuList(SyncActiveKungFuListMessage message)
     {
         _bottom.SyncActiveKungFuList(message);
+        _bottom.UpdateExpBar(message.AttackLevel);
     }
 
     public void PlaySound(string entityName, string soundName)
@@ -193,6 +198,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     {
         _bottom.UpdateLifeBars(message);
     }
+
 
 
     private void OnSystemButtonPressed()
