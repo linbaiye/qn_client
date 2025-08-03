@@ -119,7 +119,7 @@ public partial class Slot : Panel
 
     public bool Empty => _slotTexture.Texture == null;
 
-    public void Clear()
+    public void ClearTextureAndTip()
     {
         _slotTexture.Texture = null;
         TooltipText = null;

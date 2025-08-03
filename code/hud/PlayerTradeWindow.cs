@@ -86,7 +86,7 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
         {
             if (child is Slot slot)
             {
-                slot.Clear();
+                slot.ClearTextureAndTip();
             }
         }
     }
@@ -134,7 +134,7 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
     {
         var slot = container.GetNode<Slot>("Slot" + (message.Slot));
         var icons = ZipFileSpriteLoader.Instance.LoadOrderedItemIcons();
-        slot.Clear();
+        slot.ClearTextureAndTip();
         slot.SetDetails(icons[message.Icon], message.Tip, message.Color);
     }
 

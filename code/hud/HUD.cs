@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
+using QnClient.code.hud.assistance;
+using QnClient.code.hud.lefttext;
 using QnClient.code.hud.npc;
 using QnClient.code.input;
 using QnClient.code.message;
@@ -35,12 +38,21 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     private PlayerTradeWindow _playerTradeWindow;
 
+    private Assistance _assistance;
+
+    private LeftTextArea _leftTextArea;
+
+    private system.System _system;
+
+    private LeftUpText _leftUpText;
+
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
         _bottom.InventoryButtonPressed += OnInventoryPressed;
         _bottom.KungFuBookButtonPressed += OnKungFuBookPressed;
         _bottom.SystemButtonPressed += OnSystemButtonPressed;
+        _bottom.AssistanceButtonPressed += OnAssistancePressed;
         _kungFuBook = GetNode<KungFuBook>("KungFuBook");
         _inventory = GetNode<Inventory>("Inventory");
         _inventory.ItemDragReleased += s => InventoryItemDropped?.Invoke(s);
@@ -52,6 +64,12 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _playerTradeWindow = GetNode<PlayerTradeWindow>("PlayerTradeWindow");
         _playerTradeWindow.SetInventory(_inventory);
         _bottom.SetBookAndInventory(_kungFuBook, _inventory);
+        _assistance = GetNode<Assistance>("Assistance");
+        _assistance.SetAttributeProvider(_bottom);
+        _leftTextArea = GetNode<LeftTextArea>("LeftTextArea");
+        _system = GetNode<system.System>("System");
+        _system.SetSettingChangedListener(_audioManager.OnSystemSettingChanged);
+        _leftUpText = GetNode<LeftUpText>("LeftUpText");
         Visible = false;
     }
 
@@ -65,7 +83,13 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         if (entityEvent is EntityChangeCoordinateEvent { Source: ICharacter })
         {
             _bottom.UpdateCoordinate(entityEvent.Source.Coordinate);
+            _assistance.OnCharacterCoordinateChanged(entityEvent.Source.Coordinate);
         }
+    }
+
+    public void OnAssistancePressed()
+    {
+        _assistance.ButtonPressed();
     }
 
     private void OnInventoryPressed()
@@ -94,11 +118,12 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _kungFuBook.ShowKungFuBook(message);
     }
 
-    public void KungFuGainExp(string name, int level)
+    public void KungFuGainExp(string name, int level, bool attack)
     {
         _kungFuBook.KungFuGainExp(name, level);
         _bottom.BlinkKungFu(name);
-        _bottom.UpdateExpBar(level);
+        if (attack)
+            _bottom.UpdateExpBar(level);
     }
 
     public void BlinkText(string text)
@@ -119,7 +144,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void UpdateInventorySlot(InventoryItemMessage message)
     {
         _inventory.UpdateSlot(message);
-        _bottom.OnInventorySlotUpdated(message);
     }
 
     public void StartDropItem(string name, int number, int slot, Vector2I coordinate)
@@ -160,15 +184,34 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _bottom.OnCharacterTeleported(message.MapTitle, message.Coordinate);
     }
 
-    public void DisplayText(string text)
+    public void CreatureSay(string text)
     {
         _bottom.DisplayText(text);
+    }
+
+    public void FillPills(List<string> pills)
+    {
+        _assistance.FillPills(pills);
+    }
+
+    public void DisplayBottomText(string text)
+    {
+        _bottom.DisplayText(text);
+    }
+
+    public void DisplayLeftText(string text)
+    {
+        _leftTextArea.Display(text);
+    }
+
+    public void DisplayLeftUpText(string text)
+    {
+        _leftUpText.Display(text);
     }
 
     public void UpdateInventoryView(InventoryMessage message)
     {
         _inventory.UpdateInventoryView(message);
-        _bottom.OnInventoryUpdated(message);
     }
 
     public void UpdateAttribute(AttributeMessage message)
@@ -178,8 +221,12 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void OnCharacterJoined(JoinRealmMessage message)
     {
-        _bottom.OnCharacterJoined(message);
-        _audioManager.PlayBgm(message.Bgm);
+        FileStorage.Space = message.Id.ToString();
+        foreach (var child in GetChildren())
+        {
+            if (child is ICharacterJoinedAware characterJoinedAware)
+                characterJoinedAware.OnCharacterJoined(message);
+        }
         Visible = true;
     }
 
@@ -198,11 +245,14 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     {
         _bottom.UpdateLifeBars(message);
     }
-
-
-
+    
+    public void SetItemFilter(Func<IEnumerable<GroundItem>> action)
+    {
+        _assistance.SetItemFilter(action);
+    }
+    
     private void OnSystemButtonPressed()
     {
-        GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);
+        _system.OnButtonPressed();
     }
 }

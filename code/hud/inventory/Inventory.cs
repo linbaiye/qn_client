@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using Godot;
 using NLog;
 using QnClient.code.input;
@@ -23,6 +24,9 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     
     private InventoryMessage _message;
     public event Action<int>? ItemDragReleased;
+
+    // Removed?, HotKeySlotNumber, 
+    public event Action<bool, int, InventoryItemMessage?>? HotKeySlotUpdated;
     
 
     private ItemModifyInput _input;
@@ -144,13 +148,23 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         GetSlot(item.Slot).SetDetails(_icons[item.Icon], item.Tip, item.Color);
     }
 
+
+    private void NotifyHotKey(InventoryItemMessage message)
+    {
+        var hotKeySlot = GetHotKeySlot(message.Slot);
+        if (hotKeySlot == 0)
+            return;
+        HotKeySlotUpdated?.Invoke(message.Removed, hotKeySlot, message);
+    }
+
     public void UpdateSlot(InventoryItemMessage message)
     {
+        NotifyHotKey(message);
         if (!Visible)
             return;
         var slot = GetSlot(message.Slot);
         if (message.Removed)
-            slot.Clear();
+            slot.ClearTextureAndTip();
         else
         {
             _message.ReplaceOrAdd(message);
@@ -173,17 +187,39 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         _connection.WriteAndFlush(new ConfirmDropItemInput(input.GetExtra<int>("slot"), input.Number, input.GetExtra<Vector2I>("coordinate")));
         input.SetInUse(false);
     }
+
+
+    private void NotifyHotKey(InventoryMessage message)
+    {
+        foreach (var keyValuePair in _hotKeys)
+        {
+            bool found = false;
+            foreach (var inventoryItemMessage in message.Items)
+            {
+                if (inventoryItemMessage.Slot == keyValuePair.Value)
+                {
+                    HotKeySlotUpdated?.Invoke(false, keyValuePair.Key, inventoryItemMessage);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                HotKeySlotUpdated?.Invoke(true, keyValuePair.Key, null);
+        }
+    }
     
     public void UpdateInventoryView(InventoryMessage message)
     {
         _message = message;
+        NotifyHotKey(message);
         if (!message.Forceful && !Visible)
             return;
-        ForeachSlot(sl => sl.Clear());
+        ForeachSlot(sl => sl.ClearTextureAndTip());
         foreach (var item in message.Items)
         {
             SetSlot(item);
         }
+
         Visible = true;
     }
 
@@ -192,34 +228,46 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         _connection = connection;
     }
     
-    private readonly Dictionary<object, int> _hotKeys = new();
+    private Dictionary<int, int> _hotKeys = new();
 
-    public void BindHotKey(object source, int slotNumber)
+    public void BindHotKeys(string keys)
+    {
+        _hotKeys = JsonSerializer.Deserialize<Dictionary<int, int>>(keys);
+    }
+
+    public void BindHotKey(int source, int slotNumber)
     {
         _hotKeys.Remove(source);
         _hotKeys.Add(source, slotNumber);
     }
 
-    public object GetHotKey(int slotNumber)
+    private int GetHotKeySlot(int inventorySlotNumber)
     {
         foreach (var keyValuePair in _hotKeys)
         {
-            if (keyValuePair.Value == slotNumber)
+            if (keyValuePair.Value == inventorySlotNumber)
                 return keyValuePair.Key;
         }
-        return default;
+        return 0;
     }
 
-    public void RemoveHotKey(object source)
+    public void RemoveHotKey(int source)
     {
         _hotKeys.Remove(source);
     }
+    
+    public string SerializeHotKeys => JsonSerializer.Serialize(_hotKeys);
 
-    public void HotKeyPressed(object source)
+    public void HotKeyPressed(int source)
     {
         if (_hotKeys.TryGetValue(source, out var number))
         {
             _connection.WriteAndFlush(ClickInventoryInput.LeftDoubleClick(number));
         }
+    }
+
+    public void SyncQuietly()
+    {
+        _connection.WriteAndFlush(SimpleInput.InventoryQuietly);
     }
 }

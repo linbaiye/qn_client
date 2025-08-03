@@ -47,6 +47,12 @@ public class AtzMap(
         }
         objectLayer.LoadTextures(textureResourceName);
         roofLayer.LoadTextures(textureResourceName);
+        /*var start = Vector2I.Zero;
+        var end = _fileParser.End;
+        groundLayer.Paint(_fileParser, start, end);
+        overGroundLayer.Paint(_fileParser, start, end);
+        objectLayer.Paint(_fileParser, start, end);
+        roofLayer.Paint(_fileParser, start, end);*/
     }
     
     public bool CanMove(Vector2I coordinate)

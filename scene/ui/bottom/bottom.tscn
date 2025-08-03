@@ -153,7 +153,7 @@ offset_right = 1002.0
 offset_bottom = 188.0
 focus_mode = 0
 theme = ExtResource("9_2r2ah")
-text = "退出"
+text = "系统"
 
 [node name="ActiveKungFuList" type="VBoxContainer" parent="."]
 layout_mode = 0

@@ -6,7 +6,7 @@ using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class JoinRealmMessage  : IHUDMessage
+public class JoinRealmMessage : IHUDMessage
 {
     public string MapFile { get; private init; }
     public string ResourceName { get; private init; }

@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://teyqa1orjghd"]
+
+[ext_resource type="Texture2D" uid="uid://cuu1wxo3b3vyf" path="res://ui/hud/system/sys_menu.png" id="1_5mi5b"]
+[ext_resource type="Texture2D" uid="uid://cxjbcp18g4015" path="res://ui/hud/system/sys_setting_btn.png" id="2_jbfeo"]
+[ext_resource type="Script" uid="uid://bht5m6gxf3kxv" path="res://code/hud/system/System.cs" id="2_psec5"]
+[ext_resource type="Texture2D" uid="uid://cfdbfbjbc7nvl" path="res://ui/hud/system/return_game.png" id="3_rcy7t"]
+[ext_resource type="Texture2D" uid="uid://c8e80wggsbvjo" path="res://ui/hud/system/sys_setting_down_btn.png" id="3_xy4ud"]
+[ext_resource type="Texture2D" uid="uid://dx7n64ge6q2b4" path="res://ui/hud/system/return_game_down.png" id="5_gugdb"]
+[ext_resource type="Texture2D" uid="uid://ufc604eoggis" path="res://ui/hud/system/exit.png" id="6_gugdb"]
+[ext_resource type="Texture2D" uid="uid://b0dhfwbjxpsm0" path="res://ui/hud/system/exit_down.png" id="7_psec5"]
+[ext_resource type="Texture2D" uid="uid://bfoff40b2b3rs" path="res://ui/hud/system/sys_setting.png" id="9_8p86t"]
+[ext_resource type="Script" uid="uid://ce7wftoa0it1o" path="res://code/hud/system/Setting.cs" id="10_1qyiy"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="11_q5a6s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8i1l"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q5a6s"]
+blend_mode = 1
+
+[node name="System" type="NinePatchRect"]
+offset_right = 172.0
+offset_bottom = 255.0
+texture = ExtResource("1_5mi5b")
+script = ExtResource("2_psec5")
+
+[node name="SystemSetting" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 102.0
+offset_right = 150.0
+offset_bottom = 132.0
+texture_normal = ExtResource("2_jbfeo")
+texture_pressed = ExtResource("3_xy4ud")
+
+[node name="Return" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 149.0
+offset_right = 149.0
+offset_bottom = 179.0
+texture_normal = ExtResource("3_rcy7t")
+texture_pressed = ExtResource("5_gugdb")
+
+[node name="Exit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 195.0
+offset_right = 149.0
+offset_bottom = 225.0
+texture_normal = ExtResource("6_gugdb")
+texture_pressed = ExtResource("7_psec5")
+
+[node name="Setting" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 263.0
+offset_bottom = 287.0
+texture = ExtResource("9_8p86t")
+script = ExtResource("10_1qyiy")
+
+[node name="Bgm" type="CheckBox" parent="Setting"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 52.0
+offset_right = 48.0
+offset_bottom = 76.0
+theme = ExtResource("11_q5a6s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h8i1l")
+
+[node name="Sound" type="CheckBox" parent="Setting"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 82.0
+offset_right = 48.0
+offset_bottom = 106.0
+theme = ExtResource("11_q5a6s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h8i1l")
+
+[node name="BgmVolume" type="HSlider" parent="Setting"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 56.0
+offset_right = 208.0
+offset_bottom = 72.0
+theme = ExtResource("11_q5a6s")
+
+[node name="SoundVolume" type="HSlider" parent="Setting"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 86.0
+offset_right = 208.0
+offset_bottom = 102.0
+theme = ExtResource("11_q5a6s")
+
+[node name="Close" type="Button" parent="Setting"]
+material = SubResource("CanvasItemMaterial_q5a6s")
+layout_mode = 0
+offset_left = 232.0
+offset_top = 5.0
+offset_right = 259.0
+offset_bottom = 29.0
+theme = ExtResource("11_q5a6s")

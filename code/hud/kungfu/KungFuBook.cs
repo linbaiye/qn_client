@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using Godot;
 using NLog;
 using QnClient.code.input;
@@ -21,8 +22,9 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     private Texture2D[] _icons;
 
 
-    private KungFuTab _unnamedTab;
-    private KungFuTab _basicTab;
+    private hud.Tab _unnamedTab;
+    private hud.Tab _basicTab;
+    public event Action<bool, int, KungFuBookMessage.KungFu?>? HotKeySlotUpdated;
     
     private KungFuBookMessage _message;
     
@@ -33,10 +35,10 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
         base._Ready();
         Visible = false;
         _icons = _zipFileSpriteLoader.LoadOrderedMagicIcons();
-        _unnamedTab = GetNode<hud.kungfu.KungFuTab>("UnnamedTab");
+        _unnamedTab = GetNode<hud.Tab>("UnnamedTab");
         _unnamedTab.SetTextures(ResourceLoader.Load<Texture2D>("res://ui/kungfu/unnamed.png"), ResourceLoader.Load<Texture2D>("res://ui/kungfu/unnamed_focus.png"));
         _unnamedTab.Pressed += OnUnnamedPressed;
-        _basicTab = GetNode<hud.kungfu.KungFuTab>("BasicTab");
+        _basicTab = GetNode<hud.Tab>("BasicTab");
         _basicTab.SetTextures(ResourceLoader.Load<Texture2D>("res://ui/kungfu/basic.png"), ResourceLoader.Load<Texture2D>("res://ui/kungfu/basic_focus.png"));
         _basicTab.Pressed += OnBasicPressed;
     }
@@ -113,19 +115,12 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
         Logger.Debug("Slot {} right rleased.", number);
     }
 
-    private string FormatKungFuTip(string name, int l)
-    {
-        string level = l / 100 + "." + (l % 100).ToString("00");
-        return name + ": " + level;
-    }
-    
-
     private void RefreshKungFuSlots(List<KungFuBookMessage.KungFu> kungFuList)
     {
         ForeachSlot(slot => slot.SetDetails(_icons[0], ""));
         foreach (var kungFu in kungFuList)
         {
-            GetSlot(kungFu.Slot).SetDetails(_icons[kungFu.Icon], FormatKungFuTip(kungFu.Name, kungFu.Level));
+            GetSlot(kungFu.Slot).SetDetails(_icons[kungFu.Icon], kungFu.FormatKungFuTip());
         }
     }
     private void OnBasicPressed()
@@ -143,16 +138,27 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
         RefreshKungFuSlots(_message.Unnamed);
     }
 
+    private void NotifyHotKey(KungFuBookMessage.KungFu kungFu, int page)
+    {
+        foreach (var keyValuePair in _hotkeyValues)
+        {
+            if (keyValuePair.Value.Page == page && kungFu.Slot == keyValuePair.Value.Slot)
+            {
+                HotKeySlotUpdated?.Invoke(false, keyValuePair.Key, kungFu);
+                return;
+            }
+        }
+    }
+
     public void KungFuGainExp(string name, int level)
     {
-        if (!Visible)
-            return;
         foreach (var kungFu in _message.Basic)
         {
             if (kungFu.Name.Equals(name))
             {
                 kungFu.Level = level;
-                if (_basicTab.IsFocused)
+                NotifyHotKey(kungFu, 2);
+                if (_basicTab.IsFocused && Visible)
                 {
                     RefreshFocusedTab();
                 }
@@ -164,10 +170,12 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
             if (kungFu.Name.Equals(name))
             {
                 kungFu.Level = level;
+                NotifyHotKey(kungFu, 1);
                 break;
             }
         }
-        RefreshFocusedTab();
+        if (Visible)
+            RefreshFocusedTab();
     }
 
 
@@ -180,22 +188,100 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     {
         private readonly int _page;
         private readonly int _slot;
+        public HotkeyValue(int page, int slot)
+        {
+            _page = page;
+            _slot = slot;
+        }
+
+        public int Page => _page;
+        public int Slot => _slot;
+    }
+    
+    private Dictionary<int, HotkeyValue> _hotkeyValues = new();
+
+    public void RemoveHotKey(int source)
+    {
+        _hotkeyValues.Remove(source);
     }
 
-    public void RemoveHotKey(object source)
+    public void BindHotkey(int source, int slot)
     {
-        
+        RemoveHotKey(source);
+        if (_unnamedTab.IsFocused)
+        {
+            _hotkeyValues.Add(source, new HotkeyValue(1, slot));
+        }
+        else
+        {
+            _hotkeyValues.Add(source, new HotkeyValue(2, slot));
+        }
+    }
+
+    public string SerializeHotKeys => JsonSerializer.Serialize(_hotkeyValues);
+
+    public void BindHotKeys(string keys)
+    {
+        _hotkeyValues = JsonSerializer.Deserialize<Dictionary<int, HotkeyValue>>(keys);
+    }
+
+
+    public void HotKeyPressed(int source)
+    {
+        if (_hotkeyValues.TryGetValue(source, out var hotkey))
+        {
+            _connection.WriteAndFlush(ClickKungFuInput.LeftDoubleClick(hotkey.Page, hotkey.Slot));
+        }
+    }
+
+    private void NotifyHotKey(KungFuBookMessage message)
+    {
+        foreach (var keyValuePair in _hotkeyValues)
+        {
+            bool found = false;
+            if (keyValuePair.Value.Page == 1)
+            {
+                foreach (var kungFu in message.Unnamed)
+                {
+                    if (kungFu.Slot == keyValuePair.Value.Slot)
+                    {
+                        found = true;
+                        HotKeySlotUpdated?.Invoke(false, keyValuePair.Key, kungFu);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var kungFu in message.Basic)
+                {
+                    if (kungFu.Slot == keyValuePair.Value.Slot)
+                    {
+                        found = true;
+                        HotKeySlotUpdated?.Invoke(false, keyValuePair.Key, kungFu);
+                        break;
+                    }
+                }
+            }
+            if (!found)
+                HotKeySlotUpdated?.Invoke(true, keyValuePair.Key, null);
+        }
     }
 
     public void ShowKungFuBook(KungFuBookMessage message)
     {
+        NotifyHotKey(message);
+        _message = message;
         if (!message.Forcefull && !Visible)
             return;
-        _message = message;
         if (!_unnamedTab.IsFocused && !_basicTab.IsFocused)
             _unnamedTab.GainFocus();
         RefreshFocusedTab();
         Visible = true;
     }
-
+    
+    public void SyncQuietly()
+    {
+        _connection.WriteAndFlush(SimpleInput.KungFuBookQuietly);
+    }
 }

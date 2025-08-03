@@ -30,7 +30,6 @@ public partial class EquipView : NinePatchRect
     private Godot.Collections.Dictionary<EquipmentType, TextureButton> _equipments = new();
     private Godot.Collections.Dictionary<EquipmentType, string> _equipmentNames = new();
 
-
     public event Action<EquipmentType>? UnequipPressed;
 
     public override void _Ready()

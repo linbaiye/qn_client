@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch785oi1vsnly"]
+[gd_scene load_steps=15 format=3 uid="uid://ch785oi1vsnly"]
 
 [ext_resource type="PackedScene" uid="uid://idx0qd14bsb2" path="res://scene/game.tscn" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://drt6jdp3j6pen" path="res://code/Main.cs" id="1_v0l8b"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://diewx5q5mjx67" path="res://scene/ui/npc/npc_main_menu.tscn" id="8_b5f6u"]
 [ext_resource type="PackedScene" uid="uid://cwcoajck7ih3d" path="res://scene/ui/npc/npc_trade_menu.tscn" id="9_tqoya"]
 [ext_resource type="PackedScene" uid="uid://p14txp45obh0" path="res://scene/ui/player_trade_window.tscn" id="10_k65ib"]
+[ext_resource type="PackedScene" uid="uid://djjq36rhg11ct" path="res://scene/ui/assistance/assistance.tscn" id="10_wscrc"]
+[ext_resource type="PackedScene" uid="uid://brkuh34rnvtu4" path="res://scene/ui/left_text/left_text_area.tscn" id="11_wscrc"]
+[ext_resource type="PackedScene" uid="uid://teyqa1orjghd" path="res://scene/ui/system/system.tscn" id="12_mswub"]
+[ext_resource type="PackedScene" uid="uid://cmb0sic6yphdk" path="res://scene/ui/left_up_text.tscn" id="13_hybxs"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")
@@ -61,10 +65,35 @@ theme = null
 offset_top = 190.0
 offset_bottom = -321.0
 
+[node name="Assistance" parent="HUD" instance=ExtResource("10_wscrc")]
+offset_left = 784.0
+offset_top = 207.0
+offset_right = 1024.0
+offset_bottom = 572.0
+
+[node name="LeftTextArea" parent="HUD" instance=ExtResource("11_wscrc")]
+
+[node name="System" parent="HUD" instance=ExtResource("12_mswub")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -127.5
+offset_right = 86.0
+offset_bottom = 127.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftUpText" parent="HUD" instance=ExtResource("13_hybxs")]
+
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1024, 648)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1.0
+offset_top = -7.0
+offset_right = 1025.0
+offset_bottom = 641.0
 focus_mode = 0
 
 [node name="GameViewport" type="SubViewport" parent="GameViewportContainer"]

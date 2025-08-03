@@ -1,0 +1,234 @@
+[gd_scene load_steps=29 format=3 uid="uid://djjq36rhg11ct"]
+
+[ext_resource type="Texture2D" uid="uid://ygfce5o3173k" path="res://ui/hud/assistance/assistance.png" id="1_cgloc"]
+[ext_resource type="Script" uid="uid://belhhm63esq8g" path="res://code/hud/assistance/Assistance.cs" id="2_nh5lx"]
+[ext_resource type="Texture2D" uid="uid://dmb24ym1ako8j" path="res://ui/hud/assistance/heal_setting.png" id="3_xcpl6"]
+[ext_resource type="Script" uid="uid://ba4dax7rpmjc5" path="res://code/hud/assistance/HealAssistance.cs" id="4_mpkr7"]
+[ext_resource type="PackedScene" uid="uid://c2e0aa3ffa4em" path="res://scene/ui/tab.tscn" id="4_q203y"]
+[ext_resource type="PackedScene" uid="uid://bg3hauodonx58" path="res://scene/ui/assistance/pill_setting.tscn" id="4_xcpl6"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="5_nh5lx"]
+[ext_resource type="Texture2D" uid="uid://bq6gvqu7xtw0c" path="res://ui/hud/assistance/loot_assistance.png" id="7_i26rf"]
+[ext_resource type="Script" uid="uid://e55y3lk0tr8" path="res://code/hud/assistance/LootAssistance.cs" id="8_k0hiu"]
+[ext_resource type="Texture2D" uid="uid://cl7pw3yytwxql" path="res://ui/hud/assistance/heal.png" id="10_umwrs"]
+[ext_resource type="Texture2D" uid="uid://qnvvtm0nrpr7" path="res://ui/hud/assistance/loot.png" id="11_yre8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0hiu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_umwrs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yre8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cm5n5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_scibc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5hiv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mgpnn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpeiq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1u3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trvvu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqouk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5fiiq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_skxvc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqnq5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mds1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5egy4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nh5lx"]
+blend_mode = 1
+
+[node name="Assistance" type="NinePatchRect"]
+offset_right = 240.0
+offset_bottom = 365.0
+texture = ExtResource("1_cgloc")
+script = ExtResource("2_nh5lx")
+
+[node name="HealAssistance" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 74.0
+offset_right = 226.0
+offset_bottom = 300.0
+texture = ExtResource("3_xcpl6")
+script = ExtResource("4_mpkr7")
+
+[node name="PillSetting1" parent="HealAssistance" instance=ExtResource("4_xcpl6")]
+
+[node name="PillSetting2" parent="HealAssistance" instance=ExtResource("4_xcpl6")]
+offset_top = 51.0
+offset_bottom = 75.0
+
+[node name="PillSetting3" parent="HealAssistance" instance=ExtResource("4_xcpl6")]
+offset_top = 81.0
+offset_bottom = 105.0
+
+[node name="PillSetting4" parent="HealAssistance" instance=ExtResource("4_xcpl6")]
+offset_top = 110.0
+offset_bottom = 134.0
+
+[node name="PillSetting5" parent="HealAssistance" instance=ExtResource("4_xcpl6")]
+offset_top = 140.0
+offset_bottom = 164.0
+
+[node name="PillSetting6" parent="HealAssistance" instance=ExtResource("4_xcpl6")]
+offset_top = 169.0
+offset_bottom = 193.0
+
+[node name="Timer" type="Timer" parent="HealAssistance"]
+
+[node name="ExpMode" type="CheckBox" parent="HealAssistance"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 199.0
+offset_right = 27.0
+offset_bottom = 223.0
+theme = ExtResource("5_nh5lx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k0hiu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_umwrs")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yre8d")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cm5n5")
+
+[node name="Interval" type="LineEdit" parent="HealAssistance"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 200.0
+offset_right = 137.063
+offset_bottom = 223.0
+theme = ExtResource("5_nh5lx")
+max_length = 4
+
+[node name="ErrorTip" type="Label" parent="HealAssistance"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 225.0
+offset_right = 213.0
+offset_bottom = 248.0
+theme = ExtResource("5_nh5lx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LootAssistance" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 75.0
+offset_right = 226.0
+offset_bottom = 321.0
+texture = ExtResource("7_i26rf")
+script = ExtResource("8_k0hiu")
+
+[node name="Selected" type="ItemList" parent="LootAssistance"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 30.0
+offset_right = 97.0
+offset_bottom = 158.0
+theme = ExtResource("5_nh5lx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_scibc")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b5hiv")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_mgpnn")
+theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_gpeiq")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_y1u3d")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_trvvu")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_dqouk")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_5fiiq")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_skxvc")
+
+[node name="Shown" type="ItemList" parent="LootAssistance"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 30.0
+offset_right = 203.0
+offset_bottom = 158.0
+theme = ExtResource("5_nh5lx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_scibc")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b5hiv")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_mgpnn")
+theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_gpeiq")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_y1u3d")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_trvvu")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_dqouk")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_5fiiq")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_skxvc")
+
+[node name="Pick" type="CheckBox" parent="LootAssistance"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 223.0
+offset_right = 70.0
+offset_bottom = 247.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eqnq5")
+
+[node name="Inversed" type="CheckBox" parent="LootAssistance"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 223.0
+offset_right = 134.0
+offset_bottom = 247.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eqnq5")
+
+[node name="ItemName" type="LineEdit" parent="LootAssistance"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 190.0
+offset_right = 137.0
+offset_bottom = 215.0
+theme = ExtResource("5_nh5lx")
+
+[node name="Add" type="Button" parent="LootAssistance"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 189.0
+offset_right = 208.0
+offset_bottom = 215.0
+theme = ExtResource("5_nh5lx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mds1n")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5egy4")
+
+[node name="Timer" type="Timer" parent="LootAssistance"]
+
+[node name="Label" type="Label" parent="LootAssistance"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 168.0
+offset_right = 214.0
+offset_bottom = 189.0
+theme = ExtResource("5_nh5lx")
+theme_override_colors/font_color = Color(1, 0.603922, 0.290196, 1)
+text = "鼠标右键添加或删除物品。"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealTab" parent="." instance=ExtResource("4_q203y")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 43.0
+offset_right = 60.0
+offset_bottom = 75.0
+texture = ExtResource("10_umwrs")
+
+[node name="LootTab" parent="." instance=ExtResource("4_q203y")]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 43.0
+offset_right = 105.0
+offset_bottom = 75.0
+texture = ExtResource("11_yre8d")
+
+[node name="Close" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_nh5lx")
+layout_mode = 0
+offset_left = 209.0
+offset_top = 4.0
+offset_right = 237.0
+offset_bottom = 31.0
+theme = ExtResource("5_nh5lx")

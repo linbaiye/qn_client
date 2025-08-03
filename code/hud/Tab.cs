@@ -1,9 +1,9 @@
 using System;
 using Godot;
 
-namespace QnClient.code.hud.kungfu;
+namespace QnClient.code.hud;
 
-public partial class KungFuTab : TextureRect
+public partial class Tab : TextureRect
 {
 
     private Texture2D _focusTexture;

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2e0aa3ffa4em"]
+
+[ext_resource type="Script" uid="uid://dla6meqjt5wdh" path="res://code/hud/Tab.cs" id="1_nl3pa"]
+
+[node name="Tab" type="TextureRect"]
+offset_right = 42.0
+offset_bottom = 32.0
+script = ExtResource("1_nl3pa")

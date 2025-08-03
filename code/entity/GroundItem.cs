@@ -30,6 +30,8 @@ public partial class GroundItem : AbstractEntity
         Visible = false;
     }
     
+    public String ItemName { get; private set; }
+    
     public void Init(GroundItemSnapshot snapshot)
     {
         var icons = ZipFileSpriteLoader.Instance.LoadOrderedItemIcons();
@@ -46,6 +48,7 @@ public partial class GroundItem : AbstractEntity
         _tip.Text = tip;
         var size = _tip.GetTextSize(tip);
         _tip.Position = new Vector2(16, 12) - size / 2;
+        ItemName = snapshot.Name;
         Visible = true;
     }
 

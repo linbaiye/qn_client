@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 
 namespace QnClient.code.util;
 
@@ -9,5 +10,10 @@ public static class UiUtil
     {
         var font = control.GetThemeFont("normal_font");
         return font.GetStringSize(text, HorizontalAlignment.Left, -1, 12);
+    }
+
+    public static bool DigitOnly(this LineEdit lineEdit)
+    {
+        return !string.IsNullOrEmpty(lineEdit.Text) && lineEdit.Text.Trim().All(char.IsDigit);
     }
 }

@@ -17,6 +17,12 @@ public class KungFuBookMessage(List<KungFuBookMessage.KungFu> unnamed, List<Kung
         public int Level { get; set; } = l;
         public int Icon { get; } = icon;
         public int Slot { get; } = slot;
+        
+        public string FormatKungFuTip()
+        {
+            string level = Level  / 100 + "." + (Level % 100).ToString("00");
+            return Name + ": " + level;
+        }
     }
 
     public bool Forcefull { get; } = force;

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmb0sic6yphdk"]
+
+[ext_resource type="Texture2D" uid="uid://bx6pjqodip0rv" path="res://ui/hud/left_up_text.png" id="1_cxloi"]
+[ext_resource type="Script" uid="uid://b6exhofvtfjny" path="res://code/hud/LeftUpText.cs" id="2_mv5an"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_q1avp"]
+
+[node name="LeftUpText" type="NinePatchRect"]
+offset_right = 264.0
+offset_bottom = 72.0
+texture = ExtResource("1_cxloi")
+script = ExtResource("2_mv5an")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 259.0
+offset_bottom = 67.0
+theme = ExtResource("2_q1avp")
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="Timer" type="Timer" parent="."]

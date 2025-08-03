@@ -8,7 +8,7 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
 {
     private Slot[] _slots = new Slot[30];
     
-    public event Action<int, InputEventKey>? SlotKeyPressed;
+    public event Action<int, InputEventKey>? KeyPressedOnSlot;
 
     public override void _Ready()
     {
@@ -48,7 +48,7 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
 
     private void OnKeyPressed(int number, InputEventKey key)
     {
-        SlotKeyPressed?.Invoke(number, key);
+        KeyPressedOnSlot?.Invoke(number, key);
     }
 
     public Slot GetSlot(int slotNumber)

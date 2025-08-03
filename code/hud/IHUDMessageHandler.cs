@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using QnClient.code.message;
 using QnClient.code.player;
@@ -8,7 +9,11 @@ public interface IHUDMessageHandler
 {
     void UpdateKungFuBookView(KungFuBookMessage message);
 
-    void DisplayText(string text);
+    void DisplayBottomText(string text);
+    
+    void DisplayLeftText(string text);
+    
+    void DisplayLeftUpText(string text);
 
     void UpdateInventoryView(InventoryMessage message);
 
@@ -22,7 +27,7 @@ public interface IHUDMessageHandler
 
     void UpdateLifeBars(PlayerDamagedMessage message);
 
-    void KungFuGainExp(string name, int level);
+    void KungFuGainExp(string name, int level, bool attack);
 
     void BlinkText(string text);
 
@@ -44,4 +49,8 @@ public interface IHUDMessageHandler
     void UpdateTradeWindowSlot(bool self, InventoryItemMessage item);
 
     void OnCharacterTeleported(TeleportMessage message);
+
+    void CreatureSay(string text);
+
+    void FillPills(List<string> pills);
 }

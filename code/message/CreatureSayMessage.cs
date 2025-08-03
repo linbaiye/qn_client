@@ -1,14 +1,19 @@
 ﻿using QnClient.code.entity;
+using QnClient.code.hud;
 using QnClient.code.player;
 using QnClient.code.player.character;
 
 namespace QnClient.code.message;
 
-public readonly struct CreatureSayMessage(long id, string text) : INpcMessage, IPlayerMessage, ICharacterMessage
+public readonly struct CreatureSayMessage(long id, string text, string name, bool cache) : INpcMessage, IPlayerMessage, ICharacterMessage, IHUDMessage
 {
     public long Id { get; } = id;
 
     public string Text { get; } = text;
+
+    private string Name { get; } = name;
+    
+    private bool Cache { get; } = cache;
     
     public void Accept(INpcMessageHandler handler)
     {
@@ -20,13 +25,14 @@ public readonly struct CreatureSayMessage(long id, string text) : INpcMessage, I
         handler.Say(this);
     }
 
-    public static CreatureSayMessage Test(Character character, string message)
-    {
-        return new CreatureSayMessage(character.Id, message);
-    }
-
     public void Accept(ICharacterMessageHandler handler)
     {
         handler.Say(this);
+    }
+
+    public void Accept(IHUDMessageHandler handler)
+    {
+        if (Cache)
+            handler.CreatureSay(Name + "：" + Text);
     }
 }

@@ -8,7 +8,7 @@ using QnClient.code.player;
 
 namespace QnClient.code.hud.bottom;
 
-public partial class Bottom : NinePatchRect
+public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributeProvider
 {
     private TextureProgressBar _lifeBar;
     private TextureProgressBar _powerBar;
@@ -56,15 +56,9 @@ public partial class Bottom : NinePatchRect
         GetNode<Button>("Assistance").Pressed += () => AssistanceButtonPressed?.Invoke();
         GetNode<Button>("System").Pressed += () => SystemButtonPressed?.Invoke();
         _equipView = GetNode<EquipView>("EquipView");
+        _equipView.UnequipPressed += e => UnequipPressed?.Invoke(e);
         _expUp = GetNode<TextureProgressBar>("ExpUp");
         _expDown = GetNode<TextureProgressBar>("ExpDown");
-        var keys = GetNode<HBoxContainer>("LeftHotKeys");
-        for (int i = 1; i <= 4; i++)
-            keys.AddChild(Slot.Create("Slot" + i, new Vector2(28, 28), new Vector2(28, 28), false));
-        keys = GetNode<HBoxContainer>("RightHotKeys");
-        for (int i = 1; i <= 4; i++)
-            keys.AddChild(Slot.Create("Slot" + i, new Vector2(28, 28), new Vector2(28, 28), false));
-        _equipView.UnequipPressed += type => UnequipPressed?.Invoke(type);
     }
 
     public void SetBookAndInventory(KungFuBook kungFuBook, Inventory inventory)
@@ -108,8 +102,8 @@ public partial class Bottom : NinePatchRect
     {
         if (level == 0)
             return;
-        _expDown.Value = level % 100;
-        _expUp.Value = level / 100;
+        _expUp.Value = level % 100;
+        _expDown.Value = level / 100;
     }
 
     public void OnCharacterJoined(JoinRealmMessage message)
@@ -126,6 +120,7 @@ public partial class Bottom : NinePatchRect
         _mapName.Text = message.MapTile;
         _equipView.OnCharacterJoined(message);
         UpdateExpBar(message.AttackKungFuLevel);
+        _hotKeyManager.OnCharacterJoined();
     }
 
     public void UpdateAttribute(AttributeMessage message)
@@ -171,13 +166,23 @@ public partial class Bottom : NinePatchRect
         }
     }
 
-    public void OnInventoryUpdated(InventoryMessage message)
+    public override void _Notification(int what)
     {
-        _hotKeyManager.OnInventoryUpdated(message);
+        if (what == NotificationWMCloseRequest)
+        {
+            _hotKeyManager.Save();
+        }
     }
 
-    public void OnInventorySlotUpdated(InventoryItemMessage message)
+    public int GetPercent(AttributeType type)
     {
-        _hotKeyManager.OnInventorySlotUpdated(message);
+        return type switch
+        {
+            AttributeType.Life => (int)_lifeBar.Value,
+            AttributeType.Power => (int)_powerBar.Value,
+            AttributeType.InnerPower => (int)_innerPowerBar.Value,
+            AttributeType.OutPower => (int)_outerPowerBar.Value,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
     }
 }

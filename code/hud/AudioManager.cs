@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Godot;
+using QnClient.code.hud.system;
+using QnClient.code.message;
 
 namespace QnClient.code.hud;
 
-public partial class AudioManager : Node
+public partial class AudioManager : Node, ICharacterJoinedAware
 {
 
     private AudioStreamPlayer2D _bgmPlayer;
@@ -12,6 +13,8 @@ public partial class AudioManager : Node
     private string _currentBgm = "";
     
     private AudioStreamPlayer2D[] _soundPlayers = new AudioStreamPlayer2D[8];
+
+    private bool _settingReceived = false;
     
     public override void _Ready()
     {
@@ -22,11 +25,25 @@ public partial class AudioManager : Node
             _soundPlayers[i] = GetNode<AudioStreamPlayer2D>("SoundPlayer" + (i + 1));
         }
     }
+
+    private float ToDb(double v)
+    {
+        return (float)Mathf.LinearToDb(v / 100);
+    }
     
     private async void ReplayBgm()
     {
         await Task.Delay(10000);
         _bgmPlayer.Play();
+    }
+    
+
+    public void OnSystemSettingChanged(ISystemSetting setting)
+    {
+        _settingReceived = true;
+        _bgmPlayer.VolumeDb = ToDb(setting.BgmEnabled ? setting.BgmVolume : 0);
+        foreach (var soundPlayer in _soundPlayers)
+            soundPlayer.VolumeDb = ToDb(setting.SoundEnabled ? setting.SoundVolume : 0);
     }
 
 
@@ -95,5 +112,12 @@ public partial class AudioManager : Node
             _bgmPlayer.Play();
             _currentBgm = bgm;
         }
+    }
+
+    public void OnCharacterJoined(JoinRealmMessage message)
+    {
+        if (!_settingReceived)
+            _bgmPlayer.VolumeDb = ToDb(0);
+        PlayBgm(message.Bgm);
     }
 }
