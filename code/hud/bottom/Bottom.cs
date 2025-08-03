@@ -3,12 +3,14 @@ using Godot;
 using QnClient.code.hud.hotkey;
 using QnClient.code.hud.inventory;
 using QnClient.code.hud.kungfu;
+using QnClient.code.input;
 using QnClient.code.message;
+using QnClient.code.network;
 using QnClient.code.player;
 
 namespace QnClient.code.hud.bottom;
 
-public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributeProvider
+public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributeProvider, IConnectionAware
 {
     private TextureProgressBar _lifeBar;
     private TextureProgressBar _powerBar;
@@ -23,6 +25,8 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
 
     private BlinkingLabel _blinkingLabel;
 
+    private Connection _connection;
+
     public event Action? InventoryButtonPressed;
     public event Action? KungFuBookButtonPressed;
     public event Action? AssistanceButtonPressed;
@@ -33,9 +37,10 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
     private EquipView _equipView;
     private TextureProgressBar _expUp;
     private TextureProgressBar _expDown;
-    public event Action<EquipmentType>? UnequipPressed;
 
     private HotKeyManager _hotKeyManager;
+
+    private LineEdit _chat;
     
     public override void _Ready()
     {
@@ -56,15 +61,30 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         GetNode<Button>("Assistance").Pressed += () => AssistanceButtonPressed?.Invoke();
         GetNode<Button>("System").Pressed += () => SystemButtonPressed?.Invoke();
         _equipView = GetNode<EquipView>("EquipView");
-        _equipView.UnequipPressed += e => UnequipPressed?.Invoke(e);
+        _equipView.RequestAttributePressed += RequestAttributeEquipment;
         _expUp = GetNode<TextureProgressBar>("ExpUp");
         _expDown = GetNode<TextureProgressBar>("ExpDown");
+        _chat = GetNode<LineEdit>("Chat");
+        _chat.TextSubmitted += OnChatSubmitted;
     }
 
     public void SetBookAndInventory(KungFuBook kungFuBook, Inventory inventory)
     {
         _hotKeyManager = new HotKeyManager(GetNode<HBoxContainer>("LeftHotKeys"),
             GetNode<HBoxContainer>("RightHotKeys"), inventory, kungFuBook);
+    }
+    
+    private void OnChatSubmitted(string text) 
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return;
+        _connection?.WriteAndFlush(new ChatInput(text));
+        _chat.Text = null;
+    }
+
+    private void RequestAttributeEquipment()
+    {
+        _connection?.WriteAndFlush(SimpleInput.AttributeEquipment);
     }
 
     private void FillBar(TextureProgressBar bar, int value, string tooltip)
@@ -80,7 +100,12 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
 
     public void DisplayText(string text)
     {
-        _textArea.Display(text);
+        _textArea.Display(text, null, null);
+    }
+
+    public void DisplayText(string text, string color, string bgColor)
+    {
+        _textArea.Display(text, color, bgColor);
     }
 
     public void BlinkKungFu(string name)
@@ -164,6 +189,11 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         {
             GetViewport().SetInputAsHandled();
         }
+        else if (@event is InputEventKey key && key.Pressed && key.Keycode == Key.Enter)
+        {
+            _chat.GrabFocus();
+            GetViewport().SetInputAsHandled();
+        }
     }
 
     public override void _Notification(int what)
@@ -184,5 +214,16 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
             AttributeType.OutPower => (int)_outerPowerBar.Value,
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
+    }
+
+
+    private void UnequipPressed(EquipmentType t)
+    {
+        _connection?.WriteAndFlush(new UnequipInput(t));
+    }
+
+    public void SetConnection(Connection connection)
+    {
+        _connection = connection;
     }
 }

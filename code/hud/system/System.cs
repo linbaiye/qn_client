@@ -37,7 +37,15 @@ public partial class System : NinePatchRect, ICharacterJoinedAware
 
     public void OnButtonPressed()
     {
-        Visible = true;
+        if (Visible)
+        {
+            _setting.Visible = false;
+            Visible = false;
+        }
+        else
+        {
+            Visible = true;
+        }
     }
 
     public void OnCharacterJoined(JoinRealmMessage message)

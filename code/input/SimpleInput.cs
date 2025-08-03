@@ -15,6 +15,7 @@ public readonly struct SimpleInput(SimpleInput.RequestType type) : I2ServerMessa
         KungFuBookQuietly = 6,
         InventoryQuietly = 7,
         GetPills = 8,
+        AttributeEquipment = 9,
     }
 
     public ClientPacket ToPacket()
@@ -39,4 +40,5 @@ public readonly struct SimpleInput(SimpleInput.RequestType type) : I2ServerMessa
     public static readonly SimpleInput F4 = new(RequestType.KeyF4);
     
     public static readonly SimpleInput GetPills = new(RequestType.GetPills);
+    public static readonly SimpleInput AttributeEquipment = new(RequestType.AttributeEquipment);
 }

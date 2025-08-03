@@ -5,6 +5,7 @@ using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
 using QnClient.code.hud.assistance;
+using QnClient.code.hud.attribute;
 using QnClient.code.hud.lefttext;
 using QnClient.code.hud.npc;
 using QnClient.code.input;
@@ -27,8 +28,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     private KungFuBook _kungFuBook;
     private Inventory _inventory;
 
-    private Connection _connection;
-    
     private AudioManager _audioManager;
     public event Action<int>? InventoryItemDropped;
 
@@ -46,6 +45,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     private LeftUpText _leftUpText;
 
+    private AttributeEquipment _attributeEquipment;
+
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -57,7 +58,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _inventory = GetNode<Inventory>("Inventory");
         _inventory.ItemDragReleased += s => InventoryItemDropped?.Invoke(s);
         _audioManager = GetNode<AudioManager>("AudioManager");
-        _bottom.UnequipPressed += UnequipPressed;
         _npcMainMenu = GetNode<NpcMainMenu>("NpcMainMenu");
         _npcTradeMenu = GetNode<NpcTradeMenu>("NpcTradeMenu");
         _npcTradeMenu.SetInputInventory(_inventory, _bottom.DisplayText);
@@ -70,12 +70,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _system = GetNode<system.System>("System");
         _system.SetSettingChangedListener(_audioManager.OnSystemSettingChanged);
         _leftUpText = GetNode<LeftUpText>("LeftUpText");
+        _attributeEquipment = GetNode<AttributeEquipment>("AttributeEquipment");
         Visible = false;
-    }
-
-    private void UnequipPressed(EquipmentType t)
-    {
-        _connection.WriteAndFlush(new UnequipInput(t));
     }
         
     public void CharacterEventHandler(IEntityEvent entityEvent)
@@ -105,7 +101,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void SetConnection(Connection connection)
     {
-        _connection = connection;
         foreach (var child in GetChildren())
         {
             if (child is IConnectionAware connectionAware)
@@ -186,7 +181,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     public void CreatureSay(string text)
     {
-        _bottom.DisplayText(text);
+        _bottom.DisplayText(text, null, null);
     }
 
     public void FillPills(List<string> pills)
@@ -194,9 +189,14 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _assistance.FillPills(pills);
     }
 
-    public void DisplayBottomText(string text)
+    public void ShowAttributeEquipment(AttributeEquipmentMessage message)
     {
-        _bottom.DisplayText(text);
+        _attributeEquipment.ShowAttributeEquipment(message);
+    }
+
+    public void DisplayBottomText(string text, string color, string bgColor)
+    {
+        _bottom.DisplayText(text, color, bgColor);
     }
 
     public void DisplayLeftText(string text)

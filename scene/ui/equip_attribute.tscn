@@ -1,0 +1,278 @@
+[gd_scene load_steps=6 format=3 uid="uid://clmokqtsj21lo"]
+
+[ext_resource type="Texture2D" uid="uid://cklho7lr61245" path="res://ui/hud/Attribute.png" id="1_kqgp3"]
+[ext_resource type="Texture2D" uid="uid://civ0qaco5ikg5" path="res://ui/hud/Equip.png" id="2_7ee7p"]
+[ext_resource type="Script" uid="uid://by84knxski7cc" path="res://code/hud/attribute/AttributeEquipment.cs" id="2_aqfml"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_7ee7p"]
+[ext_resource type="Script" uid="uid://dbd3g1ydr8isw" path="res://code/hud/attribute/Equipment.cs" id="4_oa3v2"]
+
+[node name="Attribute" type="NinePatchRect"]
+offset_left = 226.0
+offset_top = 51.0
+offset_right = 550.0
+offset_bottom = 408.0
+texture = ExtResource("1_kqgp3")
+script = ExtResource("2_aqfml")
+
+[node name="Equipment" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -233.0
+offset_top = -27.0
+offset_right = 108.0
+offset_bottom = 380.0
+texture = ExtResource("2_7ee7p")
+script = ExtResource("4_oa3v2")
+
+[node name="Left" type="VBoxContainer" parent="Equipment"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 83.0
+offset_right = 93.0
+offset_bottom = 264.0
+theme_override_constants/separation = 15
+
+[node name="Right" type="VBoxContainer" parent="Equipment"]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 83.0
+offset_right = 283.0
+offset_bottom = 264.0
+theme_override_constants/separation = 15
+
+[node name="Label1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 48.0
+offset_right = 189.0
+offset_bottom = 69.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label12" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 48.0
+offset_right = 295.0
+offset_bottom = 69.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label13" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 72.0
+offset_right = 295.0
+offset_bottom = 93.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label14" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 96.0
+offset_right = 295.0
+offset_bottom = 117.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label15" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 130.0
+offset_right = 295.0
+offset_bottom = 151.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label16" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 154.0
+offset_right = 295.0
+offset_bottom = 175.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label17" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 178.0
+offset_right = 295.0
+offset_bottom = 199.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label18" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 202.0
+offset_right = 295.0
+offset_bottom = 223.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label19" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 236.0
+offset_right = 295.0
+offset_bottom = 257.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label20" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 260.0
+offset_right = 295.0
+offset_bottom = 281.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label21" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 284.0
+offset_right = 295.0
+offset_bottom = 305.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 72.0
+offset_right = 189.0
+offset_bottom = 93.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 96.0
+offset_right = 189.0
+offset_bottom = 117.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 130.0
+offset_right = 189.0
+offset_bottom = 151.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 154.0
+offset_right = 189.0
+offset_bottom = 175.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 178.0
+offset_right = 189.0
+offset_bottom = 199.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label7" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 202.0
+offset_right = 189.0
+offset_bottom = 223.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label8" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 236.0
+offset_right = 189.0
+offset_bottom = 257.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label9" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 260.0
+offset_right = 189.0
+offset_bottom = 281.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label10" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 284.0
+offset_right = 189.0
+offset_bottom = 305.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Label11" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 308.0
+offset_right = 189.0
+offset_bottom = 329.0
+theme = ExtResource("3_7ee7p")
+text = "123"
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 1.0
+offset_right = 63.0
+offset_bottom = 26.0
+theme = ExtResource("3_7ee7p")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = -134.0
+offset_top = 32.0
+offset_right = 8.0
+offset_bottom = 55.0
+theme = ExtResource("3_7ee7p")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Age" type="Label" parent="."]
+layout_mode = 0
+offset_left = -131.0
+offset_top = 277.0
+offset_right = -70.0
+offset_bottom = 300.0
+theme = ExtResource("3_7ee7p")
+vertical_alignment = 1

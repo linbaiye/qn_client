@@ -9,7 +9,7 @@ public interface IHUDMessageHandler
 {
     void UpdateKungFuBookView(KungFuBookMessage message);
 
-    void DisplayBottomText(string text);
+    void DisplayBottomText(string text, string color, string bgColor);
     
     void DisplayLeftText(string text);
     
@@ -53,4 +53,6 @@ public interface IHUDMessageHandler
     void CreatureSay(string text);
 
     void FillPills(List<string> pills);
+    
+    void ShowAttributeEquipment(AttributeEquipmentMessage message);
 }

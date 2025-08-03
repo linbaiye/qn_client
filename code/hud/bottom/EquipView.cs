@@ -29,12 +29,12 @@ public partial class EquipView : NinePatchRect
 
     private Godot.Collections.Dictionary<EquipmentType, TextureButton> _equipments = new();
     private Godot.Collections.Dictionary<EquipmentType, string> _equipmentNames = new();
-
-    public event Action<EquipmentType>? UnequipPressed;
+    public event Action? RequestAttributePressed;
 
     public override void _Ready()
     {
         _body = GetNode<TextureButton>("Body");
+        _body.Pressed += () => RequestAttributePressed?.Invoke();
         _equipText = GetNode<Label>("EquipText");
         foreach(string name in Enum.GetNames<EquipmentType>())
         {
@@ -42,17 +42,17 @@ public partial class EquipView : NinePatchRect
             if (equipmentType == EquipmentType.Wrist)
                 continue;
             var button = GetNode<TextureButton>(name);
-            button.Pressed += () => OnPressed(equipmentType);
+            button.Pressed += () => RequestAttributePressed?.Invoke();
             button.MouseEntered += () => ShowName(equipmentType);
             button.MouseExited += () => _equipText.Text = string.Empty;
             _equipments.Add(equipmentType, button);
         }
         _leftWrist = GetNode<TextureButton>("LeftWrist");
         _leftWrist.MouseEntered += () => ShowName(EquipmentType.Wrist);
-        _leftWrist.Pressed += () => OnPressed(EquipmentType.Wrist);
+        _leftWrist.Pressed += () => RequestAttributePressed?.Invoke();
         _leftWrist.MouseExited += () => _equipText.Text = string.Empty;
         _rightWrist = GetNode<TextureButton>("RightWrist");
-        _rightWrist.Pressed += () => OnPressed(EquipmentType.Wrist);
+        _rightWrist.Pressed += () => RequestAttributePressed?.Invoke();
         _rightWrist.MouseEntered += () => ShowName(EquipmentType.Wrist);
         _rightWrist.MouseExited += () => _equipText.Text = string.Empty;
     }
@@ -65,11 +65,6 @@ public partial class EquipView : NinePatchRect
                 name = name.Substring(2, name.Length - 2);
             _equipText.Text = name;
         }
-    }
-
-    private void OnPressed(EquipmentType type)
-    {
-        UnequipPressed?.Invoke(type);
     }
 
 

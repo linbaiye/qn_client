@@ -26,11 +26,10 @@ public partial class Teleport : AbstractEntity
         var icons = ZipFileSpriteLoader.Instance.LoadOrderedItemIcons();
         _bodySprite.Texture = icons[icon];
         var iconSize = _bodySprite.Texture.GetSize();
-        _bodySprite.Position = new Vector2(16, 12) - iconSize / 2;
         _bodySprite.MouseArea.Size = _bodySprite.Texture.GetSize();
         _tip.Text = viewName;
         var size = _tip.GetTextSize(viewName);
-        _tip.Position = new Vector2(16, 12) - size / 2;
+        _tip.Position =  iconSize / 2 - (size / 2);
         Visible = true;
     }
     
