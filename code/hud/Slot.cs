@@ -26,6 +26,8 @@ public partial class Slot : Panel
 
     private Label _attributeTip;
     
+    private string _tipText;
+    
     public override void _Ready()
     {
         _slotTexture = GetNode<TextureRect>("SlotTexture");
@@ -61,7 +63,9 @@ public partial class Slot : Panel
     {
         MouseHovering = false;
         _attributeTip.Visible = false;
+        TooltipText = _tipText;
     }
+    
 
     private void OnLeftButtonReleased()
     {
@@ -84,6 +88,7 @@ public partial class Slot : Panel
     {
         if (!MouseHovering)
             return;
+        TooltipText = null;
         _attributeTip.Text = text;
         _attributeTip.Visible = true;
         var globalMousePosition = GetGlobalMousePosition();
@@ -142,6 +147,7 @@ public partial class Slot : Panel
         if (color != 0)
             _slotTexture.Material = DyeShader.CreateShaderMaterial(color);
         TooltipText = tip;
+        _tipText = tip;
     }
     
     public bool Empty => _slotTexture.Texture == null;
@@ -150,6 +156,7 @@ public partial class Slot : Panel
     {
         _slotTexture.Texture = null;
         TooltipText = null;
+        _tipText = null;
     }
 
     public void CopyDetails(Slot another)
@@ -157,6 +164,7 @@ public partial class Slot : Panel
         _slotTexture.Texture = another._slotTexture.Texture;
         _slotTexture.Material = another._slotTexture.Material;
         TooltipText = another.TooltipText;
+        _tipText = another._tipText;
     }
 
 
