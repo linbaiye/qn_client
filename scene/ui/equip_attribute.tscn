@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://clmokqtsj21lo"]
+[gd_scene load_steps=7 format=3 uid="uid://bmrvv2sro6ah4"]
 
 [ext_resource type="Texture2D" uid="uid://cklho7lr61245" path="res://ui/hud/Attribute.png" id="1_kqgp3"]
 [ext_resource type="Texture2D" uid="uid://civ0qaco5ikg5" path="res://ui/hud/Equip.png" id="2_7ee7p"]
 [ext_resource type="Script" uid="uid://by84knxski7cc" path="res://code/hud/attribute/AttributeEquipment.cs" id="2_aqfml"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_7ee7p"]
 [ext_resource type="Script" uid="uid://dbd3g1ydr8isw" path="res://code/hud/attribute/Equipment.cs" id="4_oa3v2"]
+[ext_resource type="PackedScene" uid="uid://c3emj3mvd5bf0" path="res://scene/ui/bottom/equip_view.tscn" id="5_xuj8k"]
 
 [node name="Attribute" type="NinePatchRect"]
 offset_left = 226.0
@@ -20,6 +21,7 @@ offset_left = -233.0
 offset_top = -27.0
 offset_right = 108.0
 offset_bottom = 380.0
+mouse_filter = 1
 texture = ExtResource("2_7ee7p")
 script = ExtResource("4_oa3v2")
 
@@ -38,6 +40,13 @@ offset_top = 83.0
 offset_right = 283.0
 offset_bottom = 264.0
 theme_override_constants/separation = 15
+
+[node name="EquipView" parent="Equipment" instance=ExtResource("5_xuj8k")]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 112.0
+offset_right = 213.0
+offset_bottom = 226.0
 
 [node name="Label1" type="Label" parent="."]
 layout_mode = 0

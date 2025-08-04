@@ -7,7 +7,7 @@ namespace QnClient.code.message;
 
 public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage, IHUDMessage
 {
-    private PlayerEquipMessage(long id, int color, string name, EquipmentType type, WeaponType weaponType, string spritePrefix, string pairedSpritePrefix)
+    private PlayerEquipMessage(long id, int color, string name, EquipmentType type, WeaponType weaponType, string spritePrefix, string pairedSpritePrefix, int icon)
     {
         Id = id;
         Color = color;
@@ -16,6 +16,7 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage, IHUDMessage
         SpritePrefix = spritePrefix;
         PairedSpritePrefix = pairedSpritePrefix;
         Name = name;
+        Icon = icon;
     }
 
     public string Name { get; }
@@ -33,6 +34,8 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage, IHUDMessage
     public string SpritePrefix { get; }
     
     public string PairedSpritePrefix { get; }
+
+    public int Icon { get; }
     
     public void Accept(IPlayerMessageHandler handler)
     {
@@ -44,7 +47,7 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage, IHUDMessage
         EquipmentType equipmentType = (EquipmentType)packet.EquipmentType;
         WeaponType weaponType = equipmentType == EquipmentType.Weapon ? (WeaponType)packet.WeaponType : WeaponType.None;
         var paired = equipmentType == EquipmentType.Wrist ? packet.PairedPrefix : "";
-        return new PlayerEquipMessage(packet.Id, packet.Color, packet.Name, equipmentType, weaponType, packet.Prefix, paired);
+        return new PlayerEquipMessage(packet.Id, packet.Color, packet.Name, equipmentType, weaponType, packet.Prefix, paired, packet.Icon);
     }
 
     public void Accept(ICharacterMessageHandler handler)
@@ -56,6 +59,6 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage, IHUDMessage
     public void Accept(IHUDMessageHandler handler)
     {
         if (BelongToCharacter)
-            handler.Equip(Type, SpritePrefix, Name, Color, PairedSpritePrefix);
+            handler.Equip(this);
     }
 }

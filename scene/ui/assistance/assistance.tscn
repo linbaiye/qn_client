@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://belhhm63esq8g" path="res://code/hud/assistance/Assistance.cs" id="2_nh5lx"]
 [ext_resource type="Texture2D" uid="uid://dmb24ym1ako8j" path="res://ui/hud/assistance/heal_setting.png" id="3_xcpl6"]
 [ext_resource type="Script" uid="uid://ba4dax7rpmjc5" path="res://code/hud/assistance/HealAssistance.cs" id="4_mpkr7"]
-[ext_resource type="PackedScene" uid="uid://c2e0aa3ffa4em" path="res://scene/ui/tab.tscn" id="4_q203y"]
+[ext_resource type="PackedScene" uid="uid://bjte536fvbfpg" path="res://scene/ui/tab.tscn" id="4_q203y"]
 [ext_resource type="PackedScene" uid="uid://bg3hauodonx58" path="res://scene/ui/assistance/pill_setting.tscn" id="4_xcpl6"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="5_nh5lx"]
 [ext_resource type="Texture2D" uid="uid://bq6gvqu7xtw0c" path="res://ui/hud/assistance/loot_assistance.png" id="7_i26rf"]

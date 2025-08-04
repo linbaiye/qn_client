@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dolm1yth05sqh"]
+
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="1_heyvd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61dhd"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.262745)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.992157, 0.909804, 0.670588, 1)
+
+[node name="SlotTooltip" type="Label"]
+offset_right = 147.0
+offset_bottom = 87.0
+size_flags_horizontal = 4
+theme = ExtResource("1_heyvd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_61dhd")
+horizontal_alignment = 1
+vertical_alignment = 1

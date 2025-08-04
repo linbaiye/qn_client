@@ -143,7 +143,7 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         UpdateCoordinate(message.Coordinate);
         _activeKungFuList.SetAttackKungFu(message.AttackKungFu);
         _mapName.Text = message.MapTile;
-        _equipView.OnCharacterJoined(message);
+        _equipView.Display(message.Male, message.Equipments);
         UpdateExpBar(message.AttackKungFuLevel);
         _hotKeyManager.OnCharacterJoined();
     }
@@ -178,11 +178,11 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         _equipView.Unequip(type);
     }
 
-    public void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null)
+    public void Equip(PlayerEquipMessage message)
     {
-        _equipView.Equip(type, prefix, name, color, pairedPrefix);
+        _equipView.Equip(message);
     }
-
+    
     public override void _UnhandledKeyInput(InputEvent @event)
     {
         if (_hotKeyManager.HandleKeyEvent(@event))

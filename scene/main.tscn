@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://brkuh34rnvtu4" path="res://scene/ui/left_text/left_text_area.tscn" id="11_wscrc"]
 [ext_resource type="PackedScene" uid="uid://teyqa1orjghd" path="res://scene/ui/system/system.tscn" id="12_mswub"]
 [ext_resource type="PackedScene" uid="uid://cmb0sic6yphdk" path="res://scene/ui/left_up_text.tscn" id="13_hybxs"]
-[ext_resource type="PackedScene" uid="uid://clmokqtsj21lo" path="res://scene/ui/equip_attribute.tscn" id="14_v2gmf"]
+[ext_resource type="PackedScene" uid="uid://bmrvv2sro6ah4" path="res://scene/ui/equip_attribute.tscn" id="14_v2gmf"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")

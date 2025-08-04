@@ -19,8 +19,12 @@ public partial class Slot : Panel
     private bool _scaleTexture;
     private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
     public bool MouseHovering { get; private set; }
+    
     private Label _keyLabel;
+    
     private MouseEventHandler _mouseEventHandler;
+
+    private Label _attributeTip;
     
     public override void _Ready()
     {
@@ -31,12 +35,17 @@ public partial class Slot : Panel
         CustomMinimumSize = _slotSize;
         Size = _slotSize;
         _mouseEventHandler = GetNode<MouseEventHandler>("MouseEventHandler");
-        MouseEntered += () => MouseHovering = true;
-        MouseExited += () => MouseHovering = false;
+        MouseEntered += () =>
+        {
+            MouseHovering = true;
+        };
+        MouseExited += OnMouseExited;
         _mouseEventHandler.DoubleClicked += OnLeftButtonDoubleClicked;
         _mouseEventHandler.RightClicked += OnRightButtonReleased;
         _mouseEventHandler.Clicked += OnLeftButtonReleased;
         _keyLabel = GetNode<Label>("KeyLabel");
+        _attributeTip = GetNode<Label>("AttributeTip");
+        _attributeTip.Visible = false;
         Number = GetNumber();
     }
     
@@ -46,6 +55,12 @@ public partial class Slot : Panel
     {
         var match = Regex.Match(GetName(), "(\\d+)");
         return !match.Success ? -1 : int.Parse(match.Groups[1].Value);
+    }
+
+    private void OnMouseExited()
+    {
+        MouseHovering = false;
+        _attributeTip.Visible = false;
     }
 
     private void OnLeftButtonReleased()
@@ -64,6 +79,25 @@ public partial class Slot : Panel
         }
     }
 
+
+    public void ShowAttributeTipIfHasHover(string text)
+    {
+        if (!MouseHovering)
+            return;
+        _attributeTip.Text = text;
+        _attributeTip.Visible = true;
+        var globalMousePosition = GetGlobalMousePosition();
+        var localMousePosition = GetLocalMousePosition();
+        var textSize = _attributeTip.Size;
+        var windowSize = GetViewport().GetWindow().Size;
+        float x = localMousePosition.X;
+        if (globalMousePosition.X + textSize.X > windowSize.X)
+        {
+            x = -textSize.X;
+        }
+        _attributeTip.Position = new Vector2(x, localMousePosition.Y);
+    }
+
     public override void _UnhandledKeyInput(InputEvent @event)
     {
         if (@event is not InputEventKey key || !MouseHovering)
@@ -80,11 +114,6 @@ public partial class Slot : Panel
         _keyLabel.Text = key;
     }
 
-    public void ClearKeyLabelIfMatch(string key)
-    {
-        if (_keyLabel.Text.Equals(key))
-            _keyLabel.Text = null;
-    }
 
     public override void _GuiInput(InputEvent @event)
     {
@@ -115,8 +144,6 @@ public partial class Slot : Panel
         TooltipText = tip;
     }
     
-    private string Tip => TooltipText;
-
     public bool Empty => _slotTexture.Texture == null;
 
     public void ClearTextureAndTip()

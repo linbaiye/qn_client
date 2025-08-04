@@ -130,7 +130,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
 
     protected override void OnSlotRightMouseButtonReleased(int number)
     {
-        Log.Debug("Right released on {}", number);
+        _connection.WriteAndFlush(ClickInventoryInput.RightClick(number));
     }
 
     public void OnShortcutButtonClicked()
@@ -270,4 +270,5 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     {
         _connection.WriteAndFlush(SimpleInput.InventoryQuietly);
     }
+
 }

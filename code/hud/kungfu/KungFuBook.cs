@@ -22,8 +22,8 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     private Texture2D[] _icons;
 
 
-    private hud.Tab _unnamedTab;
-    private hud.Tab _basicTab;
+    private Tab _unnamedTab;
+    private Tab _basicTab;
     public event Action<bool, int, KungFuBookMessage.KungFu?>? HotKeySlotUpdated;
     
     private KungFuBookMessage _message;
@@ -112,7 +112,7 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
 
     protected override void OnSlotRightMouseButtonReleased(int number)
     {
-        Logger.Debug("Slot {} right rleased.", number);
+        HandleKungFuClick(number, (i, fu) => _connection.WriteAndFlush(ClickKungFuInput.RightClick(i, fu.Slot)));
     }
 
     private void RefreshKungFuSlots(List<KungFuBookMessage.KungFu> kungFuList)
@@ -152,6 +152,8 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
 
     public void KungFuGainExp(string name, int level)
     {
+        if (_message == null)
+            return;
         foreach (var kungFu in _message.Basic)
         {
             if (kungFu.Name.Equals(name))
@@ -186,16 +188,15 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     
     private class HotkeyValue
     {
-        private readonly int _page;
-        private readonly int _slot;
         public HotkeyValue(int page, int slot)
         {
-            _page = page;
-            _slot = slot;
+            Page = page;
+            Slot = slot;
         }
 
-        public int Page => _page;
-        public int Slot => _slot;
+        public int Page { get; }
+
+        public int Slot { get; }
     }
     
     private Dictionary<int, HotkeyValue> _hotkeyValues = new();

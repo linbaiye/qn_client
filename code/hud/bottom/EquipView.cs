@@ -68,10 +68,14 @@ public partial class EquipView : NinePatchRect
     }
 
 
-    private void DyeIfHasColor(TextureButton button, int color)
+    private void Dye(TextureButton button, int color)
     {
         var material = button.GetMaterial();
-        if (material != null && color > 1)
+        if (material == null)
+        {
+            button.SetMaterial(DyeShader.CreateShaderMaterial(color));
+        }
+        else
         {
             DyeShader.SetColor((ShaderMaterial)material, color);
         }
@@ -96,7 +100,12 @@ public partial class EquipView : NinePatchRect
         }
     }
 
-    public void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null)
+    public void Equip(PlayerEquipMessage equip)
+    {
+        Equip(equip.Type, equip.SpritePrefix, equip.Name, equip.Color, equip.PairedSpritePrefix);
+    }
+
+    private void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null)
     {
         var textures = SpriteLoader.Load(prefix + "0");
         var offsetTexture = textures[AvatarIndex];
@@ -108,31 +117,31 @@ public partial class EquipView : NinePatchRect
             {
                 button.TextureNormal = offsetTexture.Texture;
                 button.Position = _bodyOffset + offsetTexture.Offset;
-                DyeIfHasColor(button, color);
+                Dye(button, color);
             }
         }
         else
         {
             _leftWrist.TextureNormal = offsetTexture.Texture;
             _leftWrist.Position = _bodyOffset + offsetTexture.Offset;
-            DyeIfHasColor(_leftWrist, color);
+            Dye(_leftWrist, color);
             textures = SpriteLoader.Load(pairedPrefix + "0");
             offsetTexture = textures[AvatarIndex];
             _rightWrist.TextureNormal = offsetTexture.Texture;
             _rightWrist.Position = _bodyOffset + offsetTexture.Offset;
-            DyeIfHasColor(_rightWrist, color);
+            Dye(_rightWrist, color);
         }
     }
 
-    public void OnCharacterJoined(JoinRealmMessage message)
+    public void Display(bool male, List<PlayerEquipMessage> equipments)
     {
-        _male = message.Male;
+        _male = male;
         var textures = SpriteLoader.Load(_male ? "N00" : "A00");
         var offsetTexture = textures[AvatarIndex];
         _body.TextureNormal = offsetTexture.Texture;
         _body.Position = new Vector2((Size.X - offsetTexture.OriginalSize.X) / 2, (Size.Y - offsetTexture.OriginalSize.Y) / 2);
         _bodyOffset = _body.Position - offsetTexture.Offset;
-        foreach (var equip in message.Equipments)
+        foreach (var equip in equipments)
         {
             Equip(equip.Type, equip.SpritePrefix, equip.Name, equip.Color, equip.PairedSpritePrefix);
         }

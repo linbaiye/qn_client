@@ -31,7 +31,7 @@ public interface IHUDMessageHandler
 
     void BlinkText(string text);
 
-    void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null);
+    void Equip(PlayerEquipMessage message);
     
     void Unequip(EquipmentType type);
 
@@ -55,4 +55,10 @@ public interface IHUDMessageHandler
     void FillPills(List<string> pills);
     
     void ShowAttributeEquipment(AttributeEquipmentMessage message);
+
+    void ShowInventoryItemDescription(int slot, string text);
+    
+    void ShowKungFuDescription(int slot, string text);
+    
+    void ShowEquipmentDescription(EquipmentType type, string text);
 }

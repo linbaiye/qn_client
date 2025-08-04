@@ -57,6 +57,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.Teleport => TeleportMessage.FromPacket(packet.Teleport),
             Packet.TypedPacketOneofCase.Pills => FillPillsMessage.FromPacket(packet.Pills),
             Packet.TypedPacketOneofCase.AttributeEquip => AttributeEquipmentMessage.FromPacket(packet.AttributeEquip),
+            Packet.TypedPacketOneofCase.ItemDescription => ItemDescriptionMessage.FromPacket(packet.ItemDescription),
             _ => null,
         };
     }

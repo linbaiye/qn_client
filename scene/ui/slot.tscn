@@ -1,10 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx0wc1sposys5"]
+[gd_scene load_steps=6 format=3 uid="uid://cx0wc1sposys5"]
 
 [ext_resource type="Theme" uid="uid://bnrgbxn7sip6r" path="res://scene/ui/slot.tres" id="1_3j8rd"]
 [ext_resource type="Script" uid="uid://cas7grlvk6bo5" path="res://code/hud/Slot.cs" id="1_k2ex0"]
 [ext_resource type="PackedScene" uid="uid://d1yw17ofdw0vb" path="res://scene/ui/mouse_event_handler.tscn" id="3_pdhte"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="4_401lu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_by1qi"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.282353)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.823529, 0.764706, 1)
 
 [node name="Slot" type="Panel"]
+custom_minimum_size = Vector2(28, 28)
 offset_right = 28.0
 offset_bottom = 28.0
 theme = ExtResource("1_3j8rd")
@@ -36,3 +50,13 @@ theme = ExtResource("1_3j8rd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [node name="MouseEventHandler" parent="." instance=ExtResource("3_pdhte")]
+
+[node name="AttributeTip" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 11.0
+theme = ExtResource("4_401lu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_by1qi")
+horizontal_alignment = 1
+vertical_alignment = 1

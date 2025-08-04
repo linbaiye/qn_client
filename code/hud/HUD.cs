@@ -8,7 +8,6 @@ using QnClient.code.hud.assistance;
 using QnClient.code.hud.attribute;
 using QnClient.code.hud.lefttext;
 using QnClient.code.hud.npc;
-using QnClient.code.input;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player;
@@ -126,14 +125,17 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _bottom.BlinkText(text);
     }
 
-    public void Equip(EquipmentType type, string prefix, string name, int color = 0, string pairedPrefix = null)
+    public void Equip(PlayerEquipMessage message)
     {
-        _bottom.Equip(type, prefix, name, color, pairedPrefix);
+        _bottom.Equip(message);
+        _attributeEquipment.Equip(message);
     }
+
 
     public void Unequip(EquipmentType type)
     {
         _bottom.Unequip(type);
+        _attributeEquipment.Unequip(type);
     }
 
     public void UpdateInventorySlot(InventoryItemMessage message)
@@ -194,6 +196,21 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _attributeEquipment.ShowAttributeEquipment(message);
     }
 
+    public void ShowInventoryItemDescription(int slot, string text)
+    {
+        _inventory.ShowDescription(slot, text);
+    }
+
+    public void ShowKungFuDescription(int slot, string text)
+    {
+        _kungFuBook.ShowDescription(slot, text);
+    }
+
+    public void ShowEquipmentDescription(EquipmentType type, string text)
+    {
+        _attributeEquipment.ShowEquipmentDescription(type, text);
+    }
+
     public void DisplayBottomText(string text, string color, string bgColor)
     {
         _bottom.DisplayText(text, color, bgColor);
@@ -234,6 +251,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     {
         _bottom.SyncActiveKungFuList(message);
         _bottom.UpdateExpBar(message.AttackLevel);
+        _attributeEquipment.KungFuRefreshed();
     }
 
     public void PlaySound(string entityName, string soundName)

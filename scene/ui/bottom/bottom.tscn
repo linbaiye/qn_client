@@ -247,6 +247,7 @@ offset_left = 762.0
 offset_top = 76.0
 offset_right = 844.0
 offset_bottom = 177.0
+mouse_filter = 2
 
 [node name="BlinkingLable" parent="." instance=ExtResource("8_mkk8q")]
 custom_minimum_size = Vector2(0, 14)

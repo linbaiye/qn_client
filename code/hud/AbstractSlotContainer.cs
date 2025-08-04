@@ -63,4 +63,9 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
     protected abstract void OnSlotLeftButtonDoubleClicked(int number);
     
     protected abstract void OnSlotRightMouseButtonReleased(int number);
+        
+    public void ShowDescription(int slot, string text)
+    {
+        GetSlot(slot).ShowAttributeTipIfHasHover(text);
+    }
 }

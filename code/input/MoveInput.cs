@@ -1,7 +1,6 @@
 ﻿using Godot;
 using QnClient.code.entity;
 using QnClient.code.network.toserver;
-using QnClient.code.util;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.input;
@@ -10,8 +9,6 @@ public readonly struct MoveInput(CreatureDirection direction, Vector2I coordinat
 {
     public CreatureDirection Direction { get; } = direction;
 
-    public Vector2I Destination => coordinate.Move(Direction);
-    
     public ClientPacket ToPacket()
     {
         return new ClientPacket()
