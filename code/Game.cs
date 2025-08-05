@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Microsoft.Extensions.Logging;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
@@ -14,6 +15,7 @@ using QnClient.code.player;
 using QnClient.code.util;
 using Character = QnClient.code.player.character.Character;
 using HUD = QnClient.code.hud.HUD;
+using ILogger = NLog.ILogger;
 
 namespace QnClient.code;
 
@@ -109,6 +111,7 @@ public partial class Game : Node2D
         _character.ShootEvent += HandleShoot;
         _entityManager.Add(_character);
         Visible = true;
+        Logger.Debug("Character joined.");
     }
 
 
@@ -121,6 +124,7 @@ public partial class Game : Node2D
         }
         _map.Load(teleportMessage.MapFile, teleportMessage.ResourceName);
         _character.Teleported(teleportMessage.Coordinate);
+        Logger.Debug("Character teleported.");
     }
 
 

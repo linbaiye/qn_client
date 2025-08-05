@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Godot;
@@ -152,6 +151,25 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
 
     public float MoveAnimationLength => GetAnimation(NpcState.Move + "/" + CreatureDirection.Up).Length;
 
+
+    private void CompleteIdleIfNotFound(List<AnimationDescriptor> animationDescriptors)
+    {
+        foreach (var animationDescriptor in animationDescriptors)
+        {
+            if (animationDescriptor.State == NpcState.Idle)
+                return;
+        }
+        List<AnimationDescriptor> idle = new List<AnimationDescriptor>();
+        foreach (var descriptor in animationDescriptors)
+        {
+            if (descriptor.State == NpcState.Turn)
+            {
+                idle.Add(new AnimationDescriptor(NpcState.Idle, descriptor.Direction, descriptor.FrameIndices, descriptor.TickPerFrame));
+            }
+        }
+        idle.ForEach(animationDescriptors.Add);
+    }
+
     /// <summary>
     /// Initialize animations and return the OffsetTexture that used for positioning labels.
     /// </summary>
@@ -165,6 +183,7 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
             ? SpriteLoader.Load(spriteName + "m")
             : null;
         var animationDescriptors = LoadAnimationDescriptors(atd);
+        CompleteIdleIfNotFound(animationDescriptors);
         foreach (var animationDescriptor in animationDescriptors)
         {
             if (animationDescriptor.State == NpcState.Idle)

@@ -112,6 +112,10 @@ public partial class AudioManager : Node, ICharacterJoinedAware
             _bgmPlayer.Play();
             _currentBgm = bgm;
         }
+        else
+        {
+            _bgmPlayer.Stop();
+        }
     }
 
     public void OnCharacterJoined(JoinRealmMessage message)
