@@ -24,6 +24,7 @@ LogConfigurer="*res://code/LogConfigurer.cs"
 window/size/viewport_width=1024
 window/size/viewport_height=768
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=3
 
 [dotnet]
 
@@ -35,12 +36,18 @@ timers/tooltip_delay_sec=0.1
 
 [physics]
 
-common/physics_ticks_per_second=35
-common/physics_interpolation=true
+common/physics_ticks_per_second=40
+common/max_physics_steps_per_frame=5
+common/physics_jitter_fix=0.509
+common/enable_object_picking=false
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=true
 camera/depth_of_field/depth_of_field_bokeh_shape=0
+camera/depth_of_field/depth_of_field_use_jitter=true
+textures/decals/filter=0
+textures/light_projectors/filter=0
