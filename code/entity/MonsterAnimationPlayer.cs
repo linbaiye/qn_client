@@ -64,6 +64,8 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
         var attackEffectTextureIdx = animation.AddTrack(Animation.TrackType.Value);
         var attackEffectOffsetIdx = animation.AddTrack(Animation.TrackType.Value);
         var mouseAreaPosition = animation.AddTrack(Animation.TrackType.Value);
+        var effectOffset = animation.AddTrack(Animation.TrackType.Value);
+        var effectTexture = animation.AddTrack(Animation.TrackType.Value);
         AreaSize = animation.AddTrack(Animation.TrackType.Value);
         animation.TrackSetPath(BodyTextureIdx, "Body:texture");
         animation.TrackSetPath(BodyOffsetIdx, "Body:offset");
@@ -71,12 +73,16 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
         animation.TrackSetPath(attackEffectOffsetIdx, "AttackEffect:offset");
         animation.TrackSetPath(mouseAreaPosition, "Body/MouseArea:position");
         animation.TrackSetPath(AreaSize, "Body/MouseArea:size");
+        animation.TrackSetPath(effectOffset, "Effect:offset");
+        animation.TrackSetPath(effectTexture, "Effect:texture");
         animation.ValueTrackSetUpdateMode(BodyTextureIdx, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(BodyOffsetIdx, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(attackEffectTextureIdx, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(attackEffectOffsetIdx, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(mouseAreaPosition, Animation.UpdateMode.Discrete);
         animation.ValueTrackSetUpdateMode(AreaSize, Animation.UpdateMode.Discrete);
+        animation.ValueTrackSetUpdateMode(effectOffset, Animation.UpdateMode.Discrete);
+        animation.ValueTrackSetUpdateMode(effectTexture, Animation.UpdateMode.Discrete);
         float time = 0;
         foreach (var frameIndex in descriptor.FrameIndices)
         {
@@ -84,6 +90,8 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
             animation.TrackInsertKey(BodyTextureIdx, time, sprites[frameIndex].Texture);
             animation.TrackInsertKey(BodyOffsetIdx, time, textureOffset);
             animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
+            animation.TrackInsertKey(effectOffset, time, textureOffset);
+            animation.TrackInsertKey(effectTexture, time, sprites[frameIndex].Texture);
             animation.TrackInsertKey(AreaSize, time, sprites[frameIndex].OriginalSize);
             if (effect != null)
             {

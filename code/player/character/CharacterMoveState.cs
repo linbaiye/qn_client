@@ -2,6 +2,7 @@
 using NLog;
 using QnClient.code.entity.@event;
 using QnClient.code.input;
+using QnClient.code.message;
 using QnClient.code.util;
 
 namespace QnClient.code.player.character;
@@ -19,14 +20,16 @@ public class CharacterMoveState : AbstractCharacterState
 
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     
-    private CharacterMoveState(ICharacter character, MoveAction action, MoveInput moveInput)
+    private CharacterMoveState(ICharacter character, MoveAction action, MoveInput moveInput, double elapsedSeconds = 0)
     {
         _character = character;
         _action = action;
-        _elapsedSeconds = 0;
+        _elapsedSeconds = elapsedSeconds;
         _stateSeconds = VectorUtil.GetMoveDuration(action);
         _velocity = VectorUtil.VelocityUnit(moveInput.Direction) / (float)_stateSeconds;
         _moveInput = moveInput;
+        if (elapsedSeconds >= 0)
+            _character.Position += _velocity * (float)elapsedSeconds;
     }
 
     public override void PhysicProcess(double delta)
@@ -98,6 +101,12 @@ public class CharacterMoveState : AbstractCharacterState
     public static CharacterMoveState Move(ICharacter character, MoveInput moveInput)
     {
         return new CharacterMoveState(character, ComputeMoveAction(character), moveInput);
+    }
+
+    public static CharacterMoveState Restore(ICharacter character, MoveMessage message)
+    {
+        var input = new MoveInput(message.Direction, message.Start);
+        return new CharacterMoveState(character, message.Action.Value, input );
     }
     
     public static CharacterMoveState FightWalk(ICharacter character, MoveInput moveInput)

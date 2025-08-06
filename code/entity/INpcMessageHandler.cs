@@ -17,4 +17,6 @@ public interface INpcMessageHandler : IEntityMessageHandler
     void ShowLifeBar(int percent);
     
     void FireProjectile(long targetId, string sprite, int flyMillis);
+
+    void ActivateEffect(float seconds);
 }

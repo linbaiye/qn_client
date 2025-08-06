@@ -12,7 +12,7 @@ public abstract partial class AbstractAnimationPlayer : AnimationPlayer
     private Vector2[] _areas;
     private Vector2[] _offsets;
 
-    protected CreatureDirection CurrentDirection;
+    protected CreatureDirection CurrentDirection = CreatureDirection.Down;
 
     protected void ExtractIdlePositions()
     {

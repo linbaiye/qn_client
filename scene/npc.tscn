@@ -1,14 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://bar3f645sox4s"]
+[gd_scene load_steps=12 format=3 uid="uid://bar3f645sox4s"]
 
 [ext_resource type="Script" uid="uid://cqmthwdfgvgtu" path="res://code/entity/Npc.cs" id="1_rnog4"]
 [ext_resource type="Script" uid="uid://dn8dv61le8ouc" path="res://code/entity/MonsterAnimationPlayer.cs" id="2_7ngcd"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_rnog4"]
+[ext_resource type="Shader" uid="uid://ccm7ppfln1mkv" path="res://shader/Sparkling.gdshader" id="3_fb5s2"]
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="4_8oust"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="4_fb5s2"]
 [ext_resource type="PackedScene" uid="uid://dagprws1ut6fs" path="res://scene/life_bar.tscn" id="6_06vv4"]
+[ext_resource type="Texture2D" uid="uid://cmdok6hb1jyye" path="res://icon.svg" id="7_fb5s2"]
+[ext_resource type="Script" uid="uid://c4gf0k6qlmj1s" path="res://code/entity/Effect.cs" id="9_co7e6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_06vv4"]
 blend_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04kj1"]
+shader = ExtResource("3_fb5s2")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/alpha = -0.5
+shader_parameter/shney_disperse = 4.0
+shader_parameter/shney_speed = 1.5
+shader_parameter/twist_speed = 1.0
+shader_parameter/rota_speed = 1.0
+shader_parameter/curve_ci = 0.2
 
 [node name="Npc" type="Node2D"]
 script = ExtResource("1_rnog4")
@@ -37,3 +50,10 @@ z_as_relative = false
 
 [node name="LifeBar" parent="." instance=ExtResource("6_06vv4")]
 offset_bottom = 2.0
+
+[node name="Effect" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_04kj1")
+texture = ExtResource("7_fb5s2")
+script = ExtResource("9_co7e6")
+
+[node name="Timer" type="Timer" parent="Effect"]

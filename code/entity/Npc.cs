@@ -10,10 +10,13 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
 {
     private MonsterAnimationPlayer _animationPlayer;
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
+    private Effect _effect;
     
     public override void _Ready()
     {
         base._Ready();
+        _effect = GetNode<Effect>("Effect");
         _animationPlayer = GetNode<MonsterAnimationPlayer>("AnimationPlayer");
         Visible = false;
         ZIndex = 2;
@@ -46,6 +49,11 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
     public void FireProjectile(long targetId, string sprite, int flyMillis)
     {
         FireProjectile(targetId, sprite, flyMillis, ComputeProjectileStartPoint);
+    }
+
+    public void ActivateEffect(float seconds)
+    {
+        _effect.Show(seconds);
     }
 
     private Vector2 ComputeVelocity(CreatureDirection direction, float duration)

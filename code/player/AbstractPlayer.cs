@@ -274,6 +274,25 @@ public abstract partial class AbstractPlayer : AbstractCreature
                 break;
         }
     }
+    
+    protected void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
+    {
+        switch (action)
+        {
+            case MoveAction.Fly:
+                AnimationPlayer.PlayFly(direction, startMillis);
+                break;
+            case MoveAction.Run:
+                AnimationPlayer.PlayRun(direction, startMillis);
+                break;
+            case MoveAction.Walk:
+                AnimationPlayer.PlayWalk(direction);
+                break;
+            case MoveAction.FightWalk:
+                AnimationPlayer.PlayFightWalk(direction, startMillis);
+                break;
+        }
+    }
 
     private static readonly Dictionary<CreatureDirection, Vector2> ProjectileLetOffPoints = new()
     {

@@ -14,7 +14,7 @@ public partial class DynamicObjectAnimationPlayer : AnimationPlayer
     private OffsetTexture[] _sprites;
 
 
-    private void Create(Animation animation, Animation.LoopModeEnum loopModeEnum, int start, int end)
+    private void Create(Animation animation, Animation.LoopModeEnum loopModeEnum, int start, int end, Vector2 offset)
     {
         animation.LoopMode = loopModeEnum;
         var bodyTexture = animation.AddTrack(Animation.TrackType.Value);
@@ -31,7 +31,7 @@ public partial class DynamicObjectAnimationPlayer : AnimationPlayer
         animation.ValueTrackSetUpdateMode(areaSize, Animation.UpdateMode.Discrete);
         for (int i = start, t = 0; i <= end; i++, t++)
         {
-            var textureOffset = _sprites[i].Offset + VectorUtil.DefaultTextureOffset;
+            var textureOffset = _sprites[i].Offset + offset;
             var time = Step * t;
             animation.TrackInsertKey(bodyTexture, time, _sprites[i].Texture);
             animation.TrackInsertKey(bodyOffset, time, textureOffset);
@@ -39,15 +39,16 @@ public partial class DynamicObjectAnimationPlayer : AnimationPlayer
             animation.TrackInsertKey(areaSize, time, _sprites[i].OriginalSize);
         }
     }
+
     
-    public OffsetTexture Initialize(string sprite, List<DynamicObjectSnapshot.Animate> animates)
+    public OffsetTexture Initialize(string sprite, List<DynamicObjectSnapshot.Animate> animates, Vector2 offset)
     {
         _sprites = ZipFileSpriteLoader.Instance.Load(sprite);
         var library = new AnimationLibrary();
         foreach (var ani in animates)
         {
             var animation = new Animation();
-            Create(animation, ani.Loop ? Animation.LoopModeEnum.Linear: Animation.LoopModeEnum.None, ani.Start, ani.End);
+            Create(animation, ani.Loop ? Animation.LoopModeEnum.Linear: Animation.LoopModeEnum.None, ani.Start, ani.End, offset);
             library.AddAnimation(ani.Id.ToString(), animation);
         }
         AddAnimationLibrary("default", library);
@@ -59,24 +60,24 @@ public partial class DynamicObjectAnimationPlayer : AnimationPlayer
         PlaySection("default/" + n, (float) elapsedMillis / 1000);
     }
 
-    public void Play(int start, int end, int elapsed = 0, bool loop = false)
-    {
-        Stop();
-        float trueStart = start == end ? start * Step : (float)elapsed / 1000 + start * Step;
-        if (!loop)
-        {
-            float endSec = start == end ? (end + 1) * Step - 0.01f : end * Step;
-            PlaySection("default/default", trueStart, endSec);
-        }
-        else
-        {
-            var animationLibrary = GetAnimationLibrary("default");
-            if (animationLibrary.HasAnimation("loop"))
-                 animationLibrary.RemoveAnimation("loop");
-            var animation = new Animation();
-            Create(animation, Animation.LoopModeEnum.Linear, start, end + 1);
-            animationLibrary.AddAnimation("loop", animation);
-            Play("default/loop");
-        }
-    }
+    // private void Play(int start, int end, int elapsed = 0, bool loop = false)
+    // {
+    //     Stop();
+    //     float trueStart = start == end ? start * Step : (float)elapsed / 1000 + start * Step;
+    //     if (!loop)
+    //     {
+    //         float endSec = start == end ? (end + 1) * Step - 0.01f : end * Step;
+    //         PlaySection("default/default", trueStart, endSec);
+    //     }
+    //     else
+    //     {
+    //         var animationLibrary = GetAnimationLibrary("default");
+    //         if (animationLibrary.HasAnimation("loop"))
+    //              animationLibrary.RemoveAnimation("loop");
+    //         var animation = new Animation();
+    //         Create(animation, Animation.LoopModeEnum.Linear, start, end + 1, );
+    //         animationLibrary.AddAnimation("loop", animation);
+    //         Play("default/loop");
+    //     }
+    // }
 }

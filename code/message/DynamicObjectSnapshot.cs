@@ -8,7 +8,8 @@ public class DynamicObjectSnapshot
 {
     private DynamicObjectSnapshot(string name, long id, string shape, Vector2I coordinate,
         int aniId, int elapsed,
-        IEnumerable<Vector2I> coordinates, List<Animate> animations, bool occupying)
+        IEnumerable<Vector2I> coordinates, List<Animate> animations, bool occupying,
+        Vector2 offset)
     {
         Name = name;
         Id = id;
@@ -19,6 +20,7 @@ public class DynamicObjectSnapshot
         Animations = animations;
         AnimateId = aniId;
         Occupying = occupying;
+        Offset = offset;
     }
     
     public int AnimateId { get; }
@@ -34,6 +36,8 @@ public class DynamicObjectSnapshot
     }
     
     public Vector2I Coordinate { get; }
+    
+    public Vector2 Offset { get; }
 
     public List<Animate> Animations { get; } 
     public string Name { get; }
@@ -42,12 +46,6 @@ public class DynamicObjectSnapshot
     public int Elapsed { get; }
     public IEnumerable<Vector2I> Coordinates { get; }
 
-    public static DynamicObjectSnapshot Test()
-    {
-        List<Animate> animates =
-            [new Animate(true, 0, 0, 1), new Animate(false, 0, 9, 2), new Animate(true, 10, 19, 3)];
-        return new DynamicObjectSnapshot("1", 999, "x14", new Vector2I(176, 242), 3, 0, new[]{new Vector2I(176, 242)}, animates, true);
-    }
 
     public static DynamicObjectSnapshot FromPacket(DynamicObjectSnapshotPacket packet)
     {
@@ -61,6 +59,7 @@ public class DynamicObjectSnapshot
         {
             coordinates.Add(new Vector2I(packet.GuardX[i], packet.GuardY[i]));
         }
-        return new DynamicObjectSnapshot(packet.ViewName, packet.Id, packet.Shape, new Vector2I(packet.X, packet.Y), packet.CurrentAni, packet.CurrentElapsed, coordinates, animates, packet.Occupying);
+        return new DynamicObjectSnapshot(packet.ViewName, packet.Id, packet.Shape, new Vector2I(packet.X, packet.Y), packet.CurrentAni, packet.CurrentElapsed,
+            coordinates, animates, packet.Occupying, new Vector2(packet.OffsetX, packet.OffsetY));
     }
 }

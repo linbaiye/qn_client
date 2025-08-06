@@ -16,7 +16,11 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
             {
                 continue;
             }
-            TileSetAtlasSource source = new TileSetAtlasSource() { Texture = texture , TextureRegionSize = new Vector2I(32, 24)};
+            TileSetAtlasSource source = new TileSetAtlasSource() 
+            {
+                Texture = texture , 
+                TextureRegionSize = new Vector2I(32, 24),
+            };
             int width = texture.GetWidth() / 32;
             for (int w = 0; w < width; w++)
             {

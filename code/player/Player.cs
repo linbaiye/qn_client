@@ -30,8 +30,8 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
             throw new NotSupportedException();
         Position = message.Start.ToPosition();
         EmitEvent(new EntityChangeCoordinateEvent(this));
-        PlayMoveAnimation(message.Action.Value, message.Direction);
-        CreateMover(message.Action.Value, message.Direction);
+        CreateMover(message.Action.Value, message.Direction, message.StartMillis);
+        PlayMoveAnimation(message.Action.Value, message.Direction, message.StartMillis);
     }
 
     private void OnAnimationDone(StringName name)
@@ -70,9 +70,10 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
 
     public void ChangeState(Vector2I coor, PlayerState newState, CreatureDirection direction)
     {
-        Position = coor.ToPosition();
-        EmitEvent(new EntityChangeCoordinateEvent(this));
         Mover = null;
+        if (newState != PlayerState.Hurt)
+            Position = coor.ToPosition();
+        EmitEvent(new EntityChangeCoordinateEvent(this));
         PlayStateAnimation(newState, direction);
     }
     
@@ -81,26 +82,6 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         Mover = null;
         PlayAttackAnimation(action, direction, effect);
     }
-
-    private void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
-    {
-        switch (action)
-        {
-            case MoveAction.Fly:
-                AnimationPlayer.PlayFly(direction, startMillis);
-                break;
-            case MoveAction.Run:
-                AnimationPlayer.PlayRun(direction, startMillis);
-                break;
-            case MoveAction.Walk:
-                AnimationPlayer.PlayWalk(direction);
-                break;
-            case MoveAction.FightWalk:
-                AnimationPlayer.PlayFightWalk(direction, startMillis);
-                break;
-        }
-    }
-    
 
 
     private void CreateMover(MoveAction action, CreatureDirection direction, int elapsedMillis = 0)

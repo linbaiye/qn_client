@@ -9,5 +9,7 @@ public interface ICharacterMessageHandler : IBasePlayerMessageHandler
     void SyncActiveKungFuList(SyncActiveKungFuListMessage message);
     
     void SetPosition(Vector2I coordinate, PlayerState state, CreatureDirection direction);
-    
+
+    void RestoreMove(MoveMessage message);
+
 }

@@ -51,7 +51,7 @@ public partial class DynamicObject : AbstractEntity, IDynamicObjectMessageHandle
     {
         Position = snapshot.Coordinate.ToPosition();
         Id = snapshot.Id;
-        var offsetTexture = _animationPlayer.Initialize(snapshot.Shape, snapshot.Animations);
+        var offsetTexture = _animationPlayer.Initialize(snapshot.Shape, snapshot.Animations, snapshot.Offset);
         foreach (var c in snapshot.Coordinates)
         {
             _coordinates.Add(c);
@@ -62,7 +62,7 @@ public partial class DynamicObject : AbstractEntity, IDynamicObjectMessageHandle
             EmitEvent(new EntityChangeCoordinateEvent(this));
         _bodySprite.AttackInvoked += () => AttackTriggered?.Invoke(Id);
         _animationPlayer.AnimationFinished += OnDone;
-        var offset = offsetTexture.Offset + offsetTexture.OriginalSize / 2 + VectorUtil.DefaultTextureOffset;
+        var offset = offsetTexture.Offset + offsetTexture.OriginalSize / 2 + new Vector2(16,0);
         _name.Text = snapshot.Name;
         _name.Position = offset - _name.GetTextSize(snapshot.Name) / 2;
         _lifeBar.Position = offset - _lifeBar.Size / 2 - new Vector2(0, offsetTexture.OriginalSize.Y / 2);

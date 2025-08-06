@@ -97,10 +97,16 @@ public partial class LootAssistance : NinePatchRect
                 if (!_inversed.ButtonPressed)
                 {
                     _connection.WriteAndFlush(new PickInput(groundItem.Id));
+                    return;
                 }
-            } else {
+            }
+            else 
+            {
                 if (_inversed.ButtonPressed)
+                {
                     _connection.WriteAndFlush(new PickInput(groundItem.Id));
+                    return;
+                }
             }
         }
     }

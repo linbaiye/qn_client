@@ -145,8 +145,8 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void ChangeState(Vector2I coordinate, PlayerState newState, CreatureDirection direction)
     {
-        Mover = null;
-        Position = coordinate.ToPosition();
+        if (newState != PlayerState.Hurt)
+            Position = coordinate.ToPosition();
         Direction = direction;
         switch (newState)
         {
@@ -165,7 +165,6 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void SetPosition(Vector2I coordinate, PlayerState state, CreatureDirection direction)
     {
-        Mover = null;
         DoSetPositionState(coordinate, state, direction);
         Direction = direction;
         if (state == PlayerState.Idle)
@@ -174,9 +173,14 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
             ChangeState(CharacterStandState.FightStand(this));
     }
 
+    public void RestoreMove(MoveMessage message)
+    {
+        _characterState = CharacterMoveState.Restore(this, message);
+        PlayMoveAnimation(message.Action.Value, message.Direction, message.StartMillis);
+    }
+
     public void Attack(AttackAction action, CreatureDirection direction, string effect)
     {
-        Mover = null;
         PlayAttackAnimation(action, direction, effect);
         Direction = direction;
         ChangeState(CharacterWaitingState.Instance);
