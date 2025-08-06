@@ -20,6 +20,8 @@ public interface ICharacter : ICreature
         get;
     }
     
+    public void PlayMoveAnimation(MoveAction moveAction, CreatureDirection direction, int start = 0);
+    
     CreatureDirection Direction { get; set; }
     
     Vector2 Position { get; set; }

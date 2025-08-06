@@ -275,7 +275,7 @@ public abstract partial class AbstractPlayer : AbstractCreature
         }
     }
     
-    protected void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
+    public void PlayMoveAnimation(MoveAction action, CreatureDirection direction, int startMillis = 0)
     {
         switch (action)
         {

@@ -33,6 +33,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     
     public IMap Map => _map;
 
+
     public CreatureDirection Direction { get; set; }
 
     public override void _PhysicsProcess(double delta)
@@ -175,6 +176,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void RestoreMove(MoveMessage message)
     {
+        Position = message.Start.ToPosition();
         _characterState = CharacterMoveState.Restore(this, message);
         PlayMoveAnimation(message.Action.Value, message.Direction, message.StartMillis);
     }
