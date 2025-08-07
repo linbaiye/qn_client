@@ -63,7 +63,7 @@ public partial class ObjectLayer : Node2D
 			int yPos = y * 24;
 			if (objectInfo.Textures.Length > 1)
 			{
-				if (!_animatedObjectSprites.Contains(objectInfo.Name(x, y)))
+				//if (!_animatedObjectSprites.Contains(objectInfo.Name(x, y)))
 				{
 					var animatedSprite2D = CreateAnimatedSprite2d(objectInfo, x, y);
 					AddChild(animatedSprite2D);

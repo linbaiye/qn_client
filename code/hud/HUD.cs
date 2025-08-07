@@ -46,6 +46,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     private AttributeEquipment _attributeEquipment;
 
+    private Quest _quest;
+
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -70,6 +72,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _system.SetSettingChangedListener(_audioManager.OnSystemSettingChanged);
         _leftUpText = GetNode<LeftUpText>("LeftUpText");
         _attributeEquipment = GetNode<AttributeEquipment>("AttributeEquipment");
+        _quest = GetNode<Quest>("Quest");
         Visible = false;
     }
         
@@ -209,6 +212,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void ShowEquipmentDescription(EquipmentType type, string text)
     {
         _attributeEquipment.ShowEquipmentDescription(type, text);
+    }
+
+    public void ShowQuest(ShowQuestMessage message)
+    {
+        _quest.Show(message);
     }
 
     public void DisplayBottomText(string text, string color, string bgColor)

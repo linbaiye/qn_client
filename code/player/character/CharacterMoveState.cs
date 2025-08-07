@@ -88,7 +88,6 @@ public class CharacterMoveState : AbstractCharacterState
         _character.EmitEvent(new EntityChangeCoordinateEvent(_character));
         if (_character.NextMoveDirection == null)
         {
-            GD.Print("No move.");
             ChangeToStandState();
             return;
         }

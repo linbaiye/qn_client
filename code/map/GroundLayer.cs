@@ -36,7 +36,7 @@ public partial class GroundLayer : AbstractGroundLayer
         var orderedEnumerable = sets.OrderBy(i => i);
         foreach (var i in orderedEnumerable)
         {
-        GD.Print(i);
+            GD.Print(i);
         }
     }
 }

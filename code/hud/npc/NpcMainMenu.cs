@@ -33,6 +33,7 @@ public partial class NpcMainMenu : AbstractNpcMenu
     private void OnAbilityClicked(int n)
     {
         SendMessage(new ClickNpcAbilityInput(NpcId, _submenuButtons[n].Text));
+        Visible = false;
     }
 
     public void Show(NpcMenuMessage message)

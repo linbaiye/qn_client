@@ -61,4 +61,6 @@ public interface IHUDMessageHandler
     void ShowKungFuDescription(int slot, string text);
     
     void ShowEquipmentDescription(EquipmentType type, string text);
+
+    void ShowQuest(ShowQuestMessage message);
 }
