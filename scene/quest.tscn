@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://01y756go6dsm"]
+
+[ext_resource type="Texture2D" uid="uid://ovtvhdr63aqb" path="res://ui/quest/quest_dialog.png" id="1_53aov"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_ystq4"]
+
+[node name="Quest" type="NinePatchRect"]
+offset_right = 380.0
+offset_bottom = 304.0
+texture = ExtResource("1_53aov")
+
+[node name="NpcName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 8.0
+offset_right = 303.0
+offset_bottom = 25.0
+theme = ExtResource("2_ystq4")
+text = "至善大师"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 4.0
+offset_right = 376.0
+offset_bottom = 30.0
+theme = ExtResource("2_ystq4")
+
+[node name="QuesName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 49.0
+offset_right = 358.0
+offset_bottom = 105.0
+theme = ExtResource("2_ystq4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 130.0
+offset_right = 366.0
+offset_bottom = 219.0
+theme = ExtResource("2_ystq4")
+text = "金钟罩失传江湖已久，万幸贫僧尚有藏本。要想拿到金钟罩，需取得熊掌200个、熊胆30个、老虎指甲100个。"
+autowrap_mode = 1
+
+[node name="Submit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 237.0
+offset_right = 357.0
+offset_bottom = 254.0
+theme = ExtResource("2_ystq4")
+text = "交换护体"
