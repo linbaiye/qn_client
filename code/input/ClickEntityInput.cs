@@ -9,7 +9,7 @@ public readonly struct ClickEntityInput(long id) : I2ServerMessage
     {
         return new ClientPacket()
         {
-            ClickPacket = new ClickPacket()
+            ClickPacket = new ClickInputPacket()
             {
                 Id = id,
             }

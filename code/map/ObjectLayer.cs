@@ -27,13 +27,12 @@ public partial class ObjectLayer : Node2D
 			return;
         foreach (var child in GetChildren())
         {
-	        if (child is not AnimatedSprite2D animatedSprite2D  ||
+	        /*if (child is not AnimatedSprite2D animatedSprite2D  ||
 	            string.IsNullOrEmpty(animatedSprite2D.Name) || 
 	            !animatedSprite2D.Name.ToString().StartsWith("obj_"))
-	        {
-		        RemoveChild(child);
-		        child.QueueFree();
-	        }
+	        {*/
+	        RemoveChild(child);
+	        child.QueueFree();
         }
         atzMapFileParser.ForeachCell(start, end, (cell, x, y) => DrawObjectAtCoordinate(cell.ObjectId, x, y));
 	}
@@ -50,7 +49,6 @@ public partial class ObjectLayer : Node2D
 		{
 			Centered = false, Position = new Vector2(x * 32, y * 24), Offset = mapObject.Offset,
 			SpriteFrames = frames,
-			YSortEnabled = true,
 			Autoplay = "default",
 			Name = mapObject.Name(x, y),
 		};
@@ -77,7 +75,6 @@ public partial class ObjectLayer : Node2D
 				Sprite2D objectSprite = new Sprite2D()
 				{
 					Texture = objectInfo.Textures[0], Centered = false, Position = new Vector2(xPos, yPos),
-					YSortEnabled = true,
 					Offset = objectInfo.Offset,
 				};
 				AddChild(objectSprite);

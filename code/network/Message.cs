@@ -36,55 +36,50 @@ namespace Source.Networking.Protobuf {
             "UmVzcG9uc2VQYWNrZXQSEAoIc2VxdWVuY2UYASABKAMSQgoOcG9zaXRpb25Q",
             "YWNrZXQYAiABKAsyKi5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5Qb3Np",
             "dGlvblBhY2tldCJHCgtJbnB1dFBhY2tldBIMCgR0eXBlGAEgASgFEhAKCHNl",
-            "cXVlbmNlGAIgASgDEhgKEGNsaWNrZWREaXJlY3Rpb24YAyABKAUiGQoLQ2xp",
-            "Y2tQYWNrZXQSCgoCaWQYASABKAMiXAoQUmlnaHRDbGlja1BhY2tldBIMCgR0",
-            "eXBlGAEgASgFEhMKBnNsb3RJZBgCIAEoBUgAiAEBEhEKBHBhZ2UYAyABKAVI",
-            "AYgBAUIJCgdfc2xvdElkQgcKBV9wYWdlIjsKFkNsaWVudEtleVByZXNzZWRQ",
-            "YWNrZXQSCwoDa2V5GAEgASgFEgkKAXgYAiABKAUSCQoBeRgDIAEoBSIcCg5Q",
-            "aWNrSXRlbVBhY2tldBIKCgJpZBgBIAEoBSI0ChFQbGF5ZXJMb2dpblBhY2tl",
-            "dBINCgV0b2tlbhgBIAEoCRIQCghjaGFyTmFtZRgCIAEoCSIkChZDcmVhdHVy",
-            "ZURpZUV2ZW50UGFja2V0EgoKAmlkGAEgASgDIpMBChlDcmVhdHVyZUF0dGFj",
-            "a0V2ZW50UGFja2V0EgoKAmlkGAEgASgDEhEKCWRpcmVjdGlvbhgCIAEoBRIN",
-            "CgVzdGF0ZRgDIAEoBRIOCgZwbGF5ZXIYBCABKAgSCQoBeBgFIAEoBRIJCgF5",
-            "GAYgASgFEhUKCGVmZmVjdElkGAcgASgFSACIAQFCCwoJX2VmZmVjdElkIjUK",
-            "GENyZWF0dXJlU291bmRFdmVudFBhY2tldBIKCgJpZBgBIAEoAxINCgVzb3Vu",
-            "ZBgCIAEoCSKMAQoXQ3JlYXR1cmVIdXJ0RXZlbnRQYWNrZXQSCgoCaWQYASAB",
-            "KAMSEQoJZGlyZWN0aW9uGAIgASgFEgkKAXgYAyABKAUSCQoBeRgEIAEoBRIW",
-            "Cg5hZnRlckh1cnRTdGF0ZRgFIAEoBRITCgtjdXJyZW50TGlmZRgGIAEoBRIP",
-            "CgdtYXhMaWZlGAcgASgFIlcKEUNoYW5nZVN0YXRlUGFja2V0EgoKAmlkGAEg",
-            "ASgDEg0KBXN0YXRlGAIgASgFEhEKCWRpcmVjdGlvbhgDIAEoBRIJCgF4GAQg",
-            "ASgFEgkKAXkYBSABKAUicwoPTW92ZUV2ZW50UGFja2V0EjYKBWlucHV0GAEg",
-            "ASgLMicuU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuSW5wdXRQYWNrZXQS",
-            "EwoLaGFwcGVuZWRBdFgYAiABKAUSEwoLaGFwcGVuZWRBdFkYAyABKAUiXwoX",
-            "Q2xpZW50QXR0YWNrRXZlbnRQYWNrZXQSEAoIc2VxdWVuY2UYASABKAMSEAoI",
-            "dGFyZ2V0SWQYAiABKAMSDQoFc3RhdGUYAyABKAUSEQoJZGlyZWN0aW9uGAQg",
-            "ASgFIiMKE0NsaWVudFVuZXF1aXBQYWNrZXQSDAoEdHlwZRgBIAEoBSI1ChhD",
-            "bGllbnRUb2dnbGVLdW5nRnVQYWNrZXQSCwoDdGFiGAEgASgFEgwKBHNsb3QY",
-            "AiABKAUiKwoTQ2xpZW50U2l0RG93blBhY2tldBIJCgF4GAEgASgFEgkKAXkY",
-            "AiABKAUiJgoTQ2xpZW50U3RhbmRVcFBhY2tldBIPCgdwYWRkaW5nGAEgASgI",
-            "IjcKF1N3YXBJbnZlbnRvcnlTbG90UGFja2V0Eg0KBXNsb3QxGAEgASgFEg0K",
-            "BXNsb3QyGAIgASgFIkIKFFN3YXBLdW5nRnVTbG90UGFja2V0Eg0KBXNsb3Qx",
-            "GAEgASgFEg0KBXNsb3QyGAIgASgFEgwKBHBhZ2UYAyABKAUiLgoeRG91Ymxl",
-            "Q2xpY2tJbnZlbnRvcnlTbG90UGFja2V0EgwKBHNsb3QYASABKAUibgoORHJv",
-            "cEl0ZW1QYWNrZXQSDAoEc2xvdBgBIAEoBRIJCgF4GAIgASgFEgkKAXkYAyAB",
-            "KAUSDgoGbnVtYmVyGAQgASgFEhMKC2Nvb3JkaW5hdGVYGAUgASgFEhMKC2Nv",
-            "b3JkaW5hdGVZGAYgASgFIjkKFURyb3BJdGVtQ29uZmlybVBhY2tldBIMCgRz",
-            "bG90GAEgASgFEhIKCm51bWJlckxlZnQYAiABKAUikQEKDlNob3dJdGVtUGFj",
-            "a2V0EgoKAmlkGAEgASgDEgwKBGljb24YAiABKAUSEwoGbnVtYmVyGAQgASgF",
-            "SACIAQESEwoLY29vcmRpbmF0ZVgYBSABKAUSEwoLY29vcmRpbmF0ZVkYBiAB",
-            "KAUSDAoEbmFtZRgHIAEoCRINCgVjb2xvchgIIAEoBUIJCgdfbnVtYmVyImcK",
-            "ElNob3dUZWxlcG9ydFBhY2tldBIKCgJpZBgBIAEoAxITCgtjb29yZGluYXRl",
-            "WBgFIAEoBRITCgtjb29yZGluYXRlWRgGIAEoBRIMCgRuYW1lGAcgASgJEg0K",
-            "BXNoYXBlGAggASgFIiwKGUNsaWVudFNpbXBsZUNvbW1hbmRQYWNrZXQSDwoH",
-            "Y29tbWFuZBgBIAEoBSJmChVDaGFyYWN0ZXJLdW5nRnVQYWNrZXQSGAoQYXR0",
-            "YWNrS3VuZ0Z1TmFtZRgBIAEoCRIZChFhdHRhY2tLdW5nRnVMZXZlbBgCIAEo",
-            "BRIYChBhdHRhY2tLdW5nRnVUeXBlGAMgASgFIjkKF0NsaWVudFRyYWRlUGxh",
-            "eWVyUGFja2V0EhAKCHRhcmdldElkGAEgASgDEgwKBHNsb3QYAiABKAUiawoX",
-            "Q2xpZW50VXBkYXRlVHJhZGVQYWNrZXQSFQoNaW52ZW50b3J5U2xvdBgBIAEo",
-            "BRISCgppdGVtTnVtYmVyGAIgASgDEgwKBHR5cGUYAyABKAUSFwoPdHJhZGVX",
-            "aW5kb3dTbG90GAQgASgFInQKHkNsaWVudE1lcmNoYW50VHJhZGVJdGVtc1Bh",
-            "Y2tldBISCgptZXJjaGFudElkGAEgASgDEj4KBWl0ZW1zGAIgAygLMi8uU291",
-            "cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuSW52ZW50b3J5SXRlbVBhY2tldCI/",
+            "cXVlbmNlGAIgASgDEhgKEGNsaWNrZWREaXJlY3Rpb24YAyABKAUiHgoQQ2xp",
+            "Y2tJbnB1dFBhY2tldBIKCgJpZBgBIAEoAyJcChBSaWdodENsaWNrUGFja2V0",
+            "EgwKBHR5cGUYASABKAUSEwoGc2xvdElkGAIgASgFSACIAQESEQoEcGFnZRgD",
+            "IAEoBUgBiAEBQgkKB19zbG90SWRCBwoFX3BhZ2UiOwoWQ2xpZW50S2V5UHJl",
+            "c3NlZFBhY2tldBILCgNrZXkYASABKAUSCQoBeBgCIAEoBRIJCgF5GAMgASgF",
+            "IhwKDlBpY2tJdGVtUGFja2V0EgoKAmlkGAEgASgFIjQKEVBsYXllckxvZ2lu",
+            "UGFja2V0Eg0KBXRva2VuGAEgASgJEhAKCGNoYXJOYW1lGAIgASgJIiQKFkNy",
+            "ZWF0dXJlRGllRXZlbnRQYWNrZXQSCgoCaWQYASABKAMikwEKGUNyZWF0dXJl",
+            "QXR0YWNrRXZlbnRQYWNrZXQSCgoCaWQYASABKAMSEQoJZGlyZWN0aW9uGAIg",
+            "ASgFEg0KBXN0YXRlGAMgASgFEg4KBnBsYXllchgEIAEoCBIJCgF4GAUgASgF",
+            "EgkKAXkYBiABKAUSFQoIZWZmZWN0SWQYByABKAVIAIgBAUILCglfZWZmZWN0",
+            "SWQiNQoYQ3JlYXR1cmVTb3VuZEV2ZW50UGFja2V0EgoKAmlkGAEgASgDEg0K",
+            "BXNvdW5kGAIgASgJIowBChdDcmVhdHVyZUh1cnRFdmVudFBhY2tldBIKCgJp",
+            "ZBgBIAEoAxIRCglkaXJlY3Rpb24YAiABKAUSCQoBeBgDIAEoBRIJCgF5GAQg",
+            "ASgFEhYKDmFmdGVySHVydFN0YXRlGAUgASgFEhMKC2N1cnJlbnRMaWZlGAYg",
+            "ASgFEg8KB21heExpZmUYByABKAUiVwoRQ2hhbmdlU3RhdGVQYWNrZXQSCgoC",
+            "aWQYASABKAMSDQoFc3RhdGUYAiABKAUSEQoJZGlyZWN0aW9uGAMgASgFEgkK",
+            "AXgYBCABKAUSCQoBeRgFIAEoBSJzCg9Nb3ZlRXZlbnRQYWNrZXQSNgoFaW5w",
+            "dXQYASABKAsyJy5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5JbnB1dFBh",
+            "Y2tldBITCgtoYXBwZW5lZEF0WBgCIAEoBRITCgtoYXBwZW5lZEF0WRgDIAEo",
+            "BSJfChdDbGllbnRBdHRhY2tFdmVudFBhY2tldBIQCghzZXF1ZW5jZRgBIAEo",
+            "AxIQCgh0YXJnZXRJZBgCIAEoAxINCgVzdGF0ZRgDIAEoBRIRCglkaXJlY3Rp",
+            "b24YBCABKAUiIwoTQ2xpZW50VW5lcXVpcFBhY2tldBIMCgR0eXBlGAEgASgF",
+            "IjUKGENsaWVudFRvZ2dsZUt1bmdGdVBhY2tldBILCgN0YWIYASABKAUSDAoE",
+            "c2xvdBgCIAEoBSIrChNDbGllbnRTaXREb3duUGFja2V0EgkKAXgYASABKAUS",
+            "CQoBeRgCIAEoBSImChNDbGllbnRTdGFuZFVwUGFja2V0Eg8KB3BhZGRpbmcY",
+            "ASABKAgiNwoXU3dhcEludmVudG9yeVNsb3RQYWNrZXQSDQoFc2xvdDEYASAB",
+            "KAUSDQoFc2xvdDIYAiABKAUiQgoUU3dhcEt1bmdGdVNsb3RQYWNrZXQSDQoF",
+            "c2xvdDEYASABKAUSDQoFc2xvdDIYAiABKAUSDAoEcGFnZRgDIAEoBSIuCh5E",
+            "b3VibGVDbGlja0ludmVudG9yeVNsb3RQYWNrZXQSDAoEc2xvdBgBIAEoBSI5",
+            "ChVEcm9wSXRlbUNvbmZpcm1QYWNrZXQSDAoEc2xvdBgBIAEoBRISCgpudW1i",
+            "ZXJMZWZ0GAIgASgFIpEBCg5TaG93SXRlbVBhY2tldBIKCgJpZBgBIAEoAxIM",
+            "CgRpY29uGAIgASgFEhMKBm51bWJlchgEIAEoBUgAiAEBEhMKC2Nvb3JkaW5h",
+            "dGVYGAUgASgFEhMKC2Nvb3JkaW5hdGVZGAYgASgFEgwKBG5hbWUYByABKAkS",
+            "DQoFY29sb3IYCCABKAVCCQoHX251bWJlciJnChJTaG93VGVsZXBvcnRQYWNr",
+            "ZXQSCgoCaWQYASABKAMSEwoLY29vcmRpbmF0ZVgYBSABKAUSEwoLY29vcmRp",
+            "bmF0ZVkYBiABKAUSDAoEbmFtZRgHIAEoCRINCgVzaGFwZRgIIAEoBSIsChlD",
+            "bGllbnRTaW1wbGVDb21tYW5kUGFja2V0Eg8KB2NvbW1hbmQYASABKAUiZgoV",
+            "Q2hhcmFjdGVyS3VuZ0Z1UGFja2V0EhgKEGF0dGFja0t1bmdGdU5hbWUYASAB",
+            "KAkSGQoRYXR0YWNrS3VuZ0Z1TGV2ZWwYAiABKAUSGAoQYXR0YWNrS3VuZ0Z1",
+            "VHlwZRgDIAEoBSI5ChdDbGllbnRUcmFkZVBsYXllclBhY2tldBIQCgh0YXJn",
+            "ZXRJZBgBIAEoAxIMCgRzbG90GAIgASgFImsKF0NsaWVudFVwZGF0ZVRyYWRl",
+            "UGFja2V0EhUKDWludmVudG9yeVNsb3QYASABKAUSEgoKaXRlbU51bWJlchgC",
+            "IAEoAxIMCgR0eXBlGAMgASgFEhcKD3RyYWRlV2luZG93U2xvdBgEIAEoBSI/",
             "CiBDbGllbnRUcmlnZ2VyRHluYW1pY09iamVjdFBhY2tldBIKCgJpZBgBIAEo",
             "AxIPCgd1c2VTbG90GAIgASgFIkgKGkNsaWVudFN3YXBLdW5nRnVTbG90UGFj",
             "a2V0EgwKBHBhZ2UYASABKAUSDQoFc2xvdDEYAiABKAUSDQoFc2xvdDIYAyAB",
@@ -103,54 +98,42 @@ namespace Source.Networking.Protobuf {
             "EAoIbGVnQXJtb3IYECABKAUSDAoEbmFtZRgRIAEoCRIMCgR0eXBlGBIgASgF",
             "IjcKF0NsaWVudE1hbmFnZUd1aWxkUGFja2V0EgwKBHR5cGUYASABKAUSDgoG",
             "dGFyZ2V0GAIgASgJIjgKF0NsaWVudFN1Ym1pdFF1ZXN0UGFja2V0EgoKAmlk",
-            "GAEgASgDEhEKCXF1ZXN0TmFtZRgCIAEoCSI8CiBDbGllbnRDbGlja0ludGVy",
-            "YWN0YWJpbGl0eVBhY2tldBIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJIh8K",
-            "D0NoYXRJbnB1dFBhY2tldBIMCgR0ZXh0GAEgASgJIi4KGUNsaWNrRXF1aXBt",
-            "ZW50SW5wdXRQYWNrZXQSEQoJZXF1aXBUeXBlGAEgASgFIq0bCgxDbGllbnRQ",
-            "YWNrZXQSRgoPbW92ZUV2ZW50UGFja2V0GAEgASgLMisuU291cmNlLk5ldHdv",
-            "cmtpbmcuUHJvdG9idWYuTW92ZUV2ZW50UGFja2V0SAASPgoLY2xpY2tQYWNr",
-            "ZXQYAiABKAsyJy5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5DbGlja1Bh",
-            "Y2tldEgAEkQKC2xvZ2luUGFja2V0GAMgASgLMi0uU291cmNlLk5ldHdvcmtp",
-            "bmcuUHJvdG9idWYuUGxheWVyTG9naW5QYWNrZXRIABJWChdzd2FwSW52ZW50",
-            "b3J5U2xvdFBhY2tldBgFIAEoCzIzLlNvdXJjZS5OZXR3b3JraW5nLlByb3Rv",
-            "YnVmLlN3YXBJbnZlbnRvcnlTbG90UGFja2V0SAASZAoeZG91YmxlQ2xpY2tJ",
-            "bnZlbnRvcnlTbG90UGFja2V0GAYgASgLMjouU291cmNlLk5ldHdvcmtpbmcu",
-            "UHJvdG9idWYuRG91YmxlQ2xpY2tJbnZlbnRvcnlTbG90UGFja2V0SAASPgoI",
-            "ZHJvcEl0ZW0YByABKAsyKi5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5E",
-            "cm9wSXRlbVBhY2tldEgAEj4KCHBpY2tJdGVtGAggASgLMiouU291cmNlLk5l",
-            "dHdvcmtpbmcuUHJvdG9idWYuUGlja0l0ZW1QYWNrZXRIABJCCgd1bmVxdWlw",
-            "GAkgASgLMi8uU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuQ2xpZW50VW5l",
-            "cXVpcFBhY2tldEgAEkwKDHRvZ2dsZUt1bmdGdRgKIAEoCzI0LlNvdXJjZS5O",
-            "ZXR3b3JraW5nLlByb3RvYnVmLkNsaWVudFRvZ2dsZUt1bmdGdVBhY2tldEgA",
-            "EkIKB3NpdERvd24YCyABKAsyLy5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1",
-            "Zi5DbGllbnRTaXREb3duUGFja2V0SAASQgoHc3RhbmRVcBgMIAEoCzIvLlNv",
-            "dXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNsaWVudFN0YW5kVXBQYWNrZXRI",
-            "ABJPCglzZWxsSXRlbXMYDSABKAsyOi5Tb3VyY2UuTmV0d29ya2luZy5Qcm90",
-            "b2J1Zi5DbGllbnRNZXJjaGFudFRyYWRlSXRlbXNQYWNrZXRIABJOCghidXlJ",
-            "dGVtcxgOIAEoCzI6LlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNsaWVu",
-            "dE1lcmNoYW50VHJhZGVJdGVtc1BhY2tldEgAEkIKCnJpZ2h0Q2xpY2sYDyAB",
-            "KAsyLC5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5SaWdodENsaWNrUGFj",
-            "a2V0SAASSwoMdHJhZGVSZXF1ZXN0GBAgASgLMjMuU291cmNlLk5ldHdvcmtp",
-            "bmcuUHJvdG9idWYuQ2xpZW50VHJhZGVQbGF5ZXJQYWNrZXRIABJKCgt1cGRh",
-            "dGVUcmFkZRgRIAEoCzIzLlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNs",
-            "aWVudFVwZGF0ZVRyYWRlUGFja2V0SAASXAoUdHJpZ2dlckR5bmFtaWNPYmpl",
-            "Y3QYEiABKAsyPC5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5DbGllbnRU",
-            "cmlnZ2VyRHluYW1pY09iamVjdFBhY2tldEgAElAKDnN3YXBLdW5nRnVTbG90",
-            "GBMgASgLMjYuU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuQ2xpZW50U3dh",
-            "cEt1bmdGdVNsb3RQYWNrZXRIABJOCg1iYW5rT3BlcmF0aW9uGBggASgLMjUu",
-            "U291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuQ2xpZW50QmFua09wZXJhdGlv",
-            "blBhY2tldEgAEkgKCmNoYW5nZVRlYW0YGSABKAsyMi5Tb3VyY2UuTmV0d29y",
-            "a2luZy5Qcm90b2J1Zi5DbGllbnRDaGFuZ2VUZWFtUGFja2V0SAASSAoKZm91",
-            "bmRHdWlsZBgaIAEoCzIyLlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNs",
-            "aWVudEZvdW5kR3VpbGRQYWNrZXRIABJWChFjcmVhdGVHdWlsZEt1bmdGdRgb",
-            "IAEoCzI5LlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNsaWVudENyZWF0",
-            "ZUd1aWxkS3VuZ0Z1UGFja2V0SAASSgoLbWFuYWdlR3VpbGQYHCABKAsyMy5T",
-            "b3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5DbGllbnRNYW5hZ2VHdWlsZFBh",
-            "Y2tldEgAEkoKC3N1Ym1pdFF1ZXN0GB0gASgLMjMuU291cmNlLk5ldHdvcmtp",
-            "bmcuUHJvdG9idWYuQ2xpZW50U3VibWl0UXVlc3RQYWNrZXRIABJQCghpbnRl",
-            "cmFjdBgeIAEoCzI8LlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNsaWVu",
-            "dENsaWNrSW50ZXJhY3RhYmlsaXR5UGFja2V0SAASOAoFZGVidWcYHyABKAsy",
-            "Jy5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5EZWJ1Z1BhY2tldEgAEkAK",
+            "GAEgASgDEhEKCXF1ZXN0TmFtZRgCIAEoCSIfCg9DaGF0SW5wdXRQYWNrZXQS",
+            "DAoEdGV4dBgBIAEoCSIuChlDbGlja0VxdWlwbWVudElucHV0UGFja2V0EhEK",
+            "CWVxdWlwVHlwZRgBIAEoBSLPFwoMQ2xpZW50UGFja2V0EkYKD21vdmVFdmVu",
+            "dFBhY2tldBgBIAEoCzIrLlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLk1v",
+            "dmVFdmVudFBhY2tldEgAEkQKC2xvZ2luUGFja2V0GAMgASgLMi0uU291cmNl",
+            "Lk5ldHdvcmtpbmcuUHJvdG9idWYuUGxheWVyTG9naW5QYWNrZXRIABJWChdz",
+            "d2FwSW52ZW50b3J5U2xvdFBhY2tldBgFIAEoCzIzLlNvdXJjZS5OZXR3b3Jr",
+            "aW5nLlByb3RvYnVmLlN3YXBJbnZlbnRvcnlTbG90UGFja2V0SAASZAoeZG91",
+            "YmxlQ2xpY2tJbnZlbnRvcnlTbG90UGFja2V0GAYgASgLMjouU291cmNlLk5l",
+            "dHdvcmtpbmcuUHJvdG9idWYuRG91YmxlQ2xpY2tJbnZlbnRvcnlTbG90UGFj",
+            "a2V0SAASPgoIcGlja0l0ZW0YCCABKAsyKi5Tb3VyY2UuTmV0d29ya2luZy5Q",
+            "cm90b2J1Zi5QaWNrSXRlbVBhY2tldEgAEkIKB3VuZXF1aXAYCSABKAsyLy5T",
+            "b3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5DbGllbnRVbmVxdWlwUGFja2V0",
+            "SAASTAoMdG9nZ2xlS3VuZ0Z1GAogASgLMjQuU291cmNlLk5ldHdvcmtpbmcu",
+            "UHJvdG9idWYuQ2xpZW50VG9nZ2xlS3VuZ0Z1UGFja2V0SAASQgoHc2l0RG93",
+            "bhgLIAEoCzIvLlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNsaWVudFNp",
+            "dERvd25QYWNrZXRIABJCCgdzdGFuZFVwGAwgASgLMi8uU291cmNlLk5ldHdv",
+            "cmtpbmcuUHJvdG9idWYuQ2xpZW50U3RhbmRVcFBhY2tldEgAEkIKCnJpZ2h0",
+            "Q2xpY2sYDyABKAsyLC5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5SaWdo",
+            "dENsaWNrUGFja2V0SAASSwoMdHJhZGVSZXF1ZXN0GBAgASgLMjMuU291cmNl",
+            "Lk5ldHdvcmtpbmcuUHJvdG9idWYuQ2xpZW50VHJhZGVQbGF5ZXJQYWNrZXRI",
+            "ABJKCgt1cGRhdGVUcmFkZRgRIAEoCzIzLlNvdXJjZS5OZXR3b3JraW5nLlBy",
+            "b3RvYnVmLkNsaWVudFVwZGF0ZVRyYWRlUGFja2V0SAASTgoNYmFua09wZXJh",
+            "dGlvbhgYIAEoCzI1LlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNsaWVu",
+            "dEJhbmtPcGVyYXRpb25QYWNrZXRIABJICgpjaGFuZ2VUZWFtGBkgASgLMjIu",
+            "U291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuQ2xpZW50Q2hhbmdlVGVhbVBh",
+            "Y2tldEgAEkgKCmZvdW5kR3VpbGQYGiABKAsyMi5Tb3VyY2UuTmV0d29ya2lu",
+            "Zy5Qcm90b2J1Zi5DbGllbnRGb3VuZEd1aWxkUGFja2V0SAASVgoRY3JlYXRl",
+            "R3VpbGRLdW5nRnUYGyABKAsyOS5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1",
+            "Zi5DbGllbnRDcmVhdGVHdWlsZEt1bmdGdVBhY2tldEgAEkoKC21hbmFnZUd1",
+            "aWxkGBwgASgLMjMuU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuQ2xpZW50",
+            "TWFuYWdlR3VpbGRQYWNrZXRIABJKCgtzdWJtaXRRdWVzdBgdIAEoCzIzLlNv",
+            "dXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLkNsaWVudFN1Ym1pdFF1ZXN0UGFj",
+            "a2V0SAASOAoFZGVidWcYHyABKAsyJy5Tb3VyY2UuTmV0d29ya2luZy5Qcm90",
+            "b2J1Zi5EZWJ1Z1BhY2tldEgAEkMKC2NsaWNrUGFja2V0GAIgASgLMiwuU291",
+            "cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuQ2xpY2tJbnB1dFBhY2tldEgAEkAK",
             "CW1vdmVJbnB1dBggIAEoCzIrLlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVm",
             "Lk1vdmVJbnB1dFBhY2tldEgAEkAKCXR1cm5JbnB1dBghIAEoCzIrLlNvdXJj",
             "ZS5OZXR3b3JraW5nLlByb3RvYnVmLlR1cm5JbnB1dFBhY2tldEgAEkQKC3Np",
@@ -542,7 +525,7 @@ namespace Source.Networking.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.FollowRopePacket), global::Source.Networking.Protobuf.FollowRopePacket.Parser, new[]{ "Id", "Direction", "DurationMillis", "X", "Y" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.InputResponsePacket), global::Source.Networking.Protobuf.InputResponsePacket.Parser, new[]{ "Sequence", "PositionPacket" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.InputPacket), global::Source.Networking.Protobuf.InputPacket.Parser, new[]{ "Type", "Sequence", "ClickedDirection" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClickPacket), global::Source.Networking.Protobuf.ClickPacket.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClickInputPacket), global::Source.Networking.Protobuf.ClickInputPacket.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.RightClickPacket), global::Source.Networking.Protobuf.RightClickPacket.Parser, new[]{ "Type", "SlotId", "Page" }, new[]{ "SlotId", "Page" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientKeyPressedPacket), global::Source.Networking.Protobuf.ClientKeyPressedPacket.Parser, new[]{ "Key", "X", "Y" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.PickItemPacket), global::Source.Networking.Protobuf.PickItemPacket.Parser, new[]{ "Id" }, null, null, null, null),
@@ -561,7 +544,6 @@ namespace Source.Networking.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.SwapInventorySlotPacket), global::Source.Networking.Protobuf.SwapInventorySlotPacket.Parser, new[]{ "Slot1", "Slot2" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.SwapKungFuSlotPacket), global::Source.Networking.Protobuf.SwapKungFuSlotPacket.Parser, new[]{ "Slot1", "Slot2", "Page" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.DoubleClickInventorySlotPacket), global::Source.Networking.Protobuf.DoubleClickInventorySlotPacket.Parser, new[]{ "Slot" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.DropItemPacket), global::Source.Networking.Protobuf.DropItemPacket.Parser, new[]{ "Slot", "X", "Y", "Number", "CoordinateX", "CoordinateY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.DropItemConfirmPacket), global::Source.Networking.Protobuf.DropItemConfirmPacket.Parser, new[]{ "Slot", "NumberLeft" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ShowItemPacket), global::Source.Networking.Protobuf.ShowItemPacket.Parser, new[]{ "Id", "Icon", "Number", "CoordinateX", "CoordinateY", "Name", "Color" }, new[]{ "Number" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ShowTeleportPacket), global::Source.Networking.Protobuf.ShowTeleportPacket.Parser, new[]{ "Id", "CoordinateX", "CoordinateY", "Name", "Shape" }, null, null, null, null),
@@ -569,7 +551,6 @@ namespace Source.Networking.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.CharacterKungFuPacket), global::Source.Networking.Protobuf.CharacterKungFuPacket.Parser, new[]{ "AttackKungFuName", "AttackKungFuLevel", "AttackKungFuType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientTradePlayerPacket), global::Source.Networking.Protobuf.ClientTradePlayerPacket.Parser, new[]{ "TargetId", "Slot" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientUpdateTradePacket), global::Source.Networking.Protobuf.ClientUpdateTradePacket.Parser, new[]{ "InventorySlot", "ItemNumber", "Type", "TradeWindowSlot" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket), global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket.Parser, new[]{ "MerchantId", "Items" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket), global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket.Parser, new[]{ "Id", "UseSlot" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket), global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket.Parser, new[]{ "Page", "Slot1", "Slot2" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientBankOperationPacket), global::Source.Networking.Protobuf.ClientBankOperationPacket.Parser, new[]{ "Type", "FromSlot", "ToSlot", "Number", "BankerId" }, null, null, null, null),
@@ -578,10 +559,9 @@ namespace Source.Networking.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientCreateGuildKungFuPacket), global::Source.Networking.Protobuf.ClientCreateGuildKungFuPacket.Parser, new[]{ "AttackSpeed", "Life", "Avoidance", "Power", "Recovery", "InnerPower", "OuterPower", "BodyDamage", "HeadDamage", "ArmDamage", "LegDamage", "BodyArmor", "HeadArmor", "ArmArmor", "LegArmor", "Name", "Type" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientManageGuildPacket), global::Source.Networking.Protobuf.ClientManageGuildPacket.Parser, new[]{ "Type", "Target" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientSubmitQuestPacket), global::Source.Networking.Protobuf.ClientSubmitQuestPacket.Parser, new[]{ "Id", "QuestName" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientClickInteractabilityPacket), global::Source.Networking.Protobuf.ClientClickInteractabilityPacket.Parser, new[]{ "Id", "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ChatInputPacket), global::Source.Networking.Protobuf.ChatInputPacket.Parser, new[]{ "Text" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClickEquipmentInputPacket), global::Source.Networking.Protobuf.ClickEquipmentInputPacket.Parser, new[]{ "EquipType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientPacket), global::Source.Networking.Protobuf.ClientPacket.Parser, new[]{ "MoveEventPacket", "ClickPacket", "LoginPacket", "SwapInventorySlotPacket", "DoubleClickInventorySlotPacket", "DropItem", "PickItem", "Unequip", "ToggleKungFu", "SitDown", "StandUp", "SellItems", "BuyItems", "RightClick", "TradeRequest", "UpdateTrade", "TriggerDynamicObject", "SwapKungFuSlot", "BankOperation", "ChangeTeam", "FoundGuild", "CreateGuildKungFu", "ManageGuild", "SubmitQuest", "Interact", "Debug", "MoveInput", "TurnInput", "SimpleInput", "ClickKungFuInput", "ClickInventorySlotInput", "AttackInput", "UnequipInput", "SwapKungFuSlotPacket", "PickInput", "DropInput", "ConfirmDropInput", "ClickNpcAbilityInput", "BuyItem", "SellItem", "DropOnEntityInput", "TradeStateInput", "AddPlayerTradeInput", "UsePill", "Chat", "ClickEquipment" }, new[]{ "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ClientPacket), global::Source.Networking.Protobuf.ClientPacket.Parser, new[]{ "MoveEventPacket", "LoginPacket", "SwapInventorySlotPacket", "DoubleClickInventorySlotPacket", "PickItem", "Unequip", "ToggleKungFu", "SitDown", "StandUp", "RightClick", "TradeRequest", "UpdateTrade", "BankOperation", "ChangeTeam", "FoundGuild", "CreateGuildKungFu", "ManageGuild", "SubmitQuest", "Debug", "ClickPacket", "MoveInput", "TurnInput", "SimpleInput", "ClickKungFuInput", "ClickInventorySlotInput", "AttackInput", "UnequipInput", "SwapKungFuSlotPacket", "PickInput", "DropInput", "ConfirmDropInput", "ClickNpcAbilityInput", "BuyItem", "SellItem", "DropOnEntityInput", "TradeStateInput", "AddPlayerTradeInput", "UsePill", "Chat", "ClickEquipment" }, new[]{ "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.UsePillInputPacket), global::Source.Networking.Protobuf.UsePillInputPacket.Parser, new[]{ "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.InterpolationPacket), global::Source.Networking.Protobuf.InterpolationPacket.Parser, new[]{ "MoveAction", "State", "ElapsedMillis", "Direction", "X", "Y" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.InterpolationsPacket), global::Source.Networking.Protobuf.InterpolationsPacket.Parser, new[]{ "Interpolations" }, null, null, null, null),
@@ -2491,16 +2471,16 @@ namespace Source.Networking.Protobuf {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class ClickPacket : pb::IMessage<ClickPacket>
+  public sealed partial class ClickInputPacket : pb::IMessage<ClickInputPacket>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<ClickPacket> _parser = new pb::MessageParser<ClickPacket>(() => new ClickPacket());
+    private static readonly pb::MessageParser<ClickInputPacket> _parser = new pb::MessageParser<ClickInputPacket>(() => new ClickInputPacket());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ClickPacket> Parser { get { return _parser; } }
+    public static pb::MessageParser<ClickInputPacket> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2516,7 +2496,7 @@ namespace Source.Networking.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClickPacket() {
+    public ClickInputPacket() {
       OnConstruction();
     }
 
@@ -2524,15 +2504,15 @@ namespace Source.Networking.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClickPacket(ClickPacket other) : this() {
+    public ClickInputPacket(ClickInputPacket other) : this() {
       id_ = other.id_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClickPacket Clone() {
-      return new ClickPacket(this);
+    public ClickInputPacket Clone() {
+      return new ClickInputPacket(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -2550,12 +2530,12 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as ClickPacket);
+      return Equals(other as ClickInputPacket);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ClickPacket other) {
+    public bool Equals(ClickInputPacket other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -2628,7 +2608,7 @@ namespace Source.Networking.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ClickPacket other) {
+    public void MergeFrom(ClickInputPacket other) {
       if (other == null) {
         return;
       }
@@ -7343,381 +7323,6 @@ namespace Source.Networking.Protobuf {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class DropItemPacket : pb::IMessage<DropItemPacket>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<DropItemPacket> _parser = new pb::MessageParser<DropItemPacket>(() => new DropItemPacket());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<DropItemPacket> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[25]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DropItemPacket() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DropItemPacket(DropItemPacket other) : this() {
-      slot_ = other.slot_;
-      x_ = other.x_;
-      y_ = other.y_;
-      number_ = other.number_;
-      coordinateX_ = other.coordinateX_;
-      coordinateY_ = other.coordinateY_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DropItemPacket Clone() {
-      return new DropItemPacket(this);
-    }
-
-    /// <summary>Field number for the "slot" field.</summary>
-    public const int SlotFieldNumber = 1;
-    private int slot_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Slot {
-      get { return slot_; }
-      set {
-        slot_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "x" field.</summary>
-    public const int XFieldNumber = 2;
-    private int x_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int X {
-      get { return x_; }
-      set {
-        x_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "y" field.</summary>
-    public const int YFieldNumber = 3;
-    private int y_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Y {
-      get { return y_; }
-      set {
-        y_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "number" field.</summary>
-    public const int NumberFieldNumber = 4;
-    private int number_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Number {
-      get { return number_; }
-      set {
-        number_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "coordinateX" field.</summary>
-    public const int CoordinateXFieldNumber = 5;
-    private int coordinateX_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CoordinateX {
-      get { return coordinateX_; }
-      set {
-        coordinateX_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "coordinateY" field.</summary>
-    public const int CoordinateYFieldNumber = 6;
-    private int coordinateY_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CoordinateY {
-      get { return coordinateY_; }
-      set {
-        coordinateY_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as DropItemPacket);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(DropItemPacket other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Slot != other.Slot) return false;
-      if (X != other.X) return false;
-      if (Y != other.Y) return false;
-      if (Number != other.Number) return false;
-      if (CoordinateX != other.CoordinateX) return false;
-      if (CoordinateY != other.CoordinateY) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Slot != 0) hash ^= Slot.GetHashCode();
-      if (X != 0) hash ^= X.GetHashCode();
-      if (Y != 0) hash ^= Y.GetHashCode();
-      if (Number != 0) hash ^= Number.GetHashCode();
-      if (CoordinateX != 0) hash ^= CoordinateX.GetHashCode();
-      if (CoordinateY != 0) hash ^= CoordinateY.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (Slot != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Slot);
-      }
-      if (X != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(X);
-      }
-      if (Y != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Y);
-      }
-      if (Number != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Number);
-      }
-      if (CoordinateX != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(CoordinateX);
-      }
-      if (CoordinateY != 0) {
-        output.WriteRawTag(48);
-        output.WriteInt32(CoordinateY);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Slot != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Slot);
-      }
-      if (X != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(X);
-      }
-      if (Y != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Y);
-      }
-      if (Number != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Number);
-      }
-      if (CoordinateX != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(CoordinateX);
-      }
-      if (CoordinateY != 0) {
-        output.WriteRawTag(48);
-        output.WriteInt32(CoordinateY);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Slot != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Slot);
-      }
-      if (X != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
-      }
-      if (Y != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Y);
-      }
-      if (Number != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Number);
-      }
-      if (CoordinateX != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CoordinateX);
-      }
-      if (CoordinateY != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CoordinateY);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(DropItemPacket other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Slot != 0) {
-        Slot = other.Slot;
-      }
-      if (other.X != 0) {
-        X = other.X;
-      }
-      if (other.Y != 0) {
-        Y = other.Y;
-      }
-      if (other.Number != 0) {
-        Number = other.Number;
-      }
-      if (other.CoordinateX != 0) {
-        CoordinateX = other.CoordinateX;
-      }
-      if (other.CoordinateY != 0) {
-        CoordinateY = other.CoordinateY;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            Slot = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            X = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            Y = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            Number = input.ReadInt32();
-            break;
-          }
-          case 40: {
-            CoordinateX = input.ReadInt32();
-            break;
-          }
-          case 48: {
-            CoordinateY = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            Slot = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            X = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            Y = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            Number = input.ReadInt32();
-            break;
-          }
-          case 40: {
-            CoordinateX = input.ReadInt32();
-            break;
-          }
-          case 48: {
-            CoordinateY = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class DropItemConfirmPacket : pb::IMessage<DropItemConfirmPacket>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -7732,7 +7337,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[26]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7960,7 +7565,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[27]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8388,7 +7993,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[28]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8726,7 +8331,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[29]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8916,7 +8521,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[30]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9180,7 +8785,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[31]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9407,7 +9012,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[32]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[31]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9694,222 +9299,6 @@ namespace Source.Networking.Protobuf {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class ClientMerchantTradeItemsPacket : pb::IMessage<ClientMerchantTradeItemsPacket>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ClientMerchantTradeItemsPacket> _parser = new pb::MessageParser<ClientMerchantTradeItemsPacket>(() => new ClientMerchantTradeItemsPacket());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ClientMerchantTradeItemsPacket> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[33]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClientMerchantTradeItemsPacket() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClientMerchantTradeItemsPacket(ClientMerchantTradeItemsPacket other) : this() {
-      merchantId_ = other.merchantId_;
-      items_ = other.items_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClientMerchantTradeItemsPacket Clone() {
-      return new ClientMerchantTradeItemsPacket(this);
-    }
-
-    /// <summary>Field number for the "merchantId" field.</summary>
-    public const int MerchantIdFieldNumber = 1;
-    private long merchantId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long MerchantId {
-      get { return merchantId_; }
-      set {
-        merchantId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "items" field.</summary>
-    public const int ItemsFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Source.Networking.Protobuf.InventoryItemPacket> _repeated_items_codec
-        = pb::FieldCodec.ForMessage(18, global::Source.Networking.Protobuf.InventoryItemPacket.Parser);
-    private readonly pbc::RepeatedField<global::Source.Networking.Protobuf.InventoryItemPacket> items_ = new pbc::RepeatedField<global::Source.Networking.Protobuf.InventoryItemPacket>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Source.Networking.Protobuf.InventoryItemPacket> Items {
-      get { return items_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ClientMerchantTradeItemsPacket);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ClientMerchantTradeItemsPacket other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (MerchantId != other.MerchantId) return false;
-      if(!items_.Equals(other.items_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (MerchantId != 0L) hash ^= MerchantId.GetHashCode();
-      hash ^= items_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (MerchantId != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(MerchantId);
-      }
-      items_.WriteTo(output, _repeated_items_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (MerchantId != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(MerchantId);
-      }
-      items_.WriteTo(ref output, _repeated_items_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (MerchantId != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MerchantId);
-      }
-      size += items_.CalculateSize(_repeated_items_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ClientMerchantTradeItemsPacket other) {
-      if (other == null) {
-        return;
-      }
-      if (other.MerchantId != 0L) {
-        MerchantId = other.MerchantId;
-      }
-      items_.Add(other.items_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            MerchantId = input.ReadInt64();
-            break;
-          }
-          case 18: {
-            items_.AddEntriesFrom(input, _repeated_items_codec);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            MerchantId = input.ReadInt64();
-            break;
-          }
-          case 18: {
-            items_.AddEntriesFrom(ref input, _repeated_items_codec);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ClientTriggerDynamicObjectPacket : pb::IMessage<ClientTriggerDynamicObjectPacket>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -9924,7 +9313,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[34]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[32]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10151,7 +9540,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[35]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[33]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10415,7 +9804,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[36]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[34]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10753,7 +10142,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[37]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[35]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10943,7 +10332,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[38]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[36]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11244,7 +10633,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[39]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[37]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12026,7 +11415,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[40]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[38]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12253,7 +11642,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[41]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[39]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12466,233 +11855,6 @@ namespace Source.Networking.Protobuf {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class ClientClickInteractabilityPacket : pb::IMessage<ClientClickInteractabilityPacket>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ClientClickInteractabilityPacket> _parser = new pb::MessageParser<ClientClickInteractabilityPacket>(() => new ClientClickInteractabilityPacket());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ClientClickInteractabilityPacket> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[42]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClientClickInteractabilityPacket() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClientClickInteractabilityPacket(ClientClickInteractabilityPacket other) : this() {
-      id_ = other.id_;
-      name_ = other.name_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ClientClickInteractabilityPacket Clone() {
-      return new ClientClickInteractabilityPacket(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private long id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 2;
-    private string name_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
-      set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ClientClickInteractabilityPacket);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ClientClickInteractabilityPacket other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Id != other.Id) return false;
-      if (Name != other.Name) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Id != 0L) hash ^= Id.GetHashCode();
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (Id != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(Id);
-      }
-      if (Name.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Id != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(Id);
-      }
-      if (Name.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Id != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
-      }
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ClientClickInteractabilityPacket other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Id != 0L) {
-        Id = other.Id;
-      }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            Id = input.ReadInt64();
-            break;
-          }
-          case 18: {
-            Name = input.ReadString();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            Id = input.ReadInt64();
-            break;
-          }
-          case 18: {
-            Name = input.ReadString();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ChatInputPacket : pb::IMessage<ChatInputPacket>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -12707,7 +11869,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[43]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[40]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12897,7 +12059,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[44]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[41]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13087,7 +12249,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[45]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[42]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13111,9 +12273,6 @@ namespace Source.Networking.Protobuf {
         case TypeOneofCase.MoveEventPacket:
           MoveEventPacket = other.MoveEventPacket.Clone();
           break;
-        case TypeOneofCase.ClickPacket:
-          ClickPacket = other.ClickPacket.Clone();
-          break;
         case TypeOneofCase.LoginPacket:
           LoginPacket = other.LoginPacket.Clone();
           break;
@@ -13122,9 +12281,6 @@ namespace Source.Networking.Protobuf {
           break;
         case TypeOneofCase.DoubleClickInventorySlotPacket:
           DoubleClickInventorySlotPacket = other.DoubleClickInventorySlotPacket.Clone();
-          break;
-        case TypeOneofCase.DropItem:
-          DropItem = other.DropItem.Clone();
           break;
         case TypeOneofCase.PickItem:
           PickItem = other.PickItem.Clone();
@@ -13141,12 +12297,6 @@ namespace Source.Networking.Protobuf {
         case TypeOneofCase.StandUp:
           StandUp = other.StandUp.Clone();
           break;
-        case TypeOneofCase.SellItems:
-          SellItems = other.SellItems.Clone();
-          break;
-        case TypeOneofCase.BuyItems:
-          BuyItems = other.BuyItems.Clone();
-          break;
         case TypeOneofCase.RightClick:
           RightClick = other.RightClick.Clone();
           break;
@@ -13155,12 +12305,6 @@ namespace Source.Networking.Protobuf {
           break;
         case TypeOneofCase.UpdateTrade:
           UpdateTrade = other.UpdateTrade.Clone();
-          break;
-        case TypeOneofCase.TriggerDynamicObject:
-          TriggerDynamicObject = other.TriggerDynamicObject.Clone();
-          break;
-        case TypeOneofCase.SwapKungFuSlot:
-          SwapKungFuSlot = other.SwapKungFuSlot.Clone();
           break;
         case TypeOneofCase.BankOperation:
           BankOperation = other.BankOperation.Clone();
@@ -13180,11 +12324,11 @@ namespace Source.Networking.Protobuf {
         case TypeOneofCase.SubmitQuest:
           SubmitQuest = other.SubmitQuest.Clone();
           break;
-        case TypeOneofCase.Interact:
-          Interact = other.Interact.Clone();
-          break;
         case TypeOneofCase.Debug:
           Debug = other.Debug.Clone();
+          break;
+        case TypeOneofCase.ClickPacket:
+          ClickPacket = other.ClickPacket.Clone();
           break;
         case TypeOneofCase.MoveInput:
           MoveInput = other.MoveInput.Clone();
@@ -13269,18 +12413,6 @@ namespace Source.Networking.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "clickPacket" field.</summary>
-    public const int ClickPacketFieldNumber = 2;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Source.Networking.Protobuf.ClickPacket ClickPacket {
-      get { return typeCase_ == TypeOneofCase.ClickPacket ? (global::Source.Networking.Protobuf.ClickPacket) type_ : null; }
-      set {
-        type_ = value;
-        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.ClickPacket;
-      }
-    }
-
     /// <summary>Field number for the "loginPacket" field.</summary>
     public const int LoginPacketFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13314,18 +12446,6 @@ namespace Source.Networking.Protobuf {
       set {
         type_ = value;
         typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.DoubleClickInventorySlotPacket;
-      }
-    }
-
-    /// <summary>Field number for the "dropItem" field.</summary>
-    public const int DropItemFieldNumber = 7;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Source.Networking.Protobuf.DropItemPacket DropItem {
-      get { return typeCase_ == TypeOneofCase.DropItem ? (global::Source.Networking.Protobuf.DropItemPacket) type_ : null; }
-      set {
-        type_ = value;
-        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.DropItem;
       }
     }
 
@@ -13389,30 +12509,6 @@ namespace Source.Networking.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "sellItems" field.</summary>
-    public const int SellItemsFieldNumber = 13;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket SellItems {
-      get { return typeCase_ == TypeOneofCase.SellItems ? (global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket) type_ : null; }
-      set {
-        type_ = value;
-        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.SellItems;
-      }
-    }
-
-    /// <summary>Field number for the "buyItems" field.</summary>
-    public const int BuyItemsFieldNumber = 14;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket BuyItems {
-      get { return typeCase_ == TypeOneofCase.BuyItems ? (global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket) type_ : null; }
-      set {
-        type_ = value;
-        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.BuyItems;
-      }
-    }
-
     /// <summary>Field number for the "rightClick" field.</summary>
     public const int RightClickFieldNumber = 15;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13446,30 +12542,6 @@ namespace Source.Networking.Protobuf {
       set {
         type_ = value;
         typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.UpdateTrade;
-      }
-    }
-
-    /// <summary>Field number for the "triggerDynamicObject" field.</summary>
-    public const int TriggerDynamicObjectFieldNumber = 18;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket TriggerDynamicObject {
-      get { return typeCase_ == TypeOneofCase.TriggerDynamicObject ? (global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket) type_ : null; }
-      set {
-        type_ = value;
-        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.TriggerDynamicObject;
-      }
-    }
-
-    /// <summary>Field number for the "swapKungFuSlot" field.</summary>
-    public const int SwapKungFuSlotFieldNumber = 19;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket SwapKungFuSlot {
-      get { return typeCase_ == TypeOneofCase.SwapKungFuSlot ? (global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket) type_ : null; }
-      set {
-        type_ = value;
-        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.SwapKungFuSlot;
       }
     }
 
@@ -13545,18 +12617,6 @@ namespace Source.Networking.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "interact" field.</summary>
-    public const int InteractFieldNumber = 30;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Source.Networking.Protobuf.ClientClickInteractabilityPacket Interact {
-      get { return typeCase_ == TypeOneofCase.Interact ? (global::Source.Networking.Protobuf.ClientClickInteractabilityPacket) type_ : null; }
-      set {
-        type_ = value;
-        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.Interact;
-      }
-    }
-
     /// <summary>Field number for the "debug" field.</summary>
     public const int DebugFieldNumber = 31;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13566,6 +12626,18 @@ namespace Source.Networking.Protobuf {
       set {
         type_ = value;
         typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.Debug;
+      }
+    }
+
+    /// <summary>Field number for the "clickPacket" field.</summary>
+    public const int ClickPacketFieldNumber = 2;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Source.Networking.Protobuf.ClickInputPacket ClickPacket {
+      get { return typeCase_ == TypeOneofCase.ClickPacket ? (global::Source.Networking.Protobuf.ClickInputPacket) type_ : null; }
+      set {
+        type_ = value;
+        typeCase_ = value == null ? TypeOneofCase.None : TypeOneofCase.ClickPacket;
       }
     }
 
@@ -13814,31 +12886,25 @@ namespace Source.Networking.Protobuf {
     public enum TypeOneofCase {
       None = 0,
       MoveEventPacket = 1,
-      ClickPacket = 2,
       LoginPacket = 3,
       SwapInventorySlotPacket = 5,
       DoubleClickInventorySlotPacket = 6,
-      DropItem = 7,
       PickItem = 8,
       Unequip = 9,
       ToggleKungFu = 10,
       SitDown = 11,
       StandUp = 12,
-      SellItems = 13,
-      BuyItems = 14,
       RightClick = 15,
       TradeRequest = 16,
       UpdateTrade = 17,
-      TriggerDynamicObject = 18,
-      SwapKungFuSlot = 19,
       BankOperation = 24,
       ChangeTeam = 25,
       FoundGuild = 26,
       CreateGuildKungFu = 27,
       ManageGuild = 28,
       SubmitQuest = 29,
-      Interact = 30,
       Debug = 31,
+      ClickPacket = 2,
       MoveInput = 32,
       TurnInput = 33,
       SimpleInput = 34,
@@ -13890,31 +12956,25 @@ namespace Source.Networking.Protobuf {
         return true;
       }
       if (!object.Equals(MoveEventPacket, other.MoveEventPacket)) return false;
-      if (!object.Equals(ClickPacket, other.ClickPacket)) return false;
       if (!object.Equals(LoginPacket, other.LoginPacket)) return false;
       if (!object.Equals(SwapInventorySlotPacket, other.SwapInventorySlotPacket)) return false;
       if (!object.Equals(DoubleClickInventorySlotPacket, other.DoubleClickInventorySlotPacket)) return false;
-      if (!object.Equals(DropItem, other.DropItem)) return false;
       if (!object.Equals(PickItem, other.PickItem)) return false;
       if (!object.Equals(Unequip, other.Unequip)) return false;
       if (!object.Equals(ToggleKungFu, other.ToggleKungFu)) return false;
       if (!object.Equals(SitDown, other.SitDown)) return false;
       if (!object.Equals(StandUp, other.StandUp)) return false;
-      if (!object.Equals(SellItems, other.SellItems)) return false;
-      if (!object.Equals(BuyItems, other.BuyItems)) return false;
       if (!object.Equals(RightClick, other.RightClick)) return false;
       if (!object.Equals(TradeRequest, other.TradeRequest)) return false;
       if (!object.Equals(UpdateTrade, other.UpdateTrade)) return false;
-      if (!object.Equals(TriggerDynamicObject, other.TriggerDynamicObject)) return false;
-      if (!object.Equals(SwapKungFuSlot, other.SwapKungFuSlot)) return false;
       if (!object.Equals(BankOperation, other.BankOperation)) return false;
       if (!object.Equals(ChangeTeam, other.ChangeTeam)) return false;
       if (!object.Equals(FoundGuild, other.FoundGuild)) return false;
       if (!object.Equals(CreateGuildKungFu, other.CreateGuildKungFu)) return false;
       if (!object.Equals(ManageGuild, other.ManageGuild)) return false;
       if (!object.Equals(SubmitQuest, other.SubmitQuest)) return false;
-      if (!object.Equals(Interact, other.Interact)) return false;
       if (!object.Equals(Debug, other.Debug)) return false;
+      if (!object.Equals(ClickPacket, other.ClickPacket)) return false;
       if (!object.Equals(MoveInput, other.MoveInput)) return false;
       if (!object.Equals(TurnInput, other.TurnInput)) return false;
       if (!object.Equals(SimpleInput, other.SimpleInput)) return false;
@@ -13944,31 +13004,25 @@ namespace Source.Networking.Protobuf {
     public override int GetHashCode() {
       int hash = 1;
       if (typeCase_ == TypeOneofCase.MoveEventPacket) hash ^= MoveEventPacket.GetHashCode();
-      if (typeCase_ == TypeOneofCase.ClickPacket) hash ^= ClickPacket.GetHashCode();
       if (typeCase_ == TypeOneofCase.LoginPacket) hash ^= LoginPacket.GetHashCode();
       if (typeCase_ == TypeOneofCase.SwapInventorySlotPacket) hash ^= SwapInventorySlotPacket.GetHashCode();
       if (typeCase_ == TypeOneofCase.DoubleClickInventorySlotPacket) hash ^= DoubleClickInventorySlotPacket.GetHashCode();
-      if (typeCase_ == TypeOneofCase.DropItem) hash ^= DropItem.GetHashCode();
       if (typeCase_ == TypeOneofCase.PickItem) hash ^= PickItem.GetHashCode();
       if (typeCase_ == TypeOneofCase.Unequip) hash ^= Unequip.GetHashCode();
       if (typeCase_ == TypeOneofCase.ToggleKungFu) hash ^= ToggleKungFu.GetHashCode();
       if (typeCase_ == TypeOneofCase.SitDown) hash ^= SitDown.GetHashCode();
       if (typeCase_ == TypeOneofCase.StandUp) hash ^= StandUp.GetHashCode();
-      if (typeCase_ == TypeOneofCase.SellItems) hash ^= SellItems.GetHashCode();
-      if (typeCase_ == TypeOneofCase.BuyItems) hash ^= BuyItems.GetHashCode();
       if (typeCase_ == TypeOneofCase.RightClick) hash ^= RightClick.GetHashCode();
       if (typeCase_ == TypeOneofCase.TradeRequest) hash ^= TradeRequest.GetHashCode();
       if (typeCase_ == TypeOneofCase.UpdateTrade) hash ^= UpdateTrade.GetHashCode();
-      if (typeCase_ == TypeOneofCase.TriggerDynamicObject) hash ^= TriggerDynamicObject.GetHashCode();
-      if (typeCase_ == TypeOneofCase.SwapKungFuSlot) hash ^= SwapKungFuSlot.GetHashCode();
       if (typeCase_ == TypeOneofCase.BankOperation) hash ^= BankOperation.GetHashCode();
       if (typeCase_ == TypeOneofCase.ChangeTeam) hash ^= ChangeTeam.GetHashCode();
       if (typeCase_ == TypeOneofCase.FoundGuild) hash ^= FoundGuild.GetHashCode();
       if (typeCase_ == TypeOneofCase.CreateGuildKungFu) hash ^= CreateGuildKungFu.GetHashCode();
       if (typeCase_ == TypeOneofCase.ManageGuild) hash ^= ManageGuild.GetHashCode();
       if (typeCase_ == TypeOneofCase.SubmitQuest) hash ^= SubmitQuest.GetHashCode();
-      if (typeCase_ == TypeOneofCase.Interact) hash ^= Interact.GetHashCode();
       if (typeCase_ == TypeOneofCase.Debug) hash ^= Debug.GetHashCode();
+      if (typeCase_ == TypeOneofCase.ClickPacket) hash ^= ClickPacket.GetHashCode();
       if (typeCase_ == TypeOneofCase.MoveInput) hash ^= MoveInput.GetHashCode();
       if (typeCase_ == TypeOneofCase.TurnInput) hash ^= TurnInput.GetHashCode();
       if (typeCase_ == TypeOneofCase.SimpleInput) hash ^= SimpleInput.GetHashCode();
@@ -14028,10 +13082,6 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(50);
         output.WriteMessage(DoubleClickInventorySlotPacket);
       }
-      if (typeCase_ == TypeOneofCase.DropItem) {
-        output.WriteRawTag(58);
-        output.WriteMessage(DropItem);
-      }
       if (typeCase_ == TypeOneofCase.PickItem) {
         output.WriteRawTag(66);
         output.WriteMessage(PickItem);
@@ -14052,14 +13102,6 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(98);
         output.WriteMessage(StandUp);
       }
-      if (typeCase_ == TypeOneofCase.SellItems) {
-        output.WriteRawTag(106);
-        output.WriteMessage(SellItems);
-      }
-      if (typeCase_ == TypeOneofCase.BuyItems) {
-        output.WriteRawTag(114);
-        output.WriteMessage(BuyItems);
-      }
       if (typeCase_ == TypeOneofCase.RightClick) {
         output.WriteRawTag(122);
         output.WriteMessage(RightClick);
@@ -14071,14 +13113,6 @@ namespace Source.Networking.Protobuf {
       if (typeCase_ == TypeOneofCase.UpdateTrade) {
         output.WriteRawTag(138, 1);
         output.WriteMessage(UpdateTrade);
-      }
-      if (typeCase_ == TypeOneofCase.TriggerDynamicObject) {
-        output.WriteRawTag(146, 1);
-        output.WriteMessage(TriggerDynamicObject);
-      }
-      if (typeCase_ == TypeOneofCase.SwapKungFuSlot) {
-        output.WriteRawTag(154, 1);
-        output.WriteMessage(SwapKungFuSlot);
       }
       if (typeCase_ == TypeOneofCase.BankOperation) {
         output.WriteRawTag(194, 1);
@@ -14103,10 +13137,6 @@ namespace Source.Networking.Protobuf {
       if (typeCase_ == TypeOneofCase.SubmitQuest) {
         output.WriteRawTag(234, 1);
         output.WriteMessage(SubmitQuest);
-      }
-      if (typeCase_ == TypeOneofCase.Interact) {
-        output.WriteRawTag(242, 1);
-        output.WriteMessage(Interact);
       }
       if (typeCase_ == TypeOneofCase.Debug) {
         output.WriteRawTag(250, 1);
@@ -14222,10 +13252,6 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(50);
         output.WriteMessage(DoubleClickInventorySlotPacket);
       }
-      if (typeCase_ == TypeOneofCase.DropItem) {
-        output.WriteRawTag(58);
-        output.WriteMessage(DropItem);
-      }
       if (typeCase_ == TypeOneofCase.PickItem) {
         output.WriteRawTag(66);
         output.WriteMessage(PickItem);
@@ -14246,14 +13272,6 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(98);
         output.WriteMessage(StandUp);
       }
-      if (typeCase_ == TypeOneofCase.SellItems) {
-        output.WriteRawTag(106);
-        output.WriteMessage(SellItems);
-      }
-      if (typeCase_ == TypeOneofCase.BuyItems) {
-        output.WriteRawTag(114);
-        output.WriteMessage(BuyItems);
-      }
       if (typeCase_ == TypeOneofCase.RightClick) {
         output.WriteRawTag(122);
         output.WriteMessage(RightClick);
@@ -14265,14 +13283,6 @@ namespace Source.Networking.Protobuf {
       if (typeCase_ == TypeOneofCase.UpdateTrade) {
         output.WriteRawTag(138, 1);
         output.WriteMessage(UpdateTrade);
-      }
-      if (typeCase_ == TypeOneofCase.TriggerDynamicObject) {
-        output.WriteRawTag(146, 1);
-        output.WriteMessage(TriggerDynamicObject);
-      }
-      if (typeCase_ == TypeOneofCase.SwapKungFuSlot) {
-        output.WriteRawTag(154, 1);
-        output.WriteMessage(SwapKungFuSlot);
       }
       if (typeCase_ == TypeOneofCase.BankOperation) {
         output.WriteRawTag(194, 1);
@@ -14297,10 +13307,6 @@ namespace Source.Networking.Protobuf {
       if (typeCase_ == TypeOneofCase.SubmitQuest) {
         output.WriteRawTag(234, 1);
         output.WriteMessage(SubmitQuest);
-      }
-      if (typeCase_ == TypeOneofCase.Interact) {
-        output.WriteRawTag(242, 1);
-        output.WriteMessage(Interact);
       }
       if (typeCase_ == TypeOneofCase.Debug) {
         output.WriteRawTag(250, 1);
@@ -14399,9 +13405,6 @@ namespace Source.Networking.Protobuf {
       if (typeCase_ == TypeOneofCase.MoveEventPacket) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MoveEventPacket);
       }
-      if (typeCase_ == TypeOneofCase.ClickPacket) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ClickPacket);
-      }
       if (typeCase_ == TypeOneofCase.LoginPacket) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(LoginPacket);
       }
@@ -14410,9 +13413,6 @@ namespace Source.Networking.Protobuf {
       }
       if (typeCase_ == TypeOneofCase.DoubleClickInventorySlotPacket) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(DoubleClickInventorySlotPacket);
-      }
-      if (typeCase_ == TypeOneofCase.DropItem) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(DropItem);
       }
       if (typeCase_ == TypeOneofCase.PickItem) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(PickItem);
@@ -14429,12 +13429,6 @@ namespace Source.Networking.Protobuf {
       if (typeCase_ == TypeOneofCase.StandUp) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(StandUp);
       }
-      if (typeCase_ == TypeOneofCase.SellItems) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SellItems);
-      }
-      if (typeCase_ == TypeOneofCase.BuyItems) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(BuyItems);
-      }
       if (typeCase_ == TypeOneofCase.RightClick) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RightClick);
       }
@@ -14443,12 +13437,6 @@ namespace Source.Networking.Protobuf {
       }
       if (typeCase_ == TypeOneofCase.UpdateTrade) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(UpdateTrade);
-      }
-      if (typeCase_ == TypeOneofCase.TriggerDynamicObject) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(TriggerDynamicObject);
-      }
-      if (typeCase_ == TypeOneofCase.SwapKungFuSlot) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(SwapKungFuSlot);
       }
       if (typeCase_ == TypeOneofCase.BankOperation) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(BankOperation);
@@ -14468,11 +13456,11 @@ namespace Source.Networking.Protobuf {
       if (typeCase_ == TypeOneofCase.SubmitQuest) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(SubmitQuest);
       }
-      if (typeCase_ == TypeOneofCase.Interact) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Interact);
-      }
       if (typeCase_ == TypeOneofCase.Debug) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(Debug);
+      }
+      if (typeCase_ == TypeOneofCase.ClickPacket) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ClickPacket);
       }
       if (typeCase_ == TypeOneofCase.MoveInput) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(MoveInput);
@@ -14553,12 +13541,6 @@ namespace Source.Networking.Protobuf {
           }
           MoveEventPacket.MergeFrom(other.MoveEventPacket);
           break;
-        case TypeOneofCase.ClickPacket:
-          if (ClickPacket == null) {
-            ClickPacket = new global::Source.Networking.Protobuf.ClickPacket();
-          }
-          ClickPacket.MergeFrom(other.ClickPacket);
-          break;
         case TypeOneofCase.LoginPacket:
           if (LoginPacket == null) {
             LoginPacket = new global::Source.Networking.Protobuf.PlayerLoginPacket();
@@ -14576,12 +13558,6 @@ namespace Source.Networking.Protobuf {
             DoubleClickInventorySlotPacket = new global::Source.Networking.Protobuf.DoubleClickInventorySlotPacket();
           }
           DoubleClickInventorySlotPacket.MergeFrom(other.DoubleClickInventorySlotPacket);
-          break;
-        case TypeOneofCase.DropItem:
-          if (DropItem == null) {
-            DropItem = new global::Source.Networking.Protobuf.DropItemPacket();
-          }
-          DropItem.MergeFrom(other.DropItem);
           break;
         case TypeOneofCase.PickItem:
           if (PickItem == null) {
@@ -14613,18 +13589,6 @@ namespace Source.Networking.Protobuf {
           }
           StandUp.MergeFrom(other.StandUp);
           break;
-        case TypeOneofCase.SellItems:
-          if (SellItems == null) {
-            SellItems = new global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket();
-          }
-          SellItems.MergeFrom(other.SellItems);
-          break;
-        case TypeOneofCase.BuyItems:
-          if (BuyItems == null) {
-            BuyItems = new global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket();
-          }
-          BuyItems.MergeFrom(other.BuyItems);
-          break;
         case TypeOneofCase.RightClick:
           if (RightClick == null) {
             RightClick = new global::Source.Networking.Protobuf.RightClickPacket();
@@ -14642,18 +13606,6 @@ namespace Source.Networking.Protobuf {
             UpdateTrade = new global::Source.Networking.Protobuf.ClientUpdateTradePacket();
           }
           UpdateTrade.MergeFrom(other.UpdateTrade);
-          break;
-        case TypeOneofCase.TriggerDynamicObject:
-          if (TriggerDynamicObject == null) {
-            TriggerDynamicObject = new global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket();
-          }
-          TriggerDynamicObject.MergeFrom(other.TriggerDynamicObject);
-          break;
-        case TypeOneofCase.SwapKungFuSlot:
-          if (SwapKungFuSlot == null) {
-            SwapKungFuSlot = new global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket();
-          }
-          SwapKungFuSlot.MergeFrom(other.SwapKungFuSlot);
           break;
         case TypeOneofCase.BankOperation:
           if (BankOperation == null) {
@@ -14691,17 +13643,17 @@ namespace Source.Networking.Protobuf {
           }
           SubmitQuest.MergeFrom(other.SubmitQuest);
           break;
-        case TypeOneofCase.Interact:
-          if (Interact == null) {
-            Interact = new global::Source.Networking.Protobuf.ClientClickInteractabilityPacket();
-          }
-          Interact.MergeFrom(other.Interact);
-          break;
         case TypeOneofCase.Debug:
           if (Debug == null) {
             Debug = new global::Source.Networking.Protobuf.DebugPacket();
           }
           Debug.MergeFrom(other.Debug);
+          break;
+        case TypeOneofCase.ClickPacket:
+          if (ClickPacket == null) {
+            ClickPacket = new global::Source.Networking.Protobuf.ClickInputPacket();
+          }
+          ClickPacket.MergeFrom(other.ClickPacket);
           break;
         case TypeOneofCase.MoveInput:
           if (MoveInput == null) {
@@ -14850,7 +13802,7 @@ namespace Source.Networking.Protobuf {
             break;
           }
           case 18: {
-            global::Source.Networking.Protobuf.ClickPacket subBuilder = new global::Source.Networking.Protobuf.ClickPacket();
+            global::Source.Networking.Protobuf.ClickInputPacket subBuilder = new global::Source.Networking.Protobuf.ClickInputPacket();
             if (typeCase_ == TypeOneofCase.ClickPacket) {
               subBuilder.MergeFrom(ClickPacket);
             }
@@ -14883,15 +13835,6 @@ namespace Source.Networking.Protobuf {
             }
             input.ReadMessage(subBuilder);
             DoubleClickInventorySlotPacket = subBuilder;
-            break;
-          }
-          case 58: {
-            global::Source.Networking.Protobuf.DropItemPacket subBuilder = new global::Source.Networking.Protobuf.DropItemPacket();
-            if (typeCase_ == TypeOneofCase.DropItem) {
-              subBuilder.MergeFrom(DropItem);
-            }
-            input.ReadMessage(subBuilder);
-            DropItem = subBuilder;
             break;
           }
           case 66: {
@@ -14939,24 +13882,6 @@ namespace Source.Networking.Protobuf {
             StandUp = subBuilder;
             break;
           }
-          case 106: {
-            global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket subBuilder = new global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket();
-            if (typeCase_ == TypeOneofCase.SellItems) {
-              subBuilder.MergeFrom(SellItems);
-            }
-            input.ReadMessage(subBuilder);
-            SellItems = subBuilder;
-            break;
-          }
-          case 114: {
-            global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket subBuilder = new global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket();
-            if (typeCase_ == TypeOneofCase.BuyItems) {
-              subBuilder.MergeFrom(BuyItems);
-            }
-            input.ReadMessage(subBuilder);
-            BuyItems = subBuilder;
-            break;
-          }
           case 122: {
             global::Source.Networking.Protobuf.RightClickPacket subBuilder = new global::Source.Networking.Protobuf.RightClickPacket();
             if (typeCase_ == TypeOneofCase.RightClick) {
@@ -14982,24 +13907,6 @@ namespace Source.Networking.Protobuf {
             }
             input.ReadMessage(subBuilder);
             UpdateTrade = subBuilder;
-            break;
-          }
-          case 146: {
-            global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket subBuilder = new global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket();
-            if (typeCase_ == TypeOneofCase.TriggerDynamicObject) {
-              subBuilder.MergeFrom(TriggerDynamicObject);
-            }
-            input.ReadMessage(subBuilder);
-            TriggerDynamicObject = subBuilder;
-            break;
-          }
-          case 154: {
-            global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket subBuilder = new global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket();
-            if (typeCase_ == TypeOneofCase.SwapKungFuSlot) {
-              subBuilder.MergeFrom(SwapKungFuSlot);
-            }
-            input.ReadMessage(subBuilder);
-            SwapKungFuSlot = subBuilder;
             break;
           }
           case 194: {
@@ -15054,15 +13961,6 @@ namespace Source.Networking.Protobuf {
             }
             input.ReadMessage(subBuilder);
             SubmitQuest = subBuilder;
-            break;
-          }
-          case 242: {
-            global::Source.Networking.Protobuf.ClientClickInteractabilityPacket subBuilder = new global::Source.Networking.Protobuf.ClientClickInteractabilityPacket();
-            if (typeCase_ == TypeOneofCase.Interact) {
-              subBuilder.MergeFrom(Interact);
-            }
-            input.ReadMessage(subBuilder);
-            Interact = subBuilder;
             break;
           }
           case 250: {
@@ -15279,7 +14177,7 @@ namespace Source.Networking.Protobuf {
             break;
           }
           case 18: {
-            global::Source.Networking.Protobuf.ClickPacket subBuilder = new global::Source.Networking.Protobuf.ClickPacket();
+            global::Source.Networking.Protobuf.ClickInputPacket subBuilder = new global::Source.Networking.Protobuf.ClickInputPacket();
             if (typeCase_ == TypeOneofCase.ClickPacket) {
               subBuilder.MergeFrom(ClickPacket);
             }
@@ -15312,15 +14210,6 @@ namespace Source.Networking.Protobuf {
             }
             input.ReadMessage(subBuilder);
             DoubleClickInventorySlotPacket = subBuilder;
-            break;
-          }
-          case 58: {
-            global::Source.Networking.Protobuf.DropItemPacket subBuilder = new global::Source.Networking.Protobuf.DropItemPacket();
-            if (typeCase_ == TypeOneofCase.DropItem) {
-              subBuilder.MergeFrom(DropItem);
-            }
-            input.ReadMessage(subBuilder);
-            DropItem = subBuilder;
             break;
           }
           case 66: {
@@ -15368,24 +14257,6 @@ namespace Source.Networking.Protobuf {
             StandUp = subBuilder;
             break;
           }
-          case 106: {
-            global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket subBuilder = new global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket();
-            if (typeCase_ == TypeOneofCase.SellItems) {
-              subBuilder.MergeFrom(SellItems);
-            }
-            input.ReadMessage(subBuilder);
-            SellItems = subBuilder;
-            break;
-          }
-          case 114: {
-            global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket subBuilder = new global::Source.Networking.Protobuf.ClientMerchantTradeItemsPacket();
-            if (typeCase_ == TypeOneofCase.BuyItems) {
-              subBuilder.MergeFrom(BuyItems);
-            }
-            input.ReadMessage(subBuilder);
-            BuyItems = subBuilder;
-            break;
-          }
           case 122: {
             global::Source.Networking.Protobuf.RightClickPacket subBuilder = new global::Source.Networking.Protobuf.RightClickPacket();
             if (typeCase_ == TypeOneofCase.RightClick) {
@@ -15411,24 +14282,6 @@ namespace Source.Networking.Protobuf {
             }
             input.ReadMessage(subBuilder);
             UpdateTrade = subBuilder;
-            break;
-          }
-          case 146: {
-            global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket subBuilder = new global::Source.Networking.Protobuf.ClientTriggerDynamicObjectPacket();
-            if (typeCase_ == TypeOneofCase.TriggerDynamicObject) {
-              subBuilder.MergeFrom(TriggerDynamicObject);
-            }
-            input.ReadMessage(subBuilder);
-            TriggerDynamicObject = subBuilder;
-            break;
-          }
-          case 154: {
-            global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket subBuilder = new global::Source.Networking.Protobuf.ClientSwapKungFuSlotPacket();
-            if (typeCase_ == TypeOneofCase.SwapKungFuSlot) {
-              subBuilder.MergeFrom(SwapKungFuSlot);
-            }
-            input.ReadMessage(subBuilder);
-            SwapKungFuSlot = subBuilder;
             break;
           }
           case 194: {
@@ -15483,15 +14336,6 @@ namespace Source.Networking.Protobuf {
             }
             input.ReadMessage(subBuilder);
             SubmitQuest = subBuilder;
-            break;
-          }
-          case 242: {
-            global::Source.Networking.Protobuf.ClientClickInteractabilityPacket subBuilder = new global::Source.Networking.Protobuf.ClientClickInteractabilityPacket();
-            if (typeCase_ == TypeOneofCase.Interact) {
-              subBuilder.MergeFrom(Interact);
-            }
-            input.ReadMessage(subBuilder);
-            Interact = subBuilder;
             break;
           }
           case 250: {
@@ -15705,7 +14549,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[46]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[43]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15895,7 +14739,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[47]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[44]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16270,7 +15114,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[48]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[45]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16450,7 +15294,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[49]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[46]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16804,7 +15648,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[50]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[47]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17142,7 +15986,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[51]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[48]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17554,7 +16398,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[52]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[49]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17707,7 +16551,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[53]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[50]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17924,7 +16768,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[54]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[51]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18359,7 +17203,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[55]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[52]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18697,7 +17541,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[56]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[53]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18998,7 +17842,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[57]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[54]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19352,7 +18196,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[58]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[55]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19706,7 +18550,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[59]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[56]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19933,7 +18777,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[60]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[57]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20308,7 +19152,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[61]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[58]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20955,7 +19799,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[62]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[59]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21197,7 +20041,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[63]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[60]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21831,7 +20675,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[64]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[61]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22613,7 +21457,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[65]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[62]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22840,7 +21684,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[66]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[63]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23303,7 +22147,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[67]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[64]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23493,7 +22337,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[68]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[65]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23683,7 +22527,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[69]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[66]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23873,7 +22717,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[70]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[67]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24063,7 +22907,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[71]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[68]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24364,7 +23208,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[72]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[69]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24666,7 +23510,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[73]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[70]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24983,7 +23827,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[74]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[71]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25247,7 +24091,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[75]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[72]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25952,7 +24796,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[76]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[73]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26253,7 +25097,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[77]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[74]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26897,7 +25741,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[78]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[75]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27198,7 +26042,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[79]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[76]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27388,7 +26232,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[80]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[77]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27623,7 +26467,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[81]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[78]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27901,7 +26745,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[82]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[79]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28154,7 +26998,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[83]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[80]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28390,7 +27234,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[84]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[81]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28617,7 +27461,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[85]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[82]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28844,7 +27688,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[86]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[83]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29071,7 +27915,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[87]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[84]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29409,7 +28253,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[88]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[85]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29761,7 +28605,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[89]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[86]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30125,7 +28969,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[90]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[87]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30352,7 +29196,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[91]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[88]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30753,7 +29597,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[92]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[89]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31091,7 +29935,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[93]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[90]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31455,7 +30299,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[94]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[91]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31856,7 +30700,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[95]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[92]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32046,7 +30890,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[96]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[93]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32273,7 +31117,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[97]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[94]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32537,7 +31381,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[98]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[95]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36745,7 +35589,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[99]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[96]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36972,7 +35816,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[100]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[97]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37433,7 +36277,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[101]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[98]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38452,7 +37296,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[102]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[99]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38697,7 +37541,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[103]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[100]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38887,7 +37731,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[104]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[101]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39151,7 +37995,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[105]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[102]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39341,7 +38185,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[106]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[103]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39531,7 +38375,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[107]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[104]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39721,7 +38565,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[108]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[105]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39985,7 +38829,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[109]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[106]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40212,7 +39056,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[110]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[107]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40402,7 +39246,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[111]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[108]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40858,7 +39702,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[112]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[109]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41238,7 +40082,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[113]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[110]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41613,7 +40457,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[114]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[111]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41949,7 +40793,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[115]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[112]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42296,7 +41140,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[116]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[113]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42597,7 +41441,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[117]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[114]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42776,7 +41620,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[118]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[115]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43281,7 +42125,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[119]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[116]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43619,7 +42463,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[120]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[117]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43855,7 +42699,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[121]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[118]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44156,7 +43000,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[122]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[119]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44346,7 +43190,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[123]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[120]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44536,7 +43380,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[124]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[121]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44800,7 +43644,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[125]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[122]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45027,7 +43871,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[126]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[123]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45328,7 +44172,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[127]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[124]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45555,7 +44399,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[128]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[125]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45819,7 +44663,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[129]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[126]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46083,7 +44927,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[130]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[127]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46356,7 +45200,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[131]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[128]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46731,7 +45575,7 @@ namespace Source.Networking.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[132]; }
+      get { return global::Source.Networking.Protobuf.MessageReflection.Descriptor.MessageTypes[129]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

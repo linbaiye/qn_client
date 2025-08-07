@@ -43,7 +43,7 @@ public class AtzMap(
                 throw new Exception("Can't load map file + " + name);
             }
             groundLayer.CreateTileSet(_groundTextures, _fileParser);
-            groundLayer.DumpPattern(_fileParser);
+            //groundLayer.DumpPattern(_fileParser);
             overGroundLayer.CreateTileSet(_groundTextures, _fileParser);
         }
         objectLayer.LoadTextures(textureResourceName);
