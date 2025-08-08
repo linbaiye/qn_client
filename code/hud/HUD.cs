@@ -6,6 +6,7 @@ using QnClient.code.entity;
 using QnClient.code.entity.@event;
 using QnClient.code.hud.assistance;
 using QnClient.code.hud.attribute;
+using QnClient.code.hud.bank;
 using QnClient.code.hud.lefttext;
 using QnClient.code.hud.npc;
 using QnClient.code.message;
@@ -47,6 +48,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     private AttributeEquipment _attributeEquipment;
 
     private Quest _quest;
+    
+    private Bank _bank;
 
     public override void _Ready()
     {
@@ -57,7 +60,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _bottom.AssistanceButtonPressed += OnAssistancePressed;
         _kungFuBook = GetNode<KungFuBook>("KungFuBook");
         _inventory = GetNode<Inventory>("Inventory");
-        _inventory.ItemDragReleased += s => InventoryItemDropped?.Invoke(s);
+        _inventory.ItemDragReleased += OnInventoryItemDragReleased;
         _audioManager = GetNode<AudioManager>("AudioManager");
         _npcMainMenu = GetNode<NpcMainMenu>("NpcMainMenu");
         _npcTradeMenu = GetNode<NpcTradeMenu>("NpcTradeMenu");
@@ -73,6 +76,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _leftUpText = GetNode<LeftUpText>("LeftUpText");
         _attributeEquipment = GetNode<AttributeEquipment>("AttributeEquipment");
         _quest = GetNode<Quest>("Quest");
+        _bank = GetNode<Bank>("Bank");
         Visible = false;
     }
         
@@ -85,7 +89,13 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         }
     }
 
-    public void OnAssistancePressed()
+    private void OnInventoryItemDragReleased(string itemName, int slotNumber)
+    {
+        if (!_bank.HandleInventoryDragItem(itemName, slotNumber))
+            InventoryItemDropped?.Invoke(slotNumber);
+    }
+
+    private void OnAssistancePressed()
     {
         _assistance.ButtonPressed();
     }
@@ -168,9 +178,14 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _playerTradeWindow.OpenWindow(message);
     }
 
-    public void CloseTradeWindow()
+    public void ClosePlayerTradeWindow()
     {
         _playerTradeWindow.Close();
+    }
+
+    public void CloseBankWindow()
+    {
+        _bank.Close();
     }
 
     public void UpdateTradeWindowSlot(bool self, InventoryItemMessage item)
@@ -217,6 +232,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void ShowQuest(ShowQuestMessage message)
     {
         _quest.Show(message);
+    }
+
+    public void ShowBank(ShowBankMessage message)
+    {
+        _bank.Show(message, _inventory);
     }
 
     public void DisplayBottomText(string text, string color, string bgColor)

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Google.Protobuf.Collections;
 using QnClient.code.hud;
 using Source.Networking.Protobuf;
 
@@ -18,6 +20,16 @@ public readonly struct InventoryItemMessage(string name, int icon, int slot, lon
     {
         long number = packet.HasNumber && packet.Number > 0 ? packet.Number : 1;
         return new InventoryItemMessage(packet.Name, packet.Icon, packet.SlotId, number, packet.Color);
+    }
+
+    public static List<InventoryItemMessage> FromPacket(RepeatedField<InventoryItemPacket> packets)
+    {
+        List<InventoryItemMessage> items = new List<InventoryItemMessage>();
+        foreach (var itemPacket in packets)
+        {
+            items.Add(FromPacket(itemPacket));
+        }
+        return items;
     }
 
     public void Accept(IHUDMessageHandler handler)

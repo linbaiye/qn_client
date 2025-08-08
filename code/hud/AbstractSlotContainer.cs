@@ -6,26 +6,45 @@ namespace QnClient.code.hud;
 
 public abstract partial class AbstractSlotContainer : NinePatchRect
 {
-    private Slot[] _slots = new Slot[30];
+    private Slot[] _slots;
     
     public event Action<int, InputEventKey>? KeyPressedOnSlot;
 
     public override void _Ready()
     {
+        _slots = new Slot[Capacity];
         for (int i = 0; i < _slots.Length; i++)
         {
             _slots[i] = CreateSlot("Slot" + (i + 1));
-            _slots[i].LeftMouseButtonReleased += OnSlotLeftMouseButtonReleased;
+            _slots[i].LeftMouseButtonReleased += OnLeftButtonReleased;
             _slots[i].LeftMouseButtonDoubleClicked += OnSlotLeftButtonDoubleClicked;
             _slots[i].RightMouseButtonReleased += OnSlotRightMouseButtonReleased;
             _slots[i].KeyPressed += OnKeyPressed;
             GetNode<GridContainer>("GridContainer").AddChild(_slots[i]);
-            Visible = false;
         }
-        GetNode<Button>("CloseButton").Pressed += () => Visible = false;
+        Visible = false;
+        GetNode<Button>("CloseButton").Pressed += OnCloseButtonClicked;
     }
 
-    protected Slot? FindSlotHasHovering()
+    protected virtual void OnCloseButtonClicked()
+    {
+        Visible = false;
+    }
+
+
+    private void OnLeftButtonReleased(int draggedSlot)
+    {
+        var slot = FindSlotHasHovering();
+        if (slot != null && slot.SlotNumber == draggedSlot)
+        {
+            return;
+        }
+        if (!GetSlot(draggedSlot).Empty)
+            OnDragReleased(draggedSlot);
+    }
+
+
+    public Slot? FindSlotHasHovering()
     {
         return _slots.FirstOrDefault(s => s.MouseHovering);
     }
@@ -58,11 +77,13 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
 
     protected abstract Slot CreateSlot(string name);
 
-    protected abstract void OnSlotLeftMouseButtonReleased(int number);
+    protected abstract void OnDragReleased(int number);
     
     protected abstract void OnSlotLeftButtonDoubleClicked(int number);
     
     protected abstract void OnSlotRightMouseButtonReleased(int number);
+    
+    protected abstract int Capacity { get; }
         
     public void ShowDescription(int slot, string text)
     {

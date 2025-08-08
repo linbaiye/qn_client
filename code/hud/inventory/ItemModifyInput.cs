@@ -51,7 +51,7 @@ public partial class ItemModifyInput : NinePatchRect
     {
         if (!Visible)
             return;
-        if (@event is InputEventKey key && key.Keycode == Key.Enter)
+        if (@event is InputEventKey key && (key.Keycode == Key.Enter || key.Keycode == Key.KpEnter))
         {
             OnConfirmed();
             GetViewport().SetInputAsHandled();
@@ -108,6 +108,12 @@ public partial class ItemModifyInput : NinePatchRect
         _input.GrabFocus();
     }
     
+    public void SetNameFocus(string name)
+    {
+        _name.Text = name;
+        _input.Text = null;
+        _input.GrabFocus();
+    }
         
     public void SetExtra(string key, object value)
     {

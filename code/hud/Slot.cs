@@ -48,10 +48,10 @@ public partial class Slot : Panel
         _keyLabel = GetNode<Label>("KeyLabel");
         _attributeTip = GetNode<Label>("AttributeTip");
         _attributeTip.Visible = false;
-        Number = GetNumber();
+        SlotNumber = GetNumber();
     }
     
-    public int Number { get; private set; }
+    public int SlotNumber { get; private set; }
 
     private int GetNumber()
     {
@@ -69,17 +69,17 @@ public partial class Slot : Panel
 
     private void OnLeftButtonReleased()
     {
-        if (Number != -1)
+        if (SlotNumber != -1)
         {
-            LeftMouseButtonReleased?.Invoke(Number);
+            LeftMouseButtonReleased?.Invoke(SlotNumber);
         }
     }
 
     private void OnRightButtonReleased()
     {
-        if (Number != -1)
+        if (SlotNumber != -1)
         {
-            RightMouseButtonReleased?.Invoke(Number);
+            RightMouseButtonReleased?.Invoke(SlotNumber);
         }
     }
 
@@ -110,8 +110,8 @@ public partial class Slot : Panel
             return;
         }
         GetViewport().SetInputAsHandled();
-        if (key.IsPressed() && Number != -1)
-            KeyPressed?.Invoke(Number, key);
+        if (key.IsPressed() && SlotNumber != -1)
+            KeyPressed?.Invoke(SlotNumber, key);
     }
 
     public void SetKeyLabel(string key)
@@ -135,9 +135,9 @@ public partial class Slot : Panel
 
     private void OnLeftButtonDoubleClicked()
     {
-        if (Number != -1)
+        if (SlotNumber != -1)
         {
-            LeftMouseButtonDoubleClicked?.Invoke(Number);
+            LeftMouseButtonDoubleClicked?.Invoke(SlotNumber);
         }
     }
 

@@ -38,6 +38,10 @@ public partial class NpcMainMenu : AbstractNpcMenu
 
     public void Show(NpcMenuMessage message)
     {
+        foreach (var submenuButton in _submenuButtons)
+        {
+            submenuButton.Text = null;
+        }
         SetFields(message.Name, message.Id, message.Greetings, message.Sprite, message.Image);
         for (int i = 0; i < message.SupportedActions.Count; i++)
         {

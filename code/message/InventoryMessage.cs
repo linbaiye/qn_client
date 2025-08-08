@@ -13,11 +13,7 @@ public class InventoryMessage(List<InventoryItemMessage> items, bool force) : IH
 
     public static InventoryMessage FromPacket(InventoryPacket packet)
     {
-        List<InventoryItemMessage> items = new List<InventoryItemMessage>();
-        foreach (var itemPacket in packet.Items)
-        {
-            items.Add(InventoryItemMessage.FromPacket(itemPacket));
-        }
+        List<InventoryItemMessage> items = InventoryItemMessage.FromPacket(packet.Items);
         return new InventoryMessage(items, packet.Forceful);
     }
 

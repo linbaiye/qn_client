@@ -2,7 +2,6 @@
 using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Channels;
-using Godot;
 using NLog;
 using QnClient.code.message;
 using QnClient.code.player;
@@ -48,7 +47,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.NpcMenuPacket => NpcMenuMessage.FromPacket(packet.NpcMenuPacket),
             Packet.TypedPacketOneofCase.TradeMenuPacket => NpcTradeMenuMessage.FromPacket(packet.TradeMenuPacket),
             Packet.TypedPacketOneofCase.OpenTradeWindow => OpenPlayerTradeWindowMessage.FromPacket(packet.OpenTradeWindow),
-            Packet.TypedPacketOneofCase.CloseTradePacket => ClosePlayerTradeWindowMessage.Instance,
+            Packet.TypedPacketOneofCase.CloseTradePacket => new CloseTradeWindowMessage(packet.CloseTradePacket.Which),
             Packet.TypedPacketOneofCase.UpdateTradeWindowSlot => UpdateTradeWindowSlotMessage.FromPacket(packet.UpdateTradeWindowSlot),
             Packet.TypedPacketOneofCase.DynamicObjectSnapshot => DynamicObjectSnapshot.FromPacket(packet.DynamicObjectSnapshot),
             Packet.TypedPacketOneofCase.DynamicObjectShift => DynamicObjectShiftMessage.FromPacket(packet.DynamicObjectShift),
@@ -60,6 +59,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.ItemDescription => ItemDescriptionMessage.FromPacket(packet.ItemDescription),
             Packet.TypedPacketOneofCase.ActivateEffect => NpcActivateEffectMessage.FromPacket(packet.ActivateEffect),
             Packet.TypedPacketOneofCase.ShowQuest => ShowQuestMessage.FromPacket(packet.ShowQuest),
+            Packet.TypedPacketOneofCase.ShowBank => ShowBankMessage.FromPacket(packet.ShowBank),
             _ => null,
         };
     }

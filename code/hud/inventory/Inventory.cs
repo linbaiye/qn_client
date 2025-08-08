@@ -23,7 +23,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     private Connection _connection;
     
     private InventoryMessage _message;
-    public event Action<int>? ItemDragReleased;
+    public event Action<string, int>? ItemDragReleased;
 
     // Removed?, HotKeySlotNumber, 
     public event Action<bool, int, InventoryItemMessage?>? HotKeySlotUpdated;
@@ -34,6 +34,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     private class DoubleClickHandler(object o, Action<int, string, long> a)
     {
         public object Owner { get;  } = o;
+        // SlotNumber, ItemName, ItemNumber
         public Action<int, string, long> Action { get; } = a;
     }
 
@@ -78,23 +79,19 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         return Slot.Create(name, new Vector2(40, 40), new Vector2(30, 30), false);
     }
 
-    protected override void OnSlotLeftMouseButtonReleased(int number)
+    protected override void OnDragReleased(int number)
     {
         var slot = FindSlotHasHovering();
-        if (slot != null && slot.Number != number)
+        if (slot != null && slot.SlotNumber != number)
         {
-            _connection.WriteAndFlush(SwapSlotInput.Inventory(number, slot.Number));
-            return;
-        }
-        if (slot != null && slot.Number == number)
-        {
+            _connection.WriteAndFlush(SwapSlotInput.Inventory(number, slot.SlotNumber));
             return;
         }
         foreach (var messageItem in _message.Items)
         {
             if (messageItem.Slot == number)
             {
-                ItemDragReleased?.Invoke(number);
+                ItemDragReleased?.Invoke(messageItem.Name, number);
                 break;
             }
         }
@@ -132,6 +129,8 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     {
         _connection.WriteAndFlush(ClickInventoryInput.RightClick(number));
     }
+
+    protected override int Capacity => 30;
 
     public void OnShortcutButtonClicked()
     {

@@ -44,7 +44,9 @@ public interface IHUDMessageHandler
     
     void OpenTradeWindow(OpenPlayerTradeWindowMessage message);
 
-    void CloseTradeWindow();
+    void ClosePlayerTradeWindow();
+    
+    void CloseBankWindow();
 
     void UpdateTradeWindowSlot(bool self, InventoryItemMessage item);
 
@@ -63,4 +65,6 @@ public interface IHUDMessageHandler
     void ShowEquipmentDescription(EquipmentType type, string text);
 
     void ShowQuest(ShowQuestMessage message);
+
+    void ShowBank(ShowBankMessage message);
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ch785oi1vsnly"]
+[gd_scene load_steps=18 format=3 uid="uid://ch785oi1vsnly"]
 
 [ext_resource type="PackedScene" uid="uid://idx0qd14bsb2" path="res://scene/game.tscn" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://drt6jdp3j6pen" path="res://code/Main.cs" id="1_v0l8b"]
@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://teyqa1orjghd" path="res://scene/ui/system/system.tscn" id="12_mswub"]
 [ext_resource type="PackedScene" uid="uid://cmb0sic6yphdk" path="res://scene/ui/left_up_text.tscn" id="13_hybxs"]
 [ext_resource type="PackedScene" uid="uid://bmrvv2sro6ah4" path="res://scene/ui/equip_attribute.tscn" id="14_v2gmf"]
-[ext_resource type="PackedScene" uid="uid://dg8gw5crnl1pt" path="res://scene/quest.tscn" id="15_jcbur"]
+[ext_resource type="PackedScene" uid="uid://01y756go6dsm" path="res://scene/quest.tscn" id="15_jcbur"]
+[ext_resource type="PackedScene" uid="uid://026jihtwd5hy" path="res://scene/ui/bank/bank.tscn" id="16_smf0o"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")
@@ -104,6 +105,8 @@ offset_right = 190.0
 offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Bank" parent="HUD" instance=ExtResource("16_smf0o")]
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1024, 648)

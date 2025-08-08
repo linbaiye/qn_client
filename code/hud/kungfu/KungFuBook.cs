@@ -54,14 +54,14 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
         return Slot.Create(name, new Vector2(28, 28), new Vector2(28, 28));
     }
 
-    protected override void OnSlotLeftMouseButtonReleased(int number)
+    protected override void OnDragReleased(int number)
     {
         var slot = FindSlotHasHovering();
-        if (slot != null && slot.Number != number)
+        if (slot != null && slot.SlotNumber != number)
         {
             if (!_basicTab.IsFocused)
                 return;
-            _connection.WriteAndFlush(SwapSlotInput.KungFu(2, number, slot.Number));
+            _connection.WriteAndFlush(SwapSlotInput.KungFu(2, number, slot.SlotNumber));
         }
         else
         {
@@ -114,6 +114,8 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     {
         HandleKungFuClick(number, (i, fu) => _connection.WriteAndFlush(ClickKungFuInput.RightClick(i, fu.Slot)));
     }
+
+    protected override int Capacity => 30;
 
     private void RefreshKungFuSlots(List<KungFuBookMessage.KungFu> kungFuList)
     {
