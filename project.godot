@@ -37,8 +37,6 @@ timers/tooltip_delay_sec=0.1
 [physics]
 
 common/physics_ticks_per_second=40
-common/max_physics_steps_per_frame=5
-common/physics_jitter_fix=0.509
 common/physics_interpolation=true
 
 [rendering]
@@ -46,7 +44,6 @@ common/physics_interpolation=true
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=0
 camera/depth_of_field/depth_of_field_bokeh_shape=0
 camera/depth_of_field/depth_of_field_use_jitter=true

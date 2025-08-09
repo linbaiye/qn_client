@@ -84,7 +84,7 @@ public class CharacterMoveState : AbstractCharacterState
             _character.Position = nextPosition;
             return;
         }
-        _character.Position = _character.Position.Snapped(VectorUtil.TileSize);
+        _character.Position = _moveInput.Destination;
         _character.EmitEvent(new EntityChangeCoordinateEvent(_character));
         if (_character.NextMoveDirection == null)
         {
@@ -96,7 +96,7 @@ public class CharacterMoveState : AbstractCharacterState
         {
             var moveAction = ComputeMoveAction(_character, _action);
             _character.ChangeState(new CharacterMoveState(_character, moveAction, moveInput));
-            _character.PlayMoveAnimation(moveAction, moveInput.Direction);
+            //_character.PlayMoveAnimation(moveAction, moveInput.Direction);
             return;
         }
         if (_character.Direction != moveInput.Direction)

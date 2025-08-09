@@ -23,7 +23,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
     private Connection _connection;
     
     private InventoryMessage _message;
-    public event Action<string, int>? ItemDragReleased;
+    public event Action<int>? ItemDragReleased;
 
     // Removed?, HotKeySlotNumber, 
     public event Action<bool, int, InventoryItemMessage?>? HotKeySlotUpdated;
@@ -79,7 +79,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         return Slot.Create(name, new Vector2(40, 40), new Vector2(30, 30), false);
     }
 
-    protected override void OnDragReleased(int number)
+    protected override void OnNonEmptyDragReleased(int number)
     {
         var slot = FindSlotHasHovering();
         if (slot != null && slot.SlotNumber != number)
@@ -91,7 +91,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         {
             if (messageItem.Slot == number)
             {
-                ItemDragReleased?.Invoke(messageItem.Name, number);
+                ItemDragReleased?.Invoke(number);
                 break;
             }
         }

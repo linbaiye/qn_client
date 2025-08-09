@@ -9,6 +9,7 @@ public class ItemDescriptionMessage(int type, int index, string text) : IHUDMess
     private const int Inventory = 0;
     private const int KungFu = 1;
     private const int AttributeEquipment = 2;
+    private const int Bank = 3;
 
     public static ItemDescriptionMessage FromPacket(ItemDescriptionPacket packet)
     {
@@ -23,5 +24,7 @@ public class ItemDescriptionMessage(int type, int index, string text) : IHUDMess
             handler.ShowKungFuDescription(index, text);
         else if (type == AttributeEquipment)
             handler.ShowEquipmentDescription((EquipmentType)index, text);
+        else if (type == Bank)
+            handler.ShowBankItemDescription(index, text);
     }
 }

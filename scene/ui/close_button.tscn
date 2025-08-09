@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctucyekmtivdi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nf4rs"]
+blend_mode = 1
+
+[node name="CloseButton" type="Button"]
+material = SubResource("CanvasItemMaterial_nf4rs")
+offset_left = 223.0
+offset_top = 6.0
+offset_right = 249.0
+offset_bottom = 30.0
+focus_mode = 0

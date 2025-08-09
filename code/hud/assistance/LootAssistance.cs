@@ -190,7 +190,7 @@ public partial class LootAssistance : NinePatchRect
         {
             _file.Delete();
         }
-        _timer.Start(0.1f);
+        _timer.Start(0.3f);
     }
 
     public void SetItemFilter(Func<IEnumerable<GroundItem>> action)

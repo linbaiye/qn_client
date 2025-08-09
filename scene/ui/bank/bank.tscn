@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://026jihtwd5hy"]
+[gd_scene load_steps=5 format=3 uid="uid://026jihtwd5hy"]
 
 [ext_resource type="Texture2D" uid="uid://gr4cqd07ih61" path="res://ui/bank/bank.png" id="1_lwjl3"]
 [ext_resource type="Script" uid="uid://b0lvw7xv35u4t" path="res://code/hud/bank/Bank.cs" id="2_nslbt"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_q0fkk"]
+[ext_resource type="PackedScene" uid="uid://ctucyekmtivdi" path="res://scene/ui/close_button.tscn" id="4_nslbt"]
 
 [node name="Bank" type="NinePatchRect"]
 offset_right = 478.0
@@ -20,14 +21,6 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 10
 
-[node name="CloseButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 4.0
-offset_right = 474.0
-offset_bottom = 31.0
-theme = ExtResource("2_q0fkk")
-
 [node name="Unlock" type="Button" parent="."]
 layout_mode = 0
 offset_left = 368.0
@@ -35,4 +28,11 @@ offset_top = 238.0
 offset_right = 457.0
 offset_bottom = 264.0
 theme = ExtResource("2_q0fkk")
-text = "解锁福袋格子"
+text = "购买福袋格"
+
+[node name="CloseButton" parent="." instance=ExtResource("4_nslbt")]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 5.0
+offset_right = 474.0
+offset_bottom = 29.0

@@ -8,7 +8,9 @@ using QnClient.code.hud.assistance;
 using QnClient.code.hud.attribute;
 using QnClient.code.hud.bank;
 using QnClient.code.hud.lefttext;
+using QnClient.code.hud.mapview;
 using QnClient.code.hud.npc;
+using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player;
@@ -51,6 +53,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     
     private Bank _bank;
 
+    private MapView _mapView;
+
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -77,6 +81,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _attributeEquipment = GetNode<AttributeEquipment>("AttributeEquipment");
         _quest = GetNode<Quest>("Quest");
         _bank = GetNode<Bank>("Bank");
+        _mapView = GetNode<MapView>("MapView");
         Visible = false;
     }
         
@@ -86,12 +91,13 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         {
             _bottom.UpdateCoordinate(entityEvent.Source.Coordinate);
             _assistance.OnCharacterCoordinateChanged(entityEvent.Source.Coordinate);
+            _mapView.UpdateCharacterCoordinate(entityEvent.Source.Coordinate);
         }
     }
 
-    private void OnInventoryItemDragReleased(string itemName, int slotNumber)
+    private void OnInventoryItemDragReleased(int slotNumber)
     {
-        if (!_bank.HandleInventoryDragItem(itemName, slotNumber))
+        if (!_bank.HandleInventoryDragItem(slotNumber))
             InventoryItemDropped?.Invoke(slotNumber);
     }
 
@@ -197,6 +203,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     {
         _audioManager.PlayBgm(message.Bgm);
         _bottom.OnCharacterTeleported(message.MapTitle, message.Coordinate);
+        _mapView.OnPlayerTeleported(message);
     }
 
     public void CreatureSay(string text)
@@ -229,6 +236,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _attributeEquipment.ShowEquipmentDescription(type, text);
     }
 
+    public void ShowBankItemDescription(int slot, string text)
+    {
+        _bank.ShowDescription(slot, text);
+    }
+
     public void ShowQuest(ShowQuestMessage message)
     {
         _quest.Show(message);
@@ -237,6 +249,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void ShowBank(ShowBankMessage message)
     {
         _bank.Show(message, _inventory);
+    }
+
+    public void ShowCoordinateNameOnMap(InteractablePositionNameMessage message)
+    {
+        _mapView.ShowCoordinateAndName(message);
     }
 
     public void DisplayBottomText(string text, string color, string bgColor)
@@ -273,6 +290,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
                 characterJoinedAware.OnCharacterJoined(message);
         }
         Visible = true;
+    }
+
+    public void SetMap(IMap map)
+    {
+        _mapView.SetMap(map);
     }
 
     public void UpdateActiveKungFuList(SyncActiveKungFuListMessage message)

@@ -60,6 +60,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.ActivateEffect => NpcActivateEffectMessage.FromPacket(packet.ActivateEffect),
             Packet.TypedPacketOneofCase.ShowQuest => ShowQuestMessage.FromPacket(packet.ShowQuest),
             Packet.TypedPacketOneofCase.ShowBank => ShowBankMessage.FromPacket(packet.ShowBank),
+            Packet.TypedPacketOneofCase.NpcPosition => InteractablePositionNameMessage.FromPacket(packet.NpcPosition),
             _ => null,
         };
     }

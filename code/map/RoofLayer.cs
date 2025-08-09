@@ -22,13 +22,13 @@ public partial class RoofLayer : Node2D
 
 	public void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
 	{
-		if (_mapRoofInfos.Count == 0)
-			return;
 		foreach (var child in GetChildren())
 		{
 			RemoveChild(child);
 			child.QueueFree();
 		}
+		if (_mapRoofInfos.Count == 0)
+			return;
 		atzMapFileParser.ForeachCell(start, end, (cell, x, y) => DrawRoofAtCoordinate(cell.RoofId, x, y));
 	}
 	

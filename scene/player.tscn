@@ -68,62 +68,51 @@ shader_parameter/add = 0.0
 blend_mode = 1
 
 [node name="Player" type="Node2D"]
-y_sort_enabled = true
 script = ExtResource("1_hjaqi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-callback_mode_process = 0
+callback_mode_process = 2
 callback_mode_method = 1
 script = ExtResource("2_fvtld")
 
 [node name="Body" parent="." instance=ExtResource("3_fvtld")]
 
 [node name="Leg" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_ct4mp")
 centered = false
 
 [node name="Boot" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_oh5ij")
 centered = false
 
 [node name="LeftWrist" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_hp4bs")
 centered = false
 
 [node name="RightWrist" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_g2vtq")
 centered = false
 
 [node name="Vest" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_2fvbb")
 centered = false
 
 [node name="Armor" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_s4jxa")
 centered = false
 
 [node name="Hair" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_ml7e8")
 centered = false
 
 [node name="Hat" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_ihjo1")
 centered = false
 
 [node name="Weapon" type="Sprite2D" parent="."]
-y_sort_enabled = true
 centered = false
 
 [node name="AttackEffect" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_hjaqi")
 centered = false
 

@@ -12,6 +12,7 @@ using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player;
+using QnClient.code.sprite;
 using QnClient.code.util;
 using Character = QnClient.code.player.character.Character;
 using HUD = QnClient.code.hud.HUD;
@@ -34,6 +35,7 @@ public partial class Game : Node2D
     private HUD _hud;
     
 
+
     public override void _Ready()
     {
         var groundLayer = GetNode<GroundLayer>("GroundLayer");
@@ -44,10 +46,10 @@ public partial class Game : Node2D
         Visible = false;
         _map = new AtzMap(overGroundLayer, groundLayer, objectLayer, rootLayer);
     }
-    
 
     private void AddCreature(AbstractCreature creature, IEntityMessage message)
     {
+        var startTime = DateTimeOffset.Now.Millisecond;
         AddChild(creature);
         creature.OnEntityEvent += _map.HandleEntityEvent;
         creature.OnEntityEvent += _entityManager.HandleEntityEvent;
@@ -56,6 +58,8 @@ public partial class Game : Node2D
         creature.AttackTriggered += id => _connection.WriteAndFlush(new AttackInput(id));
         creature.Clicked += id => _connection.WriteAndFlush(new ClickEntityInput(id));
         _entityManager.Add(creature);
+        var endTime = DateTimeOffset.Now.Millisecond;
+        GD.Print("Took " + (endTime - startTime) + " milliseconds");
     }
 
     private void AddGroundItem(GroundItemSnapshot snapshot)
@@ -113,7 +117,6 @@ public partial class Game : Node2D
         Visible = true;
         Logger.Debug("Character joined.");
     }
-
 
     private void OnCharacterTeleported(TeleportMessage teleportMessage)
     {
@@ -202,6 +205,7 @@ public partial class Game : Node2D
         _character.OnEntityEvent += _hud.CharacterEventHandler;
         _hud.InventoryItemDropped += OnInventoryItemDropped;
         _hud.SetItemFilter(FilterItems);
+        _hud.SetMap(_map);
     }
 
     public override void _UnhandledInput(InputEvent @event)

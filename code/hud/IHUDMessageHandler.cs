@@ -64,7 +64,11 @@ public interface IHUDMessageHandler
     
     void ShowEquipmentDescription(EquipmentType type, string text);
 
+    void ShowBankItemDescription(int slot, string text);
+    
     void ShowQuest(ShowQuestMessage message);
 
     void ShowBank(ShowBankMessage message);
+    
+    void ShowCoordinateNameOnMap(InteractablePositionNameMessage message);
 }

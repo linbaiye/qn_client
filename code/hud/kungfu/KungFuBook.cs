@@ -51,10 +51,10 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
 
     protected override Slot CreateSlot(string name)
     {
-        return Slot.Create(name, new Vector2(28, 28), new Vector2(28, 28));
+        return Slot.Create(name, new Vector2(28, 28), new Vector2(28, 28), false);
     }
 
-    protected override void OnDragReleased(int number)
+    protected override void OnNonEmptyDragReleased(int number)
     {
         var slot = FindSlotHasHovering();
         if (slot != null && slot.SlotNumber != number)

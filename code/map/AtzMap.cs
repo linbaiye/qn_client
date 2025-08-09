@@ -43,11 +43,15 @@ public class AtzMap(
                 throw new Exception("Can't load map file + " + name);
             }
             groundLayer.CreateTileSet(_groundTextures, _fileParser);
-            //groundLayer.DumpPattern(_fileParser);
             overGroundLayer.CreateTileSet(_groundTextures, _fileParser);
         }
         objectLayer.LoadTextures(textureResourceName);
         roofLayer.LoadTextures(textureResourceName);
+        //DrawWhole();
+    }
+
+    private void DrawWhole()
+    {
         var start = Vector2I.Zero;
         var end = _fileParser.End;
         groundLayer.Paint(_fileParser, start, end);
@@ -64,9 +68,9 @@ public class AtzMap(
         }
         return !_entityCoordinates.Values.Any(s => s.Contains(coordinate));
     }
+    
 
-
-    public void Occupy(IEntity entity)
+    private void Occupy(IEntity entity)
     {
         Free(entity);
         _entityCoordinates.TryAdd(entity.Id, new HashSet<Vector2I>() { entity.Coordinate });
@@ -79,12 +83,13 @@ public class AtzMap(
 
     private void Draw(Vector2I coordinate)
     {
-        /*var start = new Vector2I(Math.Max(coordinate.X - 20, 0), Math.Max(0, coordinate.Y - 20));
+        var start = new Vector2I(Math.Max(coordinate.X - 20, 0), Math.Max(0, coordinate.Y - 20));
         var end = new Vector2I(Math.Min(coordinate.X + 30, _fileParser.End.X), Math.Min(coordinate.Y + 30, _fileParser.End.Y));
         groundLayer.Paint(_fileParser, start, end);
         overGroundLayer.Paint(_fileParser, start, end);
         objectLayer.Paint(_fileParser, start, end);
-        roofLayer.Paint(_fileParser, start, end);*/
+        roofLayer.Paint(_fileParser, start, end);
+
     }
 
     public void HandleEntityEvent(IEntityEvent entityEvent)
@@ -125,12 +130,15 @@ public class AtzMap(
     
     public Vector2I Start => Vector2I.Zero;
     public Vector2I End => _fileParser.End;
-
+    
+    public string Name => _fileParser.Name;
     private void Occupy(DynamicObject dynamicObject)
     {
         Free(dynamicObject);
         _entityCoordinates.TryAdd(dynamicObject.Id, new HashSet<Vector2I>(dynamicObject.Coordinates));
     }
+
+    public Vector2I MapSize => _fileParser != null ? new Vector2I(_fileParser.Width, _fileParser.Height) : Vector2I.Zero; 
 
     private void Free(DynamicObject dynamicObject)
     {

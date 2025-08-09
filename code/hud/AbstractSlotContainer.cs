@@ -40,7 +40,7 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
             return;
         }
         if (!GetSlot(draggedSlot).Empty)
-            OnDragReleased(draggedSlot);
+            OnNonEmptyDragReleased(draggedSlot);
     }
 
 
@@ -77,7 +77,7 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
 
     protected abstract Slot CreateSlot(string name);
 
-    protected abstract void OnDragReleased(int number);
+    protected abstract void OnNonEmptyDragReleased(int number);
     
     protected abstract void OnSlotLeftButtonDoubleClicked(int number);
     

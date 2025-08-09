@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Godot;
-using QnClient.code.util;
 
 namespace QnClient.code.map;
 
@@ -23,17 +22,13 @@ public partial class ObjectLayer : Node2D
 
 	public void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
 	{
-		if (_idObjects.Count == 0)
-			return;
         foreach (var child in GetChildren())
         {
-	        /*if (child is not AnimatedSprite2D animatedSprite2D  ||
-	            string.IsNullOrEmpty(animatedSprite2D.Name) || 
-	            !animatedSprite2D.Name.ToString().StartsWith("obj_"))
-	        {*/
 	        RemoveChild(child);
 	        child.QueueFree();
         }
+		if (_idObjects.Count == 0)
+			return;
         atzMapFileParser.ForeachCell(start, end, (cell, x, y) => DrawObjectAtCoordinate(cell.ObjectId, x, y));
 	}
 	
@@ -47,10 +42,13 @@ public partial class ObjectLayer : Node2D
 		}
 		var ani = new AnimatedSprite2D()
 		{
-			Centered = false, Position = new Vector2(x * 32, y * 24), Offset = mapObject.Offset,
+			Centered = false,
+			Offset = mapObject.Offset,
 			SpriteFrames = frames,
+			Position = new Vector2(x * 32, y * 24),
 			Autoplay = "default",
 			Name = mapObject.Name(x, y),
+			TextureFilter = TextureFilterEnum.Nearest,
 		};
 		return ani;
 	}
@@ -74,8 +72,11 @@ public partial class ObjectLayer : Node2D
 			{
 				Sprite2D objectSprite = new Sprite2D()
 				{
-					Texture = objectInfo.Textures[0], Centered = false, Position = new Vector2(xPos, yPos),
+					Texture = objectInfo.Textures[0],
+					Centered = false,
 					Offset = objectInfo.Offset,
+					Position = new Vector2(xPos, yPos),
+					TextureFilter = TextureFilterEnum.Nearest,
 				};
 				AddChild(objectSprite);
 			}

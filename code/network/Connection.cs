@@ -5,7 +5,9 @@ using DotNetty.Codecs;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
+using QnClient.code.message;
 using QnClient.code.network.toserver;
+using QnClient.code.sprite;
 
 namespace QnClient.code.network;
 
@@ -59,11 +61,30 @@ public class Connection(string ip, int port)  : SimpleChannelInboundHandler<obje
         return connection;
     }
 
-    protected override void ChannelRead0(IChannelHandlerContext ctx, object msg)
+    private async void LoadSprites(ISpriteMessage message)
     {
+        foreach (var sprite in message.Sprites)
+        {
+            await Task.Run(() => ZipFileSpriteLoader.Instance.Load(sprite));
+        }
         lock (_messages)
         {
-            _messages.Add(msg);
+            _messages.Add(message);
+        }
+    }
+
+    protected override void ChannelRead0(IChannelHandlerContext ctx, object msg)
+    {
+        if (msg is ISpriteMessage spriteMessage)
+        {
+            LoadSprites(spriteMessage);
+        }
+        else
+        {
+            lock (_messages)
+            {
+                _messages.Add(msg);
+            }
         }
     }
 }

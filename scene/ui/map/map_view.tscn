@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://w86qlm5v58fw"]
+
+[ext_resource type="Script" uid="uid://532s6bdpbh3x" path="res://code/hud/mapview/MapView.cs" id="1_sn1ot"]
+
+[node name="MapView" type="TextureRect"]
+script = ExtResource("1_sn1ot")
+
+[node name="Timer" type="Timer" parent="."]

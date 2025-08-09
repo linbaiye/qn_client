@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using QnClient.code.player;
 using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class PlayerSnapshot : AbstractCreatureSnapshot, IPlayerMessage
+public class PlayerSnapshot : AbstractCreatureSnapshot, IPlayerMessage, ISpriteMessage
 {
     private PlayerSnapshot(PlayerSnapshotPacket packet, List<PlayerEquipMessage> equipMessages)  : base(packet.BaseInfo)
     {
@@ -34,5 +35,26 @@ public class PlayerSnapshot : AbstractCreatureSnapshot, IPlayerMessage
     public void Accept(IPlayerMessageHandler handler)
     {
         handler.Initialize(this);
+    }
+
+    public string[] Sprites
+    {
+        get
+        {
+            List<string> sprites = new List<string>();
+            string prefix = Male ? "N0" : "A0";
+            for (int i = 0; i < 5; i++)
+            {
+                sprites.Add(prefix + i);
+            }
+            EquipMessages.ForEach(e =>
+            {
+                sprites.Add(e.SpritePrefix);
+                if (e.PairedSpritePrefix != null)
+                    sprites.Add(e.SpritePrefix);
+            });
+            EquipMessages.Select(e => e.SpritePrefix).ToList().ForEach(sprite => sprites.Add(sprite));
+            return sprites.ToArray();
+        }
     }
 }

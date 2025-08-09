@@ -45,8 +45,30 @@ public partial class Bank : AbstractSlotContainer, IConnectionAware
     {
         return Slot.Create(name, new Vector2(40, 40), new Vector2(30, 30), false);
     }
+    
+    private string GetItemName(int slot)
+    {
+        foreach (var item in _message.ItemMessages)
+        {
+            if (item.Slot == slot)
+                return item.Name;
+        }
+        return null;
+    }
 
-    protected override void OnDragReleased(int number)
+    private string GetItemName(Slot slot)
+    {
+        var strings = slot.TooltipText.Split(":");
+        return strings[0];
+    }
+    
+    private int GetItemNumber(Slot slot)
+    {
+        var strings = slot.TooltipText.Split(":");
+        return strings.Length > 1? int.Parse(strings[1]) : 1;
+    }
+
+    protected override void OnNonEmptyDragReleased(int number)
     {
         var hoveringSlot = FindSlotHasHovering();
         if (hoveringSlot != null)
@@ -57,15 +79,53 @@ public partial class Bank : AbstractSlotContainer, IConnectionAware
         var invSlot = _inventory.FindSlotHasHovering();
         if (invSlot == null)
             return;
-        
+        var bankSlot = GetSlot(number);
+        var itemNumber = GetItemNumber(bankSlot);
+        if (itemNumber == 1)
+        {
+            _connection?.WriteAndFlush(BankOperationInput.BankToInventory(_npcId, number, invSlot.SlotNumber, 1));
+            return;
+        }
+        _input.SetInUse(true);
+        _input.SetExtra("bankSlot", number);
+        _input.SetExtra("inventorySlot", invSlot.SlotNumber);
+        _input.SetNameNumberFocus(GetItemName(bankSlot), itemNumber);
+        _input.Confirmed = ConfirmBankToInventory;
+    }
+
+    private void ConfirmBankToInventory(ItemModifyInput input)
+    {
+        var bankSlot = input.GetExtra<int>("bankSlot");
+        var inventorySlot = input.GetExtra<int>("inventorySlot");
+        _connection?.WriteAndFlush(BankOperationInput.BankToInventory(_npcId, bankSlot, inventorySlot, _input.Number));
+        _input.SetInUse(false);
     }
 
     protected override void OnSlotLeftButtonDoubleClicked(int number)
     {
+        var bankSlot = GetSlot(number);
+        var itemNumber = GetItemNumber(bankSlot);
+        if (itemNumber == 1)
+        {
+            _connection?.WriteAndFlush(BankOperationInput.BankToInventory(_npcId, number, 1));
+            return;
+        }
+        _input.SetInUse(true);
+        _input.SetExtra("bankSlot", number);
+        _input.SetNameNumberFocus(GetItemName(bankSlot), itemNumber);
+        _input.Confirmed = ConfirmBankToInventoryEmpty;
+    }
+    
+    private void ConfirmBankToInventoryEmpty(ItemModifyInput input)
+    {
+        var bankSlot = input.GetExtra<int>("bankSlot");
+        _connection?.WriteAndFlush(BankOperationInput.BankToInventory(_npcId, bankSlot, _input.Number));
+        _input.SetInUse(false);
     }
 
     protected override void OnSlotRightMouseButtonReleased(int number)
     {
+        _connection?.WriteAndFlush(BankOperationInput.RightClick(_npcId, number));
     }
 
     private void ConfirmInventoryToBank(ItemModifyInput input)
@@ -105,7 +165,7 @@ public partial class Bank : AbstractSlotContainer, IConnectionAware
         Visible = true;
     }
 
-    public bool HandleInventoryDragItem(string itemName, int slotNumber)
+    public bool HandleInventoryDragItem(int inventorySlotNumber)
     {
         var slot = FindSlotHasHovering();
         if (slot == null)
@@ -114,11 +174,20 @@ public partial class Bank : AbstractSlotContainer, IConnectionAware
         {
             return true;
         }
+        var inventorySlot = _inventory.GetSlot(inventorySlotNumber);
+        if (inventorySlot == null)
+            return true;
+        var itemNumber = GetItemNumber(inventorySlot);
+        if (itemNumber == 1)
+        {
+            _connection?.WriteAndFlush(BankOperationInput.InventoryToBank(_npcId, inventorySlotNumber, slot.SlotNumber, 1));
+            return true;
+        }
         _input.SetInUse(true);
-        _input.SetExtra("inventorySlot", slotNumber);
+        _input.SetExtra("inventorySlot", inventorySlotNumber);
         _input.SetExtra("bankSlot", slot.SlotNumber);
         _input.Confirmed = ConfirmInventoryToBank;
-        _input.SetNameFocus(itemName);
+        _input.SetNameNumberFocus(GetItemName(inventorySlot), itemNumber);
         return true;
     }
 
@@ -146,6 +215,11 @@ public partial class Bank : AbstractSlotContainer, IConnectionAware
     {
         if (_message == null)
             return;
+        if (itemNumber == 1)
+        {
+            _connection?.WriteAndFlush(BankOperationInput.InventoryToBank(_npcId, slotNumber, 1));
+            return;
+        }
         _input.SetInUse(true);
         _input.SetExtra("inventorySlot", slotNumber);
         _input.Confirmed = ConfirmInventoryToEmptyBankSlot;

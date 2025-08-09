@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using QnClient.code.util;
 
 namespace QnClient.code.map;
 
@@ -25,18 +26,19 @@ public partial class GroundLayer : AbstractGroundLayer
         });
     }
 
-    public void DumpPattern(AtzMapFileParser atzMapFileParser)
+    public void DumpPattern(IDictionary<int, Texture2D> tileIdTextures, AtzMapFileParser atzMapFileParser)
     {
         ISet<int> sets = new HashSet<int>();
+        TextureRect textureRect = new TextureRect();
+        textureRect.SetSize(atzMapFileParser.End * VectorUtil.TileSize);
+        //tileIdTextures.TryGetValue()
+        //textureRect.DrawTextureRect();
         atzMapFileParser.ForeachCell(new Vector2I(30, 30), new Vector2I(50, 50), (cell, x, y) =>
         {
-            GD.Print(new Vector2I(x, y) + ":" + cell.TileNumber);
-            sets.Add(cell.TileNumber);
+            var cells = GetUsedCells();
+            //textureRect.DrawTextureRect();
+            //GD.Print(new Vector2I(x, y) + ":" + cell.TileNumber);
+            //sets.Add(cell.TileNumber);
         });
-        var orderedEnumerable = sets.OrderBy(i => i);
-        foreach (var i in orderedEnumerable)
-        {
-            GD.Print(i);
-        }
     }
 }

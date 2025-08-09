@@ -103,7 +103,6 @@ public class ZipFileSpriteLoader
 		return name.EndsWith(".zip") ? name : name + ".zip";
 	}
 
-
 	public bool Exists(string name)
 	{
 		return FileAccess.FileExists("res://sprites/" + MakeName(name));
@@ -112,10 +111,13 @@ public class ZipFileSpriteLoader
 	public OffsetTexture[] Load(string spriteName)
 	{
 		var name = MakeName(spriteName).ToLower();
-		var sprites = _cache.Get(name);
-		if (sprites != null)
+		lock (_cache)
 		{
-			return sprites;
+			var cached = _cache.Get(name);
+			if (cached != null)
+			{
+				return cached;
+			}
 		}
 		Log.Debug("Loading {0}.", name);
 		using var zipArchive = ZipUtil.LoadZipFile("res://sprites/" + name);
@@ -124,14 +126,16 @@ public class ZipFileSpriteLoader
 		{
 			throw new FileNotFoundException("Bad atz zip file: " + name);
 		}
-		var sizeEntry  = zipArchive.GetEntry("size.txt");
+		var sizeEntry = zipArchive.GetEntry("size.txt");
 		if (sizeEntry == null)
 		{
 			throw new FileNotFoundException("Bad atz zip file: " + name);
 		}
-		var vectors = ParseVectors(offsetEntry.ReadAsString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
-		var sizes = ParseVectors(sizeEntry.ReadAsString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
-		sprites = new OffsetTexture[vectors.Length];
+		var vectors = ParseVectors(offsetEntry.ReadAsString()
+			.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
+		var sizes = ParseVectors(sizeEntry.ReadAsString()
+			.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
+		var sprites = new OffsetTexture[vectors.Length];
 		for (int i = 0; i < vectors.Length; i++)
 		{
 			var filename = "000" + i.ToString("D3") + ".png";
@@ -144,7 +148,11 @@ public class ZipFileSpriteLoader
 			sprites[i] = new OffsetTexture(texture, vectors[i], sizes[i]);
 		}
 		Log.Debug("Loaded {0}.", name);
-		_cache.Store(name, sprites, TimeSpan.FromMinutes(5));
+		lock (_cache)
+		{
+			if (_cache.Get(name) == null)
+				_cache.Store(name, sprites, TimeSpan.FromMinutes(5));
+		}
 		return sprites;
 	}
 }

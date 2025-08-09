@@ -36,12 +36,15 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public CreatureDirection Direction { get; set; }
 
+    //public override void _Process(double delta)
     public override void _PhysicsProcess(double delta)
     {
         _characterState?.PhysicProcess(delta);
         UpdateMover(delta);
+        AnimationPlayer.Advance(delta);
     }
 
+    //public CreatureDirection? NextMoveDirection => Input.IsMouseButtonPressed(MouseButton.Right) ? GetLocalMousePosition().GetDirection() : null;
     public CreatureDirection? NextMoveDirection { get; private set; }
 
     private void HandleMouseEvent(InputEventMouse eventMouse)
@@ -50,8 +53,9 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         {
             if (mouseButton.Pressed)
             {
-                NextMoveDirection = GetLocalMousePosition().GetDirection();
-                _characterState?.Move(new MoveInput(NextMoveDirection.Value, Coordinate));
+                var next = GetLocalMousePosition().GetDirection();
+                NextMoveDirection = next;
+                _characterState?.Move(new MoveInput(next, Coordinate));
             }
             else if (mouseButton.IsReleased())
             {

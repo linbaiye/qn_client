@@ -34,9 +34,19 @@ public class BankOperationInput(int type, long npcId, int fromSlot, int toSlot, 
     {
         return new BankOperationInput(3, npcId, fromSlot, toSlot, number);
     }
-    
+
+    public static BankOperationInput BankToInventory(long npcId, int fromSlot, int number)
+    {
+        return new BankOperationInput(5, npcId, fromSlot, 0, number);
+    }
+
     public static BankOperationInput Swap(long npcId, int fromSlot, int toSlot)
     {
         return new BankOperationInput(2, npcId, fromSlot, toSlot, 0);
+    }
+
+    public static BankOperationInput RightClick(long npcId, int slot)
+    {
+        return new BankOperationInput(6, npcId, slot, 0, 0);
     }
 }

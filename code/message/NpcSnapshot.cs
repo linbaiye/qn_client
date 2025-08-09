@@ -3,7 +3,7 @@ using Source.Networking.Protobuf;
 
 namespace QnClient.code.message;
 
-public class NpcSnapshot  : AbstractCreatureSnapshot, INpcMessage
+public class NpcSnapshot  : AbstractCreatureSnapshot, INpcMessage, ISpriteMessage
 {
 	private NpcSnapshot(NpcSnapshotPacket packet)  : base(packet.BaseInfo)
     {
@@ -13,7 +13,7 @@ public class NpcSnapshot  : AbstractCreatureSnapshot, INpcMessage
         DurationMillis = packet.Speed;
     }
 
-    public int DurationMillis { get; set; }
+    public int DurationMillis { get; }
 
     public void Accept(INpcMessageHandler handler)
     {
@@ -24,10 +24,12 @@ public class NpcSnapshot  : AbstractCreatureSnapshot, INpcMessage
 	   
     public string Animate { get; private init; }
 	   
-    public string Shape { get; private init; }
+    public string Shape { get; }
     
     public static NpcSnapshot FromPacket(NpcSnapshotPacket packet)
     {
         return new NpcSnapshot(packet);
     }
+
+    public string[] Sprites => [Shape];
 }
