@@ -41,7 +41,6 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     {
         _characterState?.PhysicProcess(delta);
         UpdateMover(delta);
-        AnimationPlayer.Advance(delta);
     }
 
     //public CreatureDirection? NextMoveDirection => Input.IsMouseButtonPressed(MouseButton.Right) ? GetLocalMousePosition().GetDirection() : null;
