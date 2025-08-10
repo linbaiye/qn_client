@@ -11,17 +11,20 @@ public partial class GroundLayer : AbstractGroundLayer
     {
         CreateTileSet(tileIdTextures, atzMapFileParser.TileIds);
     }
+
     
     public override void Paint(
         AtzMapFileParser atzMapFileParser,
         Vector2I start, Vector2I end)
     {
-        ClearTiles();
+        ISet<Vector2I> painted = new HashSet<Vector2I>();
         atzMapFileParser.ForeachCell(start, end, (cell, x, y) =>
         {
             if (TileIdToSourceId.TryGetValue(cell.TileId, out var tileSourceId))
             {
-                SetCell(new Vector2I(x, y), tileSourceId, new Vector2I(cell.TileNumber, 0));
+                var coor = new Vector2I(x, y);
+                painted.Add(coor);
+                SetCell(coor, tileSourceId, new Vector2I(cell.TileNumber, 0));
             }
         });
     }

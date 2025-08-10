@@ -6,6 +6,8 @@ namespace QnClient.code.map;
 public abstract partial class AbstractGroundLayer : TileMapLayer
 {
     protected IDictionary<int, int> TileIdToSourceId { get; } = new Dictionary<int,int>();
+    
+    private ISet<Vector2I> _currentPainted = new HashSet<Vector2I>();
 
     public override void _Ready()
     {
@@ -38,7 +40,7 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
         GD.Print(textureRect.Texture);
     }*/
 
-
+    
     private ImageTexture? GetTileImage(Vector2I coordinate)
     {
         var cellSourceId = GetCellSourceId(coordinate);

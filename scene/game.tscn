@@ -20,14 +20,14 @@ texture_filter = 1
 script = ExtResource("1_dbls1")
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
-texture_filter = 1
+texture_filter = 2
 tile_set = SubResource("TileSet_33cqm")
 occlusion_enabled = false
 collision_enabled = false
 script = ExtResource("2_dbls1")
 
 [node name="OverGroundLayer" type="TileMapLayer" parent="."]
-texture_filter = 1
+texture_filter = 2
 tile_set = SubResource("TileSet_xwcet")
 occlusion_enabled = false
 collision_enabled = false
@@ -36,7 +36,7 @@ script = ExtResource("4_xwcet")
 [node name="ObjectLayer" type="Node2D" parent="."]
 z_index = 2
 y_sort_enabled = true
-texture_filter = 1
+texture_filter = 2
 script = ExtResource("4_p1ry8")
 
 [node name="Character" parent="." instance=ExtResource("1_5kiuu")]
@@ -48,5 +48,5 @@ process_callback = 0
 
 [node name="RoofLayer" type="Node2D" parent="."]
 z_index = 3
-texture_filter = 1
+texture_filter = 2
 script = ExtResource("6_xlg7c")

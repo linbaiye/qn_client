@@ -47,7 +47,7 @@ public class AtzMap(
         }
         objectLayer.LoadTextures(textureResourceName);
         roofLayer.LoadTextures(textureResourceName);
-        //DrawWhole();
+        DrawWhole();
     }
 
     private void DrawWhole()
@@ -104,7 +104,7 @@ public class AtzMap(
             {
                 return;
             }
-            Draw(c.Coordinate);
+            //Draw(c.Coordinate);
             if (_fileParser.ShouldHideRoof(c.Coordinate))
             {
                 roofLayer.Hide();
