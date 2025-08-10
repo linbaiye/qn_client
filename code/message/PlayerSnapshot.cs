@@ -47,13 +47,6 @@ public class PlayerSnapshot : AbstractCreatureSnapshot, IPlayerMessage, ISpriteM
             {
                 sprites.Add(prefix + i);
             }
-            EquipMessages.ForEach(e =>
-            {
-                sprites.Add(e.SpritePrefix);
-                if (e.PairedSpritePrefix != null)
-                    sprites.Add(e.SpritePrefix);
-            });
-            EquipMessages.Select(e => e.SpritePrefix).ToList().ForEach(sprite => sprites.Add(sprite));
             return sprites.ToArray();
         }
     }

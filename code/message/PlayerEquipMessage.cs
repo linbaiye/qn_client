@@ -61,4 +61,6 @@ public class PlayerEquipMessage : IPlayerMessage, ICharacterMessage, IHUDMessage
         if (BelongToCharacter)
             handler.Equip(this);
     }
+
+    public string[] Sprites => !string.IsNullOrEmpty(PairedSpritePrefix)? [SpritePrefix, PairedSpritePrefix] : [SpritePrefix];
 }

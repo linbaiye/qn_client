@@ -181,6 +181,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     {
         Position = message.Start.ToPosition();
         _characterState = CharacterMoveState.Restore(this, message);
+        Log.Debug("Restore move {} from {}.", message.Action, message.StartMillis);
         PlayMoveAnimation(message.Action.Value, message.Direction, message.StartMillis);
     }
 

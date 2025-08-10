@@ -96,7 +96,7 @@ public class CharacterMoveState : AbstractCharacterState
         {
             var moveAction = ComputeMoveAction(_character, _action);
             _character.ChangeState(new CharacterMoveState(_character, moveAction, moveInput));
-            //_character.PlayMoveAnimation(moveAction, moveInput.Direction);
+            _character.PlayMoveAnimation(moveAction, moveInput.Direction);
             return;
         }
         if (_character.Direction != moveInput.Direction)
