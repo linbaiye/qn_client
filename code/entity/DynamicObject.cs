@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 using NLog;
 using QnClient.code.entity.@event;
@@ -38,6 +40,7 @@ public partial class DynamicObject : AbstractEntity, IDynamicObjectMessageHandle
         _name.Visible = false;
         _bodySprite.MouseEntered += () => _name.Visible = true;
         _bodySprite.MouseExited += () => _name.Visible = false;
+        Visible = false;
     }
 
 
@@ -47,7 +50,7 @@ public partial class DynamicObject : AbstractEntity, IDynamicObjectMessageHandle
             objectMessage.Accept(this);
     }
 
-    public void Initialize(DynamicObjectSnapshot snapshot)
+    public async void Initialize(DynamicObjectSnapshot snapshot)
     {
         Position = snapshot.Coordinate.ToPosition();
         Id = snapshot.Id;
@@ -66,6 +69,9 @@ public partial class DynamicObject : AbstractEntity, IDynamicObjectMessageHandle
         _name.Text = snapshot.Name;
         _name.Position = offset - _name.GetTextSize(snapshot.Name) / 2;
         _lifeBar.Position = offset - _lifeBar.Size / 2 - new Vector2(0, offsetTexture.OriginalSize.Y / 2);
+        // Fixes flickering, why?
+        await Task.Run(() => Thread.Sleep(30));
+        Visible = true;
     }
 
     private void OnDone(StringName name)

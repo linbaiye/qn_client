@@ -423,11 +423,6 @@ public partial class PlayerAnimationPlayer : AbstractAnimationPlayer
         CurrentDirection = Enum.Parse<CreatureDirection>(name.Split("/")[1]);
         _finished = "";
         if (!string.IsNullOrEmpty(CurrentAnimation))
-        {
-            GD.Print(CurrentAnimation + ":" + CurrentAnimationPosition);
-        }
-
-        if (!string.IsNullOrEmpty(CurrentAnimation))
             Stop(true);
         var aniLength = GetAnimation(name).Length;
         var fromSec = ((float)millis / 1000);
