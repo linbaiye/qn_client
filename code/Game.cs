@@ -2,17 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Microsoft.Extensions.Logging;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
-using QnClient.code.hud;
 using QnClient.code.input;
 using QnClient.code.map;
 using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.player;
-using QnClient.code.sprite;
 using QnClient.code.util;
 using Character = QnClient.code.player.character.Character;
 using HUD = QnClient.code.hud.HUD;
@@ -58,8 +55,7 @@ public partial class Game : Node2D
         creature.AttackTriggered += id => _connection.WriteAndFlush(new AttackInput(id));
         creature.Clicked += id => _connection.WriteAndFlush(new ClickEntityInput(id));
         _entityManager.Add(creature);
-        var endTime = DateTimeOffset.Now.Millisecond;
-        GD.Print("Took " + (endTime - startTime) + " milliseconds");
+        Logger.Debug("Took " + (DateTimeOffset.Now.Millisecond - startTime) + " milliseconds to initialize creature.");
     }
 
     private void AddGroundItem(GroundItemSnapshot snapshot)

@@ -18,6 +18,7 @@ public partial class MapEntityMarker : Panel
     private void OnMouseEntered()
     {
         _label.Text = _name;
+        _label.Position = new Vector2(10, 0);
         _label.Show();
     }
 
@@ -25,6 +26,8 @@ public partial class MapEntityMarker : Panel
     {
         _name = name;
     }
+    
+    public string EntityName => _name;
 
     private void OnMouseExited()
     {

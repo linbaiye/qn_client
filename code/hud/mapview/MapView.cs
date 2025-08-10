@@ -82,18 +82,18 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
     {
         if (Texture == null)
             return;
+        ClearNpcs();
         if (Visible)
         {
-            ClearNpcs();
             Visible = false;
             _timer.Stop();
         }
         else
         {
             _characterMarker.Position = CharPosition;
-            Visible = true;
             GetNpcPositions();
             _timer.Start(1);
+            Visible = true;
         }
     }
 
@@ -123,14 +123,26 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
         {
             return;
         }
-        ClearNpcs();
         var positions = nameMessage.NpcPositions;
         foreach (var npcPosition in positions)
         {
-            var mapCreatureView = MapEntityMarker.Create(npcPosition.Name);
-            AddChild(mapCreatureView);
-            mapCreatureView.Position = ComputeCreaturePosition(npcPosition.Coordinate, mapCreatureView.Size);
-            _npcMarkers.Add(mapCreatureView);
+            bool found = false;
+            foreach (var mapEntityMarker in _npcMarkers)
+            {
+                if (mapEntityMarker.EntityName.Equals(npcPosition.Name))
+                {
+                    mapEntityMarker.Position = ComputeCreaturePosition(npcPosition.Coordinate, mapEntityMarker.Size);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                var mapCreatureView = MapEntityMarker.Create(npcPosition.Name);
+                AddChild(mapCreatureView);
+                mapCreatureView.Position = ComputeCreaturePosition(npcPosition.Coordinate, mapCreatureView.Size);
+                _npcMarkers.Add(mapCreatureView);
+            }
         }
     }
 

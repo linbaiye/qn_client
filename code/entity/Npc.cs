@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 using NLog;
 using QnClient.code.entity.@event;
@@ -37,8 +39,8 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
                 _animationPlayer.Play(snapshot.NpcState, snapshot.Direction, snapshot.ElapsedMillis);
                 break;
         }
-        Visible = true;
         EmitEvent(new EntityChangeCoordinateEvent(this));
+        Visible = true;
     }
 
     private Vector2 ComputeProjectileStartPoint(CreatureDirection direction)
