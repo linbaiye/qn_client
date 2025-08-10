@@ -2,6 +2,7 @@
 
 using System;
 using Godot;
+using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
 using QnClient.code.message;
@@ -17,6 +18,7 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         Visible = false;
         ZIndex = 2;
     }
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     public void SetPosition(SetPositionMessage message)
     {
@@ -34,21 +36,10 @@ public partial class Player : AbstractPlayer, IPlayerMessageHandler
         PlayMoveAnimation(message.Action.Value, message.Direction, message.StartMillis);
     }
 
-    private void OnAnimationDone(StringName name)
-    {
-        if (name.ToString().Contains("Walk"))
-        {
-            var dirString = name.ToString().Split("/")[1];
-            Enum.TryParse<CreatureDirection>(dirString, out var dir);
-            AnimationPlayer.PlayIdle(dir);
-        }
-    }
-
 
     public void Initialize(PlayerSnapshot snapshot)
     {
         AnimationPlayer.InitializeAnimations(snapshot.Male);
-        AnimationPlayer.AnimationFinished += OnAnimationDone;
         base.Initialize(snapshot);
         switch (snapshot.PlayerState)
         {

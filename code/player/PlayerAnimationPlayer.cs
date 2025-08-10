@@ -424,12 +424,7 @@ public partial class PlayerAnimationPlayer : AbstractAnimationPlayer
         _finished = "";
         if (!string.IsNullOrEmpty(CurrentAnimation))
             Stop(true);
-        var aniLength = GetAnimation(name).Length;
-        var fromSec = ((float)millis / 1000);
-        if (fromSec >= aniLength)
-            PlayLastFrame(name);
-        else
-            PlaySection(name, fromSec, -1, -1, speed);
+        DoPlay(name, millis, speed);
     }
 
     private void UpdateNodeAnimationLibrary(string libraryName, int textureTrack, int offsetTrack, OffsetTexture[] sprites)

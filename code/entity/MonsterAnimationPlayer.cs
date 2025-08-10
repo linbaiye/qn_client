@@ -206,12 +206,8 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
     {
         Stop();
         CurrentDirection = direction;
-        var from = (float)fromMillis / 1000;
-        var aniLength = GetAnimation(state + "/" + direction).Length;
         var name = state + "/" + direction;
-        if (from >= aniLength)
-            PlayLastFrame(name);
-        PlaySection(state + "/" + direction, from, -1, -1, speed);
+        DoPlay(name, fromMillis, speed);
     }
     
     

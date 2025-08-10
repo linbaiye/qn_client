@@ -286,7 +286,7 @@ public abstract partial class AbstractPlayer : AbstractCreature
                 AnimationPlayer.PlayRun(direction, startMillis);
                 break;
             case MoveAction.Walk:
-                AnimationPlayer.PlayWalk(direction);
+                AnimationPlayer.PlayWalk(direction, startMillis);
                 break;
             case MoveAction.FightWalk:
                 AnimationPlayer.PlayFightWalk(direction, startMillis);

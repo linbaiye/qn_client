@@ -12,22 +12,6 @@ public partial class GroundLayer : AbstractGroundLayer
         CreateTileSet(tileIdTextures, atzMapFileParser.TileIds);
     }
 
-    
-    public override void Paint(
-        AtzMapFileParser atzMapFileParser,
-        Vector2I start, Vector2I end)
-    {
-        ISet<Vector2I> painted = new HashSet<Vector2I>();
-        atzMapFileParser.ForeachCell(start, end, (cell, x, y) =>
-        {
-            if (TileIdToSourceId.TryGetValue(cell.TileId, out var tileSourceId))
-            {
-                var coor = new Vector2I(x, y);
-                painted.Add(coor);
-                SetCell(coor, tileSourceId, new Vector2I(cell.TileNumber, 0));
-            }
-        });
-    }
 
     public void DumpPattern(IDictionary<int, Texture2D> tileIdTextures, AtzMapFileParser atzMapFileParser)
     {
@@ -43,5 +27,15 @@ public partial class GroundLayer : AbstractGroundLayer
             //GD.Print(new Vector2I(x, y) + ":" + cell.TileNumber);
             //sets.Add(cell.TileNumber);
         });
+    }
+
+    protected override int GetTileId(AtzMapFileParser.MapCell cell)
+    {
+        return cell.TileId;
+    }
+
+    protected override int GetNumber(AtzMapFileParser.MapCell cell)
+    {
+        return cell.TileNumber;
     }
 }

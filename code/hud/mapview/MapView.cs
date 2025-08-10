@@ -153,8 +153,12 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
 
     private void ChangeMap(string mapName)
     {
-        if (ResourceLoader.Load("res://maps/" + mapName + ".bmp") is not Texture2D texture)
+        var path = "res://maps/" + mapName + ".bmp";
+        if (!ResourceLoader.Exists(path) || ResourceLoader.Load(path) is not Texture2D texture)
+        {
+            Texture = null;
             return;
+        }
         Texture = texture;
         SetPosition((WindowViewSize - texture.GetSize()) / 2);
     }

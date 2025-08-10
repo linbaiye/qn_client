@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace QnClient.code.map;
 
 public abstract partial class AbstractGroundLayer : TileMapLayer
 {
-    protected IDictionary<int, int> TileIdToSourceId { get; } = new Dictionary<int,int>();
+    private IDictionary<int, int> TileIdToSourceId { get; } = new Dictionary<int,int>();
     
-    private ISet<Vector2I> _currentPainted = new HashSet<Vector2I>();
+    private readonly ISet<Vector2I> _currentPainted = new HashSet<Vector2I>();
 
     public override void _Ready()
     {
@@ -40,6 +41,32 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
         GD.Print(textureRect.Texture);
     }*/
 
+    private bool IsPainted(Vector2I point)
+    {
+        return _currentPainted.Contains(point);
+    }
+
+    private void EraseOrSavePaintedCells(ISet<Vector2I> newPainted)
+    {
+        ISet<Vector2I> removed = new HashSet<Vector2I>();
+        foreach (var paintedCell in _currentPainted)
+        {
+            if (!newPainted.Contains(paintedCell))
+            {
+                EraseCell(paintedCell);   
+                removed.Add(paintedCell);
+            }
+        }
+        foreach (var vector2I in removed)
+        {
+            _currentPainted.Remove(vector2I);
+        }
+        foreach (var vector2I in newPainted)
+        {
+            _currentPainted.Add(vector2I);
+        }
+    }
+
     
     private ImageTexture? GetTileImage(Vector2I coordinate)
     {
@@ -53,6 +80,27 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
         var region = image.GetRegion(tileTextureRegion);
         return ImageTexture.CreateFromImage(region);
     }
+    
+    public void Paint(AtzMapFileParser atzMapFileParser,
+        Vector2I start, Vector2I end)
+    {
+        ISet<Vector2I> painted = new HashSet<Vector2I>();
+        atzMapFileParser.ForeachCell(start, end, (cell, x, y) =>
+        {
+            if (TileIdToSourceId.TryGetValue(GetTileId(cell), out var tileSourceId))
+            {
+                var coor = new Vector2I(x, y);
+                painted.Add(coor);
+                if (!IsPainted(coor))
+                    SetCell(coor, tileSourceId, new Vector2I(GetNumber(cell), 0));
+            }
+        });
+        EraseOrSavePaintedCells(painted);
+    }
+
+    protected abstract int GetTileId(AtzMapFileParser.MapCell cell);
+    
+    protected abstract int GetNumber(AtzMapFileParser.MapCell cell);
 
 
     protected void CreateTileSet(IDictionary<int, Texture2D> tileIdTextures, IEnumerable<int> tileIds)
@@ -88,5 +136,4 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
         }
     }
 
-    public abstract void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end);
 }

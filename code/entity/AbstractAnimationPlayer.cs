@@ -33,11 +33,21 @@ public abstract partial class AbstractAnimationPlayer : AnimationPlayer
     public Vector2 BodySize => _areas[(int)CurrentDirection];
 
 
-    protected void PlayLastFrame(string name)
+    private void PlayLastFrame(string name)
     {
         var animation = GetAnimation(name);
         var count = animation.TrackGetKeyCount(BodyOffsetIdx);
         var time = animation.TrackGetKeyTime(BodyOffsetIdx, count - 1);
         PlaySection(name, time);
+    }
+
+    protected void DoPlay(string name, int fromMillis, float speed)
+    {
+        var aniLength = GetAnimation(name).Length;
+        var fromSec = ((float)fromMillis/ 1000);
+        if (fromSec + 0.001f >= aniLength)
+            PlayLastFrame(name);
+        else
+            PlaySection(name, fromSec, -1, -1, speed);
     }
 }

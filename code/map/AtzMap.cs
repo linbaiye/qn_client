@@ -27,7 +27,7 @@ public class AtzMap(
 
     private string _resourceName;
 
-    public void Load(string name, string textureResourceName)
+    public void Load(string name, string textureResourceName, Vector2I coordinate)
     {
         if (!textureResourceName.Equals(_resourceName))
         {
@@ -47,7 +47,8 @@ public class AtzMap(
         }
         objectLayer.LoadTextures(textureResourceName);
         roofLayer.LoadTextures(textureResourceName);
-        DrawWhole();
+        Draw(coordinate);
+        //DrawWhole();
     }
 
     private void DrawWhole()
@@ -89,7 +90,6 @@ public class AtzMap(
         overGroundLayer.Paint(_fileParser, start, end);
         objectLayer.Paint(_fileParser, start, end);
         roofLayer.Paint(_fileParser, start, end);
-
     }
 
     public void HandleEntityEvent(IEntityEvent entityEvent)
@@ -104,7 +104,7 @@ public class AtzMap(
             {
                 return;
             }
-            //Draw(c.Coordinate);
+            Draw(c.Coordinate);
             if (_fileParser.ShouldHideRoof(c.Coordinate))
             {
                 roofLayer.Hide();
