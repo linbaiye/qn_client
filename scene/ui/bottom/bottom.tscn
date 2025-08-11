@@ -34,6 +34,7 @@ offset_left = 897.0
 offset_top = 148.0
 offset_right = 995.0
 offset_bottom = 154.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("2_q6f08")
 
@@ -43,6 +44,7 @@ offset_left = 897.0
 offset_top = 133.0
 offset_right = 995.0
 offset_bottom = 139.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("3_m2yg2")
 
@@ -61,6 +63,7 @@ offset_left = 896.0
 offset_top = 87.0
 offset_right = 996.0
 offset_bottom = 93.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 nine_patch_stretch = true
 texture_progress = ExtResource("5_4ooyh")
@@ -71,6 +74,7 @@ offset_left = 170.0
 offset_top = 99.0
 offset_right = 241.0
 offset_bottom = 105.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("6_1gyhx")
 
@@ -80,6 +84,7 @@ offset_left = 897.0
 offset_top = 118.0
 offset_right = 995.0
 offset_bottom = 124.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("3_m2yg2")
 
@@ -89,6 +94,7 @@ offset_left = 897.0
 offset_top = 103.0
 offset_right = 995.0
 offset_bottom = 109.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("3_m2yg2")
 
@@ -98,6 +104,7 @@ offset_left = 170.0
 offset_top = 119.0
 offset_right = 241.0
 offset_bottom = 125.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("3_378wf")
 
@@ -107,6 +114,7 @@ offset_left = 170.0
 offset_top = 134.0
 offset_right = 241.0
 offset_bottom = 140.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("3_378wf")
 
@@ -116,6 +124,7 @@ offset_left = 170.0
 offset_top = 149.0
 offset_right = 241.0
 offset_bottom = 155.0
+theme = ExtResource("9_2r2ah")
 value = 100.0
 texture_progress = ExtResource("3_378wf")
 
@@ -286,7 +295,7 @@ offset_bottom = 188.0
 theme = ExtResource("9_2r2ah")
 max_length = 40
 
-[node name="OptionButton" type="OptionButton" parent="."]
+[node name="ChatOption" type="OptionButton" parent="."]
 layout_mode = 0
 offset_left = 262.0
 offset_top = 167.0
@@ -294,6 +303,7 @@ offset_right = 308.0
 offset_bottom = 187.0
 theme = ExtResource("9_2r2ah")
 theme_override_icons/arrow = SubResource("ImageTexture_gdaey")
+selected = 0
 item_count = 2
 popup/item_0/icon = ExtResource("13_gsn03")
 popup/item_0/id = 0
