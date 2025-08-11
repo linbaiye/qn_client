@@ -159,7 +159,9 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
             Texture = null;
             return;
         }
+        ClearNpcs();
         Texture = texture;
+        Size = texture.GetSize();
         SetPosition((WindowViewSize - texture.GetSize()) / 2);
     }
 

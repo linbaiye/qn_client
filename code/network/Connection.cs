@@ -29,7 +29,15 @@ public class Connection(string ip, int port)  : SimpleChannelInboundHandler<obje
         _channel?.WriteAndFlushAsync(message);
     }
 
-    
+    public override void ChannelInactive(IChannelHandlerContext context)
+    {
+        lock (_messages)
+        {
+            _messages.Add(DisconnectedMessage.Instance);
+        }
+    }
+
+
     public List<object> DrainMessages()
     {
         List<object> messages = new List<object>();

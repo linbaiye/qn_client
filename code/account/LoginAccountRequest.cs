@@ -1,17 +1,17 @@
 using QnClient.code.network.toserver;
 using Source.Networking.Protobuf;
 
-namespace QnClient.code.input;
+namespace QnClient.code.account;
 
-public class RegisterAccountRequest(string name, string passwd) : I2ServerMessage
+public class LoginAccountRequest(string user, string passwd) : I2ServerMessage
 {
     public ClientPacket ToPacket()
     {
         return new ClientPacket()
         {
-            RegisterRequest = new RegisterRequestPacket()
+            LoginAccount= new LoginAccountRequestPacket()
             {
-                Username = name,
+                Username = user,
                 Password = passwd
             }
         };

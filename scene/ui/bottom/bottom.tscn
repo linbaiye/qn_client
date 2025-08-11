@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxtgsrbww28cd"]
+[gd_scene load_steps=16 format=3 uid="uid://bxtgsrbww28cd"]
 
 [ext_resource type="Texture2D" uid="uid://848ebxjhtxgp" path="res://ui/hud/hud_bottom.png" id="1_nx1bh"]
 [ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/hud/bottom/Bottom.cs" id="2_8bsu8"]
@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://c2mb51tivs363" path="res://scene/ui/blinking_lable.tscn" id="8_mkk8q"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="9_2r2ah"]
 [ext_resource type="PackedScene" uid="uid://c3emj3mvd5bf0" path="res://scene/ui/bottom/equip_view.tscn" id="10_w6ao7"]
+[ext_resource type="Texture2D" uid="uid://bu0dfcqxkujla" path="res://ui/hud/chat/normal.png" id="13_gsn03"]
+[ext_resource type="Texture2D" uid="uid://bir37ustl5j32" path="res://ui/hud/chat/private.png" id="14_lgs7w"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_gdaey"]
 
 [node name="Bottom" type="NinePatchRect"]
 custom_minimum_size = Vector2(1024, 198)
@@ -281,3 +285,17 @@ offset_right = 738.0
 offset_bottom = 188.0
 theme = ExtResource("9_2r2ah")
 max_length = 40
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 167.0
+offset_right = 308.0
+offset_bottom = 187.0
+theme = ExtResource("9_2r2ah")
+theme_override_icons/arrow = SubResource("ImageTexture_gdaey")
+item_count = 2
+popup/item_0/icon = ExtResource("13_gsn03")
+popup/item_0/id = 0
+popup/item_1/icon = ExtResource("14_lgs7w")
+popup/item_1/id = 1

@@ -29,16 +29,6 @@ public partial class Projectile: AnimatedSprite2D
         SpriteFrames = frames;
         Offset = new Vector2(0, textures[20].Texture.GetSize().Y / 2);
         Position = start;
-        /*var ani = new AnimatedSprite2D()
-        {
-            Centered = false,
-            SpriteFrames = frames,
-            YSortEnabled = true,
-            Autoplay = "default",
-        };*/
-        //var distance = start.DistanceTo(end);
-        //_lengthSeconds = distance * 0.15f;
-        //_lengthSeconds = distance * 0.0015f;
         _lengthSeconds = (float)millis / 1000;
         var diff = end - Position;
         Rotation = diff.Normalized().Angle();

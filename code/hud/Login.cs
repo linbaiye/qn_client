@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using QnClient.code.account;
 using QnClient.code.input;
 using QnClient.code.message;
 using QnClient.code.network;
@@ -9,21 +10,19 @@ namespace QnClient.code.hud;
 public partial class Login : NinePatchRect
 {
     private LineEdit _username;
-    
     private LineEdit _password;
-    
-    private Button _connect;
-    
-    private Button _exit;
-
+    private TextureButton _connect;
+    private TextureButton _regButton;
+    private TextureButton _exit;
     private Label _label;
-    private Button _regButton;
+    private AudioStreamPlayer2D _buttonSound;
 
     private Connection _connection;
 
     public event Action? LoggedIn;
     
     public event Action? Exited;
+    
 
     
     private NinePatchRect _register;
@@ -33,6 +32,9 @@ public partial class Login : NinePatchRect
     private LineEdit _regConfirmPassword;
     private Button _regConfirm;
     private Button _regReturn;
+    private Timer _timer;
+    
+    private static readonly bool DebugMode = true;
     
     
     public override void _Ready()
@@ -40,12 +42,17 @@ public partial class Login : NinePatchRect
         _label = GetNode<Label>("Label");
         _username = GetNode<LineEdit>("Username");
         _password = GetNode<LineEdit>("Password");
-        _connect = GetNode<Button>("Connect");
-        _exit = GetNode<Button>("Exit");
+        _connect = GetNode<TextureButton>("Connect");
+        _buttonSound = GetNode<AudioStreamPlayer2D>("ButtonSound");
+        _exit = GetNode<TextureButton>("Exit");
         _exit.Pressed += () => Exited?.Invoke();
         _connect.Pressed += ConnectPressed;
-        _regButton = GetNode<Button>("RegButton");
-        _regButton.Pressed += () => _register.Visible = true;
+        _regButton = GetNode<TextureButton>("RegButton");
+        _regButton.Pressed += () =>
+        {
+            _buttonSound.Play();
+            _register.Visible = true;
+        };
         _register = GetNode<NinePatchRect>("Register");
         _register.Visible = false;
         _regLabel = _register.GetNode<Label>("Label");
@@ -55,14 +62,20 @@ public partial class Login : NinePatchRect
         _regConfirm = _register.GetNode<Button>("Confirm");
         _regConfirm.Pressed += ConfirmRegister;
         _regReturn = _register.GetNode<Button>("Return");
-        _regReturn.Pressed += () => _register.Visible = false;
+        _regReturn.Pressed += () =>
+        {
+            _buttonSound.Play();
+            _register.Visible = false;
+        };
         _regButton.Disabled = true;
         _connect.Disabled = true;
+        _timer = GetNode<Timer>("Timer");
+        _timer.Timeout += HandleMessages;
     }
-
 
     private void ConfirmRegister()
     {
+        _buttonSound.Play();
         var regUsernameText = _regUsername.Text;
         if (string.IsNullOrEmpty(regUsernameText))
         {
@@ -88,7 +101,7 @@ public partial class Login : NinePatchRect
         _connection?.WriteAndFlush(new RegisterAccountRequest(regUsernameText, _regPassword.Text));
     }
 
-    public override void _Process(double delta)
+    private void HandleMessages()
     {
         if (_connection == null)
             return;
@@ -101,11 +114,9 @@ public partial class Login : NinePatchRect
             } 
             else if (message is LoginAccountResponse loginAccountResponse)
             {
-                if (loginAccountResponse.Code != 0)
-                {
-                    _label.Text = loginAccountResponse.Msg;
-                }
-                
+                _label.Text = loginAccountResponse.Msg;
+                _connection?.WriteAndFlush(new LoginCharacterRequest(loginAccountResponse.Charnames[1]));
+                LoggedIn?.Invoke();
             }
         }
     }
@@ -113,6 +124,7 @@ public partial class Login : NinePatchRect
 
     private void ConnectPressed()
     {
+        _buttonSound.Play();
         if (string.IsNullOrEmpty(_username.Text))
         {
             _label.Text = "请输入用户名";
@@ -124,6 +136,7 @@ public partial class Login : NinePatchRect
             _label.Text = "请输入密码";
             return;
         }
+        _label.Text = "登陆中...";
         _connection.WriteAndFlush(new LoginAccountRequest(_username.Text, _password.Text));
         //LoggedIn?.Invoke();
         //_connection.WriteAndFlush(new DebugInput());
@@ -131,9 +144,16 @@ public partial class Login : NinePatchRect
 
     public void OnConnected(Connection connection)
     {
+        if (DebugMode)
+        {
+            connection.WriteAndFlush(new LoginCharacterRequest(""));
+            LoggedIn?.Invoke();
+            return;
+        }
         _connection = connection;
-        _label.Text = "连接成功。";
+        _label.Text = "连接成功";
         _regButton.Disabled = false;
         _connect.Disabled = false;
+        _timer.Start(0.1f);
     }
 }

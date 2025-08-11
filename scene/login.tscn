@@ -1,9 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmdbdjeys2yc8"]
+[gd_scene load_steps=14 format=3 uid="uid://dmdbdjeys2yc8"]
 
 [ext_resource type="Texture2D" uid="uid://dt5777u0hf8ic" path="res://ui/login/login.jpg" id="1_mc475"]
 [ext_resource type="Script" uid="uid://cv2rsfdg1qxwv" path="res://code/hud/Login.cs" id="2_76uxg"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_xhhai"]
 [ext_resource type="Texture2D" uid="uid://bhlqxc6snjted" path="res://ui/login/newuser.bmp" id="4_7yur4"]
+[ext_resource type="Texture2D" uid="uid://bqul4lmyrikto" path="res://ui/login/67.bmp" id="4_m7twt"]
+[ext_resource type="Texture2D" uid="uid://d2lj4qn6ulk58" path="res://ui/login/69.bmp" id="4_u7yg4"]
+[ext_resource type="Texture2D" uid="uid://df07ax3rs7vag" path="res://ui/login/68.bmp" id="5_7qh2k"]
+[ext_resource type="Texture2D" uid="uid://b434a7njc3qm3" path="res://ui/login/70.bmp" id="5_i5fi3"]
+[ext_resource type="Texture2D" uid="uid://cvwiqaeb1tjlw" path="res://ui/login/71.bmp" id="8_vd3ky"]
+[ext_resource type="Texture2D" uid="uid://iamqi6mqt8he" path="res://ui/login/72.bmp" id="9_8skgh"]
+[ext_resource type="AudioStream" uid="uid://b0rveh77km54u" path="res://bgm/Logon.mp3" id="11_8skgh"]
+[ext_resource type="AudioStream" uid="uid://chh0th3dontjw" path="res://bgm/click.wav" id="12_utpg3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8skgh"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="Login" type="NinePatchRect"]
 custom_minimum_size = Vector2(10, 0)
@@ -11,6 +26,17 @@ offset_right = 1024.0
 offset_bottom = 768.0
 texture = ExtResource("1_mc475")
 script = ExtResource("2_76uxg")
+
+[node name="ServerName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 354.0
+offset_right = 668.0
+offset_bottom = 377.0
+theme = ExtResource("2_xhhai")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8skgh")
+text = "传说"
+vertical_alignment = 1
 
 [node name="Username" type="LineEdit" parent="."]
 layout_mode = 0
@@ -29,30 +55,33 @@ offset_bottom = 447.0
 theme = ExtResource("2_xhhai")
 secret = true
 
-[node name="Connect" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0.133333)
+[node name="Connect" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 435.0
-offset_top = 460.0
-offset_right = 499.0
-offset_bottom = 488.0
-
-[node name="RegButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 522.0
+offset_left = 438.0
 offset_top = 462.0
-offset_right = 586.0
+offset_right = 502.0
+offset_bottom = 490.0
+texture_normal = ExtResource("4_m7twt")
+texture_pressed = ExtResource("5_7qh2k")
+
+[node name="RegButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 462.0
+offset_right = 588.0
 offset_bottom = 490.0
 theme = ExtResource("2_xhhai")
-text = "注册"
+texture_normal = ExtResource("4_u7yg4")
+texture_pressed = ExtResource("5_i5fi3")
 
-[node name="Exit" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0.133333)
+[node name="Exit" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 605.0
-offset_top = 460.0
-offset_right = 669.0
-offset_bottom = 488.0
+offset_left = 608.0
+offset_top = 462.0
+offset_right = 672.0
+offset_bottom = 490.0
+texture_normal = ExtResource("8_vd3ky")
+texture_pressed = ExtResource("9_8skgh")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -66,6 +95,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Register" type="NinePatchRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 209.0
 offset_top = 151.0
@@ -127,3 +157,13 @@ theme = ExtResource("2_xhhai")
 text = "输入连线名称和密码即可"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_8skgh")
+autoplay = true
+parameters/looping = true
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_utpg3")

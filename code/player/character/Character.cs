@@ -20,9 +20,10 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     private IMap? _map;
 
     private Connection? _connection;
-
     
     private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+    
+    private bool _moveAssistanceEnabled = false;
 
     public void ChangeState(ICharacterState state)
     {
@@ -44,7 +45,12 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     }
 
     //public CreatureDirection? NextMoveDirection => Input.IsMouseButtonPressed(MouseButton.Right) ? GetLocalMousePosition().GetDirection() : null;
-    public CreatureDirection? NextMoveDirection { get; private set; }
+    private CreatureDirection? _nextDirection;
+    public CreatureDirection? NextMoveDirection
+    {
+        get => _moveAssistanceEnabled ? GetLocalMousePosition().GetDirection() : _nextDirection;
+        private set => _nextDirection = value;
+    }
 
     private void HandleMouseEvent(InputEventMouse eventMouse)
     {
@@ -87,6 +93,10 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
                 case Key.L:
                 case Key.F4:
                     input = SimpleInput.F4;
+                    break;
+                case Key.Z:
+                    _moveAssistanceEnabled = !_moveAssistanceEnabled;
+                    GetViewport().SetInputAsHandled();
                     break;
             }
             if (input != null)
