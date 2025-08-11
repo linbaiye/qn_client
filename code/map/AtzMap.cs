@@ -48,6 +48,7 @@ public class AtzMap(
         objectLayer.LoadTextures(textureResourceName);
         roofLayer.LoadTextures(textureResourceName);
         Draw(coordinate);
+        Log.Debug("Draw map around {}.", coordinate);
         //DrawWhole();
     }
 
