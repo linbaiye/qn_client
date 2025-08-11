@@ -1,0 +1,129 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmdbdjeys2yc8"]
+
+[ext_resource type="Texture2D" uid="uid://dt5777u0hf8ic" path="res://ui/login/login.jpg" id="1_mc475"]
+[ext_resource type="Script" uid="uid://cv2rsfdg1qxwv" path="res://code/hud/Login.cs" id="2_76uxg"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_xhhai"]
+[ext_resource type="Texture2D" uid="uid://bhlqxc6snjted" path="res://ui/login/newuser.bmp" id="4_7yur4"]
+
+[node name="Login" type="NinePatchRect"]
+custom_minimum_size = Vector2(10, 0)
+offset_right = 1024.0
+offset_bottom = 768.0
+texture = ExtResource("1_mc475")
+script = ExtResource("2_76uxg")
+
+[node name="Username" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 386.0
+offset_right = 667.0
+offset_bottom = 413.0
+theme = ExtResource("2_xhhai")
+
+[node name="Password" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 420.0
+offset_right = 667.0
+offset_bottom = 447.0
+theme = ExtResource("2_xhhai")
+secret = true
+
+[node name="Connect" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0.133333)
+layout_mode = 0
+offset_left = 435.0
+offset_top = 460.0
+offset_right = 499.0
+offset_bottom = 488.0
+
+[node name="RegButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 522.0
+offset_top = 462.0
+offset_right = 586.0
+offset_bottom = 490.0
+theme = ExtResource("2_xhhai")
+text = "注册"
+
+[node name="Exit" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0.133333)
+layout_mode = 0
+offset_left = 605.0
+offset_top = 460.0
+offset_right = 669.0
+offset_bottom = 488.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 306.0
+offset_right = 686.0
+offset_bottom = 329.0
+theme = ExtResource("2_xhhai")
+text = "连接中..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Register" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 151.0
+offset_right = 849.0
+offset_bottom = 631.0
+texture = ExtResource("4_7yur4")
+
+[node name="Username" type="LineEdit" parent="Register"]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 174.0
+offset_right = 339.0
+offset_bottom = 199.0
+theme = ExtResource("2_xhhai")
+
+[node name="Password" type="LineEdit" parent="Register"]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 175.0
+offset_right = 480.0
+offset_bottom = 200.0
+theme = ExtResource("2_xhhai")
+secret = true
+
+[node name="ConfirmPassword" type="LineEdit" parent="Register"]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 206.0
+offset_right = 480.0
+offset_bottom = 231.0
+theme = ExtResource("2_xhhai")
+secret = true
+
+[node name="Return" type="Button" parent="Register"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 350.0
+offset_right = 294.0
+offset_bottom = 379.0
+theme = ExtResource("2_xhhai")
+text = "返回登陆"
+
+[node name="Confirm" type="Button" parent="Register"]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 350.0
+offset_right = 480.0
+offset_bottom = 379.0
+theme = ExtResource("2_xhhai")
+text = "注册"
+
+[node name="Label" type="Label" parent="Register"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 126.0
+offset_right = 479.0
+offset_bottom = 149.0
+theme = ExtResource("2_xhhai")
+text = "输入连线名称和密码即可"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -61,6 +61,8 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.ShowQuest => ShowQuestMessage.FromPacket(packet.ShowQuest),
             Packet.TypedPacketOneofCase.ShowBank => ShowBankMessage.FromPacket(packet.ShowBank),
             Packet.TypedPacketOneofCase.NpcPosition => InteractablePositionNameMessage.FromPacket(packet.NpcPosition),
+            Packet.TypedPacketOneofCase.RegisterResponse => new RegisterAccountResponse(packet.RegisterResponse.Code, packet.RegisterResponse.Description),
+            Packet.TypedPacketOneofCase.LoginResponse => LoginAccountResponse.FromPacket(packet.LoginResponse),
             _ => null,
         };
     }
