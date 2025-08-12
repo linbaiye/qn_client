@@ -10,6 +10,8 @@ public interface IHUDMessageHandler
     void UpdateKungFuBookView(KungFuBookMessage message);
 
     void DisplayBottomText(string text, string color, string bgColor);
+
+    void DisplayBottomText(TextMessage message);
     
     void DisplayLeftText(string text);
     
@@ -51,8 +53,6 @@ public interface IHUDMessageHandler
     void UpdateTradeWindowSlot(bool self, InventoryItemMessage item);
 
     void OnCharacterTeleported(TeleportMessage message);
-
-    void CreatureSay(string text);
 
     void FillPills(List<string> pills);
     

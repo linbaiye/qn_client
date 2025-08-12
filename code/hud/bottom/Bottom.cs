@@ -103,6 +103,16 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         _textArea.Display(text, null, null);
     }
 
+    public void DisplayText(TextMessage message)
+    {
+        _textArea.Display(message);
+    }
+
+    public void SetTextHistoryWindow(TextHistoryWindow window)
+    {
+        _textArea.SetTextHistoryWindow(window);
+    }
+
     public void DisplayText(string text, string color, string bgColor)
     {
         _textArea.Display(text, color, bgColor);

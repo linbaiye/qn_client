@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ch785oi1vsnly"]
+[gd_scene load_steps=21 format=3 uid="uid://ch785oi1vsnly"]
 
 [ext_resource type="PackedScene" uid="uid://idx0qd14bsb2" path="res://scene/game.tscn" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://drt6jdp3j6pen" path="res://code/Main.cs" id="1_v0l8b"]
@@ -18,13 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://01y756go6dsm" path="res://scene/quest.tscn" id="15_jcbur"]
 [ext_resource type="PackedScene" uid="uid://026jihtwd5hy" path="res://scene/ui/bank/bank.tscn" id="16_smf0o"]
 [ext_resource type="PackedScene" uid="uid://w86qlm5v58fw" path="res://scene/ui/map/map_view.tscn" id="17_tv8i1"]
+[ext_resource type="PackedScene" uid="uid://chjcoqn8c5m0f" path="res://scene/text_history_window.tscn" id="18_gjnwh"]
 [ext_resource type="PackedScene" uid="uid://dmdbdjeys2yc8" path="res://scene/login.tscn" id="19_0vlqb"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")
 
 [node name="HUD" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("2_brvut")
 
 [node name="Bottom" parent="HUD" instance=ExtResource("2_wp4xf")]
@@ -112,6 +112,10 @@ grow_vertical = 2
 [node name="Bank" parent="HUD" instance=ExtResource("16_smf0o")]
 
 [node name="MapView" parent="HUD" instance=ExtResource("17_tv8i1")]
+
+[node name="TextHistoryWindow" parent="HUD" instance=ExtResource("18_gjnwh")]
+offset_top = -210.0
+offset_bottom = 90.0
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1024, 648)

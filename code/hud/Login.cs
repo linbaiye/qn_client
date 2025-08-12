@@ -1,7 +1,6 @@
 using System;
 using Godot;
 using QnClient.code.account;
-using QnClient.code.input;
 using QnClient.code.message;
 using QnClient.code.network;
 
@@ -34,7 +33,7 @@ public partial class Login : NinePatchRect
     private Button _regReturn;
     private Timer _timer;
     
-    private static readonly bool DebugMode = false;
+    private static readonly bool DevMode = true;
     
     
     public override void _Ready()
@@ -144,7 +143,7 @@ public partial class Login : NinePatchRect
 
     public void OnConnected(Connection connection)
     {
-        if (DebugMode)
+        if (DevMode)
         {
             connection.WriteAndFlush(new LoginCharacterRequest(""));
             LoggedIn?.Invoke();

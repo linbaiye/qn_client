@@ -55,6 +55,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
 
     private MapView _mapView;
 
+    private TextHistoryWindow _textHistoryWindow;
+
     public override void _Ready()
     {
         _bottom = GetNode<Bottom>("Bottom");
@@ -82,6 +84,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _quest = GetNode<Quest>("Quest");
         _bank = GetNode<Bank>("Bank");
         _mapView = GetNode<MapView>("MapView");
+        _textHistoryWindow = GetNode<TextHistoryWindow>("TextHistoryWindow");
+        _bottom.SetTextHistoryWindow(_textHistoryWindow);
         Visible = false;
     }
         
@@ -206,10 +210,6 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _mapView.OnPlayerTeleported(message);
     }
 
-    public void CreatureSay(string text)
-    {
-        _bottom.DisplayText(text, null, null);
-    }
 
     public void FillPills(List<string> pills)
     {
@@ -259,6 +259,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void DisplayBottomText(string text, string color, string bgColor)
     {
         _bottom.DisplayText(text, color, bgColor);
+    }
+
+    public void DisplayBottomText(TextMessage message)
+    {
+        _bottom.DisplayText(message);
     }
 
     public void DisplayLeftText(string text)

@@ -33,6 +33,6 @@ public readonly struct CreatureSayMessage(long id, string text, string name, boo
     public void Accept(IHUDMessageHandler handler)
     {
         if (Cache)
-            handler.CreatureSay(Name + "：" + Text);
+            handler.DisplayBottomText(new TextMessage(Name + "：" + Text, TextMessage.Bottom, null, null));
     }
 }

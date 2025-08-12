@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxtgsrbww28cd"]
+[gd_scene load_steps=17 format=3 uid="uid://bxtgsrbww28cd"]
 
 [ext_resource type="Texture2D" uid="uid://848ebxjhtxgp" path="res://ui/hud/hud_bottom.png" id="1_nx1bh"]
 [ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/hud/bottom/Bottom.cs" id="2_8bsu8"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://bir37ustl5j32" path="res://ui/hud/chat/private.png" id="14_lgs7w"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_gdaey"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gsn03"]
+blend_mode = 1
 
 [node name="Bottom" type="NinePatchRect"]
 custom_minimum_size = Vector2(1024, 198)
@@ -309,3 +312,11 @@ popup/item_0/icon = ExtResource("13_gsn03")
 popup/item_0/id = 0
 popup/item_1/icon = ExtResource("14_lgs7w")
 popup/item_1/id = 1
+
+[node name="TextHistoryButton" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_gsn03")
+layout_mode = 0
+offset_left = 740.0
+offset_top = 167.0
+offset_right = 760.0
+offset_bottom = 187.0
