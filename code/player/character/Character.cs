@@ -146,6 +146,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     public void Teleported(Vector2I coor)
     {
+        Mover = null;
         var camera = GetNode<Camera2D>("Camera2D");
         Position = coor.ToPosition();
         var start = _map.Start.ToPosition();
