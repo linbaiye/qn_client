@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://01y756go6dsm" path="res://scene/quest.tscn" id="15_jcbur"]
 [ext_resource type="PackedScene" uid="uid://026jihtwd5hy" path="res://scene/ui/bank/bank.tscn" id="16_smf0o"]
 [ext_resource type="PackedScene" uid="uid://w86qlm5v58fw" path="res://scene/ui/map/map_view.tscn" id="17_tv8i1"]
-[ext_resource type="PackedScene" uid="uid://chjcoqn8c5m0f" path="res://scene/text_history_window.tscn" id="18_gjnwh"]
+[ext_resource type="PackedScene" uid="uid://b7jxa00fqxbmp" path="res://scene/text_history_window.tscn" id="18_gjnwh"]
 [ext_resource type="PackedScene" uid="uid://dmdbdjeys2yc8" path="res://scene/login.tscn" id="19_0vlqb"]
 
 [node name="Main" type="Node"]

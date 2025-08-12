@@ -42,6 +42,7 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
 
     private LineEdit _chat;
     
+    
     public override void _Ready()
     {
         _lifeBar = GetNode<TextureProgressBar>("LifeBar");
@@ -54,6 +55,7 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         _coordinate = GetNode<Label>("Coordinate");
         _mapName = GetNode<Label>("MapName");
         _textArea = GetNode<TextArea>("TextArea");
+        _textArea.PrivateChatPressed += OnPrivateChatPressed;
         _activeKungFuList = GetNode<ActiveKungFuList>("ActiveKungFuList");
         _blinkingLabel = GetNode<BlinkingLabel>("BlinkingLable");
         GetNode<Button>("Inventory").Pressed += () => InventoryButtonPressed?.Invoke();
@@ -66,6 +68,14 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         _expDown = GetNode<TextureProgressBar>("ExpDown");
         _chat = GetNode<LineEdit>("Chat");
         _chat.TextSubmitted += OnChatSubmitted;
+    }
+
+    private void OnPrivateChatPressed(string characterName)
+    {
+        _chat.Text = "@纸条 " + characterName + " ";
+        _chat.CaretColumn  = _chat.Text.Length;
+        _chat.ReleaseFocus();
+        _chat.GrabFocus();
     }
 
     public void SetBookAndInventory(KungFuBook kungFuBook, Inventory inventory)

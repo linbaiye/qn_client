@@ -62,6 +62,7 @@ public partial class TextAreaLabel : RichTextLabel
         RemoveStyleBox();
         if (another.HasStyleBox)
             AddStyleBox(another.GetStyleBox);
+        _type = another._type;
     }
 
 

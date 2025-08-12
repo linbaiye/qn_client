@@ -306,3 +306,5 @@ offset_left = 740.0
 offset_top = 167.0
 offset_right = 760.0
 offset_bottom = 187.0
+focus_mode = 0
+button_mask = 3

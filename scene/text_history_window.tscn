@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://chjcoqn8c5m0f"]
+[gd_scene load_steps=3 format=3 uid="uid://b7jxa00fqxbmp"]
 
 [ext_resource type="Script" uid="uid://dkywwosd3vv4k" path="res://code/hud/TextHistoryWindow.cs" id="1_s4q8r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qb2pd"]
+content_margin_left = 3.0
 bg_color = Color(0.116741, 0.116741, 0.116741, 0.27451)
 
 [node name="TextHistoryWindow" type="ScrollContainer"]
@@ -19,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qb2pd")
+horizontal_scroll_mode = 0
 script = ExtResource("1_s4q8r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

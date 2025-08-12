@@ -23,6 +23,8 @@ public partial class TextArea : VBoxContainer
     private TextHistoryWindow _textHistoryWindow;
 
     private Button _textHistoryButton;
+
+    public event Action<string>? PrivateChatPressed;
     
     
     public override void _Ready()
@@ -30,7 +32,7 @@ public partial class TextArea : VBoxContainer
         for (int i = 0; i < _lines.Length; i++)
         {
             _lines[i] = GetNode<TextAreaLabel>("Line" + (i + 1));
-            _lines[i].PrivateChatPressed += PrivateChatPressed;
+            _lines[i].PrivateChatPressed += s => PrivateChatPressed?.Invoke(s);
         }
         _chatOption = GetNode<OptionButton>("../ChatOption");
         _chatOption.ItemSelected += OnChatOptionChanged;
@@ -41,10 +43,6 @@ public partial class TextArea : VBoxContainer
     private bool IsPrivateChatSelected => _chatOption.Selected == 1;
     private bool IsNormalSelected => _chatOption.Selected == 0;
 
-    private void PrivateChatPressed(string name)
-    {
-        GD.Print(name);
-    }
 
     private void OnHistoryButtonPressed()
     {

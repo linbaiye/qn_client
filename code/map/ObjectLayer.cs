@@ -20,12 +20,20 @@ public partial class ObjectLayer : Node2D
         _idObjects = _textureLoader.LoadObjects(textureResourceName);
 	}
 
+	public void ClearAll()
+	{
+		foreach (var child in GetChildren())
+		{
+			child.QueueFree();
+		}
+	}
+
 	public void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
 	{
         foreach (var child in GetChildren())
         {
-	        RemoveChild(child);
-	        child.QueueFree();
+	        if (child is not AnimatedSprite2D)
+		        child.QueueFree();
         }
 		if (_idObjects.Count == 0)
 			return;
@@ -61,7 +69,7 @@ public partial class ObjectLayer : Node2D
 			int yPos = y * 24;
 			if (objectInfo.Textures.Length > 1)
 			{
-				//if (!_animatedObjectSprites.Contains(objectInfo.Name(x, y)))
+				if (!_animatedObjectSprites.Contains(objectInfo.Name(x, y)))
 				{
 					var animatedSprite2D = CreateAnimatedSprite2d(objectInfo, x, y);
 					AddChild(animatedSprite2D);
