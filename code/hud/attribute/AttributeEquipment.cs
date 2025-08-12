@@ -46,6 +46,14 @@ public partial class AttributeEquipment : NinePatchRect, IConnectionAware
             _equipment.ShowEquipments(message.Male, message.Equipments);
         Visible = true;
     }
+    
+    public void OnAvatarPressed()
+    {
+        if (!Visible)
+            _connection?.WriteAndFlush(SimpleInput.AttributeEquipment);
+        else
+            Visible = false;
+    }
 
     public void Equip(PlayerEquipMessage message)
     {

@@ -31,6 +31,8 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
     public event Action? KungFuBookButtonPressed;
     public event Action? AssistanceButtonPressed;
     public event Action? SystemButtonPressed;
+
+    public event Action? PlayerAvatarPressed;
     
     private TextArea _textArea;
 
@@ -63,7 +65,7 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         GetNode<Button>("Assistance").Pressed += () => AssistanceButtonPressed?.Invoke();
         GetNode<Button>("System").Pressed += () => SystemButtonPressed?.Invoke();
         _equipView = GetNode<EquipView>("EquipView");
-        _equipView.RequestAttributePressed += RequestAttributeEquipment;
+        _equipView.AvatarPressed += () => PlayerAvatarPressed?.Invoke();
         _expUp = GetNode<TextureProgressBar>("ExpUp");
         _expDown = GetNode<TextureProgressBar>("ExpDown");
         _chat = GetNode<LineEdit>("Chat");
@@ -92,10 +94,7 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         _chat.Text = null;
     }
 
-    private void RequestAttributeEquipment()
-    {
-        _connection?.WriteAndFlush(SimpleInput.AttributeEquipment);
-    }
+
 
     private void FillBar(TextureProgressBar bar, int value, string tooltip)
     {

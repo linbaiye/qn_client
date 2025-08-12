@@ -86,6 +86,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _mapView = GetNode<MapView>("MapView");
         _textHistoryWindow = GetNode<TextHistoryWindow>("TextHistoryWindow");
         _bottom.SetTextHistoryWindow(_textHistoryWindow);
+        _bottom.PlayerAvatarPressed += _attributeEquipment.OnAvatarPressed;
         Visible = false;
     }
         

@@ -9,6 +9,9 @@ using QnClient.code.sprite;
 
 namespace QnClient.code.hud.bottom;
 
+/**
+ * 底部人物画像.
+ */
 public partial class EquipView : NinePatchRect
 {
     private bool _male;
@@ -29,12 +32,12 @@ public partial class EquipView : NinePatchRect
 
     private Godot.Collections.Dictionary<EquipmentType, TextureButton> _equipments = new();
     private Godot.Collections.Dictionary<EquipmentType, string> _equipmentNames = new();
-    public event Action? RequestAttributePressed;
+    public event Action? AvatarPressed;
 
     public override void _Ready()
     {
         _body = GetNode<TextureButton>("Body");
-        _body.Pressed += () => RequestAttributePressed?.Invoke();
+        _body.Pressed += () => AvatarPressed?.Invoke();
         _equipText = GetNode<Label>("EquipText");
         foreach(string name in Enum.GetNames<EquipmentType>())
         {
@@ -42,17 +45,17 @@ public partial class EquipView : NinePatchRect
             if (equipmentType == EquipmentType.Wrist)
                 continue;
             var button = GetNode<TextureButton>(name);
-            button.Pressed += () => RequestAttributePressed?.Invoke();
+            button.Pressed += () => AvatarPressed?.Invoke();
             button.MouseEntered += () => ShowName(equipmentType);
             button.MouseExited += () => _equipText.Text = string.Empty;
             _equipments.Add(equipmentType, button);
         }
         _leftWrist = GetNode<TextureButton>("LeftWrist");
         _leftWrist.MouseEntered += () => ShowName(EquipmentType.Wrist);
-        _leftWrist.Pressed += () => RequestAttributePressed?.Invoke();
+        _leftWrist.Pressed += () => AvatarPressed?.Invoke();
         _leftWrist.MouseExited += () => _equipText.Text = string.Empty;
         _rightWrist = GetNode<TextureButton>("RightWrist");
-        _rightWrist.Pressed += () => RequestAttributePressed?.Invoke();
+        _rightWrist.Pressed += () => AvatarPressed?.Invoke();
         _rightWrist.MouseEntered += () => ShowName(EquipmentType.Wrist);
         _rightWrist.MouseExited += () => _equipText.Text = string.Empty;
     }
