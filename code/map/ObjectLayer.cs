@@ -11,6 +11,8 @@ public partial class ObjectLayer : Node2D
 	private readonly ZipFileMapTextureLoader _textureLoader = ZipFileMapTextureLoader.Instance;
 
 	private string _name;
+	
+	private TextureFilterEnum _filter = TextureFilterEnum.Linear;
 
 	public void LoadTextures(string textureResourceName)
 	{
@@ -26,6 +28,12 @@ public partial class ObjectLayer : Node2D
 		{
 			child.QueueFree();
 		}
+	}
+
+	public void ChangeFilter(TextureFilterEnum filter)
+	{
+		_filter = filter;
+		TextureFilter = filter;
 	}
 
 	public void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
@@ -56,7 +64,7 @@ public partial class ObjectLayer : Node2D
 			Position = new Vector2(x * 32, y * 24),
 			Autoplay = "default",
 			Name = mapObject.Name(x, y),
-			TextureFilter = TextureFilterEnum.Linear,
+			TextureFilter = _filter,
 		};
 		return ani;
 	}

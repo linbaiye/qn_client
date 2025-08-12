@@ -9,7 +9,6 @@ public partial class OverGroundLayer:  AbstractGroundLayer
     {
         CreateTileSet(tileIdTextures, atzMapFileParser.TileOverIds);
     }
-    
 
     protected override int GetTileId(AtzMapFileParser.MapCell cell)
     {

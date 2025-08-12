@@ -13,7 +13,11 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
     {
         //Modulate = new Color(1.0f, 1.0f, 1.0f, 0.7f);
     }
-
+    
+    public void ChangeFilter(TextureFilterEnum filter)
+    {
+        TextureFilter = filter;
+    }
 
     /*public void DumpMap(TextureRect textureRect, AtzMapFileParser fileParser)
     {
@@ -135,5 +139,4 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
             EraseCell(usedCell);
         }
     }
-
 }

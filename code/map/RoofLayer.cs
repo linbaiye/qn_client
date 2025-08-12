@@ -11,6 +11,8 @@ public partial class RoofLayer : Node2D
 	private readonly ZipFileMapTextureLoader _textureLoader = ZipFileMapTextureLoader.Instance;
 
 	private string _name;
+	
+	private TextureFilterEnum _filter = TextureFilterEnum.Linear;
 
 	public void LoadTextures(string textureResourceName)
 	{
@@ -18,6 +20,12 @@ public partial class RoofLayer : Node2D
 			return;
 		_name = textureResourceName;
 		_mapRoofInfos = _textureLoader.LoadRoof(textureResourceName);
+	}
+
+	public void ChangeFilter(TextureFilterEnum filter)
+	{
+		_filter = filter;
+		TextureFilter = filter;
 	}
 
 	public void Paint(AtzMapFileParser atzMapFileParser, Vector2I start, Vector2I end)
@@ -40,8 +48,11 @@ public partial class RoofLayer : Node2D
 			int yPos = y * VectorUtil.TileSizeY;
 			Sprite2D objectSprite = new Sprite2D()
 			{
-				Texture = rofInfo.Textures[0], Centered = false, Position = new Vector2(xPos, yPos),
+				Texture = rofInfo.Textures[0], 
+				Centered = false,
+				Position = new Vector2(xPos, yPos),
 				Offset = rofInfo.Offset,
+				TextureFilter =	_filter,
 			};
 			AddChild(objectSprite);
 		}
