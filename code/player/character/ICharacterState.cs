@@ -7,5 +7,6 @@ public interface ICharacterState
     void Move(MoveInput input);
 
     void PhysicProcess(double delta);
-    
+
+    void Teleported();
 }

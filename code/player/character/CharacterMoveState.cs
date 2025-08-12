@@ -107,6 +107,11 @@ public class CharacterMoveState : AbstractCharacterState
         ChangeToStandState();
     }
 
+    public override void Teleported()
+    {
+        ChangeToStandState();
+    }
+
     private void ChangeToStandState()
     {
         if (_action == MoveAction.Walk || _action == MoveAction.Run || _action == MoveAction.Fly)

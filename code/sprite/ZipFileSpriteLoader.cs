@@ -18,12 +18,12 @@ public class ZipFileSpriteLoader
 
 	private readonly Cache<string, OffsetTexture[]> _cache = new();
 
-	private readonly Texture2D[] ItemIcons;
+	private readonly Texture2D[] _itemIcons;
 	private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
 	private ZipFileSpriteLoader()
 	{
-		ItemIcons = LoadOrderedIcons("res://sprites/item.zip" );
+		_itemIcons = LoadOrderedIcons("res://sprites/item.zip" );
 	}
 	
 	private class Cache<TKey, TValue> where TKey : notnull
@@ -101,7 +101,7 @@ public class ZipFileSpriteLoader
 	
 	public Texture2D[] LoadOrderedItemIcons()
 	{
-		return ItemIcons;
+		return _itemIcons;
 	}
 
 	private string MakeName(string name)

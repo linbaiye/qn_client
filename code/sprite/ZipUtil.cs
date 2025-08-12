@@ -46,6 +46,8 @@ public static class ZipUtil
     public static ZipArchive LoadZipFile(string resourcePath)
     {
         using var fa = FileAccess.Open(resourcePath, FileAccess.ModeFlags.Read);
+        if (!FileAccess.FileExists(resourcePath))
+            throw new FileNotFoundException(resourcePath + " does not exist.");
         var bytes = fa.GetBuffer((int)fa.GetLength());
         Stream stream = new MemoryStream(bytes);
         return new ZipArchive(stream);

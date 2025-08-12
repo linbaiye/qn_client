@@ -154,6 +154,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         var end = _map.End.ToPosition();
         camera.LimitRight = (int)end.X;
         camera.LimitBottom = (int)end.Y;
+        _characterState?.Teleported();
         EmitEvent(new EntityChangeCoordinateEvent(this));
     }
 

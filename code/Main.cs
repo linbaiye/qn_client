@@ -33,13 +33,11 @@ public partial class Main : Node
 
     private void Exit()
     {
-        _connection?.Close();
         GetTree().Quit();
     }
 
     private void OnLoggedIn()
     {
-        _connection.WriteAndFlush(new DebugInput());
         _hud.SetConnection(_connection);
         _hud.Visible = true;
         _login.QueueFree();

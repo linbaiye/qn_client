@@ -45,6 +45,7 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
     {
         return _currentPainted.Contains(point);
     }
+    
 
     private void EraseOrSavePaintedCells(ISet<Vector2I> newPainted)
     {
@@ -127,8 +128,9 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
         }
     }
 
-    protected void ClearTiles()
+    public void ClearPaintedTiles()
     {
+        _currentPainted.Clear();
         foreach (var usedCell in GetUsedCells())
         {
             EraseCell(usedCell);

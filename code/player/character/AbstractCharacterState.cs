@@ -12,4 +12,7 @@ public abstract class AbstractCharacterState : ICharacterState
     {
     }
 
+    public virtual void Teleported()
+    {
+    }
 }
