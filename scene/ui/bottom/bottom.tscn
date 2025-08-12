@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bxtgsrbww28cd"]
+[gd_scene load_steps=18 format=3 uid="uid://bxtgsrbww28cd"]
 
 [ext_resource type="Texture2D" uid="uid://848ebxjhtxgp" path="res://ui/hud/hud_bottom.png" id="1_nx1bh"]
 [ext_resource type="Script" uid="uid://b8jt3ejl1gk2w" path="res://code/hud/bottom/Bottom.cs" id="2_8bsu8"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c2mb51tivs363" path="res://scene/ui/blinking_lable.tscn" id="8_mkk8q"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="9_2r2ah"]
 [ext_resource type="PackedScene" uid="uid://c3emj3mvd5bf0" path="res://scene/ui/bottom/equip_view.tscn" id="10_w6ao7"]
+[ext_resource type="PackedScene" uid="uid://bi5ww3jul7fx8" path="res://scene/ui/bottom/text_area_label.tscn" id="12_lgs7w"]
 [ext_resource type="Texture2D" uid="uid://bu0dfcqxkujla" path="res://ui/hud/chat/normal.png" id="13_gsn03"]
 [ext_resource type="Texture2D" uid="uid://bir37ustl5j32" path="res://ui/hud/chat/private.png" id="14_lgs7w"]
 
@@ -222,40 +223,25 @@ offset_bottom = 164.0
 theme_override_constants/separation = 0
 script = ExtResource("8_3hfix")
 
-[node name="Line1" type="RichTextLabel" parent="TextArea"]
+[node name="Line1" parent="TextArea" instance=ExtResource("12_lgs7w")]
 custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
-theme = ExtResource("9_2r2ah")
-bbcode_enabled = true
-vertical_alignment = 1
 
-[node name="Line2" type="RichTextLabel" parent="TextArea"]
+[node name="Line2" parent="TextArea" instance=ExtResource("12_lgs7w")]
 custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
-theme = ExtResource("9_2r2ah")
-bbcode_enabled = true
-vertical_alignment = 1
 
-[node name="Line3" type="RichTextLabel" parent="TextArea"]
+[node name="Line3" parent="TextArea" instance=ExtResource("12_lgs7w")]
 custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
-theme = ExtResource("9_2r2ah")
-bbcode_enabled = true
-vertical_alignment = 1
 
-[node name="Line4" type="RichTextLabel" parent="TextArea"]
+[node name="Line4" parent="TextArea" instance=ExtResource("12_lgs7w")]
 custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
-theme = ExtResource("9_2r2ah")
-bbcode_enabled = true
-vertical_alignment = 1
 
-[node name="Line5" type="RichTextLabel" parent="TextArea"]
+[node name="Line5" parent="TextArea" instance=ExtResource("12_lgs7w")]
 custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
-theme = ExtResource("9_2r2ah")
-bbcode_enabled = true
-vertical_alignment = 1
 
 [node name="EquipView" parent="." instance=ExtResource("10_w6ao7")]
 layout_mode = 0

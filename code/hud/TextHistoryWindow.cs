@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using QnClient.code.hud.bottom;
 
 namespace QnClient.code.hud;
 
@@ -8,7 +9,7 @@ public partial class TextHistoryWindow : ScrollContainer
 {
     private VBoxContainer _container;
 
-    private readonly List<RichTextLabel> _labels = new();
+    private readonly List<TextAreaLabel> _labels = new();
 
      private Timer _timer;
 
@@ -53,7 +54,7 @@ public partial class TextHistoryWindow : ScrollContainer
         }
     }
 
-    public void Display(List<RichTextLabel> labels)
+    public void Display(List<TextAreaLabel> labels)
     {
         DoClear();
         foreach (var richTextLabel in labels)
@@ -65,7 +66,7 @@ public partial class TextHistoryWindow : ScrollContainer
         _timer.Start(0.5f);
     }
 
-    public void Append(List<RichTextLabel> labels)
+    public void Append(List<TextAreaLabel> labels)
     {
         if (!Visible)
             return;

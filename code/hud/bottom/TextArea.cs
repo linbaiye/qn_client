@@ -12,10 +12,8 @@ public partial class TextArea : VBoxContainer
     private const int MaxLines = 5;
     private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
-    private RichTextLabel[] _lines = new RichTextLabel[MaxLines];
+    private TextAreaLabel[] _lines = new TextAreaLabel[MaxLines];
     
-    private const string ThemeName = "normal";
-
     private readonly MessageHistory _privateChat = new(100);
     
     private readonly MessageHistory _allMessage = new(200);
@@ -26,10 +24,14 @@ public partial class TextArea : VBoxContainer
 
     private Button _textHistoryButton;
     
+    
     public override void _Ready()
     {
         for (int i = 0; i < _lines.Length; i++)
-            _lines[i] = GetNode<RichTextLabel>("Line" + (i + 1));
+        {
+            _lines[i] = GetNode<TextAreaLabel>("Line" + (i + 1));
+            _lines[i].PrivateChatPressed += PrivateChatPressed;
+        }
         _chatOption = GetNode<OptionButton>("../ChatOption");
         _chatOption.ItemSelected += OnChatOptionChanged;
         _textHistoryButton = GetNode<Button>("../TextHistoryButton");
@@ -39,6 +41,10 @@ public partial class TextArea : VBoxContainer
     private bool IsPrivateChatSelected => _chatOption.Selected == 1;
     private bool IsNormalSelected => _chatOption.Selected == 0;
 
+    private void PrivateChatPressed(string name)
+    {
+        GD.Print(name);
+    }
 
     private void OnHistoryButtonPressed()
     {
@@ -57,15 +63,9 @@ public partial class TextArea : VBoxContainer
     {
         for (int i = 0; i < _lines.Length - 1; i++)
         {
-            _lines[i].Text = _lines[i + 1].Text;
-            _lines[i].RemoveThemeStyleboxOverride(ThemeName);
-            if (_lines[i + 1].HasThemeStyleboxOverride(ThemeName))
-            {
-                _lines[i].AddThemeStyleboxOverride(ThemeName, _lines[i + 1].GetThemeStylebox(ThemeName));
-                _lines[i + 1].RemoveThemeStyleboxOverride(ThemeName);
-            }
+            _lines[i].Copy(_lines[i + 1]);
         }
-        _lines[MaxLines - 1].Text = null;
+        _lines[MaxLines - 1].Clean();
     }
 
     private bool IsAllLinesOccupied()
@@ -80,7 +80,7 @@ public partial class TextArea : VBoxContainer
         var last5msg = IsPrivateChatSelected ? _privateChat.Last5Messages() : _allMessage.Last5Messages();
         foreach (var msg in last5msg)
         {
-            Display(msg.Text, msg.Color, msg.BgColor);
+            Display(msg.Text, msg.Color, msg.BgColor, msg.Type);
         }
 
         if (_textHistoryWindow.Visible)
@@ -92,34 +92,21 @@ public partial class TextArea : VBoxContainer
     private void Clear()
     {
         foreach (var line in _lines)
-        {
-            line.Text = null;
-            if (line.HasThemeStyleboxOverride(ThemeName))
-                line.RemoveThemeStyleboxOverride(ThemeName);
-        }
+            line.Clean();
     }
 
-    private void PopulateLabel(RichTextLabel richTextLabel, string text, string color, string bgColor)
+    private List<TextAreaLabel> BuildHistoryWindowLabels(List<TextMessage> messages)
     {
-        if (!string.IsNullOrEmpty(color))
-            richTextLabel.Text = "[color=" + color + "]" + text + "[/color]";
-        else
-            richTextLabel.Text = text;
-        if (!string.IsNullOrEmpty(bgColor))
-            richTextLabel.AddThemeStyleboxOverride(ThemeName, new StyleBoxFlat() { BgColor = new Color(bgColor)});
-    }
-
-    private List<RichTextLabel> BuildHistoryWindowLabels(List<TextMessage> messages)
-    {
-        List<RichTextLabel> result = new List<RichTextLabel>();
-        PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/ui/bottom/rich_text_label.tscn");
+        List<TextAreaLabel> result = new List<TextAreaLabel>();
+        PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/ui/bottom/text_area_label.tscn");
         foreach (var textMessage in messages)
         {
             var lines = SplitByNewline(textMessage.Text);
             foreach (var line in lines)
             {
-                var richTextLabel = scene.Instantiate<RichTextLabel>();
-                PopulateLabel(richTextLabel, line, textMessage.Color, textMessage.BgColor);
+                var richTextLabel = scene.Instantiate<TextAreaLabel>();
+                richTextLabel.PrivateChatPressed += PrivateChatPressed;
+                richTextLabel.Populate(line, textMessage.Color, textMessage.BgColor, textMessage.Type);
                 result.Add(richTextLabel);
             }
         }
@@ -139,19 +126,19 @@ public partial class TextArea : VBoxContainer
             _privateChat.Add(message);
             if (IsPrivateChatSelected)
                 _textHistoryWindow.Append(BuildHistoryWindowLabels([message]));
-            Display(message.Text, message.Color, message.BgColor);
+            Display(message.Text, message.Color, message.BgColor, message.Type);
         }
         else
         {
             if (IsNormalSelected)
             {
-                Display(message.Text, message.Color, message.BgColor);
+                Display(message.Text, message.Color, message.BgColor, message.Type);
                 _textHistoryWindow.Append(BuildHistoryWindowLabels([message]));
             }
         }
     }
 
-    public void Display(string text, string color, string bgColor)
+    public void Display(string text, string color, string bgColor, TextMessage.TextType type = TextMessage.TextType.Normal)
     {
         var lines = SplitByNewline(text);
         foreach (var line in lines)
@@ -168,7 +155,7 @@ public partial class TextArea : VBoxContainer
             {
                 if (string.IsNullOrEmpty(richTextLabel.Text))
                 {
-                    PopulateLabel(richTextLabel, line, color, bgColor);
+                    richTextLabel.Populate(line, color, bgColor, type);
                     break;
                 }
             }
