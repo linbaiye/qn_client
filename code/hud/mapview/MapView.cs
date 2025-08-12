@@ -129,7 +129,7 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
             bool found = false;
             foreach (var mapEntityMarker in _npcMarkers)
             {
-                if (mapEntityMarker.EntityName.Equals(npcPosition.Name))
+                if (mapEntityMarker.Id == npcPosition.Id)
                 {
                     mapEntityMarker.Position = ComputeCreaturePosition(npcPosition.Coordinate, mapEntityMarker.Size);
                     found = true;
@@ -138,7 +138,7 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
             }
             if (!found)
             {
-                var mapCreatureView = MapEntityMarker.Create(npcPosition.Name);
+                var mapCreatureView = MapEntityMarker.Create(npcPosition.Name, npcPosition.Id);
                 AddChild(mapCreatureView);
                 mapCreatureView.Position = ComputeCreaturePosition(npcPosition.Coordinate, mapCreatureView.Size);
                 _npcMarkers.Add(mapCreatureView);
@@ -177,7 +177,7 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
         try
         {
             ChangeMap(message.MapFile);
-            _characterMarker.SetEntityName(message.Name);
+            _characterMarker.SetEntityIdName(message.Id, message.Name);
             _characterCoordinate = message.Coordinate;
         }
         catch

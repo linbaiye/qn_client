@@ -34,7 +34,7 @@ public partial class Login : NinePatchRect
     private Button _regReturn;
     private Timer _timer;
     
-    private static readonly bool DebugMode = true;
+    private static readonly bool DebugMode = false;
     
     
     public override void _Ready()

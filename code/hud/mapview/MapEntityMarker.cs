@@ -8,6 +8,8 @@ public partial class MapEntityMarker : Panel
 
     private string _name = "";
 
+    private long _id = 0;
+
     public override void _Ready()
     {
         _label = GetNode<Label>("Name");
@@ -22,25 +24,28 @@ public partial class MapEntityMarker : Panel
         _label.Show();
     }
 
-    public void SetEntityName(string name)
+    public void SetEntityIdName(long id, string name)
     {
         _name = name;
+        _id = id;
     }
     
-    public string EntityName => _name;
+    public long Id => _id;
+    
 
     private void OnMouseExited()
     {
         _label.Text = "";
         _label.Hide();
     }
+    
 
-
-    public static MapEntityMarker Create(string name)
+    public static MapEntityMarker Create(string name, long id = 0)
     {
         var packedScene = ResourceLoader.Load<PackedScene>("res://scene/ui/map/map_entity_marker.tscn");
         var view = packedScene.Instantiate<MapEntityMarker>();
         view._name = name;
+        view._id = id;
         return view;
     }
 }

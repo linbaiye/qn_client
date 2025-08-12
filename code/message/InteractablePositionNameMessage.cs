@@ -7,10 +7,11 @@ namespace QnClient.code.message;
 
 public class InteractablePositionNameMessage(IEnumerable<InteractablePositionNameMessage.PositionAndName> npcPositions) : IHUDMessage
 {
-    public class PositionAndName(Vector2I coordinate, string name)
+    public class PositionAndName(Vector2I coordinate, string name, long id)
     {
         public Vector2I Coordinate { get; } = coordinate;
         public string Name { get; } = name;
+        public long Id { get; } = id;
     }
     
     public IEnumerable<PositionAndName> NpcPositions { get; } = npcPositions;
@@ -24,7 +25,8 @@ public class InteractablePositionNameMessage(IEnumerable<InteractablePositionNam
             var x = packet.XList[i];
             var y = packet.YList[i];
             var name  = packet.NameList[i];
-            npcPositions.Add(new PositionAndName(new Vector2I(x, y), name));
+            var id = packet.IdList[i];
+            npcPositions.Add(new PositionAndName(new Vector2I(x, y), name, id));
         }
         return new InteractablePositionNameMessage(npcPositions);
     }
