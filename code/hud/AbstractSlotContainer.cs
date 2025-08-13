@@ -61,7 +61,7 @@ public abstract partial class AbstractSlotContainer : NinePatchRect
     {
         if (@event is InputEventMouse)
         {
-            GetViewport().SetInputAsHandled();
+            AcceptEvent();
         }
     }
 

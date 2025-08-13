@@ -126,7 +126,7 @@ public partial class Slot : Panel
         {
             return;
         }
-        GetViewport().SetInputAsHandled();
+        AcceptEvent();
         if (mouse is InputEventMouseButton button)
         {
             _mouseEventHandler.HandleMouseButton(button);

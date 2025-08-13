@@ -42,7 +42,7 @@ public partial class Teleport : AbstractEntity
         }
     }
 
-    public override bool IsCoveringPosition(Vector2 position)
+    public override bool HasMouseHover()
     {
         return false;
     }

@@ -24,7 +24,7 @@ public partial class Tab : TextureRect
             return;
         }
         Pressed?.Invoke();
-        GetViewport().SetInputAsHandled();
+        AcceptEvent();
     }
     
     public bool IsFocused { get; private set; }

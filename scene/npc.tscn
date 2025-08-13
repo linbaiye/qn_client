@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bar3f645sox4s"]
 
 [ext_resource type="Script" uid="uid://cqmthwdfgvgtu" path="res://code/entity/Npc.cs" id="1_rnog4"]
-[ext_resource type="Script" uid="uid://dn8dv61le8ouc" path="res://code/entity/MonsterAnimationPlayer.cs" id="2_7ngcd"]
+[ext_resource type="Script" uid="uid://r78uvjjl62pe" path="res://code/entity/NpcAnimationPlayer.cs" id="2_7ngcd"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_rnog4"]
 [ext_resource type="Shader" uid="uid://ccm7ppfln1mkv" path="res://shader/Sparkling.gdshader" id="3_fb5s2"]
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="4_8oust"]

@@ -24,7 +24,7 @@ public partial class MouseArea : Panel
         {
             return;
         }
-        GetViewport().SetInputAsHandled();
+        AcceptEvent();
         _mouseEventHandler.HandleMouseButton(mouseButton);
     }
 }

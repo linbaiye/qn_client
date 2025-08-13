@@ -41,12 +41,8 @@ public partial class BodySprite: Sprite2D
     
     public MouseArea MouseArea => _mouseArea;
 
-    public bool IsCovering(Vector2 position)
+    public bool HasMouseHover()
     {
         return _hovering;
-        /*var start = _mouseArea.Position;
-        var end = start + _mouseArea.GetSize();
-        return start.X <= position.X && end.X >= position.X &&
-               start.Y <= position.Y && end.Y >= position.Y;*/
     }
 }

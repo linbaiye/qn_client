@@ -92,7 +92,7 @@ public partial class Game : Node2D
     private void OnInventoryItemDropped(int slot)
     {
         var mousePosition = GetLocalMousePosition();
-        var entity = _entityManager.FindFirst<IEntity>(e => e.IsCoveringPosition(mousePosition));
+        var entity = _entityManager.FindFirst<IEntity>(e => e.HasMouseHover());
         if (entity != null)
         {
             _connection.WriteAndFlush(new DropOnEntityInput(entity.Id, slot));

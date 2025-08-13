@@ -92,9 +92,9 @@ public partial class DynamicObject : AbstractEntity, IDynamicObjectMessageHandle
         _animationPlayer.PlayId(id);
     }
 
-    public override bool IsCoveringPosition(Vector2 position)
+    public override bool HasMouseHover()
     {
-        return _bodySprite.IsCovering(position - Position);
+        return _bodySprite.HasMouseHover();
     }
 
     public IEnumerable<Vector2I> Coordinates => _coordinates;

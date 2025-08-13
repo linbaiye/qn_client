@@ -72,7 +72,7 @@ public partial class GroundItem : AbstractEntity
         }
     }
 
-    public override bool IsCoveringPosition(Vector2 position)
+    public override bool HasMouseHover()
     {
         return false;
     }

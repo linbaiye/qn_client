@@ -28,7 +28,7 @@ public partial class TextAreaLabel : RichTextLabel
     {
         if (@event is not InputEventMouse mouse || !mouse.IsPressed())
             return;
-        GetViewport().SetInputAsHandled();
+        AcceptEvent();
         if (_type != TextMessage.TextType.PrivateChat || string.IsNullOrEmpty(_originText))
             return;
         if (_originText.StartsWith(">"))

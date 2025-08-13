@@ -6,7 +6,7 @@ using QnClient.code.util;
 
 namespace QnClient.code.entity;
 
-public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
+public partial class NpcAnimationPlayer : AbstractAnimationPlayer
 {
     
     private static readonly ZipFileSpriteLoader SpriteLoader = ZipFileSpriteLoader.Instance;
@@ -92,7 +92,12 @@ public partial class MonsterAnimationPlayer : AbstractAnimationPlayer
             animation.TrackInsertKey(mouseAreaPosition, time, textureOffset);
             animation.TrackInsertKey(effectOffset, time, textureOffset);
             animation.TrackInsertKey(effectTexture, time, sprites[frameIndex].Texture);
-            animation.TrackInsertKey(AreaSize, time, sprites[frameIndex].OriginalSize);
+            var areaSize = sprites[frameIndex].OriginalSize;
+            if (sprites[frameIndex].OriginalSize.X > 40)
+            {
+                areaSize -= new Vector2(20, 0);
+            }
+            animation.TrackInsertKey(AreaSize, time, areaSize);
             if (effect != null)
             {
                 animation.TrackInsertKey(attackEffectTextureIdx, time, effect[frameIndex].Texture);

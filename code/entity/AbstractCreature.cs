@@ -127,8 +127,8 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
         _textBubble.Display(sayMessage.Text, CenterXy);
     }
 
-    public override bool IsCoveringPosition(Vector2 position)
+    public override bool HasMouseHover()
     {
-        return _bodySprite.IsCovering(position - Position);
+        return _bodySprite.HasMouseHover();
     }
 }

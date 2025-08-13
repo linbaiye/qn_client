@@ -80,7 +80,7 @@ public partial class Item : Panel
             inputEvent is InputEventMouseButton mouseButton &&
             mouseButton.ButtonIndex == MouseButton.Left)
         {
-            GetViewport().SetInputAsHandled();
+            AcceptEvent();
             if (_locked)
             {
                 return;

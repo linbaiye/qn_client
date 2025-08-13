@@ -10,7 +10,7 @@ namespace QnClient.code.entity;
 
 public partial class Npc : AbstractCreature, INpcMessageHandler
 {
-    private MonsterAnimationPlayer _animationPlayer;
+    private NpcAnimationPlayer _animationPlayer;
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     private Effect _effect;
@@ -19,7 +19,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
     {
         base._Ready();
         _effect = GetNode<Effect>("Effect");
-        _animationPlayer = GetNode<MonsterAnimationPlayer>("AnimationPlayer");
+        _animationPlayer = GetNode<NpcAnimationPlayer>("AnimationPlayer");
         Visible = false;
         ZIndex = 2;
     }
