@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cr1c0pyjtfjsu"]
+[gd_scene load_steps=19 format=3 uid="uid://cr1c0pyjtfjsu"]
 
 [ext_resource type="Script" uid="uid://caeevha7kxgmd" path="res://code/player/Player.cs" id="1_hjaqi"]
 [ext_resource type="Script" uid="uid://cgtpixr4b8rcr" path="res://code/player/PlayerAnimationPlayer.cs" id="2_fvtld"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="3_fvtld"]
 [ext_resource type="Shader" uid="uid://cpk0addbvfhxh" path="res://shader/Dyer.gdshader" id="4_ct4mp"]
+[ext_resource type="Shader" uid="uid://en6fiajj5cch" path="res://shader/weaponshine.gdshader" id="5_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="5_s4jxa"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="7_2fvbb"]
 [ext_resource type="PackedScene" uid="uid://dagprws1ut6fs" path="res://scene/life_bar.tscn" id="7_hp4bs"]
@@ -64,6 +65,12 @@ shader_parameter/ag = 0.0
 shader_parameter/ab = 0.0
 shader_parameter/add = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk1vr"]
+shader = ExtResource("5_g2vtq")
+shader_parameter/speed = 0.2
+shader_parameter/tint = Color(0.00392157, 0.980392, 1, 1)
+shader_parameter/span = 0.1
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hjaqi"]
 blend_mode = 1
 
@@ -110,6 +117,7 @@ material = SubResource("ShaderMaterial_ihjo1")
 centered = false
 
 [node name="Weapon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dk1vr")
 centered = false
 
 [node name="AttackEffect" type="Sprite2D" parent="."]
