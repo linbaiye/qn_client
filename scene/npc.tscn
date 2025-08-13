@@ -27,6 +27,7 @@ shader_parameter/curve_ci = 0.2
 script = ExtResource("1_rnog4")
 
 [node name="Body" parent="." instance=ExtResource("2_rnog4")]
+y_sort_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 script = ExtResource("2_7ngcd")
