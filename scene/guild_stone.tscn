@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://v6yq288muirh"]
+[gd_scene load_steps=4 format=3 uid="uid://cfu4puvx7bgx3"]
 
+[ext_resource type="Script" uid="uid://gj1pbqas2rld" path="res://code/entity/GuildStone.cs" id="1_c5rmc"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_ntruo"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_xll3m"]
 
 [node name="GuildStone" type="Node2D"]
+script = ExtResource("1_c5rmc")
 
 [node name="Body" parent="." instance=ExtResource("2_ntruo")]
+modulate = Color(1, 1, 1, 0.243137)
+self_modulate = Color(1, 1, 1, 0.431373)
 
 [node name="Tip" type="Label" parent="."]
 z_index = 5

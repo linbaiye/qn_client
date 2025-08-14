@@ -71,4 +71,6 @@ public interface IHUDMessageHandler
     void ShowBank(ShowBankMessage message);
     
     void ShowCoordinateNameOnMap(InteractablePositionNameMessage message);
+
+    void ShowCreateGuildWindow(int slotId, string title, string tip);
 }

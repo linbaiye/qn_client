@@ -63,6 +63,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.NpcPosition => InteractablePositionNameMessage.FromPacket(packet.NpcPosition),
             Packet.TypedPacketOneofCase.RegisterResponse => new RegisterAccountResponse(packet.RegisterResponse.Code, packet.RegisterResponse.Description),
             Packet.TypedPacketOneofCase.LoginResponse => LoginAccountResponse.FromPacket(packet.LoginResponse),
+            Packet.TypedPacketOneofCase.ShowCreateGuild => ShowCreateGuildWindowMessage.FromPacket(packet.ShowCreateGuild),
             _ => null,
         };
     }

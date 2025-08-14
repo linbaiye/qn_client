@@ -59,11 +59,22 @@ public partial class Game : Node2D
 
     private void AddGroundItem(GroundItemSnapshot snapshot)
     {
-        var groundItem = GroundItem.Create(snapshot);
-        AddChild(groundItem);
-        groundItem.Picked += i => _connection.WriteAndFlush(i);
-        groundItem.OnEntityEvent += _entityManager.HandleEntityEvent;
-        _entityManager.Add(groundItem);
+        if (!snapshot.GroundStone)
+        {
+            var groundItem = GroundItem.Create(snapshot);
+            groundItem.OnEntityEvent += _entityManager.HandleEntityEvent;
+            AddChild(groundItem);
+            groundItem.Picked += i => _connection.WriteAndFlush(i);
+            _entityManager.Add(groundItem);
+        }
+        else
+        {
+            var guildStone = GuildStone.Create(snapshot);
+            guildStone.OnEntityEvent += _entityManager.HandleEntityEvent;
+            guildStone.OnEntityEvent += _map.HandleEntityEvent;
+            AddChild(guildStone);
+            _entityManager.Add(guildStone);
+        }
     }
     
     private void AddTeleport(TeleportSnapshot snapshot)

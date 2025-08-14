@@ -23,6 +23,7 @@ public abstract partial class AbstractGroundItem : AbstractEntity
         _bodySprite = GetNode<BodySprite>("Body");
         _bodySprite.MouseEntered += () => _tip.Visible = true;
         _bodySprite.MouseExited += () => _tip.Visible = false;
+        ZIndex = 2;
         _tip.Visible = false;
         Visible = false;
     }

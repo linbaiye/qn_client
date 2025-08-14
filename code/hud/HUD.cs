@@ -7,6 +7,7 @@ using QnClient.code.entity.@event;
 using QnClient.code.hud.assistance;
 using QnClient.code.hud.attribute;
 using QnClient.code.hud.bank;
+using QnClient.code.hud.guild;
 using QnClient.code.hud.lefttext;
 using QnClient.code.hud.mapview;
 using QnClient.code.hud.npc;
@@ -56,6 +57,8 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     private MapView _mapView;
 
     private TextHistoryWindow _textHistoryWindow;
+
+    private GuildManager _guildManager;
 
     public override void _Ready()
     {
@@ -129,6 +132,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
             if (child is IConnectionAware connectionAware)
                 connectionAware.SetConnection(connection);
         }
+        _guildManager = new GuildManager(GetNode<SimpleInputWindow>("CreateGuildWindow"), connection);
     }
 
     public void UpdateKungFuBookView(KungFuBookMessage message)
@@ -255,6 +259,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     public void ShowCoordinateNameOnMap(InteractablePositionNameMessage message)
     {
         _mapView.ShowCoordinateAndName(message);
+    }
+
+    public void ShowCreateGuildWindow(int slotId, string title, string tip)
+    {
+        _guildManager.ShowCreateGuildWindow(slotId, title, tip);
     }
 
     public void DisplayBottomText(string text, string color, string bgColor)

@@ -10,7 +10,7 @@ offset_bottom = 151.0
 texture = ExtResource("1_cllt0")
 script = ExtResource("2_4ml31")
 
-[node name="NumberInput" type="LineEdit" parent="."]
+[node name="Input" type="LineEdit" parent="."]
 layout_mode = 0
 offset_left = 87.0
 offset_top = 61.0

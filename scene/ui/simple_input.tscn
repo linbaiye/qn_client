@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://o34kp0nxni8i"]
+
+[ext_resource type="Texture2D" uid="uid://dlwk2v54a8qpc" path="res://ui/hud/simple_input.png" id="1_0c5hu"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="2_iibef"]
+[ext_resource type="Script" uid="uid://cojaq21xycwav" path="res://code/hud/SimpleInputWindow.cs" id="2_ssi5o"]
+[ext_resource type="PackedScene" uid="uid://ctucyekmtivdi" path="res://scene/ui/close_button.tscn" id="3_iibef"]
+
+[node name="SimpleInputWindow" type="NinePatchRect"]
+offset_right = 224.0
+offset_bottom = 151.0
+texture = ExtResource("1_0c5hu")
+script = ExtResource("2_ssi5o")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 32.0
+offset_right = 201.0
+offset_bottom = 55.0
+theme = ExtResource("2_iibef")
+text = "创立门派"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tip" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 73.0
+offset_right = 135.0
+offset_bottom = 96.0
+theme = ExtResource("2_iibef")
+text = "请输入门派名称"
+vertical_alignment = 1
+
+[node name="Input" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 104.0
+offset_right = 134.0
+offset_bottom = 126.0
+theme = ExtResource("2_iibef")
+
+[node name="Confirm" parent="." instance=ExtResource("3_iibef")]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 76.0
+offset_right = 205.0
+offset_bottom = 95.0
+
+[node name="Cancel" parent="." instance=ExtResource("3_iibef")]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 105.0
+offset_right = 205.0
+offset_bottom = 124.0
+
+[node name="Error" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 126.0
+offset_right = 144.0
+offset_bottom = 146.0
+theme = ExtResource("2_iibef")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+vertical_alignment = 1

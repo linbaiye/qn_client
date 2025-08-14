@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ch785oi1vsnly"]
+[gd_scene load_steps=22 format=3 uid="uid://ch785oi1vsnly"]
 
 [ext_resource type="PackedScene" uid="uid://idx0qd14bsb2" path="res://scene/game.tscn" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://drt6jdp3j6pen" path="res://code/Main.cs" id="1_v0l8b"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://w86qlm5v58fw" path="res://scene/ui/map/map_view.tscn" id="17_tv8i1"]
 [ext_resource type="PackedScene" uid="uid://b7jxa00fqxbmp" path="res://scene/text_history_window.tscn" id="18_gjnwh"]
 [ext_resource type="PackedScene" uid="uid://dmdbdjeys2yc8" path="res://scene/login.tscn" id="19_0vlqb"]
+[ext_resource type="PackedScene" uid="uid://o34kp0nxni8i" path="res://scene/ui/simple_input.tscn" id="19_fdqew"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")
@@ -116,6 +117,12 @@ grow_vertical = 2
 [node name="TextHistoryWindow" parent="HUD" instance=ExtResource("18_gjnwh")]
 offset_top = -210.0
 offset_bottom = 90.0
+
+[node name="CreateGuildWindow" parent="HUD" instance=ExtResource("19_fdqew")]
+offset_left = 1.0
+offset_top = 448.0
+offset_right = 225.0
+offset_bottom = 599.0
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1024, 648)

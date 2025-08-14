@@ -16,11 +16,15 @@ public partial class GuildStone : AbstractGroundItem
     public override void _Ready()
     {
         base._Ready();
+        Initialize(_snapshot);
         BodySprite.Clicked += () => Clicked?.Invoke(Id);
         BodySprite.AttackInvoked += () => AttackTriggered?.Invoke(Id);
         BodySprite.AttachShadowShader();
+        if (_snapshot.Demo)
+            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0.6f);
+        else
+            EmitEvent(new EntityChangeCoordinateEvent(this));
         _snapshot = null;
-        EmitEvent(new EntityChangeCoordinateEvent(this));
         Visible = true;
     }
 
@@ -31,7 +35,7 @@ public partial class GuildStone : AbstractGroundItem
     
     public static GuildStone Create(GroundItemSnapshot snapshot)
     {
-        PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/ground_item.tscn");
+        PackedScene scene = ResourceLoader.Load<PackedScene>("res://scene/guild_stone.tscn");
         var itm = scene.Instantiate<GuildStone>();
         itm._snapshot = snapshot;
         return itm;
