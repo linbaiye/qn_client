@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://v6yq288muirh"]
+
+[ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_ntruo"]
+[ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="3_xll3m"]
+
+[node name="GuildStone" type="Node2D"]
+
+[node name="Body" parent="." instance=ExtResource("2_ntruo")]
+
+[node name="Tip" type="Label" parent="."]
+z_index = 5
+z_as_relative = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("3_xll3m")

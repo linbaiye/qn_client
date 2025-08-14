@@ -45,4 +45,12 @@ public partial class BodySprite: Sprite2D
     {
         return _hovering;
     }
+    
+    public void AttachShadowShader()
+    {
+        var shader = ResourceLoader.Load<Shader>("res://shader/Shadow.gdshader");
+        var shaderMaterial = new ShaderMaterial();
+        shaderMaterial.Shader = shader;
+        Material = shaderMaterial;
+    }
 }

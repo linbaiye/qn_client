@@ -32,7 +32,6 @@ public partial class Game : Node2D
     private HUD _hud;
     
 
-
     public override void _Ready()
     {
         var groundLayer = GetNode<GroundLayer>("GroundLayer");
@@ -60,11 +59,10 @@ public partial class Game : Node2D
 
     private void AddGroundItem(GroundItemSnapshot snapshot)
     {
-        var groundItem = GroundItem.Create();
+        var groundItem = GroundItem.Create(snapshot);
         AddChild(groundItem);
-        groundItem.Init(snapshot);
-        groundItem.OnEntityEvent += _entityManager.HandleEntityEvent;
         groundItem.Picked += i => _connection.WriteAndFlush(i);
+        groundItem.OnEntityEvent += _entityManager.HandleEntityEvent;
         _entityManager.Add(groundItem);
     }
     

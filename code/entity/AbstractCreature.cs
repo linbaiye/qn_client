@@ -40,7 +40,6 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
         var label = GetNode<Label>("Name");
         label.SetText(name);
         label.Position = new Vector2(18, -20) - label.GetTextSize(name) / 2;
-        //label.Position = (IsPlayer ? new Vector2(18, -20) : new Vector2(16, -20)) - label.GetTextSize(name) / 2;
         label.Visible = false;
     }
     
@@ -49,31 +48,15 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
     private void OnMouseEntered()
     {
         var label = GetNode<Label>("Name");
-        // var offset = _animationPlayer.BodyOffset;
-        // var size = _animationPlayer.BodySize;
-        // if (Humanoid)
-        //     offset += new Vector2(size.X / 2, 12);
-        // else
-        //     offset += new Vector2(size.X / 2,  5);
-        // label.Position = new Vector2(offset.X - label.Size.X / 2,  offset.Y);
         label.Visible = true;
     }
 
-
-    private ShaderMaterial CreateShadowShader()
-    {
-        var shader = ResourceLoader.Load<Shader>("res://shader/Shadow.gdshader");
-        var shaderMaterial = new ShaderMaterial();
-        shaderMaterial.Shader = shader;
-        return shaderMaterial;
-    }
-    
 
     protected void Initialize(long id, Vector2I coordinate, string name)
     {
         Id = id;
         var bodySprite = GetNode<BodySprite>("Body");
-        bodySprite.Material = CreateShadowShader();
+        bodySprite.AttachShadowShader();
         bodySprite.MouseEntered += OnMouseEntered;
         bodySprite.MouseExited += () => GetNode<Label>("Name").Visible = false;
         bodySprite.AttackInvoked += () => AttackTriggered?.Invoke(Id);

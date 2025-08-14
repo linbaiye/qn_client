@@ -33,7 +33,7 @@ public partial class Login : NinePatchRect
     private Button _regReturn;
     private Timer _timer;
     
-    private static readonly bool DevMode = false;
+    private static readonly bool DevMode = true;
     
     
     public override void _Ready()
