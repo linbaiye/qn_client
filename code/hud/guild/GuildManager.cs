@@ -21,6 +21,7 @@ public class GuildManager
         _simpleInputWindow.Cancelled += CancelCreation;
         _connection = connection;
         _applyKungFuForm = applyKungFuForm;
+        _applyKungFuForm.OnConfirmed += OnFormConfirmed;
     }
 
     public void ShowCreateGuildWindow(int slotId, string title, string tip)
@@ -28,6 +29,21 @@ public class GuildManager
         _simpleInputWindow.Clear();
         _slotId = slotId;
         _simpleInputWindow.SetTitleTip(title, tip);
+    }
+
+    public void HandleApplyKungFuMessage(ApplyKungFuWindowMessage message)
+    {
+        if (message.IsOpen && !_applyKungFuForm.Visible)
+            _applyKungFuForm.Show();
+        else if (message.IsClose && _applyKungFuForm.Visible)
+            _applyKungFuForm.Hide();
+        else if (message.IsMessage)
+            _applyKungFuForm.ShowMessage(message.Message);
+    }
+
+    private void OnFormConfirmed()
+    {
+        _connection.WriteAndFlush(_applyKungFuForm.BuildInput());
     }
 
     private void CancelCreation()

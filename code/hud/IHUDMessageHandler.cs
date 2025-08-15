@@ -73,4 +73,5 @@ public interface IHUDMessageHandler
     void ShowCoordinateNameOnMap(InteractablePositionNameMessage message);
 
     void ShowCreateGuildWindow(int slotId, string title, string tip);
+    void HandleApplyKungFuMessage(ApplyKungFuWindowMessage message);
 }

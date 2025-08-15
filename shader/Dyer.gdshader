@@ -13,7 +13,8 @@ void fragment() {
 	//float ag = 25.0/31.0;
 	//float ab = 1.0/31.0;
 	float amax = 1.0;
-	if (pixelColor.r == 0.0 && pixelColor.b == 0.0) {
+	//if (pixelColor.g >= 0.9) {
+	if (pixelColor.r <= 0.01 && pixelColor.b <= 0.01) {
 		float n = pixelColor.g ;
 		float r = n * ar / amax + add;
 		float g = n * ag / amax  + add;

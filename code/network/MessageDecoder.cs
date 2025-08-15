@@ -64,6 +64,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.RegisterResponse => new RegisterAccountResponse(packet.RegisterResponse.Code, packet.RegisterResponse.Description),
             Packet.TypedPacketOneofCase.LoginResponse => LoginAccountResponse.FromPacket(packet.LoginResponse),
             Packet.TypedPacketOneofCase.ShowCreateGuild => ShowCreateGuildWindowMessage.FromPacket(packet.ShowCreateGuild),
+            Packet.TypedPacketOneofCase.ShowApplyKungFu => ApplyKungFuWindowMessage.FromPacket(packet.ShowApplyKungFu),
             _ => null,
         };
     }

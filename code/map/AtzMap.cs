@@ -45,18 +45,19 @@ public class AtzMap(
             groundLayer.CreateTileSet(_groundTextures, _fileParser);
             overGroundLayer.CreateTileSet(_groundTextures, _fileParser);
         }
-        var filterEnum = textureResourceName.ToLower().StartsWith("tomb")
+        /*var filterEnum = textureResourceName.ToLower().StartsWith("tomb")
             ? CanvasItem.TextureFilterEnum.Linear
-            : CanvasItem.TextureFilterEnum.Nearest;
+            : CanvasItem.TextureFilterEnum.Nearest;*/
+        var filterEnum = CanvasItem.TextureFilterEnum.Nearest;
         objectLayer.LoadTextures(textureResourceName);
         roofLayer.LoadTextures(textureResourceName);
         objectLayer.ClearAll();
         groundLayer.ClearPaintedTiles();
         overGroundLayer.ClearPaintedTiles();
-        objectLayer.ChangeFilter(filterEnum);
+        /*objectLayer.ChangeFilter(filterEnum);
         roofLayer.ChangeFilter(filterEnum);
         groundLayer.ChangeFilter(filterEnum);
-        overGroundLayer.ChangeFilter(filterEnum);
+        overGroundLayer.ChangeFilter(filterEnum);*/
         Draw(coordinate);
     }
 

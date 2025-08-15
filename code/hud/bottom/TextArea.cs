@@ -122,8 +122,7 @@ public partial class TextArea : VBoxContainer
         if (message.Type == TextMessage.TextType.PrivateChat)
         {
             _privateChat.Add(message);
-            if (IsPrivateChatSelected)
-                _textHistoryWindow.Append(BuildHistoryWindowLabels([message]));
+            _textHistoryWindow.Append(BuildHistoryWindowLabels([message]));
             Display(message.Text, message.Color, message.BgColor, message.Type);
         }
         else

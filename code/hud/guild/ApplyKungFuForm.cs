@@ -198,15 +198,9 @@ public partial class ApplyKungFuForm : NinePatchRect
         throw new InvalidOperationException();
     }
 
-    private void OnConfirm()
+    public ApplyKungFuInput BuildInput()
     {
-        if (!CheckInputs())
-        {
-            return;
-        }
-        OnConfirmed?.Invoke();
-        
-        var guildKungFuForm = new ApplyKungFuInput()
+        return new ApplyKungFuInput()
         {
             Speed = _attackSpeed.Text.ToInt(),
             Recovery = _recovery.Text.ToInt(),
@@ -226,6 +220,19 @@ public partial class ApplyKungFuForm : NinePatchRect
             Type = GetAttackKungFuType(),
             Name = _name.Text,
         };
+    }
+
+    public void ShowMessage(string msg)
+    {
+        _label.Text = msg;
+    }
+
+    private void OnConfirm()
+    {
+        if (CheckInputs())
+        {
+            OnConfirmed?.Invoke();
+        }
     }
     
 }

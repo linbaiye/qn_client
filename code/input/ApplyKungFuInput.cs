@@ -26,7 +26,7 @@ public class ApplyKungFuInput : I2ServerMessage
     public ClientPacket ToPacket()
     {
         return new ClientPacket() {
-            CreateGuildKungFu = new ClientCreateGuildKungFuPacket() {
+            ApplyGuildKungFu= new ApplyGuildKungFuInputPacket() {
                 Name = Name,
                 AttackSpeed = Speed,
                 Recovery = Recovery,

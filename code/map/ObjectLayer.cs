@@ -64,7 +64,7 @@ public partial class ObjectLayer : Node2D
 			Position = new Vector2(x * 32, y * 24),
 			Autoplay = "default",
 			Name = mapObject.Name(x, y),
-			TextureFilter = _filter,
+			//TextureFilter = _filter,
 		};
 		return ani;
 	}
@@ -92,7 +92,7 @@ public partial class ObjectLayer : Node2D
 					Centered = false,
 					Offset = objectInfo.Offset,
 					Position = new Vector2(xPos, yPos),
-					TextureFilter = TextureFilterEnum.Linear,
+					//TextureFilter = TextureFilterEnum.Linear,
 				};
 				AddChild(objectSprite);
 			}

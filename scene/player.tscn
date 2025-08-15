@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cgtpixr4b8rcr" path="res://code/player/PlayerAnimationPlayer.cs" id="2_fvtld"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="3_fvtld"]
 [ext_resource type="Shader" uid="uid://cpk0addbvfhxh" path="res://shader/Dyer.gdshader" id="4_ct4mp"]
-[ext_resource type="Shader" uid="uid://en6fiajj5cch" path="res://shader/weaponshine.gdshader" id="5_g2vtq"]
+[ext_resource type="Shader" path="res://shader/weaponshine.gdshader" id="5_g2vtq"]
 [ext_resource type="PackedScene" uid="uid://bnx66jyukm7f2" path="res://scene/text_bubble.tscn" id="5_s4jxa"]
 [ext_resource type="Theme" uid="uid://bd2rnsdmcccbq" path="res://scene/ui.tres" id="7_2fvbb"]
 [ext_resource type="PackedScene" uid="uid://dagprws1ut6fs" path="res://scene/life_bar.tscn" id="7_hp4bs"]
@@ -67,9 +67,9 @@ shader_parameter/add = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dk1vr"]
 shader = ExtResource("5_g2vtq")
-shader_parameter/speed = 0.1
-shader_parameter/tint = Color(0.226006, 0.541684, 0.858397, 0.901961)
-shader_parameter/span = 0.1
+shader_parameter/speed = 0.14
+shader_parameter/tint = Color(0.290196, 0.580392, 0.858824, 0.678431)
+shader_parameter/span = 0.363
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hjaqi"]
 blend_mode = 1

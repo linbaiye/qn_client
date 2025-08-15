@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using NLog;
 using QnClient.code.entity;
 using QnClient.code.entity.@event;
@@ -61,6 +62,7 @@ public class CharacterMoveState : AbstractCharacterState
         }
         return false;
     }
+
 
     public override void PhysicProcess(double delta)
     {

@@ -269,6 +269,11 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _guildManager.ShowCreateGuildWindow(slotId, title, tip);
     }
 
+    public void HandleApplyKungFuMessage(ApplyKungFuWindowMessage message)
+    {
+        _guildManager.HandleApplyKungFuMessage(message);
+    }
+
     public void DisplayBottomText(string text, string color, string bgColor)
     {
         _bottom.DisplayText(text, color, bgColor);

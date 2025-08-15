@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7l7trn60dvkb"]
+[gd_scene load_steps=8 format=3 uid="uid://didkq7jytfudr"]
 
 [ext_resource type="Texture2D" uid="uid://c4yp573d1cq8y" path="res://ui/guild/kungfu_form.png" id="1_leqbw"]
 [ext_resource type="Script" uid="uid://de6fdnwlthvry" path="res://code/hud/guild/ApplyKungFuForm.cs" id="2_7v53f"]
@@ -32,13 +32,13 @@ script = ExtResource("2_7v53f")
 
 [node name="Name" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 155.0
+offset_left = 157.0
 offset_top = 66.0
-offset_right = 284.0
+offset_right = 286.0
 offset_bottom = 91.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
-text = "破剑式"
+placeholder_text = "输入门武名称"
 flat = true
 caret_blink = true
 
@@ -62,9 +62,9 @@ flat = true
 
 [node name="Blade" type="CheckBox" parent="."]
 layout_mode = 0
-offset_left = 244.0
+offset_left = 245.0
 offset_top = 125.5
-offset_right = 268.0
+offset_right = 269.0
 offset_bottom = 149.5
 theme = ExtResource("4_nh536")
 flat = true
@@ -106,165 +106,183 @@ theme = ExtResource("4_nh536")
 
 [node name="AttackSpeed" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 104.0
+offset_left = 106.0
 offset_top = 160.0
-offset_right = 159.0
+offset_right = 161.0
 offset_bottom = 185.0
+theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/focus = SubResource("StyleBoxFlat_51500")
+text = "50"
 flat = true
 caret_blink = true
 
 [node name="HeadDamage" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 104.0
+offset_left = 106.0
 offset_top = 191.0
-offset_right = 159.0
+offset_right = 161.0
 offset_bottom = 216.0
+theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/focus = SubResource("StyleBoxFlat_btbui")
+text = "20"
 flat = true
 caret_blink = true
 
 [node name="HeadArmor" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 104.0
+offset_left = 106.0
 offset_top = 223.0
-offset_right = 159.0
+offset_right = 161.0
 offset_bottom = 248.0
+theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/focus = SubResource("StyleBoxFlat_o7gdi")
+text = "18"
 flat = true
 caret_blink = true
 
 [node name="SwingInnerPower" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 104.0
+offset_left = 106.0
 offset_top = 255.0
-offset_right = 159.0
+offset_right = 161.0
 offset_bottom = 280.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "20"
 flat = true
 
 [node name="SwingOuterPower" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 224.0
+offset_left = 226.0
 offset_top = 255.0
-offset_right = 279.0
+offset_right = 281.0
 offset_bottom = 280.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "20"
 flat = true
 caret_blink = true
 
 [node name="SwingPower" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 343.0
+offset_left = 345.0
 offset_top = 255.0
-offset_right = 398.0
+offset_right = 400.0
 offset_bottom = 280.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "20"
 flat = true
 caret_blink = true
 
 [node name="SwingLife" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 463.0
+offset_left = 465.0
 offset_top = 255.0
-offset_right = 518.0
+offset_right = 520.0
 offset_bottom = 280.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "20"
 flat = true
 caret_blink = true
 
 [node name="BodyDamage" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 224.0
+offset_left = 226.0
 offset_top = 160.0
-offset_right = 279.0
+offset_right = 281.0
 offset_bottom = 185.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "50"
 flat = true
 caret_blink = true
 
 [node name="ArmDamage" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 224.0
+offset_left = 226.0
 offset_top = 191.0
-offset_right = 279.0
+offset_right = 281.0
 offset_bottom = 216.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "20"
 flat = true
 caret_blink = true
 
 [node name="ArmArmor" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 224.0
+offset_left = 226.0
 offset_top = 223.0
-offset_right = 279.0
+offset_right = 281.0
 offset_bottom = 248.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "40"
 flat = true
 caret_blink = true
 
 [node name="Recovery" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 343.0
+offset_left = 345.0
 offset_top = 160.0
-offset_right = 398.0
+offset_right = 400.0
 offset_bottom = 185.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "50"
 flat = true
 caret_blink = true
 
 [node name="LegDamage" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 343.0
+offset_left = 345.0
 offset_top = 191.0
-offset_right = 398.0
+offset_right = 400.0
 offset_bottom = 216.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "20"
 flat = true
 caret_blink = true
 
 [node name="LegArmor" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 343.0
+offset_left = 345.0
 offset_top = 223.0
-offset_right = 398.0
+offset_right = 400.0
 offset_bottom = 248.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "40"
 flat = true
 caret_blink = true
 
 [node name="Avoid" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 463.0
+offset_left = 465.0
 offset_top = 160.0
-offset_right = 518.0
+offset_right = 520.0
 offset_bottom = 185.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "50"
 flat = true
 caret_blink = true
 
 [node name="BodyArmor" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 463.0
+offset_left = 465.0
 offset_top = 191.0
-offset_right = 518.0
+offset_right = 520.0
 offset_bottom = 216.0
 theme = ExtResource("4_nh536")
 theme_override_font_sizes/font_size = 12
+text = "70"
 flat = true
 caret_blink = true
 

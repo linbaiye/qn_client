@@ -33,7 +33,7 @@ public partial class Login : NinePatchRect
     private Button _regReturn;
     private Timer _timer;
     
-    private static readonly bool DevMode = true;
+    private static readonly bool DevMode = false;
     
     
     public override void _Ready()
@@ -114,7 +114,7 @@ public partial class Login : NinePatchRect
             else if (message is LoginAccountResponse loginAccountResponse)
             {
                 _label.Text = loginAccountResponse.Msg;
-                _connection?.WriteAndFlush(new LoginCharacterRequest(loginAccountResponse.Charnames[0]));
+                _connection?.WriteAndFlush(new LoginCharacterRequest(loginAccountResponse.Charnames[1]));
                 LoggedIn?.Invoke();
             }
         }
