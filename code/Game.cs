@@ -118,6 +118,7 @@ public partial class Game : Node2D
         _character.OnEntityEvent += _map.HandleEntityEvent;
         _character.Initialize(message, _connection, _map);
         _character.ShootEvent += HandleShoot;
+        _character.Clicked += id => _connection.WriteAndFlush(new ClickEntityInput(id));
         _entityManager.Add(_character);
         Visible = true;
         Logger.Debug("Character joined.");

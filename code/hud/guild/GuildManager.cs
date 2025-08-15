@@ -1,4 +1,5 @@
 ﻿using QnClient.code.input;
+using QnClient.code.message;
 using QnClient.code.network;
 
 namespace QnClient.code.hud.guild;
@@ -6,17 +7,20 @@ namespace QnClient.code.hud.guild;
 public class GuildManager 
 {
     private readonly SimpleInputWindow _simpleInputWindow;
+
+    private readonly ApplyKungFuForm _applyKungFuForm;
     
     private readonly Connection _connection;
     
     private int _slotId;
 
-    public GuildManager(SimpleInputWindow simpleInputWindow, Connection connection)
+    public GuildManager(SimpleInputWindow simpleInputWindow, Connection connection, ApplyKungFuForm applyKungFuForm)
     {
         _simpleInputWindow = simpleInputWindow;
         _simpleInputWindow.Confirmed += ConfirmCreation;
         _simpleInputWindow.Cancelled += CancelCreation;
         _connection = connection;
+        _applyKungFuForm = applyKungFuForm;
     }
 
     public void ShowCreateGuildWindow(int slotId, string title, string tip)

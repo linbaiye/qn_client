@@ -132,7 +132,10 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
             if (child is IConnectionAware connectionAware)
                 connectionAware.SetConnection(connection);
         }
-        _guildManager = new GuildManager(GetNode<SimpleInputWindow>("CreateGuildWindow"), connection);
+        _guildManager = new GuildManager(
+            GetNode<SimpleInputWindow>("CreateGuildWindow"),
+            connection, 
+            GetNode<ApplyKungFuForm>("ApplyKungFuForm"));
     }
 
     public void UpdateKungFuBookView(KungFuBookMessage message)

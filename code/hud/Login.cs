@@ -114,7 +114,7 @@ public partial class Login : NinePatchRect
             else if (message is LoginAccountResponse loginAccountResponse)
             {
                 _label.Text = loginAccountResponse.Msg;
-                _connection?.WriteAndFlush(new LoginCharacterRequest(loginAccountResponse.Charnames[1]));
+                _connection?.WriteAndFlush(new LoginCharacterRequest(loginAccountResponse.Charnames[0]));
                 LoggedIn?.Invoke();
             }
         }
