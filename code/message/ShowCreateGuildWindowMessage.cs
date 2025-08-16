@@ -17,6 +17,6 @@ public class ShowCreateGuildWindowMessage(int slotId, string title, string tip) 
 
     public static ShowCreateGuildWindowMessage FromPacket(ShowCreateGuildWindowPacket packet)
     {
-        return new ShowCreateGuildWindowMessage(packet.FromSlot, packet.Tile, packet.Tile);
+        return new ShowCreateGuildWindowMessage(packet.FromSlot, packet.Tile, packet.Tip);
     }
 }

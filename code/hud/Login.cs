@@ -47,7 +47,7 @@ public partial class Login : NinePatchRect
     
     private LineEdit _selectInput;
     
-    private static readonly bool DevMode = false;
+    private static readonly bool DevMode = true;
     
     
     public override void _Ready()
