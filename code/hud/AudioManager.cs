@@ -114,6 +114,7 @@ public partial class AudioManager : Node, ICharacterJoinedAware
         }
         else
         {
+            _currentBgm = null;
             _bgmPlayer.Stop();
         }
     }

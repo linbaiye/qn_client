@@ -163,7 +163,7 @@ public partial class ApplyKungFuForm : NinePatchRect
         return true;
     }
 
-    public void Open()
+    private void Open()
     {
         _attackSpeed.Text = 30.ToString();
         _bodyDamage.Text = 70.ToString();

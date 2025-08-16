@@ -72,6 +72,7 @@ public partial class Game : Node2D
             var guildStone = GuildStone.Create(snapshot);
             guildStone.OnEntityEvent += _entityManager.HandleEntityEvent;
             guildStone.OnEntityEvent += _map.HandleEntityEvent;
+            guildStone.Clicked += i => _connection.WriteAndFlush(new ClickEntityInput(i));
             AddChild(guildStone);
             _entityManager.Add(guildStone);
         }

@@ -3,6 +3,7 @@ using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Channels;
 using NLog;
+using QnClient.code.account;
 using QnClient.code.message;
 using QnClient.code.player;
 using Source.Networking.Protobuf;
@@ -63,6 +64,7 @@ public class MessageDecoder() : LengthFieldBasedFrameDecoder(short.MaxValue, 0, 
             Packet.TypedPacketOneofCase.NpcPosition => InteractablePositionNameMessage.FromPacket(packet.NpcPosition),
             Packet.TypedPacketOneofCase.RegisterResponse => new RegisterAccountResponse(packet.RegisterResponse.Code, packet.RegisterResponse.Description),
             Packet.TypedPacketOneofCase.LoginResponse => LoginAccountResponse.FromPacket(packet.LoginResponse),
+            Packet.TypedPacketOneofCase.CreateCharacterResponse => CreateCharacterResponse.FromPacket(packet.CreateCharacterResponse),
             Packet.TypedPacketOneofCase.ShowCreateGuild => ShowCreateGuildWindowMessage.FromPacket(packet.ShowCreateGuild),
             Packet.TypedPacketOneofCase.ShowApplyKungFu => ApplyKungFuWindowMessage.FromPacket(packet.ShowApplyKungFu),
             _ => null,

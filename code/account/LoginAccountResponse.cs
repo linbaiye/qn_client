@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Source.Networking.Protobuf;
 
-namespace QnClient.code.message;
+namespace QnClient.code.account;
 
 public class LoginAccountResponse(int code, string msg, List<string> charnames)
 {

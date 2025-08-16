@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using QnClient.code.account;
 using QnClient.code.message;
@@ -32,6 +33,19 @@ public partial class Login : NinePatchRect
     private Button _regConfirm;
     private Button _regReturn;
     private Timer _timer;
+    
+    
+    
+    private NinePatchRect _selectChar;
+    private ItemList _charList;
+    private Button _selectButton;
+    private Button _createButton;
+    private Button _deleteButton;
+    private Label _selectLabel;
+    private CheckBox _maleCheckBox;
+    private CheckBox _femaleCheckBox;
+    
+    private LineEdit _selectInput;
     
     private static readonly bool DevMode = false;
     
@@ -70,7 +84,24 @@ public partial class Login : NinePatchRect
         _connect.Disabled = true;
         _timer = GetNode<Timer>("Timer");
         _timer.Timeout += HandleMessages;
+        _selectChar = GetNode<NinePatchRect>("SelectChar");
+        _charList = GetNode<ItemList>("SelectChar/CharList");
+        _selectChar.Visible = false;
+        _selectButton = GetNode<Button>("SelectChar/SelectButton");
+        _createButton = GetNode<Button>("SelectChar/CreateButton");
+        _deleteButton = GetNode<Button>("SelectChar/DeleteButton");
+        _selectButton.Pressed += OnSelectCharClicked;
+        _createButton.Pressed += OnCreateClicked;
+        _deleteButton.Pressed += OnDeleteClicked;
+        _selectLabel = GetNode<Label>("SelectChar/Label");
+        _selectInput = GetNode<LineEdit>("SelectChar/Input");
+        _maleCheckBox = GetNode<CheckBox>("SelectChar/MaleBox");
+        _femaleCheckBox = GetNode<CheckBox>("SelectChar/FemaleBox");
+        _maleCheckBox.SetPressedNoSignal(true);
+        _maleCheckBox.Pressed += () => OnSexBoxChecked(_maleCheckBox);
+        _femaleCheckBox.Pressed += () => OnSexBoxChecked(_femaleCheckBox);
     }
+    
 
     private void ConfirmRegister()
     {
@@ -100,6 +131,20 @@ public partial class Login : NinePatchRect
         _connection?.WriteAndFlush(new RegisterAccountRequest(regUsernameText, _regPassword.Text));
     }
 
+
+    private void HandleLoginAccountResponse(LoginAccountResponse loginAccountResponse)
+    {
+        if (loginAccountResponse.Code == 0)
+        {
+            AddToSelectChar(loginAccountResponse.Charnames);
+        }
+        else
+        {
+            _label.Text = loginAccountResponse.Msg;
+        }
+        
+    }
+
     private void HandleMessages()
     {
         if (_connection == null)
@@ -113,11 +158,73 @@ public partial class Login : NinePatchRect
             } 
             else if (message is LoginAccountResponse loginAccountResponse)
             {
-                _label.Text = loginAccountResponse.Msg;
-                _connection?.WriteAndFlush(new LoginCharacterRequest(loginAccountResponse.Charnames[1]));
-                LoggedIn?.Invoke();
+                HandleLoginAccountResponse(loginAccountResponse);
+            }
+            else if (message is CreateCharacterResponse createCharacterResponse)
+            {
+                HandleCreateCharacterResponse(createCharacterResponse);
             }
         }
+    }
+
+    private void HandleCreateCharacterResponse(CreateCharacterResponse createCharacterResponse)
+    {
+        _selectLabel.Text = createCharacterResponse.Msg;
+        if (createCharacterResponse.Code == 0)
+        {
+            _charList.AddItem(createCharacterResponse.CharacterName);
+        }
+    }
+
+    private void AddToSelectChar(List<string> nameList)
+    {
+        foreach (var se in nameList)
+        {
+            int i = _charList.AddItem(se);
+            _charList.SetItemTooltipEnabled(i, false);
+        }
+        if (nameList.Count > 0)
+            _charList.Select(0);
+        _selectChar.Visible = true;
+    }
+
+    private void OnCreateClicked()
+    {
+        _buttonSound.Play();
+        if (string.IsNullOrEmpty(_selectInput.Text))
+        {
+            _selectLabel.Text = "请输入人物名字。";
+            return;
+        }
+        bool male = _maleCheckBox.IsPressed();
+        _connection.WriteAndFlush(new CreateCharacterRequest(_selectInput.Text, male));
+    }
+
+    private void OnDeleteClicked()
+    {
+        _buttonSound.Play();
+    }
+
+    private void OnSelectCharClicked()
+    {
+        _buttonSound.Play();
+        var selectedItems = _charList.GetSelectedItems();
+        if (selectedItems.Length == 0)
+        {
+            _selectLabel.Text = "请选择人物。";
+            return;
+        }
+        var name = _charList.GetItemText(selectedItems[0]);
+        _connection.WriteAndFlush(new LoginCharacterRequest(name));
+        LoggedIn?.Invoke();
+    }
+
+
+    private void OnSexBoxChecked(CheckBox checkBox)
+    {
+        _femaleCheckBox.SetPressedNoSignal(false);
+        _maleCheckBox.SetPressedNoSignal(false);
+        checkBox.SetPressedNoSignal(true);
     }
 
 
@@ -137,8 +244,6 @@ public partial class Login : NinePatchRect
         }
         _label.Text = "登陆中...";
         _connection.WriteAndFlush(new LoginAccountRequest(_username.Text, _password.Text));
-        //LoggedIn?.Invoke();
-        //_connection.WriteAndFlush(new DebugInput());
     }
 
     public void OnConnected(Connection connection)

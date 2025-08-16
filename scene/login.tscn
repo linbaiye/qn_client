@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmdbdjeys2yc8"]
+[gd_scene load_steps=16 format=3 uid="uid://dmdbdjeys2yc8"]
 
 [ext_resource type="Texture2D" uid="uid://dt5777u0hf8ic" path="res://ui/login/login.jpg" id="1_mc475"]
 [ext_resource type="Script" uid="uid://cv2rsfdg1qxwv" path="res://code/hud/Login.cs" id="2_76uxg"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cvwiqaeb1tjlw" path="res://ui/login/71.bmp" id="8_vd3ky"]
 [ext_resource type="Texture2D" uid="uid://iamqi6mqt8he" path="res://ui/login/72.bmp" id="9_8skgh"]
 [ext_resource type="AudioStream" uid="uid://b0rveh77km54u" path="res://bgm/Logon.mp3" id="11_8skgh"]
+[ext_resource type="Texture2D" uid="uid://clgdmhjw0t0ro" path="res://ui/login/selectchar.bmp" id="11_g33sf"]
+[ext_resource type="PackedScene" uid="uid://ctucyekmtivdi" path="res://scene/ui/close_button.tscn" id="12_5qrdj"]
 [ext_resource type="AudioStream" uid="uid://chh0th3dontjw" path="res://bgm/click.wav" id="12_utpg3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8skgh"]
@@ -156,6 +158,75 @@ offset_bottom = 149.0
 theme = ExtResource("2_xhhai")
 text = "输入连线名称和密码即可"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectChar" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 800.0
+texture = ExtResource("11_g33sf")
+
+[node name="CharList" type="ItemList" parent="SelectChar"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 313.0
+offset_right = 495.0
+offset_bottom = 414.0
+theme = ExtResource("2_xhhai")
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+
+[node name="Input" type="LineEdit" parent="SelectChar"]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 355.0
+offset_right = 662.0
+offset_bottom = 377.0
+theme = ExtResource("2_xhhai")
+
+[node name="MaleBox" type="CheckBox" parent="SelectChar"]
+layout_mode = 0
+offset_left = 572.0
+offset_top = 419.0
+offset_right = 596.0
+offset_bottom = 443.0
+theme = ExtResource("2_xhhai")
+
+[node name="FemaleBox" type="CheckBox" parent="SelectChar"]
+layout_mode = 0
+offset_left = 644.0
+offset_top = 419.0
+offset_right = 668.0
+offset_bottom = 443.0
+theme = ExtResource("2_xhhai")
+
+[node name="DeleteButton" parent="SelectChar" instance=ExtResource("12_5qrdj")]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 427.0
+offset_right = 421.0
+offset_bottom = 451.0
+
+[node name="SelectButton" parent="SelectChar" instance=ExtResource("12_5qrdj")]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 427.0
+offset_right = 493.0
+offset_bottom = 451.0
+
+[node name="CreateButton" parent="SelectChar" instance=ExtResource("12_5qrdj")]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 461.0
+offset_right = 633.0
+offset_bottom = 485.0
+
+[node name="Label" type="Label" parent="SelectChar"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 479.0
+offset_right = 498.0
+offset_bottom = 502.0
+theme = ExtResource("2_xhhai")
 vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]

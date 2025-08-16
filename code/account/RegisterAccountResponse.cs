@@ -1,4 +1,4 @@
-namespace QnClient.code.message;
+namespace QnClient.code.account;
 
 public class RegisterAccountResponse(int code, string msg)
 {

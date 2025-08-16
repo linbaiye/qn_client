@@ -70,7 +70,7 @@ public partial class LootAssistance : NinePatchRect
     {
         int xDist = Math.Abs(coor1.X - coor2.X);
         int yDist = Math.Abs(coor1.Y - coor2.Y);
-        return xDist <= 3 && yDist <= 2;
+        return xDist <= 2 && yDist <= 3;
     }
 
     private bool SelectedContains(string name)
