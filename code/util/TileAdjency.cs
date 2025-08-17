@@ -3,7 +3,7 @@
 
 public class TileAdjacency
 {
-    
+   /* 
     private readonly Dictionary<Direction, List<Tile>> _adjacency = new();
 
 
@@ -72,10 +72,5 @@ public class TileAdjacency
                 GD.Print(tile + ":  ", adjacency.GetAdjacentTiles(dir));
             }
         }
-    }
-    
-}
-public class TileAdjency
-{
-    
+    }*/
 }
