@@ -327,7 +327,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
         _attributeEquipment.KungFuRefreshed();
     }
 
-    public void PlaySound(string entityName, string soundName)
+    public void PlaySound(string soundName)
     {
         _audioManager.PlaySound(soundName);
     }

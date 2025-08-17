@@ -44,7 +44,8 @@ public partial class Main : Node
     
     private async void SetupConnection()
     {
-        _connection = await Connection.ConnectTo("127.0.0.1", 9999);
+        _connection = await Connection.ConnectTo("193.112.251.231", 9999);
+        //_connection = await Connection.ConnectTo("127.0.0.1", 9999);
         _login.OnConnected(_connection);
     }
 

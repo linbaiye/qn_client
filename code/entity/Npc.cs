@@ -14,6 +14,7 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     private Effect _effect;
+    private Label _questMarker;
     
     public override void _Ready()
     {
@@ -22,6 +23,9 @@ public partial class Npc : AbstractCreature, INpcMessageHandler
         _animationPlayer = GetNode<NpcAnimationPlayer>("AnimationPlayer");
         Visible = false;
         ZIndex = 2;
+        _questMarker = GetNode<Label>("QuestMarker");
+        _questMarker.Position = new Vector2(18, -50) - _questMarker.GetSize() / 2;
+        _questMarker.Visible = false;
     }
 
     protected override bool IsPlayer => false;

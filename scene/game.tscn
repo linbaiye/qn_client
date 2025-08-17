@@ -16,10 +16,10 @@ tile_size = Vector2i(32, 24)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
-texture_filter = 2
 script = ExtResource("1_dbls1")
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
+texture_filter = 2
 tile_set = SubResource("TileSet_33cqm")
 occlusion_enabled = false
 collision_enabled = false
@@ -27,6 +27,7 @@ navigation_enabled = false
 script = ExtResource("2_dbls1")
 
 [node name="OverGroundLayer" type="TileMapLayer" parent="."]
+texture_filter = 2
 tile_set = SubResource("TileSet_xwcet")
 occlusion_enabled = false
 collision_enabled = false
@@ -40,6 +41,7 @@ script = ExtResource("4_p1ry8")
 [node name="Character" parent="." instance=ExtResource("1_5kiuu")]
 z_index = 2
 y_sort_enabled = true
+texture_filter = 2
 script = ExtResource("6_qpk70")
 
 [node name="Camera2D" type="Camera2D" parent="Character"]

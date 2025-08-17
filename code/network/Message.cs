@@ -334,84 +334,84 @@ namespace Source.Networking.Protobuf {
             "LlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVmLlNob3dDcmVhdGVHdWlsZFdp",
             "bmRvd1BhY2tldEgAEk4KD3Nob3dBcHBseUt1bmdGdRhWIAEoCzIzLlNvdXJj",
             "ZS5OZXR3b3JraW5nLlByb3RvYnVmLkFwcGx5S3VuZ0Z1V2luZG93UGFja2V0",
-            "SABCDQoLVHlwZWRQYWNrZXQiNgoRRW50aXR5U291bmRQYWNrZXQSDQoFc291",
-            "bmQYASABKAkSEgoKZW50aXR5TmFtZRgCIAEoCSK0BAoQUGxheWVySW5mb1Bh",
-            "Y2tldBIKCgJpZBgCIAEoAxIMCgRtYWxlGAMgASgIEgwKBG5hbWUYBCABKAkS",
-            "FwoKd2VhcG9uTmFtZRgFIAEoCUgAiAEBEhYKCWNoZXN0TmFtZRgGIAEoCUgB",
-            "iAEBEhUKCGhhaXJOYW1lGAcgASgJSAKIAQESFAoHaGF0TmFtZRgIIAEoCUgD",
-            "iAEBEhYKCXdyaXN0TmFtZRgJIAEoCUgEiAEBEhUKCGJvb3ROYW1lGAogASgJ",
-            "SAWIAQESGQoMY2xvdGhpbmdOYW1lGAsgASgJSAaIAQESGAoLdHJvdXNlck5h",
-            "bWUYDCABKAlIB4gBARISCgpjaGVzdENvbG9yGA0gASgFEhEKCWhhaXJDb2xv",
-            "chgOIAEoBRIQCghoYXRDb2xvchgPIAEoBRISCgp3cmlzdENvbG9yGBAgASgF",
-            "EhEKCWJvb3RDb2xvchgRIAEoBRIVCg1jbG90aGluZ0NvbG9yGBIgASgFEhQK",
-            "DHRyb3VzZXJDb2xvchgTIAEoBRIRCgluYW1lQ29sb3IYFCABKAUSFgoJZ3Vp",
-            "bGROYW1lGBUgASgJSAiIAQFCDQoLX3dlYXBvbk5hbWVCDAoKX2NoZXN0TmFt",
-            "ZUILCglfaGFpck5hbWVCCgoIX2hhdE5hbWVCDAoKX3dyaXN0TmFtZUILCglf",
-            "Ym9vdE5hbWVCDwoNX2Nsb3RoaW5nTmFtZUIOCgxfdHJvdXNlck5hbWVCDAoK",
-            "X2d1aWxkTmFtZSIgChJSZW1vdmVFbnRpdHlQYWNrZXQSCgoCaWQYASABKAMi",
-            "OgoPTW92ZUlucHV0UGFja2V0EgkKAXgYASABKAUSCQoBeRgCIAEoBRIRCglk",
-            "aXJlY3Rpb24YAyABKAUiIgoSVW5lcXVpcElucHV0UGFja2V0EgwKBHR5cGUY",
-            "ASABKAUiJAoPVHVybklucHV0UGFja2V0EhEKCWRpcmVjdGlvbhgDIAEoBSJH",
-            "ChZDbGlja0t1bmdGdUlucHV0UGFja2V0EgwKBHBhZ2UYASABKAUSDAoEc2xv",
-            "dBgCIAEoBRIRCgljbGlja1R5cGUYAyABKAUiQAodQ2xpY2tJbnZlbnRvcnlT",
-            "bG90SW5wdXRQYWNrZXQSDAoEc2xvdBgBIAEoBRIRCgljbGlja1R5cGUYAyAB",
-            "KAUiIQoRU2ltcGxlSW5wdXRQYWNrZXQSDAoEdHlwZRgBIAEoBSKrAgoPSm9p",
-            "blJlYWxtUGFja2V0Ej4KCWF0dHJpYnV0ZRgBIAEoCzIrLlNvdXJjZS5OZXR3",
-            "b3JraW5nLlByb3RvYnVmLkF0dHJpYnV0ZVBhY2tldBJBCgplcXVpcG1lbnRz",
-            "GAIgAygLMi0uU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuUGxheWVyRXF1",
-            "aXBQYWNrZXQSPAoIdGVsZXBvcnQYAyABKAsyKi5Tb3VyY2UuTmV0d29ya2lu",
-            "Zy5Qcm90b2J1Zi5UZWxlcG9ydFBhY2tldBIMCgRtYWxlGAQgASgIEgwKBG5h",
-            "bWUYBSABKAkSCgoCaWQYBiABKAMSFAoMYXR0YWNrS3VuZ0Z1GAcgASgJEhkK",
-            "EWF0dGFja0t1bmdGdUxldmVsGAggASgFIs4BChhQbGF5ZXJUb2dnbGVLdW5n",
-            "RnVQYWNrZXQSFAoMYXR0YWNrS3VuZ0Z1GAEgASgJEhcKCmZvb3RLdW5nRnUY",
-            "AiABKAlIAIgBARIOCgZjYW5GbHkYAyABKAgSHQoQcHJvdGVjdGlvbkt1bmdG",
-            "dRgEIAEoCUgBiAEBEhwKD2Fzc2lzdGFudEt1bmdGdRgFIAEoCUgCiAEBQg0K",
-            "C19mb290S3VuZ0Z1QhMKEV9wcm90ZWN0aW9uS3VuZ0Z1QhIKEF9hc3Npc3Rh",
-            "bnRLdW5nRnUidgoWQ3JlYXR1cmVCYXNlSW5mb1BhY2tldBIVCg1lbGFwc2Vk",
-            "TWlsbGlzGAIgASgFEhEKCWRpcmVjdGlvbhgDIAEoBRIJCgF4GAQgASgFEgkK",
-            "AXkYBSABKAUSEAoIdmlld05hbWUYBiABKAkSCgoCaWQYByABKAMi0AEKFFBs",
-            "YXllclNuYXBzaG90UGFja2V0EkQKCGJhc2VJbmZvGAEgASgLMjIuU291cmNl",
-            "Lk5ldHdvcmtpbmcuUHJvdG9idWYuQ3JlYXR1cmVCYXNlSW5mb1BhY2tldBIS",
-            "Cgptb3ZlQWN0aW9uGAIgASgFEkEKCmVxdWlwbWVudHMYAyADKAsyLS5Tb3Vy",
-            "Y2UuTmV0d29ya2luZy5Qcm90b2J1Zi5QbGF5ZXJFcXVpcFBhY2tldBIMCgRt",
-            "YWxlGAQgASgIEg0KBXN0YXRlGAUgASgFIpcBChFOcGNTbmFwc2hvdFBhY2tl",
-            "dBJECghiYXNlSW5mbxgBIAEoCzIyLlNvdXJjZS5OZXR3b3JraW5nLlByb3Rv",
-            "YnVmLkNyZWF0dXJlQmFzZUluZm9QYWNrZXQSDQoFc2hhcGUYAiABKAkSDwoH",
-            "YW5pbWF0ZRgDIAEoCRINCgVzdGF0ZRgEIAEoBRINCgVzcGVlZBgFIAEoBSJO",
-            "ChFDcmVhdHVyZVNheVBhY2tldBIKCgJpZBgBIAEoAxIMCgR0ZXh0GAIgASgJ",
-            "EhAKCHZpZXdOYW1lGAMgASgJEg0KBWNhY2hlGAQgASgIIhwKC1BpbGxzUGFj",
-            "a2V0Eg0KBXBpbGxzGAEgAygJIqkCChZTeW5jQWN0aXZlS3VuZ0Z1UGFja2V0",
-            "EhQKDGF0dGFja0t1bmdGdRgBIAEoCRIdChBwcm90ZWN0aW9uS3VuZ0Z1GAIg",
-            "ASgJSACIAQESGQoMYnJlYXRoS3VuZ0Z1GAMgASgJSAGIAQESHAoPYXNzaXN0",
-            "YW50S3VuZ0Z1GAQgASgJSAKIAQESFwoKZm9vdEt1bmdGdRgFIAEoCUgDiAEB",
-            "EhgKEGZvb3RLdW5nRnVDYW5GbHkYBiABKAgSCgoCaWQYByABKAMSGQoRYXR0",
-            "YWNrS3VuZ0Z1TGV2ZWwYCCABKAVCEwoRX3Byb3RlY3Rpb25LdW5nRnVCDwoN",
-            "X2JyZWF0aEt1bmdGdUISChBfYXNzaXN0YW50S3VuZ0Z1Qg0KC19mb290S3Vu",
-            "Z0Z1Il0KF1BsYXllckNoYW5nZVN0YXRlUGFja2V0EgoKAmlkGAEgASgDEg0K",
-            "BXN0YXRlGAIgASgFEhEKCWRpcmVjdGlvbhgDIAEoBRIJCgF4GAQgASgFEgkK",
-            "AXkYBSABKAUiZgoXUGxheWVyU2V0UG9zaXRpb25QYWNrZXQSPAoIcG9zaXRp",
-            "b24YASABKAsyKi5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5Qb3NpdGlv",
-            "blBhY2tldBINCgVzdGF0ZRgCIAEoBSJZChJQbGF5ZXJBdHRhY2tQYWNrZXQS",
-            "CgoCaWQYASABKAMSDgoGYWN0aW9uGAIgASgFEhEKCWRpcmVjdGlvbhgDIAEo",
-            "BRIUCgxlZmZlY3RTcHJpdGUYBCABKAkiHwoRQXR0YWNrSW5wdXRQYWNrZXQS",
-            "CgoCaWQYQCABKAMiHQoPUGlja0lucHV0UGFja2V0EgoKAmlkGEAgASgDIjkK",
-            "E0Ryb3BJdGVtSW5wdXRQYWNrZXQSDAoEc2xvdBgBIAEoBRIJCgF4GAIgASgF",
-            "EgkKAXkYAyABKAUiNwobRHJvcEl0ZW1PbkVudGl0eUlucHV0UGFja2V0EgwK",
-            "BHNsb3QYASABKAUSCgoCaWQYAiABKAMiUAoaQ29uZmlybURyb3BJdGVtSW5w",
-            "dXRQYWNrZXQSDgoGbnVtYmVyGAEgASgFEgwKBHNsb3QYAiABKAUSCQoBeBgD",
-            "IAEoBRIJCgF5GAQgASgFIj0KGkNsaWNrTnBjQWJpbGl0eUlucHV0UGFja2V0",
-            "EgoKAmlkGAEgASgDEhMKC2FiaWxpdHlOYW1lGAIgASgJIj4KEkJ1eUl0ZW1J",
-            "bnB1dFBhY2tldBIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJEg4KBm51bWJl",
-            "chgDIAEoBSI/ChNTZWxsSXRlbUlucHV0UGFja2V0EgoKAmlkGAEgASgDEgwK",
-            "BHNsb3QYAiABKAUSDgoGbnVtYmVyGAMgASgFInoKEFBsYXllck1vdmVQYWNr",
-            "ZXQSPQoKbW92ZVBhY2tldBgBIAEoCzIpLlNvdXJjZS5OZXR3b3JraW5nLlBy",
-            "b3RvYnVmLk5wY01vdmVQYWNrZXQSEgoKbW92ZUFjdGlvbhgCIAEoBRITCgtz",
-            "dGFydE1pbGxpcxgDIAEoBSKAAQoTUGxheWVyRGFtYWdlZFBhY2tldBIPCgdj",
-            "dXJMaWZlGAEgASgFEg8KB21heExpZmUYAiABKAUSCgoCaWQYAyABKAMSEwoL",
-            "aGVhZFBlcmNlbnQYBCABKAUSEgoKYXJtUGVyY2VudBgFIAEoBRISCgpsZWdQ",
-            "ZXJjZW50GAYgASgFImoKG1VwZGF0ZVRyYWRlV2luZG93U2xvdFBhY2tldBIM",
-            "CgRzZWxmGAEgASgIEj0KBGl0ZW0YAiABKAsyLy5Tb3VyY2UuTmV0d29ya2lu",
-            "Zy5Qcm90b2J1Zi5JbnZlbnRvcnlJdGVtUGFja2V0YgZwcm90bzM="));
+            "SABCDQoLVHlwZWRQYWNrZXQiIgoRRW50aXR5U291bmRQYWNrZXQSDQoFc291",
+            "bmQYASABKAkitAQKEFBsYXllckluZm9QYWNrZXQSCgoCaWQYAiABKAMSDAoE",
+            "bWFsZRgDIAEoCBIMCgRuYW1lGAQgASgJEhcKCndlYXBvbk5hbWUYBSABKAlI",
+            "AIgBARIWCgljaGVzdE5hbWUYBiABKAlIAYgBARIVCghoYWlyTmFtZRgHIAEo",
+            "CUgCiAEBEhQKB2hhdE5hbWUYCCABKAlIA4gBARIWCgl3cmlzdE5hbWUYCSAB",
+            "KAlIBIgBARIVCghib290TmFtZRgKIAEoCUgFiAEBEhkKDGNsb3RoaW5nTmFt",
+            "ZRgLIAEoCUgGiAEBEhgKC3Ryb3VzZXJOYW1lGAwgASgJSAeIAQESEgoKY2hl",
+            "c3RDb2xvchgNIAEoBRIRCgloYWlyQ29sb3IYDiABKAUSEAoIaGF0Q29sb3IY",
+            "DyABKAUSEgoKd3Jpc3RDb2xvchgQIAEoBRIRCglib290Q29sb3IYESABKAUS",
+            "FQoNY2xvdGhpbmdDb2xvchgSIAEoBRIUCgx0cm91c2VyQ29sb3IYEyABKAUS",
+            "EQoJbmFtZUNvbG9yGBQgASgFEhYKCWd1aWxkTmFtZRgVIAEoCUgIiAEBQg0K",
+            "C193ZWFwb25OYW1lQgwKCl9jaGVzdE5hbWVCCwoJX2hhaXJOYW1lQgoKCF9o",
+            "YXROYW1lQgwKCl93cmlzdE5hbWVCCwoJX2Jvb3ROYW1lQg8KDV9jbG90aGlu",
+            "Z05hbWVCDgoMX3Ryb3VzZXJOYW1lQgwKCl9ndWlsZE5hbWUiIAoSUmVtb3Zl",
+            "RW50aXR5UGFja2V0EgoKAmlkGAEgASgDIjoKD01vdmVJbnB1dFBhY2tldBIJ",
+            "CgF4GAEgASgFEgkKAXkYAiABKAUSEQoJZGlyZWN0aW9uGAMgASgFIiIKElVu",
+            "ZXF1aXBJbnB1dFBhY2tldBIMCgR0eXBlGAEgASgFIiQKD1R1cm5JbnB1dFBh",
+            "Y2tldBIRCglkaXJlY3Rpb24YAyABKAUiRwoWQ2xpY2tLdW5nRnVJbnB1dFBh",
+            "Y2tldBIMCgRwYWdlGAEgASgFEgwKBHNsb3QYAiABKAUSEQoJY2xpY2tUeXBl",
+            "GAMgASgFIkAKHUNsaWNrSW52ZW50b3J5U2xvdElucHV0UGFja2V0EgwKBHNs",
+            "b3QYASABKAUSEQoJY2xpY2tUeXBlGAMgASgFIiEKEVNpbXBsZUlucHV0UGFj",
+            "a2V0EgwKBHR5cGUYASABKAUiqwIKD0pvaW5SZWFsbVBhY2tldBI+CglhdHRy",
+            "aWJ1dGUYASABKAsyKy5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5BdHRy",
+            "aWJ1dGVQYWNrZXQSQQoKZXF1aXBtZW50cxgCIAMoCzItLlNvdXJjZS5OZXR3",
+            "b3JraW5nLlByb3RvYnVmLlBsYXllckVxdWlwUGFja2V0EjwKCHRlbGVwb3J0",
+            "GAMgASgLMiouU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuVGVsZXBvcnRQ",
+            "YWNrZXQSDAoEbWFsZRgEIAEoCBIMCgRuYW1lGAUgASgJEgoKAmlkGAYgASgD",
+            "EhQKDGF0dGFja0t1bmdGdRgHIAEoCRIZChFhdHRhY2tLdW5nRnVMZXZlbBgI",
+            "IAEoBSLOAQoYUGxheWVyVG9nZ2xlS3VuZ0Z1UGFja2V0EhQKDGF0dGFja0t1",
+            "bmdGdRgBIAEoCRIXCgpmb290S3VuZ0Z1GAIgASgJSACIAQESDgoGY2FuRmx5",
+            "GAMgASgIEh0KEHByb3RlY3Rpb25LdW5nRnUYBCABKAlIAYgBARIcCg9hc3Np",
+            "c3RhbnRLdW5nRnUYBSABKAlIAogBAUINCgtfZm9vdEt1bmdGdUITChFfcHJv",
+            "dGVjdGlvbkt1bmdGdUISChBfYXNzaXN0YW50S3VuZ0Z1InYKFkNyZWF0dXJl",
+            "QmFzZUluZm9QYWNrZXQSFQoNZWxhcHNlZE1pbGxpcxgCIAEoBRIRCglkaXJl",
+            "Y3Rpb24YAyABKAUSCQoBeBgEIAEoBRIJCgF5GAUgASgFEhAKCHZpZXdOYW1l",
+            "GAYgASgJEgoKAmlkGAcgASgDItABChRQbGF5ZXJTbmFwc2hvdFBhY2tldBJE",
+            "CghiYXNlSW5mbxgBIAEoCzIyLlNvdXJjZS5OZXR3b3JraW5nLlByb3RvYnVm",
+            "LkNyZWF0dXJlQmFzZUluZm9QYWNrZXQSEgoKbW92ZUFjdGlvbhgCIAEoBRJB",
+            "CgplcXVpcG1lbnRzGAMgAygLMi0uU291cmNlLk5ldHdvcmtpbmcuUHJvdG9i",
+            "dWYuUGxheWVyRXF1aXBQYWNrZXQSDAoEbWFsZRgEIAEoCBINCgVzdGF0ZRgF",
+            "IAEoBSKXAQoRTnBjU25hcHNob3RQYWNrZXQSRAoIYmFzZUluZm8YASABKAsy",
+            "Mi5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5DcmVhdHVyZUJhc2VJbmZv",
+            "UGFja2V0Eg0KBXNoYXBlGAIgASgJEg8KB2FuaW1hdGUYAyABKAkSDQoFc3Rh",
+            "dGUYBCABKAUSDQoFc3BlZWQYBSABKAUiTgoRQ3JlYXR1cmVTYXlQYWNrZXQS",
+            "CgoCaWQYASABKAMSDAoEdGV4dBgCIAEoCRIQCgh2aWV3TmFtZRgDIAEoCRIN",
+            "CgVjYWNoZRgEIAEoCCIcCgtQaWxsc1BhY2tldBINCgVwaWxscxgBIAMoCSKp",
+            "AgoWU3luY0FjdGl2ZUt1bmdGdVBhY2tldBIUCgxhdHRhY2tLdW5nRnUYASAB",
+            "KAkSHQoQcHJvdGVjdGlvbkt1bmdGdRgCIAEoCUgAiAEBEhkKDGJyZWF0aEt1",
+            "bmdGdRgDIAEoCUgBiAEBEhwKD2Fzc2lzdGFudEt1bmdGdRgEIAEoCUgCiAEB",
+            "EhcKCmZvb3RLdW5nRnUYBSABKAlIA4gBARIYChBmb290S3VuZ0Z1Q2FuRmx5",
+            "GAYgASgIEgoKAmlkGAcgASgDEhkKEWF0dGFja0t1bmdGdUxldmVsGAggASgF",
+            "QhMKEV9wcm90ZWN0aW9uS3VuZ0Z1Qg8KDV9icmVhdGhLdW5nRnVCEgoQX2Fz",
+            "c2lzdGFudEt1bmdGdUINCgtfZm9vdEt1bmdGdSJdChdQbGF5ZXJDaGFuZ2VT",
+            "dGF0ZVBhY2tldBIKCgJpZBgBIAEoAxINCgVzdGF0ZRgCIAEoBRIRCglkaXJl",
+            "Y3Rpb24YAyABKAUSCQoBeBgEIAEoBRIJCgF5GAUgASgFImYKF1BsYXllclNl",
+            "dFBvc2l0aW9uUGFja2V0EjwKCHBvc2l0aW9uGAEgASgLMiouU291cmNlLk5l",
+            "dHdvcmtpbmcuUHJvdG9idWYuUG9zaXRpb25QYWNrZXQSDQoFc3RhdGUYAiAB",
+            "KAUiWQoSUGxheWVyQXR0YWNrUGFja2V0EgoKAmlkGAEgASgDEg4KBmFjdGlv",
+            "bhgCIAEoBRIRCglkaXJlY3Rpb24YAyABKAUSFAoMZWZmZWN0U3ByaXRlGAQg",
+            "ASgJIh8KEUF0dGFja0lucHV0UGFja2V0EgoKAmlkGEAgASgDIh0KD1BpY2tJ",
+            "bnB1dFBhY2tldBIKCgJpZBhAIAEoAyI5ChNEcm9wSXRlbUlucHV0UGFja2V0",
+            "EgwKBHNsb3QYASABKAUSCQoBeBgCIAEoBRIJCgF5GAMgASgFIjcKG0Ryb3BJ",
+            "dGVtT25FbnRpdHlJbnB1dFBhY2tldBIMCgRzbG90GAEgASgFEgoKAmlkGAIg",
+            "ASgDIlAKGkNvbmZpcm1Ecm9wSXRlbUlucHV0UGFja2V0Eg4KBm51bWJlchgB",
+            "IAEoBRIMCgRzbG90GAIgASgFEgkKAXgYAyABKAUSCQoBeRgEIAEoBSI9ChpD",
+            "bGlja05wY0FiaWxpdHlJbnB1dFBhY2tldBIKCgJpZBgBIAEoAxITCgthYmls",
+            "aXR5TmFtZRgCIAEoCSI+ChJCdXlJdGVtSW5wdXRQYWNrZXQSCgoCaWQYASAB",
+            "KAMSDAoEbmFtZRgCIAEoCRIOCgZudW1iZXIYAyABKAUiPwoTU2VsbEl0ZW1J",
+            "bnB1dFBhY2tldBIKCgJpZBgBIAEoAxIMCgRzbG90GAIgASgFEg4KBm51bWJl",
+            "chgDIAEoBSJ6ChBQbGF5ZXJNb3ZlUGFja2V0Ej0KCm1vdmVQYWNrZXQYASAB",
+            "KAsyKS5Tb3VyY2UuTmV0d29ya2luZy5Qcm90b2J1Zi5OcGNNb3ZlUGFja2V0",
+            "EhIKCm1vdmVBY3Rpb24YAiABKAUSEwoLc3RhcnRNaWxsaXMYAyABKAUigAEK",
+            "E1BsYXllckRhbWFnZWRQYWNrZXQSDwoHY3VyTGlmZRgBIAEoBRIPCgdtYXhM",
+            "aWZlGAIgASgFEgoKAmlkGAMgASgDEhMKC2hlYWRQZXJjZW50GAQgASgFEhIK",
+            "CmFybVBlcmNlbnQYBSABKAUSEgoKbGVnUGVyY2VudBgGIAEoBSJqChtVcGRh",
+            "dGVUcmFkZVdpbmRvd1Nsb3RQYWNrZXQSDAoEc2VsZhgBIAEoCBI9CgRpdGVt",
+            "GAIgASgLMi8uU291cmNlLk5ldHdvcmtpbmcuUHJvdG9idWYuSW52ZW50b3J5",
+            "SXRlbVBhY2tldGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -487,7 +487,7 @@ namespace Source.Networking.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.ApplyKungFuWindowPacket), global::Source.Networking.Protobuf.ApplyKungFuWindowPacket.Parser, new[]{ "Type", "Msg" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.CreateGuildInputPacket), global::Source.Networking.Protobuf.CreateGuildInputPacket.Parser, new[]{ "Confirm", "FromSlot", "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.Packet), global::Source.Networking.Protobuf.Packet.Parser, new[]{ "LoginResponse", "RegisterResponse", "CreateCharacterResponse", "PositionPacket", "RemoveEntity", "AttackEventPacket", "ChangeStatePacket", "SwapInventorySlotPacket", "DropItem", "ShowItem", "UpdateSlot", "Text", "Unequip", "Equip", "OpenTradeWindow", "Attribute", "Sound", "Die", "GainExp", "Projectile", "LearnKungFu", "ItemDescription", "ShowDynamicObject", "Teleport", "Lifebar", "UpdateKungFuSlot", "ShowTeleport", "BreakRope", "NpcPosition", "NameColor", "KungFuForm", "QuestWindow", "UpdateBuff", "KungFuBook", "Inventory", "JoinRealm", "PlayerSnapshot", "NpcSnapshot", "Say", "ActiveKungFuList", "PlayerChangeState", "Attack", "PlayerSetPosition", "NpcMove", "PlayerMove", "EntitySound", "PlayerDamaged", "EntityDamaged", "DropItemPacket", "NpcMenuPacket", "TradeMenuPacket", "CloseTradePacket", "UpdateTradeWindowSlot", "DynamicObjectSnapshot", "DynamicObjectShift", "FollowRope", "Pills", "AttributeEquip", "ActivateEffect", "ShowQuest", "ShowBank", "ShowCreateGuild", "ShowApplyKungFu" }, new[]{ "TypedPacket" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.EntitySoundPacket), global::Source.Networking.Protobuf.EntitySoundPacket.Parser, new[]{ "Sound", "EntityName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.EntitySoundPacket), global::Source.Networking.Protobuf.EntitySoundPacket.Parser, new[]{ "Sound" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.PlayerInfoPacket), global::Source.Networking.Protobuf.PlayerInfoPacket.Parser, new[]{ "Id", "Male", "Name", "WeaponName", "ChestName", "HairName", "HatName", "WristName", "BootName", "ClothingName", "TrouserName", "ChestColor", "HairColor", "HatColor", "WristColor", "BootColor", "ClothingColor", "TrouserColor", "NameColor", "GuildName" }, new[]{ "WeaponName", "ChestName", "HairName", "HatName", "WristName", "BootName", "ClothingName", "TrouserName", "GuildName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.RemoveEntityPacket), global::Source.Networking.Protobuf.RemoveEntityPacket.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Source.Networking.Protobuf.MoveInputPacket), global::Source.Networking.Protobuf.MoveInputPacket.Parser, new[]{ "X", "Y", "Direction" }, null, null, null, null),
@@ -27229,7 +27229,6 @@ namespace Source.Networking.Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public EntitySoundPacket(EntitySoundPacket other) : this() {
       sound_ = other.sound_;
-      entityName_ = other.entityName_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -27251,18 +27250,6 @@ namespace Source.Networking.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "entityName" field.</summary>
-    public const int EntityNameFieldNumber = 2;
-    private string entityName_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string EntityName {
-      get { return entityName_; }
-      set {
-        entityName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -27279,7 +27266,6 @@ namespace Source.Networking.Protobuf {
         return true;
       }
       if (Sound != other.Sound) return false;
-      if (EntityName != other.EntityName) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -27288,7 +27274,6 @@ namespace Source.Networking.Protobuf {
     public override int GetHashCode() {
       int hash = 1;
       if (Sound.Length != 0) hash ^= Sound.GetHashCode();
-      if (EntityName.Length != 0) hash ^= EntityName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -27311,10 +27296,6 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(10);
         output.WriteString(Sound);
       }
-      if (EntityName.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(EntityName);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -27329,10 +27310,6 @@ namespace Source.Networking.Protobuf {
         output.WriteRawTag(10);
         output.WriteString(Sound);
       }
-      if (EntityName.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(EntityName);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -27345,9 +27322,6 @@ namespace Source.Networking.Protobuf {
       int size = 0;
       if (Sound.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Sound);
-      }
-      if (EntityName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityName);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -27363,9 +27337,6 @@ namespace Source.Networking.Protobuf {
       }
       if (other.Sound.Length != 0) {
         Sound = other.Sound;
-      }
-      if (other.EntityName.Length != 0) {
-        EntityName = other.EntityName;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -27386,10 +27357,6 @@ namespace Source.Networking.Protobuf {
             Sound = input.ReadString();
             break;
           }
-          case 18: {
-            EntityName = input.ReadString();
-            break;
-          }
         }
       }
     #endif
@@ -27407,10 +27374,6 @@ namespace Source.Networking.Protobuf {
             break;
           case 10: {
             Sound = input.ReadString();
-            break;
-          }
-          case 18: {
-            EntityName = input.ReadString();
             break;
           }
         }

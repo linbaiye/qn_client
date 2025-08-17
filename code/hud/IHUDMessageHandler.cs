@@ -25,7 +25,7 @@ public interface IHUDMessageHandler
     
     void UpdateActiveKungFuList(SyncActiveKungFuListMessage message);
     
-    void PlaySound(string entityName, string soundName);
+    void PlaySound(string soundName);
 
     void UpdateLifeBars(PlayerDamagedMessage message);
 

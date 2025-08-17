@@ -58,3 +58,12 @@ texture = ExtResource("7_fb5s2")
 script = ExtResource("9_co7e6")
 
 [node name="Timer" type="Timer" parent="Effect"]
+
+[node name="QuestMarker" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1

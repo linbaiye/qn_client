@@ -99,17 +99,6 @@ grow_vertical = 2
 [node name="AttributeEquipment" parent="HUD" instance=ExtResource("14_v2gmf")]
 
 [node name="Quest" parent="HUD" instance=ExtResource("15_jcbur")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -190.0
-offset_top = -152.0
-offset_right = 190.0
-offset_bottom = 152.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Bank" parent="HUD" instance=ExtResource("16_smf0o")]
 

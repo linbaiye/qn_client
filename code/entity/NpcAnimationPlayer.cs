@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Godot;
+using NLog;
 using QnClient.code.sprite;
 using QnClient.code.util;
 
@@ -142,6 +143,7 @@ public partial class NpcAnimationPlayer : AbstractAnimationPlayer
         return result.ToArray();
     }
 
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     private List<AnimationDescriptor> LoadAnimationDescriptors(string atd)
     {
@@ -154,6 +156,8 @@ public partial class NpcAnimationPlayer : AbstractAnimationPlayer
             {
                 continue;
             }
+            if (atd.Equals("21"))
+                Logger.Debug(atdString);
             string action = tokens[1];
             int frameTime = tokens[4].ToInt();
             if (MonsterActionMap.TryGetValue(action, out var state) && DirectionMap.TryGetValue(tokens[2], out var dire)) 

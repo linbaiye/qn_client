@@ -51,6 +51,7 @@ public partial class BodySprite: Sprite2D
         var shader = ResourceLoader.Load<Shader>("res://shader/Shadow.gdshader");
         var shaderMaterial = new ShaderMaterial();
         shaderMaterial.Shader = shader;
+        shaderMaterial.SetShaderParameter("modulate", new Color(0, 0, 0, 0.5f));
         Material = shaderMaterial;
     }
 }
