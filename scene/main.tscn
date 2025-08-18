@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b7jxa00fqxbmp" path="res://scene/text_history_window.tscn" id="18_gjnwh"]
 [ext_resource type="PackedScene" uid="uid://dmdbdjeys2yc8" path="res://scene/login.tscn" id="19_0vlqb"]
 [ext_resource type="PackedScene" path="res://scene/ui/simple_input.tscn" id="19_fdqew"]
-[ext_resource type="PackedScene" path="res://scene/ui/apply_kung_fu_form.tscn" id="20_0d4pv"]
+[ext_resource type="PackedScene" uid="uid://c7l7trn60dvkb" path="res://scene/ui/apply_kung_fu_form.tscn" id="20_0d4pv"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v0l8b")

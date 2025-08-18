@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfu4puvx7bgx3"]
+[gd_scene load_steps=4 format=3 uid="uid://v6yq288muirh"]
 
 [ext_resource type="Script" uid="uid://gj1pbqas2rld" path="res://code/entity/GuildStone.cs" id="1_c5rmc"]
 [ext_resource type="PackedScene" uid="uid://bo6fmqnji3bfj" path="res://scene/ui/body.tscn" id="2_ntruo"]

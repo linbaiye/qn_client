@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://didkq7jytfudr"]
+[gd_scene load_steps=8 format=3 uid="uid://c7l7trn60dvkb"]
 
 [ext_resource type="Texture2D" uid="uid://c4yp573d1cq8y" path="res://ui/guild/kungfu_form.png" id="1_leqbw"]
 [ext_resource type="Script" uid="uid://de6fdnwlthvry" path="res://code/hud/guild/ApplyKungFuForm.cs" id="2_7v53f"]
