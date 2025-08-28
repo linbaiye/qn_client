@@ -1,8 +1,10 @@
 using Godot;
 using NLog;
 using QnClient.code.hud;
+using QnClient.code.map;
 using QnClient.code.network;
 using QnClient.code.sprite;
+using QnClient.code.util;
 using HUD = QnClient.code.hud.HUD;
 
 namespace QnClient.code;
@@ -26,7 +28,11 @@ public partial class Main : Node
         _login.LoggedIn += OnLoggedIn;
         _login.Exited += Exit;
         SetupConnection();
-        AtdLoader.Instance.Load("0");
+        //AtdLoader.Instance.Load("0");
+        //AtzMapFileParser atzMapFileParser = AtzMapFileParser.ParseFile("res://maps/start.map");
+        //randomMap.Random(atzMapFileParser);
+        //var tileAdjacency = new TileAdjacency();
+        //tileAdjacency.Dump(atzMapFileParser);
     }
 
     private void Exit()
@@ -44,8 +50,8 @@ public partial class Main : Node
     
     private async void SetupConnection()
     {
-        _connection = await Connection.ConnectTo("193.112.251.231", 9999);
-        //_connection = await Connection.ConnectTo("127.0.0.1", 9999);
+        //_connection = await Connection.ConnectTo("193.112.251.231", 9999);
+        _connection = await Connection.ConnectTo("127.0.0.1", 9999);
         _login.OnConnected(_connection);
     }
 

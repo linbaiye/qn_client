@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="QnClient"
-run/main_scene="uid://ch785oi1vsnly"
+run/main_scene="uid://chliif61o13q2"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,6 @@ LogConfigurer="*res://code/LogConfigurer.cs"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=768
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 

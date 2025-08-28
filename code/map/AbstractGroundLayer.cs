@@ -102,6 +102,12 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
         EraseOrSavePaintedCells(painted);
     }
 
+    protected int GetSourceId(int tileId)
+    {
+        bool ok = TileIdToSourceId.TryGetValue(tileId, out var ret);
+        return ok ? ret : -1;
+    }
+
     protected abstract int GetTileId(AtzMapFileParser.MapCell cell);
     
     protected abstract int GetNumber(AtzMapFileParser.MapCell cell);

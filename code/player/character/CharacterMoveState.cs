@@ -94,7 +94,8 @@ public class CharacterMoveState : AbstractCharacterState
             return;
         }
         var moveInput = new MoveInput(_character.NextMoveDirection.Value, _character.Coordinate);
-        if (_character.Map.CanMove(_character.Coordinate.Move(moveInput.Direction)))
+        if (true)
+        //if (_character.Map.CanMove(_character.Coordinate.Move(moveInput.Direction)))
         {
             var moveAction = ComputeMoveAction(_character, _action);
             _character.ChangeState(new CharacterMoveState(_character, moveAction, moveInput));

@@ -115,7 +115,7 @@ boMove: byte;*/
     }
     
 
-    private bool IsInRange(int x, int y)
+    public bool IsInRange(int x, int y)
     {
         return x >= 0 && x < _width && y >=0 && y < _width;
     }
