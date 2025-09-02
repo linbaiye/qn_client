@@ -21,8 +21,6 @@ public class Tile(int id, int number)
     {
         if (!dir.Contains(tile))
             dir.Add(tile);
-        if (dir.Count > 1)
-            Logger.Debug("Tile {} has neibhours.", tile);
     }
     public void AddNeighbour(Tile tile, CreatureDirection direction)
     {
@@ -44,6 +42,19 @@ public class Tile(int id, int number)
         return tiles[next];
     }
 
+    public List<Tile> Neighbours(CreatureDirection direction)
+    {
+        if (direction == CreatureDirection.Up)
+            return _upTiles;
+        if (direction == CreatureDirection.Down)
+            return _downTiles;
+        if (direction == CreatureDirection.Left)
+            return _leftTiles;
+        if (direction == CreatureDirection.Right)
+            return _rightTiles;
+        return new List<Tile>();
+    }
+
     public Tile? PickRandom(CreatureDirection direction)
     {
         if (direction == CreatureDirection.Up)
@@ -56,6 +67,44 @@ public class Tile(int id, int number)
             return PickRandom(_rightTiles);
         return null;
     }
+    
+    
+    public Tile? Pick(CreatureDirection direction, Tile? up, Tile? down, Tile? left, Tile? right)
+    {
+        List<Tile> candidates = new List<Tile>();
+        if (direction == CreatureDirection.Up)
+            candidates = _upTiles;
+        if (direction == CreatureDirection.Down)
+            candidates = _downTiles;
+        if (direction == CreatureDirection.Left)
+            candidates = _leftTiles;
+        if (direction == CreatureDirection.Right)
+            candidates = _rightTiles;
+        List<Tile> matched = new List<Tile>();
+        foreach (var tile in candidates)
+        {
+            if (tile.MatchNeighbours(up, down, left, right))
+            {
+                matched.Add(tile);
+            }
+        }
+        return PickRandom(matched);
+    }
+
+
+    public bool MatchNeighbours(Tile? up, Tile? down, Tile? left, Tile? right)
+    {
+        if (up != null && !_upTiles.Contains(up))
+            return false;
+        if (down != null && !_downTiles.Contains(down))
+            return false;
+        if (left != null && !_leftTiles.Contains(left))
+            return false;
+        if (right != null && !_rightTiles.Contains(right))
+            return false;
+        return true;
+    }
+
 
     public override string ToString()
     {

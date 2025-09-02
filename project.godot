@@ -21,6 +21,7 @@ LogConfigurer="*res://code/LogConfigurer.cs"
 
 [display]
 
+window/size/viewport_width=1024
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
