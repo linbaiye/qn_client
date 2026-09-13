@@ -4,7 +4,7 @@ using QnClient.code.util;
 
 namespace QnClient.code.map;
 
-public partial class RoofLayer : Node2D
+public partial class RoofLayer : TileMapLayer
 {
 	private IDictionary<int, MapObject> _mapRoofInfos = new Dictionary<int, MapObject>();
 	

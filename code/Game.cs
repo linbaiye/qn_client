@@ -150,6 +150,7 @@ public partial class Game : Node2D
         var messages = _connection.DrainMessages();
         foreach (var msg in messages)
         {
+            //Logger.Debug("Received msg {}.", msg);
             switch (msg)
             {
                 case JoinRealmMessage message:

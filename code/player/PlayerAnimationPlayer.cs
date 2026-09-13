@@ -303,126 +303,126 @@ public partial class PlayerAnimationPlayer : AbstractAnimationPlayer
     
     public void PlayWalk(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(MoveAction.Walk + "/" + direction, fromMillis);
+        PlayPlayerAnimation(MoveAction.Walk + "/" + direction, fromMillis);
     }
     
     public void PlayRun(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(MoveAction.Walk + "/" + direction, fromMillis, 2f);
+        PlayPlayerAnimation(MoveAction.Walk + "/" + direction, fromMillis, 2f);
     }
 
     
     public void PlayFly(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.Idle + "/" + direction, fromMillis, 2f);
+        PlayPlayerAnimation(PlayerState.Idle + "/" + direction, fromMillis, 2f);
     }
     
     public void PlayIdle(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.Idle + "/" + direction, fromMillis);
+        PlayPlayerAnimation(PlayerState.Idle + "/" + direction, fromMillis);
     }
 
 
     public void PlayFightWalk(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(MoveAction.FightWalk + "/" + direction, fromMillis);
+        PlayPlayerAnimation(MoveAction.FightWalk + "/" + direction, fromMillis);
     }
     
     public void PlayFightStand(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.FightStand + "/" + direction, fromMillis);
+        PlayPlayerAnimation(PlayerState.FightStand + "/" + direction, fromMillis);
     }
     
     public void PlaySit(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.Sit + "/" + direction, fromMillis);
+        PlayPlayerAnimation(PlayerState.Sit + "/" + direction, fromMillis);
     }
     
     public void PlayStandUp(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.StandUp + "/" + direction, fromMillis);
+        PlayPlayerAnimation(PlayerState.StandUp + "/" + direction, fromMillis);
     }
     
 
     public void PlayHurt(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.Hurt + "/" + direction, fromMillis);
+        PlayPlayerAnimation(PlayerState.Hurt + "/" + direction, fromMillis);
     }
     
     public void PlayDie(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.Die + "/" + direction, fromMillis);
+        PlayPlayerAnimation(PlayerState.Die + "/" + direction, fromMillis);
     }
     
     
     public void PlayHello(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(PlayerState.Hello + "/" + direction, fromMillis);
+        PlayPlayerAnimation(PlayerState.Hello + "/" + direction, fromMillis);
     }
 
     
     public void PlayKick(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Kick + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Kick + "/" + direction, fromMillis);
     }
     
     public void PlayPunch(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Punch + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Punch + "/" + direction, fromMillis);
     }
     
     
     public void PlaySword1HAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
     }
     
     
     public void PlayBlade1HAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Sword1H + "/" + direction, fromMillis);
     }
     
     
     public void PlayBlade2HAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Blade2H + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Blade2H + "/" + direction, fromMillis);
     }
     
     public void PlaySword2HAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Sword2H + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Sword2H + "/" + direction, fromMillis);
     }
     
     
     public void PlayAxeAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Axe + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Axe + "/" + direction, fromMillis);
     }
     
     
     public void PlaySpearAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Axe + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Axe + "/" + direction, fromMillis);
     }
     
     
     public void PlayBowAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Bow + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Bow + "/" + direction, fromMillis);
     }
     
 
     public void PlayThrowAttack(CreatureDirection direction, int fromMillis = 0)
     {
-        PlayAnimation(AttackAction.Throw + "/" + direction, fromMillis);
+        PlayPlayerAnimation(AttackAction.Throw + "/" + direction, fromMillis);
     }
 
-    private void PlayAnimation(string name, int millis, float speed = 1)
+    private void PlayPlayerAnimation(string name, int millis, float speed = 1)
     {
         CurrentDirection = Enum.Parse<CreatureDirection>(name.Split("/")[1]);
         _finished = "";
-        if (!string.IsNullOrEmpty(CurrentAnimation))
+        if (!string.IsNullOrEmpty(GetCurrentAnimation()))
             Stop(true);
         DoPlay(name, millis, speed);
     }

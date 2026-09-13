@@ -96,7 +96,7 @@ public abstract partial class AbstractCreature : AbstractEntity, ICreature
         var ani = _animationPlayer.CurrentAnimation;
         if (string.IsNullOrEmpty(ani))
             return;
-        CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.Split("/")[1]);
+        CreatureDirection direction = Enum.Parse<CreatureDirection>(ani.ToString().Split("/")[1]);
         ShootEvent?.Invoke(new ShootEvent(targetId, startPoint.Invoke(direction), sprite, flyMillis));
     }
 

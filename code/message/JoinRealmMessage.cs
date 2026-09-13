@@ -70,6 +70,12 @@ public class JoinRealmMessage : IHUDMessage
         };
     }
 
+    public override string ToString()
+    {
+        return "JoinRealm[id:" + Id + "]";
+    }
+
+
     public void Accept(IHUDMessageHandler handler)
     {
         handler.OnCharacterJoined(this);

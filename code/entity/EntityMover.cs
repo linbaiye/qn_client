@@ -27,14 +27,20 @@ public class EntityMover
     /// </summary>
     /// <param name="delta"></param>
     /// <returns></returns>
-    public bool PhysicProcess(double delta)
+    public bool PhysicProcess(double delta, bool round = false)
     {
         if (_elapsedSeconds >= _durationSeconds)
             return true;
         _entity.Position += _velocity * (float)delta;
         _elapsedSeconds += (float)delta;
         if (_elapsedSeconds < _durationSeconds)
+        {
+            if (round)
+            {
+                _entity.Position = _entity.Position.Round();
+            }
             return false;
+        }
         _entity.Position = _entity.Position.Snapped(VectorUtil.TileSize);
         return true;
     }

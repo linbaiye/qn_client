@@ -58,7 +58,8 @@ public class AtzMap(
         roofLayer.ChangeFilter(filterEnum);
         groundLayer.ChangeFilter(filterEnum);
         overGroundLayer.ChangeFilter(filterEnum);*/
-        Draw(coordinate);
+        DrawWhole();
+        //Draw(coordinate);
     }
 
     private void DrawWhole()
@@ -110,19 +111,6 @@ public class AtzMap(
                 Occupy(dynamicObject);
             else
                 Occupy(movementEvent.Source);
-            if (entityEvent.Source is not Character c)
-            {
-                return;
-            }
-            Draw(c.Coordinate);
-            if (_fileParser.ShouldHideRoof(c.Coordinate))
-            {
-                roofLayer.Hide();
-            } 
-            else if (!roofLayer.Visible)
-            {
-                roofLayer.Show();
-            }
         }
         else if (entityEvent is DeletedEvent)
         {

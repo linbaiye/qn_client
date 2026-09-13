@@ -47,8 +47,6 @@ public partial class Login : NinePatchRect
     
     private LineEdit _selectInput;
     
-    private static readonly bool DevMode = false;
-    
     
     public override void _Ready()
     {
@@ -246,9 +244,9 @@ public partial class Login : NinePatchRect
         _connection.WriteAndFlush(new LoginAccountRequest(_username.Text, _password.Text));
     }
 
-    public void OnConnected(Connection connection)
+    public void OnConnected(Connection connection, bool devMode = false)
     {
-        if (DevMode)
+        if (devMode)
         {
             connection.WriteAndFlush(new LoginCharacterRequest(""));
             LoggedIn?.Invoke();
@@ -259,5 +257,6 @@ public partial class Login : NinePatchRect
         _regButton.Disabled = false;
         _connect.Disabled = false;
         _timer.Start(0.1f);
+        
     }
 }
