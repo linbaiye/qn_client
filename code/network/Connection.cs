@@ -5,6 +5,7 @@ using DotNetty.Codecs;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
+using NLog;
 using QnClient.code.message;
 using QnClient.code.network.toserver;
 using QnClient.code.sprite;

@@ -44,9 +44,9 @@ public partial class Main : Node
     
     private async void SetupConnection()
     {
-        _connection = await Connection.ConnectTo("193.112.251.231", 9999);
-        //_connection = await Connection.ConnectTo("127.0.0.1", 9999);
-        _login.OnConnected(_connection);
+        //_connection = await Connection.ConnectTo("193.112.251.231", 9999);
+        _connection = await Connection.ConnectTo("192.168.139.128", 9999);
+        _login.OnConnected(_connection, true);
     }
 
     public override void _Notification(int what)

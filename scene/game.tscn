@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://idx0qd14bsb2"]
+[gd_scene format=3 uid="uid://idx0qd14bsb2"]
 
 [ext_resource type="PackedScene" uid="uid://cr1c0pyjtfjsu" path="res://scene/player.tscn" id="1_5kiuu"]
 [ext_resource type="Script" uid="uid://bq5dvifj8mv6y" path="res://code/Game.cs" id="1_dbls1"]
@@ -14,39 +14,38 @@ tile_size = Vector2i(32, 24)
 [sub_resource type="TileSet" id="TileSet_xwcet"]
 tile_size = Vector2i(32, 24)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1189571427]
 y_sort_enabled = true
+texture_filter = 1
 script = ExtResource("1_dbls1")
 
-[node name="GroundLayer" type="TileMapLayer" parent="."]
-texture_filter = 2
+[node name="GroundLayer" type="TileMapLayer" parent="." unique_id=1699403047]
 tile_set = SubResource("TileSet_33cqm")
 occlusion_enabled = false
 collision_enabled = false
 navigation_enabled = false
 script = ExtResource("2_dbls1")
 
-[node name="OverGroundLayer" type="TileMapLayer" parent="."]
-texture_filter = 2
+[node name="OverGroundLayer" type="TileMapLayer" parent="." unique_id=1845249471]
 tile_set = SubResource("TileSet_xwcet")
 occlusion_enabled = false
 collision_enabled = false
 script = ExtResource("4_xwcet")
 
-[node name="ObjectLayer" type="Node2D" parent="."]
+[node name="Character" parent="." unique_id=501272237 instance=ExtResource("1_5kiuu")]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("6_qpk70")
+
+[node name="Camera2D" type="Camera2D" parent="Character" unique_id=2001392331]
+process_callback = 0
+
+[node name="ObjectLayer" type="Node2D" parent="." unique_id=623918665]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("4_p1ry8")
 
-[node name="Character" parent="." instance=ExtResource("1_5kiuu")]
-z_index = 2
-y_sort_enabled = true
-texture_filter = 2
-script = ExtResource("6_qpk70")
-
-[node name="Camera2D" type="Camera2D" parent="Character"]
-process_callback = 0
-
-[node name="RoofLayer" type="Node2D" parent="."]
+[node name="RoofLayer" type="TileMapLayer" parent="." unique_id=987610839]
 z_index = 3
+texture_filter = 2
 script = ExtResource("6_xlg7c")

@@ -120,6 +120,8 @@ public abstract partial class AbstractGroundLayer : TileMapLayer
             {
                 Texture = texture , 
                 TextureRegionSize = new Vector2I(32, 24),
+                //Margins = new Vector2I(1, 1),
+                //Separation = new Vector2I(2, 2),
             };
             int width = texture.GetWidth() / 32;
             for (int w = 0; w < width; w++)

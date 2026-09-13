@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="QnClient"
 run/main_scene="uid://ch785oi1vsnly"
-config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -36,7 +40,8 @@ timers/tooltip_delay_sec=0.1
 
 [physics]
 
-common/physics_jitter_fix=0.654
+common/physics_ticks_per_second=100
+common/physics_jitter_fix=0.65
 common/physics_interpolation=true
 common/enable_object_picking=false
 
