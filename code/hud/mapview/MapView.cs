@@ -17,7 +17,7 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
 
     private MapEntityMarker _characterMarker;
 
-    private Connection _connection;
+    private IConnection _connection;
     
     private IMap _map;
     
@@ -146,7 +146,7 @@ public partial class MapView : TextureRect, IConnectionAware, ICharacterJoinedAw
         }
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

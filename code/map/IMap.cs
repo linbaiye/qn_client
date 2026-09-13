@@ -1,4 +1,5 @@
 ﻿using Godot;
+using QnClient.code.entity;
 
 namespace QnClient.code.map;
 
@@ -13,5 +14,9 @@ public interface IMap
     Vector2I End { get; }
     
     public string Name { get; }
-    
+
+    void HandleEntityEvent(IEntityEvent entityEvent);
+
+    void Load(string name, string textureResourceName, Vector2I coordinate);
+
 }

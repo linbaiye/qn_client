@@ -65,7 +65,7 @@ public partial class Assistance : NinePatchRect, IConnectionAware, ICharacterJoi
         Visible = true;
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _healAssistance.SetConnection(connection);
         _lootAssistance.SetConnection(connection);

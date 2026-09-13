@@ -17,7 +17,7 @@ public partial class Login : NinePatchRect
     private Label _label;
     private AudioStreamPlayer2D _buttonSound;
 
-    private Connection _connection;
+    private IConnection _connection;
 
     public event Action? LoggedIn;
     
@@ -244,7 +244,7 @@ public partial class Login : NinePatchRect
         _connection.WriteAndFlush(new LoginAccountRequest(_username.Text, _password.Text));
     }
 
-    public void OnConnected(Connection connection, bool devMode = false)
+    public void OnConnected(IConnection connection, bool devMode = false)
     {
         if (devMode)
         {
@@ -257,6 +257,5 @@ public partial class Login : NinePatchRect
         _regButton.Disabled = false;
         _connect.Disabled = false;
         _timer.Start(0.1f);
-        
     }
 }

@@ -80,4 +80,30 @@ public class JoinRealmMessage : IHUDMessage
     {
         handler.OnCharacterJoined(this);
     }
+
+
+    public static JoinRealmMessage DebugMap()
+    {
+        return new JoinRealmMessage()
+        {
+            MapFile = "test",
+            ResourceName = "test",
+            Coordinate = new Vector2I(1, 1),
+            Name = "test",
+            Id = 1,
+            Male = true,
+            LifeBar = new ValueBar(100, 100),
+            PowerBar = new ValueBar(100, 100),
+            InnerPowerBar = new ValueBar(100, 100),
+            OuterPowerBar = new ValueBar(100, 100),
+            ArmLifeBar = new ValueBar(100, 100),
+            HeadLifeBar = new ValueBar(100, 100),
+            LegLifeBar = new ValueBar(100, 100),
+            AttackKungFu = "无名拳法",
+            Equipments = new List<PlayerEquipMessage>(),
+            Bgm = "1303",
+            MapTile = "test",
+            AttackKungFuLevel = 1000,
+        };
+    }
 }

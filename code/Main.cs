@@ -1,6 +1,7 @@
 using Godot;
 using NLog;
 using QnClient.code.hud;
+using QnClient.code.message;
 using QnClient.code.network;
 using QnClient.code.sprite;
 using HUD = QnClient.code.hud.HUD;
@@ -9,7 +10,7 @@ namespace QnClient.code;
 
 public partial class Main : Node
 {
-    private Connection _connection;
+    private IConnection _connection;
 
     private HUD _hud;
 
@@ -41,12 +42,29 @@ public partial class Main : Node
         _login.QueueFree();
         _game.Start(_connection, _hud);
     }
-    
+
     private async void SetupConnection()
     {
         //_connection = await Connection.ConnectTo("193.112.251.231", 9999);
-        _connection = await Connection.ConnectTo("192.168.139.128", 9999);
-        _login.OnConnected(_connection, true);
+        if (Game.Dev.SERVER == Game.DEV_MODE)
+        {
+            _connection = await Connection.ConnectTo("192.168.139.128", 9999);
+            _login.OnConnected(_connection, true);
+        } 
+        else if (Game.Dev.SERVER == Game.DEV_MODE)
+        {
+            _connection = await Connection.ConnectTo("192.168.139.128", 9999);
+            _login.OnConnected(_connection);
+        } 
+        else if (Game.Dev.MAP == Game.DEV_MODE)
+        {
+            var c = new DevConnection();
+            var joinRealmMessage = JoinRealmMessage.DebugMap();
+            c.Add(joinRealmMessage);
+            c.Add(SyncActiveKungFuListMessage.Dev(joinRealmMessage.Id));
+            _connection = c;
+            _login.OnConnected(_connection, true);
+        }
     }
 
     public override void _Notification(int what)

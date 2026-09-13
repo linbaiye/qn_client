@@ -28,7 +28,7 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     
     private KungFuBookMessage _message;
     
-    private Connection _connection;
+    private IConnection _connection;
 
     public override void _Ready()
     {
@@ -44,7 +44,7 @@ public partial class KungFuBook : AbstractSlotContainer, IConnectionAware
     }
 
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

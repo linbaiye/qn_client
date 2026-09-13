@@ -14,7 +14,7 @@ public partial class AttributeEquipment : NinePatchRect, IConnectionAware
     private Label _age;
     private Equipment _equipment;
 
-    private Connection _connection;
+    private IConnection _connection;
     
     public override void _Ready()
     {
@@ -78,7 +78,7 @@ public partial class AttributeEquipment : NinePatchRect, IConnectionAware
         _connection?.WriteAndFlush(SimpleInput.AttributeQuietly);
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

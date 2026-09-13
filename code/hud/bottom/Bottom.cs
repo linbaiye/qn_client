@@ -25,7 +25,7 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
 
     private BlinkingLabel _blinkingLabel;
 
-    private Connection _connection;
+    private IConnection _connection;
 
     public event Action? InventoryButtonPressed;
     public event Action? KungFuBookButtonPressed;
@@ -241,7 +241,7 @@ public partial class Bottom : NinePatchRect, ICharacterJoinedAware, IAttributePr
         _connection?.WriteAndFlush(new UnequipInput(t));
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

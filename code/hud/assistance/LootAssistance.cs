@@ -29,7 +29,7 @@ public partial class LootAssistance : NinePatchRect
     
     private Vector2I _characterCoordinate = Vector2I.Zero;
 
-    private Connection _connection;
+    private IConnection _connection;
 
     private FileStorage _file;
     
@@ -166,7 +166,7 @@ public partial class LootAssistance : NinePatchRect
         _characterCoordinate = characterCoordinate;
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

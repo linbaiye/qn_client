@@ -13,7 +13,7 @@ public partial class HealAssistance : NinePatchRect, IConnectionAware
     
     private PillSetting[] _pillSettings = new PillSetting[7];
 
-    private Connection _connection;
+    private IConnection _connection;
 
     private int _requestSlot = 0;
 
@@ -159,7 +159,7 @@ public partial class HealAssistance : NinePatchRect, IConnectionAware
         _connection?.WriteAndFlush(SimpleInput.GetPills);
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

@@ -19,7 +19,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
 
     private IMap? _map;
 
-    private Connection? _connection;
+    private IConnection? _connection;
     
     private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
     
@@ -30,7 +30,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
         _characterState = state;
     }
 
-    public Connection Connection => _connection;
+    public IConnection Connection => _connection;
     
     public IMap Map => _map;
 
@@ -120,7 +120,7 @@ public partial class Character : AbstractPlayer, ICharacter, ICharacterMessageHa
     }
 
 
-    public void Initialize(JoinRealmMessage message, Connection connection, IMap map)
+    public void Initialize(JoinRealmMessage message, IConnection connection, IMap map)
     {
         _connection = connection;
         _map = map;

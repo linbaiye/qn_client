@@ -19,7 +19,7 @@ public partial class Quest : NinePatchRect, IConnectionAware
 
     private long _npcId;
 
-    private Connection _connection;
+    private IConnection _connection;
 
     public override void _Ready()
     {
@@ -50,7 +50,7 @@ public partial class Quest : NinePatchRect, IConnectionAware
         Visible = true;
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

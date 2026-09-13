@@ -10,11 +10,11 @@ public class GuildManager
 
     private readonly ApplyKungFuForm _applyKungFuForm;
     
-    private readonly Connection _connection;
+    private readonly IConnection _connection;
     
     private int _slotId;
 
-    public GuildManager(SimpleInputWindow simpleInputWindow, Connection connection, ApplyKungFuForm applyKungFuForm)
+    public GuildManager(SimpleInputWindow simpleInputWindow, IConnection connection, ApplyKungFuForm applyKungFuForm)
     {
         _simpleInputWindow = simpleInputWindow;
         _simpleInputWindow.Confirmed += ConfirmCreation;
