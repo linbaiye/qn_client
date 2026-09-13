@@ -43,4 +43,19 @@ public class SyncActiveKungFuListMessage : ICharacterMessage, IHUDMessage
     {
         handler.UpdateActiveKungFuList(this);
     }
+
+
+    public static SyncActiveKungFuListMessage Dev(long id)
+    {
+        return new SyncActiveKungFuListMessage()
+        {
+            Id = id,
+            FootKungFu = new FootKungFu("无名步法", true),
+            AttackKungFu = "无名拳法",
+            ProtectionKungFu = "",
+            AssistantKungFu = "",
+            BreathKungFu = "",
+            AttackLevel = 1000,
+        };
+    }
 }

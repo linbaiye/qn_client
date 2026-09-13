@@ -13,7 +13,7 @@ public partial class Bank : AbstractSlotContainer, IConnectionAware
 
     private ItemModifyInput _input;
     
-    private Connection _connection;
+    private IConnection _connection;
 
     private ShowBankMessage _message;
 
@@ -227,7 +227,7 @@ public partial class Bank : AbstractSlotContainer, IConnectionAware
     }
 
     protected override int Capacity => 40;
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

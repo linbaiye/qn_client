@@ -125,7 +125,7 @@ public partial class HUD : CanvasLayer, IHUDMessageHandler
     }
 
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         foreach (var child in GetChildren())
         {

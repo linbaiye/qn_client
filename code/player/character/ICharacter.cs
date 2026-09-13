@@ -28,7 +28,7 @@ public interface ICharacter : ICreature
     
     FootKungFu? FootKungFu { get; }
     
-    Connection Connection { get; }
+    IConnection Connection { get; }
     CreatureDirection? NextMoveDirection { get; }
     
     void EmitEvent(IEntityEvent entityEvent);

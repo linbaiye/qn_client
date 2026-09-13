@@ -19,7 +19,7 @@ namespace QnClient.code;
 
 public partial class Game : Node2D
 {
-    private AtzMap _map;
+    private IMap _map;
 
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
@@ -27,10 +27,19 @@ public partial class Game : Node2D
 
     private readonly EntityManager _entityManager = new();
 
-    private Connection _connection;
+    private IConnection _connection;
 
     private HUD _hud;
     
+    
+    public enum Dev
+    {
+        NONE,
+        MAP,
+        SERVER,
+    }
+    
+    public static readonly Dev DEV_MODE = Dev.MAP;
 
     public override void _Ready()
     {
@@ -40,7 +49,10 @@ public partial class Game : Node2D
         var rootLayer = GetNode<RoofLayer>("RoofLayer");
         _character = GetNode<Character>("Character");
         Visible = false;
-        _map = new AtzMap(overGroundLayer, groundLayer, objectLayer, rootLayer);
+        if (DEV_MODE == Dev.MAP)
+            _map = new DevMap();
+        else
+            _map = new AtzMap(overGroundLayer, groundLayer, objectLayer, rootLayer);
     }
 
     private void AddCreature(AbstractCreature creature, IEntityMessage message)
@@ -206,7 +218,7 @@ public partial class Game : Node2D
         }
     }
 
-    public void Start(Connection connection, HUD hud)
+    public void Start(IConnection connection, HUD hud)
     {
         _connection = connection;
         _hud = hud;

@@ -13,7 +13,7 @@ public abstract partial class AbstractNpcMenu : NinePatchRect, IConnectionAware
     private Button _closeButton;
     private long _npcId;
 
-    private Connection _connection;
+    private IConnection _connection;
 
     public override void _Ready()
     {
@@ -38,7 +38,7 @@ public abstract partial class AbstractNpcMenu : NinePatchRect, IConnectionAware
 
     protected abstract void OnClose();
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

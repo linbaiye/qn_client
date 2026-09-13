@@ -4,5 +4,5 @@ namespace QnClient.code.hud;
 
 public interface IConnectionAware
 {
-    void SetConnection(Connection connection);
+    void SetConnection(IConnection connection);
 }

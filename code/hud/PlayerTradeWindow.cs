@@ -18,7 +18,7 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
     
     private HBoxContainer _anotherBox;
 
-    private Connection _connection;
+    private IConnection _connection;
 
     private ItemModifyInput _input;
     
@@ -58,7 +58,7 @@ public partial class PlayerTradeWindow : NinePatchRect, IConnectionAware
         }
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

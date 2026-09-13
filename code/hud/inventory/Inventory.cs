@@ -20,7 +20,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
 
     private Texture2D[] _icons;
 
-    private Connection _connection;
+    private IConnection _connection;
     
     private InventoryMessage _message;
     public event Action<int>? ItemDragReleased;
@@ -222,7 +222,7 @@ public partial class Inventory : AbstractSlotContainer, IConnectionAware
         Visible = true;
     }
 
-    public void SetConnection(Connection connection)
+    public void SetConnection(IConnection connection)
     {
         _connection = connection;
     }

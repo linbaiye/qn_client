@@ -12,7 +12,14 @@ using QnClient.code.sprite;
 
 namespace QnClient.code.network;
 
-public class Connection(string ip, int port)  : SimpleChannelInboundHandler<object>
+public interface IConnection
+{
+    void WriteAndFlush(I2ServerMessage message);
+    
+    List<object> DrainMessages();
+}
+
+public class Connection(string ip, int port)  : SimpleChannelInboundHandler<object>, IConnection
 {
     private IChannel? _channel;
 
